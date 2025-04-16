@@ -1,6 +1,7 @@
 syntax="proto3";
 
 package test.v1;
+option go_package = "server/internal/generated/test;testpb";
 
 service testService {
     rpc Ping (PingRequest) returns (PingResponse);
