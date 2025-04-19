@@ -1,2 +1,4 @@
+package=ping.v1
+
 syntax="proto3"
 
