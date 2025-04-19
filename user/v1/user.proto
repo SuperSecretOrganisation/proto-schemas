@@ -15,7 +15,7 @@ service UserService {
 // User message definition
 message User {
   string uuid = 1;            // maps to User.UUID
-  string username = 2;        // maps to User.Username
+  string userusername = 2;        // maps to User.Userusername
   string email = 3;           // maps to User.Email
   string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
   string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
@@ -24,12 +24,12 @@ message User {
 
 // User creation request and response
 message CreateUserRequest {
-  string name = 1;
+  string username = 1;
   string email = 2;
 }
 message CreateUserResponse {
   string uuid = 1;
-  string name = 2;
+  string username = 2;
   string email = 3;
 }
 
@@ -38,20 +38,20 @@ message GetUserRequest {
   string uuid = 1;
 }
 message GetUserResponse {
-  string id = 1;
-  string name = 2;
+  string uuid = 1;
+  string username = 2;
   string email = 3;
 }
 
 // User update request and response
 message UpdateUserRequest {
   string uuid = 1;
-  string name = 2;
+  string username = 2;
   string email = 3;
 }
 message UpdateUserResponse {
   string uuid = 1;
-  string name = 2;
+  string username = 2;
   string email = 3;
 }
 
