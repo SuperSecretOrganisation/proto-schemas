@@ -1,3 +1,11 @@
 syntax="proto3";
 
 option go_package = "generated/measurement;measurementpb";
+
+service MeasurementService {
+  rpc GetMeasurement (GetMeasurementRequest) returns (GetMeasurementResponse);
+  rpc ListMeasurements (ListMeasurementsRequest) returns (ListMeasurementsResponse);
+  rpc CreateMeasurement (CreateMeasurementRequest) returns (CreateMeasurementResponse);
+  rpc UpdateMeasurement (UpdateMeasurementRequest) returns (UpdateMeasurementResponse);
+  rpc DeleteMeasurement (DeleteMeasurementRequest) returns (DeleteMeasurementResponse);
+}	

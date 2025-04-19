@@ -9,6 +9,7 @@ service UserService {
   rpc GetUser (GetUserRequest) returns (GetUserResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
 }
 
 // User creation request and response
@@ -50,6 +51,16 @@ message DeleteUserRequest {
 }
 message DeleteUserResponse {
   string id = 1;
+}
+
+// List users request and response
+message ListUsersRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+message ListUsersResponse {
+  repeated User users = 1;
+  int32 total_count = 2;
 }
 
 // Error handling
