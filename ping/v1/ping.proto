@@ -3,4 +3,21 @@ syntax = "proto3";
 
 package ping.v1;
 
+option go_package = "generated/ping;pingpb";
+
+service PingService {
+    rpc Ping (PingRequest) returns (PingResponse);
+}
+
+message PingRequest {
+    string message = 1;
+}
+message PingResponse {
+    string message = 1;
+}
+message Error {
+    string code = 1;
+    string message = 2;
+}
+
 
