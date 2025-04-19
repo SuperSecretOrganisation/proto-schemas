@@ -1,4 +1,4 @@
-package=ping.v1
+package ping.v1
 
-syntax="proto3"
+syntax = "proto3";
 
