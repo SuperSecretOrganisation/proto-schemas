@@ -12,20 +12,30 @@ service UserService {
   rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
 }
 
+// User message definition
+message User {
+  string uuid = 1;            // maps to User.UUID
+  string username = 2;        // maps to User.Username
+  string email = 3;           // maps to User.Email
+  string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
+  string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
+}
+
+
 // User creation request and response
 message CreateUserRequest {
   string name = 1;
   string email = 2;
 }
 message CreateUserResponse {
-  string id = 1;
+  string uuid = 1;
   string name = 2;
   string email = 3;
 }
 
 // User retrieval request and response
 message GetUserRequest {
-  string id = 1;
+  string uuid = 1;
 }
 message GetUserResponse {
   string id = 1;
@@ -35,22 +45,22 @@ message GetUserResponse {
 
 // User update request and response
 message UpdateUserRequest {
-  string id = 1;
+  string uuid = 1;
   string name = 2;
   string email = 3;
 }
 message UpdateUserResponse {
-  string id = 1;
+  string uuid = 1;
   string name = 2;
   string email = 3;
 }
 
 // User deletion request and response
 message DeleteUserRequest {
-  string id = 1;
+  string uuid = 1;
 }
 message DeleteUserResponse {
-  string id = 1;
+  string uuid = 1;
 }
 
 // List users request and response
