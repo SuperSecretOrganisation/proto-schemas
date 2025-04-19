@@ -15,7 +15,7 @@ service UserService {
 // User message definition
 message User {
   string uuid = 1;            // maps to User.UUID
-  string userusername = 2;        // maps to User.Userusername
+  string username = 2;        // maps to User.Userusername
   string email = 3;           // maps to User.Email
   string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
   string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
