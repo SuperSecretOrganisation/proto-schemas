@@ -75,7 +75,7 @@ message ListAllMeasurementsResponse {
 
 // Measurement creation and update request and response
 message CreateMeasurementRequest {
-  MeasurementDTO measurement = 1;
+  MeasurementDTO measurementDto = 1;
 }
 message CreateMeasurementResponse {
   bool success = 1;
