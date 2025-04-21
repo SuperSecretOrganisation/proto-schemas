@@ -15,6 +15,16 @@ message Measurement {
   google.protobuf.Timestamp time_stamp = 8;
 }
 
+message MeasurementDTO {
+  string user_id = 1;
+  string activity_id = 2;
+  string activity_type = 3;
+  repeated uint32 heel_pressure = 4;
+  repeated uint32 toe_pressure = 5;
+  repeated uint32 weight = 6;
+  google.protobuf.Timestamp timestamp = 7;
+}
+
 message MeasurementFilter {
   string activity_type = 1;
   string activity_id = 2;
@@ -65,10 +75,10 @@ message ListAllMeasurementsResponse {
 
 // Measurement creation and update request and response
 message CreateMeasurementRequest {
-  Measurement measurement = 1;
+  MeasurementDTO measurement = 1;
 }
 message CreateMeasurementResponse {
-  Measurement measurement = 1;
+  bool success = 1;
 }
 
 // Update an existing measurement
