@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-
 package ping.v1;
 
 option go_package = "generated/ping;pingpb";

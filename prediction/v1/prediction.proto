@@ -1,3 +1,5 @@
 syntax="proto3";
 
+package prediction.v1;
+
 option go_package = "generated/prediction;predictionpb";
