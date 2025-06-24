@@ -3,3 +3,76 @@ syntax="proto3";
 package prediction.v1;
 
 option go_package = "generated/prediction;predictionpb";
+
+service PredictionService {
+    rpc CreatePrediction (CreatePredictionRequest) returns (CreatePredictionResponse);
+    rpc GetPrediction (GetPredictionRequest) returns (GetPredictionResponse);
+    rpc UpdatePrediction (UpdatePredictionRequest) returns (UpdatePredictionResponse);
+    rpc DeletePrediction (DeletePredictionRequest) returns (DeletePredictionResponse);
+    rpc ListPredictions (ListPredictionsRequest) returns (ListPredictionsResponse);
+}
+
+message Prediction {
+    string uuid = 1;     
+    string user_uuid = 2;
+    int32 prediction = 3;
+    int32 error_range = 4;
+    string created_at = 5;
+    string updated_at = 6;    
+}
+
+message CreatePredictionRequest {
+    string user_uuid = 1;
+    int32 prediction = 2;
+    int32 error_range = 3;
+}
+
+message CreatePredictionResponse {
+    string uuid = 1;
+    string user_uuid = 2;
+    int32 prediction = 3;
+    int32 error_range = 4;
+}
+
+message GetPredictionRequest {
+    string uuid = 1;
+}
+
+message GetPredictionResponse {
+    string uuid = 1;
+    string user_uuid = 2;
+    int32 prediction = 3;
+    int32 error_range = 4;
+}
+
+message UpdatePredictionRequest {
+    string uuid = 1;
+    string user_uuid = 2;
+    int32 prediction = 3;
+    int32 error_range = 4;
+}
+
+message UpdatePredictionResponse {
+    string uuid = 1;
+    string user_uuid = 2;
+    int32 prediction = 3;
+    int32 error_range = 4;
+}
+
+message DeletePredictionRequest {
+    string uuid = 1;
+}
+
+message DeletePredictionResponse {
+    string uuid = 1;
+}
+
+message ListPredictionsRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+}
+
+message ListPredictionsResponse {
+    repeated Prediction predictions = 1;
+    int32 total_count = 2; // Total number of predictions available
+}
