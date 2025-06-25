@@ -4,6 +4,8 @@ package prediction.v1;
 
 option go_package = "generated/prediction;predictionpb";
 
+import "google/protobuf/timestamp.proto";
+
 service PredictionService {
     rpc CreatePrediction (CreatePredictionRequest) returns (CreatePredictionResponse);
     rpc GetPrediction (GetPredictionRequest) returns (GetPredictionResponse);
@@ -17,14 +19,15 @@ message Prediction {
     string user_uuid = 2;
     int32 prediction = 3;
     int32 error_range = 4;
-    string created_at = 5;
-    string updated_at = 6;    
+    google.protobuf.Timestamp timestamp = 5;
+   
 }
 
 message CreatePredictionRequest {
     string user_uuid = 1;
     int32 prediction = 2;
     int32 error_range = 3;
+    google.protobuf.Timestamp timestamp = 4; // Optional, defaults to current time if not provided
 }
 
 message CreatePredictionResponse {
@@ -32,6 +35,7 @@ message CreatePredictionResponse {
     string user_uuid = 2;
     int32 prediction = 3;
     int32 error_range = 4;
+    google.protobuf.Timestamp timestamp = 5; // Timestamp of creation
 }
 
 message GetPredictionRequest {
@@ -43,6 +47,7 @@ message GetPredictionResponse {
     string user_uuid = 2;
     int32 prediction = 3;
     int32 error_range = 4;
+    google.protobuf.Timestamp timestamp = 5; // Timestamp of the prediction
 }
 
 message UpdatePredictionRequest {
@@ -50,6 +55,7 @@ message UpdatePredictionRequest {
     string user_uuid = 2;
     int32 prediction = 3;
     int32 error_range = 4;
+    google.protobuf.Timestamp timestamp = 5; // Optional, defaults to current time if not provided
 }
 
 message UpdatePredictionResponse {
@@ -57,6 +63,7 @@ message UpdatePredictionResponse {
     string user_uuid = 2;
     int32 prediction = 3;
     int32 error_range = 4;
+    google.protobuf.Timestamp timestamp = 5; // Timestamp of the update
 }
 
 message DeletePredictionRequest {
