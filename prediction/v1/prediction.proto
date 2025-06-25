@@ -20,7 +20,21 @@ message Prediction {
     int32 prediction = 3;
     int32 error_range = 4;
     google.protobuf.Timestamp timestamp = 5;
-   
+}
+
+message PredictionDTO {
+    string user_uuid = 1;
+    repeated int32 prediction = 2;
+    repeated int32 error_range = 3;
+    repeated google.protobuf.Timestamp timestamp = 4; // Optional, defaults to current time if not provided
+}
+
+message PredictionFilter {
+    google.protobuf.Timestamp start_date = 2; // Start date for filtering
+    google.protobuf.Timestamp end_date = 3; // End date for filtering
+    int32 page_size = 4; // Number of predictions per page
+    int32 page = 5; // Page number for pagination
+    bool ascending = 6; // Sort order, true for ascending, false for descending
 }
 
 message CreatePredictionRequest {
@@ -75,11 +89,9 @@ message DeletePredictionResponse {
 }
 
 message ListPredictionsRequest {
-    int32 page = 1;
-    int32 page_size = 2;
+ PredictionFilter filter = 1; // Filter criteria for listing predictions
 }
 
 message ListPredictionsResponse {
-    repeated Prediction predictions = 1;
-    int32 total_count = 2; // Total number of predictions available
+   PredictionDTO predictions = 1; // List of predictions
 }
