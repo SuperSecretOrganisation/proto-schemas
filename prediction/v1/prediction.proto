@@ -66,11 +66,7 @@ message GetPredictionResponse {
 
 message GetByUserIDRequest {
     string user_uuid = 1; // User UUID to filter predictions
-    google.protobuf.Timestamp start_date = 2; // Optional, start date for filtering
-    google.protobuf.Timestamp end_date = 3; // Optional, end date for filtering
-    int32 page_size = 4; // Number of predictions per page
-    int32 page = 5; // Page number for pagination
-    bool ascending = 6; // Sort order, true for ascending, false for descending
+    PredictionFilter filter = 2;
 }
 
 message GetByUserIDResponse {
