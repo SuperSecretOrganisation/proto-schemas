@@ -75,7 +75,7 @@ message GetByUserIDRequest {
 
 message GetByUserIDResponse {
     string user_uuid = 1; // User UUID for the predictions
-    repeated PredictionDTO predictions = 2; // List of predictions for the user
+    PredictionDTO predictions = 2; // List of predictions for the user
     int32 total_count = 3; // Total number of predictions for the user
     int32 page_size = 4; // Number of predictions per page
     int32 page = 5; // Current page number
