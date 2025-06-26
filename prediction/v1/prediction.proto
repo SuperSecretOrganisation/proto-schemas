@@ -30,11 +30,11 @@ message PredictionDTO {
 }
 
 message PredictionFilter {
-    google.protobuf.Timestamp start_date = 2; // Start date for filtering
-    google.protobuf.Timestamp end_date = 3; // End date for filtering
-    int32 page_size = 4; // Number of predictions per page
-    int32 page = 5; // Page number for pagination
-    bool ascending = 6; // Sort order, true for ascending, false for descending
+    google.protobuf.Timestamp start_date = 1; // Start date for filtering
+    google.protobuf.Timestamp end_date = 2; // End date for filtering
+    int32 page_size = 3; // Number of predictions per page
+    int32 page = 4; // Page number for pagination
+    bool ascending = 5; // Sort order, true for ascending, false for descending
 }
 
 message CreatePredictionRequest {
