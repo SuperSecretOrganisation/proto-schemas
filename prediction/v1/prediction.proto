@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 service PredictionService {
     rpc CreatePrediction (CreatePredictionRequest) returns (CreatePredictionResponse);
     rpc GetPrediction (GetPredictionRequest) returns (GetPredictionResponse);
+    rpc GetByUserID (GetByUserIDRequest) returns (GetByUserIDResponse);
     rpc UpdatePrediction (UpdatePredictionRequest) returns (UpdatePredictionResponse);
     rpc DeletePrediction (DeletePredictionRequest) returns (DeletePredictionResponse);
     rpc ListPredictions (ListPredictionsRequest) returns (ListPredictionsResponse);
