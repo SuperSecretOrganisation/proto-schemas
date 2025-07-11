@@ -1,0 +1,74 @@
+syntax="proto3";
+
+package notification_token.v1;
+
+option go_package = "generated/notification_token;notificationtokenpb";
+
+import "google/protobuf/timestamp.proto";
+
+service NotificationTokenService {
+    rpc CreateNotificationToken (CreateNotificationTokenRequest) returns (CreateNotificationTokenResponse);
+    rpc GetNotificationToken (GetNotificationTokenRequest) returns (GetNotificationTokenResponse);
+    rpc UpdateNotificationToken (UpdateNotificationTokenRequest) returns (UpdateNotificationTokenResponse);
+    rpc DeleteNotificationToken (DeleteNotificationTokenRequest) returns (DeleteNotificationTokenResponse);
+    rpc ListNotificationTokens (ListNotificationTokensRequest) returns (ListNotificationTokensResponse);
+}
+
+message NotificationToken {
+    string uuid = 1;     
+    string user_uuid = 2;
+    string token = 3; // Device token for push notifications
+    string platform = 4; // Platform type, e.g., 'apns', 'fcm'
+    google.protobuf.Timestamp last_seen_at = 5; // Last time the token was used
+    google.protobuf.Timestamp created_at = 6; // Timestamp of creation
+}
+
+message CreateNotificationTokenRequest {
+    string user_uuid = 1;
+    string token = 2; // Device token for push notifications
+    string platform = 3; // Platform type, e.g., 'apns', 'fcm'
+}
+
+message CreateNotificationTokenResponse {
+    NotificationToken token = 1;
+}
+
+message GetNotificationTokenRequest {
+    string uuid = 1;
+}
+
+message GetNotificationTokenResponse {
+    NotificationToken token = 1;
+}
+
+message UpdateNotificationTokenRequest {
+    string uuid = 1;
+    string token = 2; // Device token for push notifications
+    string platform = 3; // Platform type, e.g., 'apns', 'fcm'
+}
+
+message UpdateNotificationTokenResponse {
+    NotificationToken token = 1;
+}
+
+message DeleteNotificationTokenRequest {
+    string uuid = 1;
+}
+
+message DeleteNotificationTokenResponse {
+    bool success = 1;
+}
+
+message ListNotificationTokensRequest {
+    string user_uuid = 1;
+}
+
+message ListNotificationTokensResponse {
+    repeated NotificationToken tokens = 1;
+}
+
+message Error {
+    string code = 1;
+    string message = 2;
+}
+
