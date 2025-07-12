@@ -15,7 +15,7 @@ service NotificationTokenService {
 }
 
 message NotificationToken {
-    string uuid = 1;     
+    int64 id = 1;     
     int64 user_id = 2;
     string token = 3; // Device token for push notifications
     string platform = 4; // Platform type, e.g., 'apns', 'fcm'
