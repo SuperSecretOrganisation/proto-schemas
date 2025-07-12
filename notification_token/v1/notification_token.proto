@@ -16,7 +16,7 @@ service NotificationTokenService {
 
 message NotificationToken {
     string uuid = 1;     
-    string user_uuid = 2;
+    int64 user_id = 2;
     string token = 3; // Device token for push notifications
     string platform = 4; // Platform type, e.g., 'apns', 'fcm'
     google.protobuf.Timestamp last_seen_at = 5; // Last time the token was used
@@ -24,7 +24,7 @@ message NotificationToken {
 }
 
 message CreateNotificationTokenRequest {
-    string user_uuid = 1;
+    int64 user_id = 1;
     string token = 2; // Device token for push notifications
     string platform = 3; // Platform type, e.g., 'apns', 'fcm'
 }
@@ -34,7 +34,7 @@ message CreateNotificationTokenResponse {
 }
 
 message GetNotificationTokenRequest {
-    string uuid = 1;
+    int64 user_id = 1;
 }
 
 message GetNotificationTokenResponse {
@@ -42,7 +42,7 @@ message GetNotificationTokenResponse {
 }
 
 message UpdateNotificationTokenRequest {
-    string uuid = 1;
+    int64 user_id = 1;
     string token = 2; // Device token for push notifications
     string platform = 3; // Platform type, e.g., 'apns', 'fcm'
 }
@@ -52,7 +52,7 @@ message UpdateNotificationTokenResponse {
 }
 
 message DeleteNotificationTokenRequest {
-    string uuid = 1;
+    string id = 1;
 }
 
 message DeleteNotificationTokenResponse {
@@ -60,7 +60,7 @@ message DeleteNotificationTokenResponse {
 }
 
 message ListNotificationTokensRequest {
-    string user_uuid = 1;
+    int64 user_id = 1;
 }
 
 message ListNotificationTokensResponse {
