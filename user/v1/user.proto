@@ -14,12 +14,12 @@ service UserService {
 
 // User message definition
 message User {
-  int64 id = 1;
-  string uuid = 2;            // maps to User.UUID
-  string username = 3;        // maps to User.Userusername
-  string email = 4;           // maps to User.Email
-  string created_at = 5;      // maps to User.CreatedAt.Format(time.RFC3339)
-  string updated_at = 6;      // maps to User.UpdatedAt.Format(time.RFC3339)
+  string uuid = 1;            // maps to User.UUID
+  string username = 2;        // maps to User.Userusername
+  string email = 3;           // maps to User.Email
+  string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
+  string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
+  int64 id = 6;                // maps to User.ID
 }
 
 
