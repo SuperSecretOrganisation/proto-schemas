@@ -2,7 +2,7 @@ syntax="proto3";
 
 package measurement.v1;
 
-option go_package = "generated/measurement;measurementpb";
+option go_package = "server/internal/generated/measurement;measurementpb";
 
 import "google/protobuf/timestamp.proto";
 

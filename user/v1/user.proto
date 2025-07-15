@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user.v1;
 
-option go_package = "generated/user;userpb";
+option go_package = "server/internal/generated/user;userpb";
 
 import "notification_token/v1/notification_token.proto";
 
