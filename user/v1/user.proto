@@ -4,6 +4,9 @@ package user.v1;
 
 option go_package = "generated/user;userpb";
 
+import "proto-schemas/notification_token/v1/notification_token.proto";
+
+
 service UserService {
   rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
   rpc GetUser (GetUserRequest) returns (GetUserResponse);
@@ -42,6 +45,7 @@ message GetUserResponse {
   string uuid = 1;
   string username = 2;
   string email = 3;
+  repeated notification_token.v1.NotificationToken notification_tokens = 4;
 }
 
 // User update request and response
