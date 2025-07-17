@@ -17,6 +17,13 @@ message Notification {
     google.protobuf.Timestamp opened_at = 8; // Timestamp when the notification was opened
 }
 
+service NotificationService {
+    rpc CreateNotification(CreateNotificationRequest) returns (CreateNotificationResponse);
+    rpc GetNotification(GetNotificationRequest) returns (GetNotificationResponse);
+    rpc ListNotifications(ListNotificationsRequest) returns (ListNotificationsResponse);
+    rpc UpdateNotification(UpdateNotificationRequest) returns (UpdateNotificationResponse);
+}
+
 message CreateNotificationRequest {
     Notification notification = 1; // Notification to be created
 }
