@@ -14,26 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Buf
         uses: bufbuild/buf-action@v1
-      - name: Check for breaking changes
-        run: buf breaking --against "https://github.com/${{ github.repository }}.git#branch=main"
-      - name: Generate Code
-        run: buf generate
-      - name: Commit and Push Generated Code
-        run: |
-          # Configureer Git met een bot-naam
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          # Voeg alle bestanden in de 'gen' map toe
-          git add gen/
-          # Controleer of er daadwerkelijk iets veranderd is
-          if ! git diff --staged --quiet; then
-            # Maak een commit als er wijzigingen zijn
-            git commit -m "build: generate protobuf code"
-            # Push de commit terug naar de main branch
-            git push
-          else
-            # Geef een melding als er niks te committen is
-            echo "No changes to generated files."
-          fi
+        with:
+          token: ${{ secrets.BUF_TOKEN }}
