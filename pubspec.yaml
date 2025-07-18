@@ -1,0 +1,11 @@
+name: proto_schemas
+description: "Dart client code gegenereerd uit proto definitions."
+version: 2.0.8
+
+environment:
+  sdk: ">=2.18.0 <4.0.0"
+
+dependencies:
+  protobuf: ^3.0.0
+  grpc: ^3.0.0
+  fixnum: ^1.0.0
