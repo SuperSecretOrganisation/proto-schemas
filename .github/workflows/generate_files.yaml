@@ -19,6 +19,7 @@ jobs:
         uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
+      - run: buf dep update
       - run: buf generate
       - run: buf lint
       - run: buf push
