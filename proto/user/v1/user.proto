@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.user.v1;
 
-option go_package = "github.com/SuperSecretOrganisation/proto-schemas/gen/go/user/v1;userpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/gen/go/user/v1;userpb";
 
 import "proto/notification_token/v1/notification_token.proto";
 
