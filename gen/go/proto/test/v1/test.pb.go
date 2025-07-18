@@ -174,7 +174,7 @@ const file_proto_test_v1_test_proto_rawDesc = "" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage2N\n" +
 	"\vTestService\x12?\n" +
-	"\x04Ping\x12\x1a.proto.test.v1.PingRequest\x1a\x1b.proto.test.v1.PingResponseBPZNhttps://github.com/SuperSecretOrganisation/proto-schemas/gen/go/test/v1;testpbb\x06proto3"
+	"\x04Ping\x12\x1a.proto.test.v1.PingRequest\x1a\x1b.proto.test.v1.PingResponseBHZFgithub.com/SuperSecretOrganisation/proto-schemas/gen/go/test/v1;testpbb\x06proto3"
 
 var (
 	file_proto_test_v1_test_proto_rawDescOnce sync.Once

@@ -932,7 +932,7 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"\x13ListAllMeasurements\x120.proto.measurement.v1.ListAllMeasurementsRequest\x1a1.proto.measurement.v1.ListAllMeasurementsResponse\x12t\n" +
 	"\x11CreateMeasurement\x12..proto.measurement.v1.CreateMeasurementRequest\x1a/.proto.measurement.v1.CreateMeasurementResponse\x12t\n" +
 	"\x11UpdateMeasurement\x12..proto.measurement.v1.UpdateMeasurementRequest\x1a/.proto.measurement.v1.UpdateMeasurementResponse\x12t\n" +
-	"\x11DeleteMeasurement\x12..proto.measurement.v1.DeleteMeasurementRequest\x1a/.proto.measurement.v1.DeleteMeasurementResponseB^Z\\https://github.com/SuperSecretOrganisation/proto-schemas/gen/go/measurement/v1;measurementpbb\x06proto3"
+	"\x11DeleteMeasurement\x12..proto.measurement.v1.DeleteMeasurementRequest\x1a/.proto.measurement.v1.DeleteMeasurementResponseBVZTgithub.com/SuperSecretOrganisation/proto-schemas/gen/go/measurement/v1;measurementpbb\x06proto3"
 
 var (
 	file_proto_measurement_v1_measurement_proto_rawDescOnce sync.Once

@@ -2,7 +2,7 @@ syntax="proto3";
 
 package proto.notification_token.v1;
 
-option go_package = "https://github.com/SuperSecretOrganisation/proto-schemas/gen/go/notification_token/v1;notification_tokenpb";
+option go_package = "github.com/SuperSecretOrganisation/proto-schemas/gen/go/notification_token/v1;notification_tokenpb";
 
 import "google/protobuf/timestamp.proto";
 

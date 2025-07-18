@@ -1016,7 +1016,7 @@ const file_proto_prediction_v1_prediction_proto_rawDesc = "" +
 	"\vGetByUserID\x12'.proto.prediction.v1.GetByUserIDRequest\x1a(.proto.prediction.v1.GetByUserIDResponse\x12o\n" +
 	"\x10UpdatePrediction\x12,.proto.prediction.v1.UpdatePredictionRequest\x1a-.proto.prediction.v1.UpdatePredictionResponse\x12o\n" +
 	"\x10DeletePrediction\x12,.proto.prediction.v1.DeletePredictionRequest\x1a-.proto.prediction.v1.DeletePredictionResponse\x12l\n" +
-	"\x0fListPredictions\x12+.proto.prediction.v1.ListPredictionsRequest\x1a,.proto.prediction.v1.ListPredictionsResponseB\\ZZhttps://github.com/SuperSecretOrganisation/proto-schemas/gen/go/prediction/v1;predictionpbb\x06proto3"
+	"\x0fListPredictions\x12+.proto.prediction.v1.ListPredictionsRequest\x1a,.proto.prediction.v1.ListPredictionsResponseBTZRgithub.com/SuperSecretOrganisation/proto-schemas/gen/go/prediction/v1;predictionpbb\x06proto3"
 
 var (
 	file_proto_prediction_v1_prediction_proto_rawDescOnce sync.Once

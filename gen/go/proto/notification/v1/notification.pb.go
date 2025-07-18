@@ -536,7 +536,7 @@ const file_proto_notification_v1_notification_proto_rawDesc = "" +
 	"\x12CreateNotification\x120.proto.notification.v1.CreateNotificationRequest\x1a1.proto.notification.v1.CreateNotificationResponse\x12p\n" +
 	"\x0fGetNotification\x12-.proto.notification.v1.GetNotificationRequest\x1a..proto.notification.v1.GetNotificationResponse\x12v\n" +
 	"\x11ListNotifications\x12/.proto.notification.v1.ListNotificationsRequest\x1a0.proto.notification.v1.ListNotificationsResponse\x12y\n" +
-	"\x12UpdateNotification\x120.proto.notification.v1.UpdateNotificationRequest\x1a1.proto.notification.v1.UpdateNotificationResponseB`Z^https://github.com/SuperSecretOrganisation/proto-schemas/gen/go/notification/v1;notificationpbb\x06proto3"
+	"\x12UpdateNotification\x120.proto.notification.v1.UpdateNotificationRequest\x1a1.proto.notification.v1.UpdateNotificationResponseBXZVgithub.com/SuperSecretOrganisation/proto-schemas/gen/go/notification/v1;notificationpbb\x06proto3"
 
 var (
 	file_proto_notification_v1_notification_proto_rawDescOnce sync.Once
