@@ -23,6 +23,7 @@ message User {
   string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
   string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
   int64 id = 6;                // maps to User.ID
+  repeated notification_token.v1.NotificationToken notification_tokens = 7; // maps to User.NotificationTokens
 }
 
 
@@ -32,9 +33,7 @@ message CreateUserRequest {
   string email = 2;
 }
 message CreateUserResponse {
-  string uuid = 1;
-  string username = 2;
-  string email = 3;
+  User user = 1;
 }
 
 // User retrieval request and response
@@ -42,10 +41,7 @@ message GetUserRequest {
   string uuid = 1;
 }
 message GetUserResponse {
-  string uuid = 1;
-  string username = 2;
-  string email = 3;
-  repeated notification_token.v1.NotificationToken notification_tokens = 4;
+  User user = 1;
 }
 
 // User update request and response
@@ -55,9 +51,7 @@ message UpdateUserRequest {
   string email = 3;
 }
 message UpdateUserResponse {
-  string uuid = 1;
-  string username = 2;
-  string email = 3;
+  User user = 1;
 }
 
 // User deletion request and response

@@ -24,15 +24,16 @@ const (
 
 // User message definition
 type User struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                            // maps to User.UUID
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`                    // maps to User.Userusername
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`                          // maps to User.Email
-	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // maps to User.CreatedAt.Format(time.RFC3339)
-	UpdatedAt     string                 `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // maps to User.UpdatedAt.Format(time.RFC3339)
-	Id            int64                  `protobuf:"varint,6,opt,name=id,proto3" json:"id,omitempty"`                               // maps to User.ID
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState  `protogen:"open.v1"`
+	Uuid               string                  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                                                       // maps to User.UUID
+	Username           string                  `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`                                               // maps to User.Userusername
+	Email              string                  `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`                                                     // maps to User.Email
+	CreatedAt          string                  `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`                            // maps to User.CreatedAt.Format(time.RFC3339)
+	UpdatedAt          string                  `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`                            // maps to User.UpdatedAt.Format(time.RFC3339)
+	Id                 int64                   `protobuf:"varint,6,opt,name=id,proto3" json:"id,omitempty"`                                                          // maps to User.ID
+	NotificationTokens []*v1.NotificationToken `protobuf:"bytes,7,rep,name=notification_tokens,json=notificationTokens,proto3" json:"notification_tokens,omitempty"` // maps to User.NotificationTokens
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *User) Reset() {
@@ -107,6 +108,13 @@ func (x *User) GetId() int64 {
 	return 0
 }
 
+func (x *User) GetNotificationTokens() []*v1.NotificationToken {
+	if x != nil {
+		return x.NotificationTokens
+	}
+	return nil
+}
+
 // User creation request and response
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -162,9 +170,7 @@ func (x *CreateUserRequest) GetEmail() string {
 
 type CreateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -199,25 +205,11 @@ func (*CreateUserResponse) Descriptor() ([]byte, []int) {
 	return file_proto_user_v1_user_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateUserResponse) GetUuid() string {
+func (x *CreateUserResponse) GetUser() *User {
 	if x != nil {
-		return x.Uuid
+		return x.User
 	}
-	return ""
-}
-
-func (x *CreateUserResponse) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *CreateUserResponse) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
+	return nil
 }
 
 // User retrieval request and response
@@ -266,13 +258,10 @@ func (x *GetUserRequest) GetUuid() string {
 }
 
 type GetUserResponse struct {
-	state              protoimpl.MessageState  `protogen:"open.v1"`
-	Uuid               string                  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Username           string                  `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Email              string                  `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	NotificationTokens []*v1.NotificationToken `protobuf:"bytes,4,rep,name=notification_tokens,json=notificationTokens,proto3" json:"notification_tokens,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetUserResponse) Reset() {
@@ -305,30 +294,9 @@ func (*GetUserResponse) Descriptor() ([]byte, []int) {
 	return file_proto_user_v1_user_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetUserResponse) GetUuid() string {
+func (x *GetUserResponse) GetUser() *User {
 	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-func (x *GetUserResponse) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *GetUserResponse) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *GetUserResponse) GetNotificationTokens() []*v1.NotificationToken {
-	if x != nil {
-		return x.NotificationTokens
+		return x.User
 	}
 	return nil
 }
@@ -396,9 +364,7 @@ func (x *UpdateUserRequest) GetEmail() string {
 
 type UpdateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -433,25 +399,11 @@ func (*UpdateUserResponse) Descriptor() ([]byte, []int) {
 	return file_proto_user_v1_user_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *UpdateUserResponse) GetUuid() string {
+func (x *UpdateUserResponse) GetUser() *User {
 	if x != nil {
-		return x.Uuid
+		return x.User
 	}
-	return ""
-}
-
-func (x *UpdateUserResponse) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *UpdateUserResponse) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
+	return nil
 }
 
 // User deletion request and response
@@ -705,7 +657,7 @@ var File_proto_user_v1_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x18proto/user/v1/user.proto\x12\rproto.user.v1\x1a4proto/notification_token/v1/notification_token.proto\"\x9a\x01\n" +
+	"\x18proto/user/v1/user.proto\x12\rproto.user.v1\x1a4proto/notification_token/v1/notification_token.proto\"\xfb\x01\n" +
 	"\x04User\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
@@ -714,29 +666,23 @@ const file_proto_user_v1_user_proto_rawDesc = "" +
 	"created_at\x18\x04 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\tR\tupdatedAt\x12\x0e\n" +
-	"\x02id\x18\x06 \x01(\x03R\x02id\"E\n" +
+	"\x02id\x18\x06 \x01(\x03R\x02id\x12_\n" +
+	"\x13notification_tokens\x18\a \x03(\v2..proto.notification_token.v1.NotificationTokenR\x12notificationTokens\"E\n" +
 	"\x11CreateUserRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email\"Z\n" +
-	"\x12CreateUserResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\"$\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\"=\n" +
+	"\x12CreateUserResponse\x12'\n" +
+	"\x04user\x18\x01 \x01(\v2\x13.proto.user.v1.UserR\x04user\"$\n" +
 	"\x0eGetUserRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xb8\x01\n" +
-	"\x0fGetUserResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\x12_\n" +
-	"\x13notification_tokens\x18\x04 \x03(\v2..proto.notification_token.v1.NotificationTokenR\x12notificationTokens\"Y\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\":\n" +
+	"\x0fGetUserResponse\x12'\n" +
+	"\x04user\x18\x01 \x01(\v2\x13.proto.user.v1.UserR\x04user\"Y\n" +
 	"\x11UpdateUserRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\"Z\n" +
-	"\x12UpdateUserResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\"'\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\"=\n" +
+	"\x12UpdateUserResponse\x12'\n" +
+	"\x04user\x18\x01 \x01(\v2\x13.proto.user.v1.UserR\x04user\"'\n" +
 	"\x11DeleteUserRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"(\n" +
 	"\x12DeleteUserResponse\x12\x12\n" +
@@ -790,23 +736,26 @@ var file_proto_user_v1_user_proto_goTypes = []any{
 	(*v1.NotificationToken)(nil), // 12: proto.notification_token.v1.NotificationToken
 }
 var file_proto_user_v1_user_proto_depIdxs = []int32{
-	12, // 0: proto.user.v1.GetUserResponse.notification_tokens:type_name -> proto.notification_token.v1.NotificationToken
-	0,  // 1: proto.user.v1.ListUsersResponse.users:type_name -> proto.user.v1.User
-	1,  // 2: proto.user.v1.UserService.CreateUser:input_type -> proto.user.v1.CreateUserRequest
-	3,  // 3: proto.user.v1.UserService.GetUser:input_type -> proto.user.v1.GetUserRequest
-	5,  // 4: proto.user.v1.UserService.UpdateUser:input_type -> proto.user.v1.UpdateUserRequest
-	7,  // 5: proto.user.v1.UserService.DeleteUser:input_type -> proto.user.v1.DeleteUserRequest
-	9,  // 6: proto.user.v1.UserService.ListUsers:input_type -> proto.user.v1.ListUsersRequest
-	2,  // 7: proto.user.v1.UserService.CreateUser:output_type -> proto.user.v1.CreateUserResponse
-	4,  // 8: proto.user.v1.UserService.GetUser:output_type -> proto.user.v1.GetUserResponse
-	6,  // 9: proto.user.v1.UserService.UpdateUser:output_type -> proto.user.v1.UpdateUserResponse
-	8,  // 10: proto.user.v1.UserService.DeleteUser:output_type -> proto.user.v1.DeleteUserResponse
-	10, // 11: proto.user.v1.UserService.ListUsers:output_type -> proto.user.v1.ListUsersResponse
-	7,  // [7:12] is the sub-list for method output_type
-	2,  // [2:7] is the sub-list for method input_type
-	2,  // [2:2] is the sub-list for extension type_name
-	2,  // [2:2] is the sub-list for extension extendee
-	0,  // [0:2] is the sub-list for field type_name
+	12, // 0: proto.user.v1.User.notification_tokens:type_name -> proto.notification_token.v1.NotificationToken
+	0,  // 1: proto.user.v1.CreateUserResponse.user:type_name -> proto.user.v1.User
+	0,  // 2: proto.user.v1.GetUserResponse.user:type_name -> proto.user.v1.User
+	0,  // 3: proto.user.v1.UpdateUserResponse.user:type_name -> proto.user.v1.User
+	0,  // 4: proto.user.v1.ListUsersResponse.users:type_name -> proto.user.v1.User
+	1,  // 5: proto.user.v1.UserService.CreateUser:input_type -> proto.user.v1.CreateUserRequest
+	3,  // 6: proto.user.v1.UserService.GetUser:input_type -> proto.user.v1.GetUserRequest
+	5,  // 7: proto.user.v1.UserService.UpdateUser:input_type -> proto.user.v1.UpdateUserRequest
+	7,  // 8: proto.user.v1.UserService.DeleteUser:input_type -> proto.user.v1.DeleteUserRequest
+	9,  // 9: proto.user.v1.UserService.ListUsers:input_type -> proto.user.v1.ListUsersRequest
+	2,  // 10: proto.user.v1.UserService.CreateUser:output_type -> proto.user.v1.CreateUserResponse
+	4,  // 11: proto.user.v1.UserService.GetUser:output_type -> proto.user.v1.GetUserResponse
+	6,  // 12: proto.user.v1.UserService.UpdateUser:output_type -> proto.user.v1.UpdateUserResponse
+	8,  // 13: proto.user.v1.UserService.DeleteUser:output_type -> proto.user.v1.DeleteUserResponse
+	10, // 14: proto.user.v1.UserService.ListUsers:output_type -> proto.user.v1.ListUsersResponse
+	10, // [10:15] is the sub-list for method output_type
+	5,  // [5:10] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_v1_user_proto_init() }

@@ -28,6 +28,7 @@ class User extends $pb.GeneratedMessage {
     $core.String? createdAt,
     $core.String? updatedAt,
     $fixnum.Int64? id,
+    $core.Iterable<$1.NotificationToken>? notificationTokens,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
@@ -36,6 +37,7 @@ class User extends $pb.GeneratedMessage {
     if (createdAt != null) result.createdAt = createdAt;
     if (updatedAt != null) result.updatedAt = updatedAt;
     if (id != null) result.id = id;
+    if (notificationTokens != null) result.notificationTokens.addAll(notificationTokens);
     return result;
   }
 
@@ -51,6 +53,7 @@ class User extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'createdAt')
     ..aOS(5, _omitFieldNames ? '' : 'updatedAt')
     ..aInt64(6, _omitFieldNames ? '' : 'id')
+    ..pc<$1.NotificationToken>(7, _omitFieldNames ? '' : 'notificationTokens', $pb.PbFieldType.PM, subBuilder: $1.NotificationToken.create)
     ..hasRequiredFields = false
   ;
 
@@ -124,6 +127,9 @@ class User extends $pb.GeneratedMessage {
   $core.bool hasId() => $_has(5);
   @$pb.TagNumber(6)
   void clearId() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $pb.PbList<$1.NotificationToken> get notificationTokens => $_getList(6);
 }
 
 /// User creation request and response
@@ -187,14 +193,10 @@ class CreateUserRequest extends $pb.GeneratedMessage {
 
 class CreateUserResponse extends $pb.GeneratedMessage {
   factory CreateUserResponse({
-    $core.String? uuid,
-    $core.String? username,
-    $core.String? email,
+    User? user,
   }) {
     final result = create();
-    if (uuid != null) result.uuid = uuid;
-    if (username != null) result.username = username;
-    if (email != null) result.email = email;
+    if (user != null) result.user = user;
     return result;
   }
 
@@ -204,9 +206,7 @@ class CreateUserResponse extends $pb.GeneratedMessage {
   factory CreateUserResponse.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreateUserResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'username')
-    ..aOS(3, _omitFieldNames ? '' : 'email')
+    ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..hasRequiredFields = false
   ;
 
@@ -228,31 +228,15 @@ class CreateUserResponse extends $pb.GeneratedMessage {
   static CreateUserResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  User get user => $_getN(0);
   @$pb.TagNumber(1)
-  set uuid($core.String value) => $_setString(0, value);
+  set user(User value) => $_setField(1, value);
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasUser() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get username => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set username($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasUsername() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearUsername() => $_clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get email => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set email($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasEmail() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearEmail() => $_clearField(3);
+  void clearUser() => $_clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
 }
 
 /// User retrieval request and response
@@ -304,16 +288,10 @@ class GetUserRequest extends $pb.GeneratedMessage {
 
 class GetUserResponse extends $pb.GeneratedMessage {
   factory GetUserResponse({
-    $core.String? uuid,
-    $core.String? username,
-    $core.String? email,
-    $core.Iterable<$1.NotificationToken>? notificationTokens,
+    User? user,
   }) {
     final result = create();
-    if (uuid != null) result.uuid = uuid;
-    if (username != null) result.username = username;
-    if (email != null) result.email = email;
-    if (notificationTokens != null) result.notificationTokens.addAll(notificationTokens);
+    if (user != null) result.user = user;
     return result;
   }
 
@@ -323,10 +301,7 @@ class GetUserResponse extends $pb.GeneratedMessage {
   factory GetUserResponse.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'username')
-    ..aOS(3, _omitFieldNames ? '' : 'email')
-    ..pc<$1.NotificationToken>(4, _omitFieldNames ? '' : 'notificationTokens', $pb.PbFieldType.PM, subBuilder: $1.NotificationToken.create)
+    ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..hasRequiredFields = false
   ;
 
@@ -348,34 +323,15 @@ class GetUserResponse extends $pb.GeneratedMessage {
   static GetUserResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  User get user => $_getN(0);
   @$pb.TagNumber(1)
-  set uuid($core.String value) => $_setString(0, value);
+  set user(User value) => $_setField(1, value);
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasUser() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get username => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set username($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasUsername() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearUsername() => $_clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get email => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set email($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasEmail() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearEmail() => $_clearField(3);
-
-  @$pb.TagNumber(4)
-  $pb.PbList<$1.NotificationToken> get notificationTokens => $_getList(3);
+  void clearUser() => $_clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
 }
 
 /// User update request and response
@@ -451,14 +407,10 @@ class UpdateUserRequest extends $pb.GeneratedMessage {
 
 class UpdateUserResponse extends $pb.GeneratedMessage {
   factory UpdateUserResponse({
-    $core.String? uuid,
-    $core.String? username,
-    $core.String? email,
+    User? user,
   }) {
     final result = create();
-    if (uuid != null) result.uuid = uuid;
-    if (username != null) result.username = username;
-    if (email != null) result.email = email;
+    if (user != null) result.user = user;
     return result;
   }
 
@@ -468,9 +420,7 @@ class UpdateUserResponse extends $pb.GeneratedMessage {
   factory UpdateUserResponse.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateUserResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'username')
-    ..aOS(3, _omitFieldNames ? '' : 'email')
+    ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..hasRequiredFields = false
   ;
 
@@ -492,31 +442,15 @@ class UpdateUserResponse extends $pb.GeneratedMessage {
   static UpdateUserResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  User get user => $_getN(0);
   @$pb.TagNumber(1)
-  set uuid($core.String value) => $_setString(0, value);
+  set user(User value) => $_setField(1, value);
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasUser() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get username => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set username($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasUsername() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearUsername() => $_clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get email => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set email($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasEmail() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearEmail() => $_clearField(3);
+  void clearUser() => $_clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
 }
 
 /// User deletion request and response
