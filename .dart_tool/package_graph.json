@@ -1,0 +1,165 @@
+{
+  "roots": [
+    "proto_schemas"
+  ],
+  "packages": [
+    {
+      "name": "proto_schemas",
+      "version": "2.1.3",
+      "dependencies": [
+        "fixnum",
+        "grpc",
+        "protobuf"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "fixnum",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "grpc",
+      "version": "4.1.0",
+      "dependencies": [
+        "async",
+        "clock",
+        "crypto",
+        "fixnum",
+        "googleapis_auth",
+        "http",
+        "http2",
+        "meta",
+        "protobuf",
+        "web"
+      ]
+    },
+    {
+      "name": "protobuf",
+      "version": "4.1.1",
+      "dependencies": [
+        "collection",
+        "fixnum",
+        "meta"
+      ]
+    },
+    {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "clock",
+      "version": "1.1.2",
+      "dependencies": []
+    },
+    {
+      "name": "http2",
+      "version": "2.3.1",
+      "dependencies": []
+    },
+    {
+      "name": "crypto",
+      "version": "3.0.6",
+      "dependencies": [
+        "typed_data"
+      ]
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
+    },
+    {
+      "name": "async",
+      "version": "2.13.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "googleapis_auth",
+      "version": "2.0.0",
+      "dependencies": [
+        "args",
+        "crypto",
+        "google_identity_services_web",
+        "http",
+        "http_parser"
+      ]
+    },
+    {
+      "name": "google_identity_services_web",
+      "version": "0.3.3+1",
+      "dependencies": [
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "string_scanner",
+      "version": "1.4.1",
+      "dependencies": [
+        "source_span"
+      ]
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.1",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    },
+    {
+      "name": "args",
+      "version": "2.7.0",
+      "dependencies": []
+    },
+    {
+      "name": "http",
+      "version": "1.4.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    }
+  ],
+  "configVersion": 1
+}
