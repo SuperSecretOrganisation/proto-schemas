@@ -3,7 +3,8 @@ version: v2
 name: buf.build/supersecretorganisation/proto-schemas
 deps:
   - buf.build/googleapis/googleapis
-
+modules:
+  - path: proto
 lint:
   use:
     - STANDARD
