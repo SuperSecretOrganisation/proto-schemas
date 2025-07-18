@@ -7,7 +7,7 @@
 package userpb
 
 import (
-	v1 "github.com/supersecretorganisation/proto-schemas/v2/gen/go/notification_token/v1"
+	v1 "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/notification_token/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -759,7 +759,7 @@ const file_proto_user_v1_user_proto_rawDesc = "" +
 	"UpdateUser\x12 .proto.user.v1.UpdateUserRequest\x1a!.proto.user.v1.UpdateUserResponse\x12Q\n" +
 	"\n" +
 	"DeleteUser\x12 .proto.user.v1.DeleteUserRequest\x1a!.proto.user.v1.DeleteUserResponse\x12N\n" +
-	"\tListUsers\x12\x1f.proto.user.v1.ListUsersRequest\x1a .proto.user.v1.ListUsersResponseBKZIgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/user/v1;userpbb\x06proto3"
+	"\tListUsers\x12\x1f.proto.user.v1.ListUsersRequest\x1a .proto.user.v1.ListUsersResponseBQZOgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user/v1;userpbb\x06proto3"
 
 var (
 	file_proto_user_v1_user_proto_rawDescOnce sync.Once
