@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package proto.user.v1;
+
+option go_package = "https://github.com/SuperSecretOrganisation/proto-schemas/gen/go/user/v1;userpb";
+
+import "proto/notification_token/v1/notification_token.proto";
+
+
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
+}
+
+// User message definition
+message User {
+  string uuid = 1;            // maps to User.UUID
+  string username = 2;        // maps to User.Userusername
+  string email = 3;           // maps to User.Email
+  string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
+  string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
+  int64 id = 6;                // maps to User.ID
+}
+
+
+// User creation request and response
+message CreateUserRequest {
+  string username = 1;
+  string email = 2;
+}
+message CreateUserResponse {
+  string uuid = 1;
+  string username = 2;
+  string email = 3;
+}
+
+// User retrieval request and response
+message GetUserRequest {
+  string uuid = 1;
+}
+message GetUserResponse {
+  string uuid = 1;
+  string username = 2;
+  string email = 3;
+  repeated notification_token.v1.NotificationToken notification_tokens = 4;
+}
+
+// User update request and response
+message UpdateUserRequest {
+  string uuid = 1;
+  string username = 2;
+  string email = 3;
+}
+message UpdateUserResponse {
+  string uuid = 1;
+  string username = 2;
+  string email = 3;
+}
+
+// User deletion request and response
+message DeleteUserRequest {
+  string uuid = 1;
+}
+message DeleteUserResponse {
+  string uuid = 1;
+}
+
+// List users request and response
+message ListUsersRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+message ListUsersResponse {
+  repeated User users = 1;
+  int32 total_count = 2;
+}
+
+// Error handling
+message Error {
+  string code = 1;
+  string message = 2;
+}

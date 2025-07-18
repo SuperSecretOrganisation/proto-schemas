@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package proto.notification.v1;
+
+option go_package = "https://github.com/SuperSecretOrganisation/proto-schemas/gen/go/notification/v1;notificationpb";
+
+import "google/protobuf/timestamp.proto";
+
+message Notification {
+    int64 id = 1; // Unique identifier for the notification
+    string notification_uuid = 2; // UUID for the notification
+    int64 user_id = 3; // ID of the user associated with the notification
+    string title = 4; // Title of the notification
+    string body = 5; // Body content of the notification
+    string status = 6; // Status of the notification (e.g., "sent", "opened")
+    google.protobuf.Timestamp sent_at = 7; // Timestamp when the notification was sent
+    google.protobuf.Timestamp opened_at = 8; // Timestamp when the notification was opened
+}
+
+service NotificationService {
+    rpc CreateNotification(CreateNotificationRequest) returns (CreateNotificationResponse);
+    rpc GetNotification(GetNotificationRequest) returns (GetNotificationResponse);
+    rpc ListNotifications(ListNotificationsRequest) returns (ListNotificationsResponse);
+    rpc UpdateNotification(UpdateNotificationRequest) returns (UpdateNotificationResponse);
+}
+
+message CreateNotificationRequest {
+    Notification notification = 1; // Notification to be created
+}
+
+message CreateNotificationResponse {
+    Notification notification = 1; // Created notification
+}
+
+message GetNotificationRequest {
+    int64 id = 1; // ID of the notification to retrieve
+}
+
+message GetNotificationResponse {
+    Notification notification = 1; // Retrieved notification
+}
+
+
+message ListNotificationsRequest {
+    int64 user_id = 1; // ID of the user to list notifications for
+    int32 page = 2; // Page number for pagination
+    int32 page_size = 3; // Number of notifications per page
+}
+
+message ListNotificationsResponse {
+    repeated Notification notifications = 1; // List of notifications
+    int32 total_count = 2; // Total number of notifications for the user
+}
+
+message UpdateNotificationRequest {
+    Notification notification = 1; // Notification to be updated
+}
+
+message UpdateNotificationResponse {
+    Notification notification = 1; // Updated notification
+}

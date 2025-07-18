@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proto.ping.v1;
+
+option go_package = "https://github.com/SuperSecretOrganisation/proto-schemas/gen/go/ping/v1;pingpb";
+
+service PingService {
+    rpc Ping (PingRequest) returns (PingResponse);
+}
+
+message PingRequest {
+    string message = 1;
+}
+message PingResponse {
+    string message = 1;
+}
+message Error {
+    string code = 1;
+    string message = 2;
+}
+
+

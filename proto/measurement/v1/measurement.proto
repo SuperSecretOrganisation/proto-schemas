@@ -1,0 +1,100 @@
+syntax="proto3";
+
+package proto.measurement.v1;
+
+option go_package = "https://github.com/SuperSecretOrganisation/proto-schemas/gen/go/measurement/v1;measurementpb";
+
+import "google/protobuf/timestamp.proto";
+
+message Measurement {
+  int32 id = 1;
+  string user_id = 2;
+  uint32 toe_pressure = 3;
+  uint32 heel_pressure = 4;
+  string activity_type = 5;
+  string activity_id = 6;
+  uint32 weight = 7;
+  google.protobuf.Timestamp time_stamp = 8;
+}
+
+message MeasurementDTO {
+  string user_id = 1;
+  string activity_id = 2;
+  string activity_type = 3;
+  repeated uint32 heel_pressure = 4;
+  repeated uint32 toe_pressure = 5;
+  repeated uint32 weight = 6;
+  google.protobuf.Timestamp timestamp = 7;
+}
+
+message MeasurementFilter {
+  string activity_type = 1;
+  string activity_id = 2;
+  google.protobuf.Timestamp start_date = 3;
+  google.protobuf.Timestamp end_date = 4;
+  bool average = 5;
+  string interval = 6;
+  uint32 page_size = 7;
+  uint32 page = 8;
+  bool ascending = 9;
+}
+
+service MeasurementService {
+  rpc GetMeasurement (GetMeasurementRequest) returns (GetMeasurementResponse);
+  rpc ListMeasurementsForUser (ListMeasurementsForUserRequest) returns (ListMeasurementsForUserResponse);
+  rpc ListAllMeasurements (ListAllMeasurementsRequest) returns (ListAllMeasurementsResponse);
+  rpc CreateMeasurement (CreateMeasurementRequest) returns (CreateMeasurementResponse);
+  rpc UpdateMeasurement (UpdateMeasurementRequest) returns (UpdateMeasurementResponse);
+  rpc DeleteMeasurement (DeleteMeasurementRequest) returns (DeleteMeasurementResponse);
+}	
+
+// Measurement retrieval request and response
+
+// Get a single measurement by ID
+message GetMeasurementRequest {
+  int32 id = 1;
+}
+message GetMeasurementResponse {
+  Measurement measurement = 1;
+}
+
+// List measurements for a specific user
+message ListMeasurementsForUserRequest {
+  string user_id = 1;
+  MeasurementFilter filter = 2;
+}
+message ListMeasurementsForUserResponse {
+  repeated Measurement measurements = 1;
+}
+
+// List all measurements with pagination and sorting
+message ListAllMeasurementsRequest {
+  MeasurementFilter filter = 1;
+}
+message ListAllMeasurementsResponse {
+  repeated Measurement measurements = 1;
+}
+
+// Measurement creation and update request and response
+message CreateMeasurementRequest {
+  MeasurementDTO measurement_dto = 1;
+}
+message CreateMeasurementResponse {
+  bool success = 1;
+}
+
+// Update an existing measurement
+message UpdateMeasurementRequest {
+  Measurement measurement = 1;
+}
+message UpdateMeasurementResponse {
+  Measurement measurement = 1;
+}
+
+// Measurement deletion request and response
+message DeleteMeasurementRequest {
+  int32 id = 1;
+}
+message DeleteMeasurementResponse {
+  bool success = 1;
+}
