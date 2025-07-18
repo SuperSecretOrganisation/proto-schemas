@@ -2,7 +2,7 @@ syntax="proto3";
 
 package proto.prediction.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/gen/go/prediction/v1;predictionpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/prediction/v1;predictionpb";
 
 import "google/protobuf/timestamp.proto";
 

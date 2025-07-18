@@ -676,7 +676,7 @@ const file_proto_notification_token_v1_notification_token_proto_rawDesc = "" +
 	"\x14GetNotificationToken\x128.proto.notification_token.v1.GetNotificationTokenRequest\x1a9.proto.notification_token.v1.GetNotificationTokenResponse\x12\x94\x01\n" +
 	"\x17UpdateNotificationToken\x12;.proto.notification_token.v1.UpdateNotificationTokenRequest\x1a<.proto.notification_token.v1.UpdateNotificationTokenResponse\x12\x94\x01\n" +
 	"\x17DeleteNotificationToken\x12;.proto.notification_token.v1.DeleteNotificationTokenRequest\x1a<.proto.notification_token.v1.DeleteNotificationTokenResponse\x12\x91\x01\n" +
-	"\x16ListNotificationTokens\x12:.proto.notification_token.v1.ListNotificationTokensRequest\x1a;.proto.notification_token.v1.ListNotificationTokensResponseBdZbgithub.com/supersecretorganisation/proto-schemas/gen/go/notification_token/v1;notification_tokenpbb\x06proto3"
+	"\x16ListNotificationTokens\x12:.proto.notification_token.v1.ListNotificationTokensRequest\x1a;.proto.notification_token.v1.ListNotificationTokensResponseBgZegithub.com/supersecretorganisation/proto-schemas/v2/gen/go/notification_token/v1;notification_tokenpbb\x06proto3"
 
 var (
 	file_proto_notification_token_v1_notification_token_proto_rawDescOnce sync.Once

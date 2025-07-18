@@ -2,7 +2,7 @@ syntax="proto3";
 
 package proto.measurement.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/gen/go/measurement/v1;measurementpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/measurement/v1;measurementpb";
 
 import "google/protobuf/timestamp.proto";
 
