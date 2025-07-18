@@ -1,6 +1,6 @@
 name: proto_schemas
 description: "Dart client code gegenereerd uit proto definitions."
-version: 2.4.0
+version: 2.4.1
 
 environment:
   sdk: ">=2.18.0 <4.0.0"

@@ -15,4 +15,5 @@ plugins:
     out: lib/gen/dart
     opt:
       - grpc
-  
+    include_imports: true
+    include_wkt: true
