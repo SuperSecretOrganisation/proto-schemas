@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package notification.v1;
 
-option go_package = "server/internal/generated/notification;notificationpb";
+option go_package = "internal/generated/notification;notificationpb";
 
 import "google/protobuf/timestamp.proto";
 

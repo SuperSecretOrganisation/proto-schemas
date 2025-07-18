@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package ping.v1;
 
-option go_package = "server/internal/generated/ping;pingpb";
+option go_package = "internal/generated/ping;pingpb";
 
 service PingService {
     rpc Ping (PingRequest) returns (PingResponse);
