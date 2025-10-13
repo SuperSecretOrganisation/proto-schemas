@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package proto.user_xp.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_xp/v1;userxppb";
+
+service UserXPService {
+  rpc GetUserXP (GetUserXPRequest) returns (GetUserXPResponse);
+  rpc AddXP (AddXPRequest) returns (AddXPResponse);
+  rpc GetLeaderboard (GetLeaderboardRequest) returns (GetLeaderboardResponse);
+  rpc GetUserLevel (GetUserLevelRequest) returns (GetUserLevelResponse);
+}
+
+// UserXP message definition
+message UserXP {
+  int32 user_id = 1;
+  int64 total_xp = 2;
+  int32 current_level = 3;
+  int32 xp_to_next_level = 4;
+  string updated_at = 5;
+  string username = 6; // For leaderboard display
+}
+
+// Get user XP request and response
+message GetUserXPRequest {
+  int32 user_id = 1;
+}
+message GetUserXPResponse {
+  UserXP user_xp = 1;
+}
+
+// Add XP request and response
+message AddXPRequest {
+  int32 user_id = 1;
+  int32 xp_amount = 2;
+  string activity_key = 3; // e.g., "workout_complete", "streak_3_days"
+}
+message AddXPResponse {
+  UserXP user_xp = 1;
+  bool level_up = 2; // true if user leveled up
+  int32 previous_level = 3;
+}
+
+// Get leaderboard request and response
+message GetLeaderboardRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+message GetLeaderboardResponse {
+  repeated UserXP leaderboard = 1;
+  int32 total_users = 2;
+}
+
+// Get user level request and response
+message GetUserLevelRequest {
+  int32 user_id = 1;
+}
+message GetUserLevelResponse {
+  int32 current_level = 1;
+  int64 total_xp = 2;
+  int32 xp_to_next_level = 3;
+  double progress_percentage = 4;
+}

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package proto.user_badge.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_badge/v1;userbadgepb";
+
+import "proto/badge/v1/badge.proto";
+
+service UserBadgeService {
+  rpc GetUserBadges (GetUserBadgesRequest) returns (GetUserBadgesResponse);
+  rpc AwardBadge (AwardBadgeRequest) returns (AwardBadgeResponse);
+  rpc ShareBadge (ShareBadgeRequest) returns (ShareBadgeResponse);
+  rpc GetRecentBadges (GetRecentBadgesRequest) returns (GetRecentBadgesResponse);
+  rpc CheckBadgeUnlock (CheckBadgeUnlockRequest) returns (CheckBadgeUnlockResponse);
+}
+
+// UserBadge message definition
+message UserBadge {
+  int64 id = 1;
+  int32 user_id = 2;
+  int32 badge_id = 3;
+  string earned_at = 4;
+  bool is_shared = 5;
+  string shared_at = 6;
+  badge.v1.Badge badge = 7; // Preloaded badge information
+}
+
+// Get user badges request and response
+message GetUserBadgesRequest {
+  int32 user_id = 1;
+}
+message GetUserBadgesResponse {
+  repeated UserBadge user_badges = 1;
+  int32 total_count = 2;
+}
+
+// Award badge request and response
+message AwardBadgeRequest {
+  int32 user_id = 1;
+  int32 badge_id = 2;
+}
+message AwardBadgeResponse {
+  UserBadge user_badge = 1;
+  bool newly_earned = 2; // true if badge was just earned, false if already had it
+}
+
+// Share badge request and response
+message ShareBadgeRequest {
+  int32 user_id = 1;
+  int32 badge_id = 2;
+}
+message ShareBadgeResponse {
+  bool success = 1;
+  string share_url = 2;
+}
+
+// Get recent badges request and response
+message GetRecentBadgesRequest {
+  int32 user_id = 1;
+  int32 limit = 2;
+}
+message GetRecentBadgesResponse {
+  repeated UserBadge user_badges = 1;
+}
+
+// Check badge unlock request and response (checks if user should unlock any badges)
+message CheckBadgeUnlockRequest {
+  int32 user_id = 1;
+  string activity_type = 2; // e.g., "workout_completed", "streak_updated"
+}
+message CheckBadgeUnlockResponse {
+  repeated UserBadge newly_unlocked_badges = 1;
+  int32 xp_earned = 2;
+}
