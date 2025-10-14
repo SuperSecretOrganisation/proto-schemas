@@ -26,12 +26,14 @@ const (
 type User struct {
 	state              protoimpl.MessageState  `protogen:"open.v1"`
 	Uuid               string                  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                                                       // maps to User.UUID
-	Username           string                  `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`                                               // maps to User.Userusername
+	Username           string                  `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`                                               // maps to User.Username
 	Email              string                  `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`                                                     // maps to User.Email
 	CreatedAt          string                  `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`                            // maps to User.CreatedAt.Format(time.RFC3339)
 	UpdatedAt          string                  `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`                            // maps to User.UpdatedAt.Format(time.RFC3339)
 	Id                 int64                   `protobuf:"varint,6,opt,name=id,proto3" json:"id,omitempty"`                                                          // maps to User.ID
 	NotificationTokens []*v1.NotificationToken `protobuf:"bytes,7,rep,name=notification_tokens,json=notificationTokens,proto3" json:"notification_tokens,omitempty"` // maps to User.NotificationTokens
+	EmailVerified      bool                    `protobuf:"varint,8,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty"`               // maps to User.EmailVerified
+	LastLogin          string                  `protobuf:"bytes,9,opt,name=last_login,json=lastLogin,proto3" json:"last_login,omitempty"`                            // maps to User.LastLogin (optional, RFC3339 format)
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -113,6 +115,20 @@ func (x *User) GetNotificationTokens() []*v1.NotificationToken {
 		return x.NotificationTokens
 	}
 	return nil
+}
+
+func (x *User) GetEmailVerified() bool {
+	if x != nil {
+		return x.EmailVerified
+	}
+	return false
+}
+
+func (x *User) GetLastLogin() string {
+	if x != nil {
+		return x.LastLogin
+	}
+	return ""
 }
 
 // User creation request and response
@@ -657,7 +673,7 @@ var File_proto_user_v1_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x18proto/user/v1/user.proto\x12\rproto.user.v1\x1a4proto/notification_token/v1/notification_token.proto\"\xfb\x01\n" +
+	"\x18proto/user/v1/user.proto\x12\rproto.user.v1\x1a4proto/notification_token/v1/notification_token.proto\"\xc1\x02\n" +
 	"\x04User\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
@@ -667,7 +683,10 @@ const file_proto_user_v1_user_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\tR\tupdatedAt\x12\x0e\n" +
 	"\x02id\x18\x06 \x01(\x03R\x02id\x12_\n" +
-	"\x13notification_tokens\x18\a \x03(\v2..proto.notification_token.v1.NotificationTokenR\x12notificationTokens\"E\n" +
+	"\x13notification_tokens\x18\a \x03(\v2..proto.notification_token.v1.NotificationTokenR\x12notificationTokens\x12%\n" +
+	"\x0eemail_verified\x18\b \x01(\bR\remailVerified\x12\x1d\n" +
+	"\n" +
+	"last_login\x18\t \x01(\tR\tlastLogin\"E\n" +
 	"\x11CreateUserRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\"=\n" +

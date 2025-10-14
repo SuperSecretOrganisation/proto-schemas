@@ -29,6 +29,8 @@ class User extends $pb.GeneratedMessage {
     $core.String? updatedAt,
     $fixnum.Int64? id,
     $core.Iterable<$1.NotificationToken>? notificationTokens,
+    $core.bool? emailVerified,
+    $core.String? lastLogin,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
@@ -38,6 +40,8 @@ class User extends $pb.GeneratedMessage {
     if (updatedAt != null) result.updatedAt = updatedAt;
     if (id != null) result.id = id;
     if (notificationTokens != null) result.notificationTokens.addAll(notificationTokens);
+    if (emailVerified != null) result.emailVerified = emailVerified;
+    if (lastLogin != null) result.lastLogin = lastLogin;
     return result;
   }
 
@@ -54,6 +58,8 @@ class User extends $pb.GeneratedMessage {
     ..aOS(5, _omitFieldNames ? '' : 'updatedAt')
     ..aInt64(6, _omitFieldNames ? '' : 'id')
     ..pc<$1.NotificationToken>(7, _omitFieldNames ? '' : 'notificationTokens', $pb.PbFieldType.PM, subBuilder: $1.NotificationToken.create)
+    ..aOB(8, _omitFieldNames ? '' : 'emailVerified')
+    ..aOS(9, _omitFieldNames ? '' : 'lastLogin')
     ..hasRequiredFields = false
   ;
 
@@ -130,6 +136,24 @@ class User extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(7)
   $pb.PbList<$1.NotificationToken> get notificationTokens => $_getList(6);
+
+  @$pb.TagNumber(8)
+  $core.bool get emailVerified => $_getBF(7);
+  @$pb.TagNumber(8)
+  set emailVerified($core.bool value) => $_setBool(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasEmailVerified() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearEmailVerified() => $_clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get lastLogin => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set lastLogin($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasLastLogin() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearLastLogin() => $_clearField(9);
 }
 
 /// User creation request and response

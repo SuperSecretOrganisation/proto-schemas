@@ -25,6 +25,8 @@ const User$json = {
     {'1': 'updated_at', '3': 5, '4': 1, '5': 9, '10': 'updatedAt'},
     {'1': 'id', '3': 6, '4': 1, '5': 3, '10': 'id'},
     {'1': 'notification_tokens', '3': 7, '4': 3, '5': 11, '6': '.proto.notification_token.v1.NotificationToken', '10': 'notificationTokens'},
+    {'1': 'email_verified', '3': 8, '4': 1, '5': 8, '10': 'emailVerified'},
+    {'1': 'last_login', '3': 9, '4': 1, '5': 9, '10': 'lastLogin'},
   ],
 };
 
@@ -34,7 +36,8 @@ final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
     'QKBWVtYWlsGAMgASgJUgVlbWFpbBIdCgpjcmVhdGVkX2F0GAQgASgJUgljcmVhdGVkQXQSHQoK'
     'dXBkYXRlZF9hdBgFIAEoCVIJdXBkYXRlZEF0Eg4KAmlkGAYgASgDUgJpZBJfChNub3RpZmljYX'
     'Rpb25fdG9rZW5zGAcgAygLMi4ucHJvdG8ubm90aWZpY2F0aW9uX3Rva2VuLnYxLk5vdGlmaWNh'
-    'dGlvblRva2VuUhJub3RpZmljYXRpb25Ub2tlbnM=');
+    'dGlvblRva2VuUhJub3RpZmljYXRpb25Ub2tlbnMSJQoOZW1haWxfdmVyaWZpZWQYCCABKAhSDW'
+    'VtYWlsVmVyaWZpZWQSHQoKbGFzdF9sb2dpbhgJIAEoCVIJbGFzdExvZ2lu');
 
 @$core.Deprecated('Use createUserRequestDescriptor instead')
 const CreateUserRequest$json = {
