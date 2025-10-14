@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package proto.user_streak.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_streak/v1;userstreakpb";
+
+service UserStreakService {
+  rpc GetUserStreak (GetUserStreakRequest) returns (GetUserStreakResponse);
+  rpc UpdateStreak (UpdateStreakRequest) returns (UpdateStreakResponse);
+  rpc GetStreakHistory (GetStreakHistoryRequest) returns (GetStreakHistoryResponse);
+  rpc ResetStreak (ResetStreakRequest) returns (ResetStreakResponse);
+}
+
+// UserStreak message definition
+message UserStreak {
+  int32 id = 1;
+  int32 user_id = 2;
+  int32 current_streak = 3;
+  int32 longest_streak = 4;
+  string last_active_date = 5; // ISO 8601 date (YYYY-MM-DD)
+  string streak_start_date = 6; // ISO 8601 date (YYYY-MM-DD)
+  bool is_active_today = 7;
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+// StreakHistory message definition
+message StreakHistory {
+  int32 id = 1;
+  int32 user_id = 2;
+  string activity_date = 3; // ISO 8601 date (YYYY-MM-DD)
+  int32 steps = 4;
+  int32 active_minutes = 5;
+  double distance_km = 6;
+  string created_at = 7;
+}
+
+// Get user streak request and response
+message GetUserStreakRequest {
+  int32 user_id = 1;
+}
+message GetUserStreakResponse {
+  UserStreak user_streak = 1;
+}
+
+// Update streak request and response
+message UpdateStreakRequest {
+  int32 user_id = 1;
+  int32 steps = 2;
+  int32 active_minutes = 3;
+  double distance_km = 4;
+}
+message UpdateStreakResponse {
+  UserStreak user_streak = 1;
+  bool streak_increased = 2;
+  int32 previous_streak = 3;
+}
+
+// Get streak history request and response
+message GetStreakHistoryRequest {
+  int32 user_id = 1;
+  int32 days = 2; // Number of days to retrieve (default 30)
+}
+message GetStreakHistoryResponse {
+  repeated StreakHistory history = 1;
+  int32 total_active_days = 2;
+}
+
+// Reset streak request and response
+message ResetStreakRequest {
+  int32 user_id = 1;
+}
+message ResetStreakResponse {
+  bool success = 1;
+  string message = 2;
+}
