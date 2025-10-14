@@ -44,6 +44,9 @@ jobs:
           if [ -n "$VERSION_TAG" ]; then
             echo "Found version tag: $VERSION_TAG"
 
+            # Pull latest changes to get the auto-generated files commit
+            git pull origin main
+
             # Check if tag already exists
             if git rev-parse "$VERSION_TAG" >/dev/null 2>&1; then
               echo "Tag $VERSION_TAG already exists, deleting remote tag first"
@@ -51,10 +54,10 @@ jobs:
               git tag -d $VERSION_TAG || true
             fi
 
-            # Create and push new tag
+            # Create and push new tag on the latest commit (with generated files)
             git tag $VERSION_TAG
             git push origin $VERSION_TAG
-            echo "Created and pushed tag: $VERSION_TAG"
+            echo "Created and pushed tag: $VERSION_TAG on commit $(git rev-parse HEAD)"
           else
             echo "No version tag found in commit message"
           fi
