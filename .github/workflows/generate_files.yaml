@@ -24,3 +24,12 @@ jobs:
       - run: buf lint
       - run: buf push
         if: github.ref == 'refs/heads/main'
+
+      - name: Commit and push generated files
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add gen/ lib/
+          git diff --staged --quiet || git commit -m "chore: auto-generate proto files [skip ci]"
+          git push
