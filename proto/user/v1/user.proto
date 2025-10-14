@@ -18,12 +18,15 @@ service UserService {
 // User message definition
 message User {
   string uuid = 1;            // maps to User.UUID
-  string username = 2;        // maps to User.Userusername
+  string username = 2;        // maps to User.Username
   string email = 3;           // maps to User.Email
   string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
   string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
   int64 id = 6;                // maps to User.ID
   repeated notification_token.v1.NotificationToken notification_tokens = 7; // maps to User.NotificationTokens
+  bool email_verified = 8;    // maps to User.EmailVerified
+  string last_login = 9;      // maps to User.LastLogin (optional, RFC3339 format)
+  // Note: password_hash, password_reset_token, password_reset_expires are NOT exposed in proto
 }
 
 

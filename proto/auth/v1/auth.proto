@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package proto.auth.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/auth/v1;authpb";
+
+import "proto/user/v1/user.proto";
+
+// AuthService handles all authentication operations
+service AuthService {
+  // Register a new user account
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+
+  // Login with email and password
+  rpc Login (LoginRequest) returns (LoginResponse);
+
+  // Logout and invalidate session/token
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
+
+  // Request password reset (sends email with token)
+  rpc RequestPasswordReset (RequestPasswordResetRequest) returns (RequestPasswordResetResponse);
+
+  // Reset password using token from email
+  rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse);
+
+  // Verify email address
+  rpc VerifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse);
+
+  // Get current authenticated user
+  rpc GetCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
+
+  // Refresh authentication token
+  rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
+}
+
+// Register request and response
+message RegisterRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message RegisterResponse {
+  user.v1.User user = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+}
+
+// Login request and response
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  user.v1.User user = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+}
+
+// Logout request and response
+message LogoutRequest {
+  string access_token = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
+}
+
+// Request password reset
+message RequestPasswordResetRequest {
+  string email = 1;
+}
+
+message RequestPasswordResetResponse {
+  bool success = 1;
+  string message = 2; // e.g., "Password reset email sent"
+}
+
+// Reset password with token
+message ResetPasswordRequest {
+  string token = 1;
+  string new_password = 2;
+}
+
+message ResetPasswordResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Verify email
+message VerifyEmailRequest {
+  string token = 1;
+}
+
+message VerifyEmailResponse {
+  bool success = 1;
+  user.v1.User user = 2;
+}
+
+// Get current user
+message GetCurrentUserRequest {
+  string access_token = 1;
+}
+
+message GetCurrentUserResponse {
+  user.v1.User user = 1;
+}
+
+// Refresh token
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+
+message RefreshTokenResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+// Error handling
+message AuthError {
+  string code = 1;
+  string message = 2;
+}
