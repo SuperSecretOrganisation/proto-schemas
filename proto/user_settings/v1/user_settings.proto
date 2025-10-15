@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package proto.user_settings.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_settings/v1;usersettingspb";
+
+service UserSettingsService {
+  rpc GetUserSettings (GetUserSettingsRequest) returns (GetUserSettingsResponse);
+  rpc UpdateUserSettings (UpdateUserSettingsRequest) returns (UpdateUserSettingsResponse);
+}
+
+// User Settings message definition
+message UserSettings {
+  int64 user_id = 1;
+  string phone_number = 2;              // Optional phone number
+  string bio = 3;                       // Optional bio/description
+  string avatar_url = 4;                // URL to profile picture
+
+  // Notification preferences
+  bool push_notifications_enabled = 5;
+  bool email_notifications_enabled = 6;
+  string notification_frequency = 7;    // "realtime", "daily", "weekly"
+  repeated string notification_categories = 8; // "achievements", "reminders", "social", "system"
+
+  // Privacy settings
+  string profile_visibility = 9;        // "public", "friends", "private"
+  bool activity_visible = 10;
+  bool data_sharing_enabled = 11;
+
+  // App preferences
+  string theme = 12;                    // "light", "dark", "system"
+  string language = 13;                 // "en", "nl", etc.
+  string measurement_unit = 14;         // "metric", "imperial"
+  string timezone = 15;
+
+  string created_at = 16;
+  string updated_at = 17;
+}
+
+// Get user settings request and response
+message GetUserSettingsRequest {
+  int64 user_id = 1;
+}
+message GetUserSettingsResponse {
+  UserSettings settings = 1;
+}
+
+// Update user settings request and response
+message UpdateUserSettingsRequest {
+  int64 user_id = 1;
+  UserSettings settings = 2;
+}
+message UpdateUserSettingsResponse {
+  UserSettings settings = 1;
+}
+
+// Error handling
+message Error {
+  string code = 1;
+  string message = 2;
+}
