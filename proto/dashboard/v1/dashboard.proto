@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package proto.dashboard.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/dashboard/v1;dashboardpb";
+
+import "proto/user_badge/v1/user_badge.proto";
+import "google/protobuf/timestamp.proto";
+
+service DashboardService {
+  rpc GetDashboardData (GetDashboardDataRequest) returns (GetDashboardDataResponse);
+  rpc RefreshDashboard (RefreshDashboardRequest) returns (RefreshDashboardResponse);
+}
+
+// Complete dashboard data aggregation
+message DashboardData {
+  DailyActivity today_activity = 1;
+  WeeklySummary weekly_summary = 2;
+  UserStreakSummary streak_summary = 3;
+  UserLevelInfo level_info = 4;
+  repeated user_badge.v1.UserBadge recent_badges = 5;
+  google.protobuf.Timestamp last_updated = 6;
+}
+
+// Daily activity statistics
+message DailyActivity {
+  string date = 1; // ISO 8601 date (YYYY-MM-DD)
+  int32 steps = 2;
+  double distance_km = 3;
+  int32 active_minutes = 4;
+  int32 calories = 5;
+  int32 step_goal = 6;
+  int32 active_minutes_goal = 7;
+  double steps_progress = 8; // Percentage (0-100)
+  double active_minutes_progress = 9; // Percentage (0-100)
+  bool is_step_goal_met = 10;
+  bool is_active_minutes_goal_met = 11;
+  bool is_all_goals_met = 12;
+}
+
+// Weekly activity summary
+message WeeklySummary {
+  string week_start = 1; // ISO 8601 date (YYYY-MM-DD)
+  string week_end = 2; // ISO 8601 date (YYYY-MM-DD)
+  int32 total_steps = 3;
+  double total_distance_km = 4;
+  int32 total_active_minutes = 5;
+  int32 total_calories = 6;
+  int32 active_days = 7;
+  int32 goals_days_achieved = 8;
+  int32 average_steps_per_day = 9;
+  double average_distance_per_day = 10;
+  int32 average_active_minutes_per_day = 11;
+  double weekly_goal_completion = 12; // Percentage (0-100)
+}
+
+// User streak summary for dashboard
+message UserStreakSummary {
+  int32 current_streak = 1;
+  int32 longest_streak = 2;
+  string last_active_date = 3; // ISO 8601 date (YYYY-MM-DD)
+  string streak_start_date = 4; // ISO 8601 date (YYYY-MM-DD)
+  bool is_active_today = 5;
+  int32 days_until_streak_break = 6; // Days remaining before streak breaks (usually 1 if not active today)
+}
+
+// User level and XP information
+message UserLevelInfo {
+  int32 current_level = 1;
+  int64 total_xp = 2;
+  int32 xp_to_next_level = 3;
+  int32 current_level_xp = 4; // XP earned in current level
+  double level_progress = 5; // Percentage (0-100)
+  int32 rank_position = 6; // User's position in global leaderboard (optional)
+}
+
+// Get dashboard data request and response
+message GetDashboardDataRequest {
+  int32 user_id = 1;
+  bool include_leaderboard_rank = 2; // Whether to include user's leaderboard position
+}
+message GetDashboardDataResponse {
+  DashboardData dashboard = 1;
+}
+
+// Refresh dashboard request and response (forces recalculation)
+message RefreshDashboardRequest {
+  int32 user_id = 1;
+}
+message RefreshDashboardResponse {
+  DashboardData dashboard = 1;
+  bool success = 2;
+}
