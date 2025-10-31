@@ -830,6 +830,119 @@ func (x *RefreshTokenResponse) GetRefreshToken() string {
 	return ""
 }
 
+// Sign in with Google
+type SignInWithGoogleRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IdToken       string                 `protobuf:"bytes,1,opt,name=id_token,json=idToken,proto3" json:"id_token,omitempty"` // Google ID token obtained from Google Sign-In
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SignInWithGoogleRequest) Reset() {
+	*x = SignInWithGoogleRequest{}
+	mi := &file_proto_auth_v1_auth_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignInWithGoogleRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignInWithGoogleRequest) ProtoMessage() {}
+
+func (x *SignInWithGoogleRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_v1_auth_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignInWithGoogleRequest.ProtoReflect.Descriptor instead.
+func (*SignInWithGoogleRequest) Descriptor() ([]byte, []int) {
+	return file_proto_auth_v1_auth_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *SignInWithGoogleRequest) GetIdToken() string {
+	if x != nil {
+		return x.IdToken
+	}
+	return ""
+}
+
+type SignInWithGoogleResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *v1.User               `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,2,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,3,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	IsNewUser     bool                   `protobuf:"varint,4,opt,name=is_new_user,json=isNewUser,proto3" json:"is_new_user,omitempty"` // True if this is a newly created account
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SignInWithGoogleResponse) Reset() {
+	*x = SignInWithGoogleResponse{}
+	mi := &file_proto_auth_v1_auth_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignInWithGoogleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignInWithGoogleResponse) ProtoMessage() {}
+
+func (x *SignInWithGoogleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_v1_auth_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignInWithGoogleResponse.ProtoReflect.Descriptor instead.
+func (*SignInWithGoogleResponse) Descriptor() ([]byte, []int) {
+	return file_proto_auth_v1_auth_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *SignInWithGoogleResponse) GetUser() *v1.User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *SignInWithGoogleResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *SignInWithGoogleResponse) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *SignInWithGoogleResponse) GetIsNewUser() bool {
+	if x != nil {
+		return x.IsNewUser
+	}
+	return false
+}
+
 // Error handling
 type AuthError struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -841,7 +954,7 @@ type AuthError struct {
 
 func (x *AuthError) Reset() {
 	*x = AuthError{}
-	mi := &file_proto_auth_v1_auth_proto_msgTypes[16]
+	mi := &file_proto_auth_v1_auth_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -853,7 +966,7 @@ func (x *AuthError) String() string {
 func (*AuthError) ProtoMessage() {}
 
 func (x *AuthError) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_v1_auth_proto_msgTypes[16]
+	mi := &file_proto_auth_v1_auth_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -866,7 +979,7 @@ func (x *AuthError) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthError.ProtoReflect.Descriptor instead.
 func (*AuthError) Descriptor() ([]byte, []int) {
-	return file_proto_auth_v1_auth_proto_rawDescGZIP(), []int{16}
+	return file_proto_auth_v1_auth_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *AuthError) GetCode() string {
@@ -931,10 +1044,17 @@ const file_proto_auth_v1_auth_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"^\n" +
 	"\x14RefreshTokenResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
-	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"9\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"4\n" +
+	"\x17SignInWithGoogleRequest\x12\x19\n" +
+	"\bid_token\x18\x01 \x01(\tR\aidToken\"\xab\x01\n" +
+	"\x18SignInWithGoogleResponse\x12'\n" +
+	"\x04user\x18\x01 \x01(\v2\x13.proto.user.v1.UserR\x04user\x12!\n" +
+	"\faccess_token\x18\x02 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\x12\x1e\n" +
+	"\vis_new_user\x18\x04 \x01(\bR\tisNewUser\"9\n" +
 	"\tAuthError\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xc0\x05\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\xa5\x06\n" +
 	"\vAuthService\x12K\n" +
 	"\bRegister\x12\x1e.proto.auth.v1.RegisterRequest\x1a\x1f.proto.auth.v1.RegisterResponse\x12B\n" +
 	"\x05Login\x12\x1b.proto.auth.v1.LoginRequest\x1a\x1c.proto.auth.v1.LoginResponse\x12E\n" +
@@ -943,7 +1063,8 @@ const file_proto_auth_v1_auth_proto_rawDesc = "" +
 	"\rResetPassword\x12#.proto.auth.v1.ResetPasswordRequest\x1a$.proto.auth.v1.ResetPasswordResponse\x12T\n" +
 	"\vVerifyEmail\x12!.proto.auth.v1.VerifyEmailRequest\x1a\".proto.auth.v1.VerifyEmailResponse\x12]\n" +
 	"\x0eGetCurrentUser\x12$.proto.auth.v1.GetCurrentUserRequest\x1a%.proto.auth.v1.GetCurrentUserResponse\x12W\n" +
-	"\fRefreshToken\x12\".proto.auth.v1.RefreshTokenRequest\x1a#.proto.auth.v1.RefreshTokenResponseBQZOgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/auth/v1;authpbb\x06proto3"
+	"\fRefreshToken\x12\".proto.auth.v1.RefreshTokenRequest\x1a#.proto.auth.v1.RefreshTokenResponse\x12c\n" +
+	"\x10SignInWithGoogle\x12&.proto.auth.v1.SignInWithGoogleRequest\x1a'.proto.auth.v1.SignInWithGoogleResponseBQZOgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/auth/v1;authpbb\x06proto3"
 
 var (
 	file_proto_auth_v1_auth_proto_rawDescOnce sync.Once
@@ -957,7 +1078,7 @@ func file_proto_auth_v1_auth_proto_rawDescGZIP() []byte {
 	return file_proto_auth_v1_auth_proto_rawDescData
 }
 
-var file_proto_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_proto_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_proto_auth_v1_auth_proto_goTypes = []any{
 	(*RegisterRequest)(nil),              // 0: proto.auth.v1.RegisterRequest
 	(*RegisterResponse)(nil),             // 1: proto.auth.v1.RegisterResponse
@@ -975,35 +1096,40 @@ var file_proto_auth_v1_auth_proto_goTypes = []any{
 	(*GetCurrentUserResponse)(nil),       // 13: proto.auth.v1.GetCurrentUserResponse
 	(*RefreshTokenRequest)(nil),          // 14: proto.auth.v1.RefreshTokenRequest
 	(*RefreshTokenResponse)(nil),         // 15: proto.auth.v1.RefreshTokenResponse
-	(*AuthError)(nil),                    // 16: proto.auth.v1.AuthError
-	(*v1.User)(nil),                      // 17: proto.user.v1.User
+	(*SignInWithGoogleRequest)(nil),      // 16: proto.auth.v1.SignInWithGoogleRequest
+	(*SignInWithGoogleResponse)(nil),     // 17: proto.auth.v1.SignInWithGoogleResponse
+	(*AuthError)(nil),                    // 18: proto.auth.v1.AuthError
+	(*v1.User)(nil),                      // 19: proto.user.v1.User
 }
 var file_proto_auth_v1_auth_proto_depIdxs = []int32{
-	17, // 0: proto.auth.v1.RegisterResponse.user:type_name -> proto.user.v1.User
-	17, // 1: proto.auth.v1.LoginResponse.user:type_name -> proto.user.v1.User
-	17, // 2: proto.auth.v1.VerifyEmailResponse.user:type_name -> proto.user.v1.User
-	17, // 3: proto.auth.v1.GetCurrentUserResponse.user:type_name -> proto.user.v1.User
-	0,  // 4: proto.auth.v1.AuthService.Register:input_type -> proto.auth.v1.RegisterRequest
-	2,  // 5: proto.auth.v1.AuthService.Login:input_type -> proto.auth.v1.LoginRequest
-	4,  // 6: proto.auth.v1.AuthService.Logout:input_type -> proto.auth.v1.LogoutRequest
-	6,  // 7: proto.auth.v1.AuthService.RequestPasswordReset:input_type -> proto.auth.v1.RequestPasswordResetRequest
-	8,  // 8: proto.auth.v1.AuthService.ResetPassword:input_type -> proto.auth.v1.ResetPasswordRequest
-	10, // 9: proto.auth.v1.AuthService.VerifyEmail:input_type -> proto.auth.v1.VerifyEmailRequest
-	12, // 10: proto.auth.v1.AuthService.GetCurrentUser:input_type -> proto.auth.v1.GetCurrentUserRequest
-	14, // 11: proto.auth.v1.AuthService.RefreshToken:input_type -> proto.auth.v1.RefreshTokenRequest
-	1,  // 12: proto.auth.v1.AuthService.Register:output_type -> proto.auth.v1.RegisterResponse
-	3,  // 13: proto.auth.v1.AuthService.Login:output_type -> proto.auth.v1.LoginResponse
-	5,  // 14: proto.auth.v1.AuthService.Logout:output_type -> proto.auth.v1.LogoutResponse
-	7,  // 15: proto.auth.v1.AuthService.RequestPasswordReset:output_type -> proto.auth.v1.RequestPasswordResetResponse
-	9,  // 16: proto.auth.v1.AuthService.ResetPassword:output_type -> proto.auth.v1.ResetPasswordResponse
-	11, // 17: proto.auth.v1.AuthService.VerifyEmail:output_type -> proto.auth.v1.VerifyEmailResponse
-	13, // 18: proto.auth.v1.AuthService.GetCurrentUser:output_type -> proto.auth.v1.GetCurrentUserResponse
-	15, // 19: proto.auth.v1.AuthService.RefreshToken:output_type -> proto.auth.v1.RefreshTokenResponse
-	12, // [12:20] is the sub-list for method output_type
-	4,  // [4:12] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	19, // 0: proto.auth.v1.RegisterResponse.user:type_name -> proto.user.v1.User
+	19, // 1: proto.auth.v1.LoginResponse.user:type_name -> proto.user.v1.User
+	19, // 2: proto.auth.v1.VerifyEmailResponse.user:type_name -> proto.user.v1.User
+	19, // 3: proto.auth.v1.GetCurrentUserResponse.user:type_name -> proto.user.v1.User
+	19, // 4: proto.auth.v1.SignInWithGoogleResponse.user:type_name -> proto.user.v1.User
+	0,  // 5: proto.auth.v1.AuthService.Register:input_type -> proto.auth.v1.RegisterRequest
+	2,  // 6: proto.auth.v1.AuthService.Login:input_type -> proto.auth.v1.LoginRequest
+	4,  // 7: proto.auth.v1.AuthService.Logout:input_type -> proto.auth.v1.LogoutRequest
+	6,  // 8: proto.auth.v1.AuthService.RequestPasswordReset:input_type -> proto.auth.v1.RequestPasswordResetRequest
+	8,  // 9: proto.auth.v1.AuthService.ResetPassword:input_type -> proto.auth.v1.ResetPasswordRequest
+	10, // 10: proto.auth.v1.AuthService.VerifyEmail:input_type -> proto.auth.v1.VerifyEmailRequest
+	12, // 11: proto.auth.v1.AuthService.GetCurrentUser:input_type -> proto.auth.v1.GetCurrentUserRequest
+	14, // 12: proto.auth.v1.AuthService.RefreshToken:input_type -> proto.auth.v1.RefreshTokenRequest
+	16, // 13: proto.auth.v1.AuthService.SignInWithGoogle:input_type -> proto.auth.v1.SignInWithGoogleRequest
+	1,  // 14: proto.auth.v1.AuthService.Register:output_type -> proto.auth.v1.RegisterResponse
+	3,  // 15: proto.auth.v1.AuthService.Login:output_type -> proto.auth.v1.LoginResponse
+	5,  // 16: proto.auth.v1.AuthService.Logout:output_type -> proto.auth.v1.LogoutResponse
+	7,  // 17: proto.auth.v1.AuthService.RequestPasswordReset:output_type -> proto.auth.v1.RequestPasswordResetResponse
+	9,  // 18: proto.auth.v1.AuthService.ResetPassword:output_type -> proto.auth.v1.ResetPasswordResponse
+	11, // 19: proto.auth.v1.AuthService.VerifyEmail:output_type -> proto.auth.v1.VerifyEmailResponse
+	13, // 20: proto.auth.v1.AuthService.GetCurrentUser:output_type -> proto.auth.v1.GetCurrentUserResponse
+	15, // 21: proto.auth.v1.AuthService.RefreshToken:output_type -> proto.auth.v1.RefreshTokenResponse
+	17, // 22: proto.auth.v1.AuthService.SignInWithGoogle:output_type -> proto.auth.v1.SignInWithGoogleResponse
+	14, // [14:23] is the sub-list for method output_type
+	5,  // [5:14] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_proto_auth_v1_auth_proto_init() }
@@ -1017,7 +1143,7 @@ func file_proto_auth_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_auth_v1_auth_proto_rawDesc), len(file_proto_auth_v1_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
