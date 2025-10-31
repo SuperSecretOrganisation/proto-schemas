@@ -914,6 +914,137 @@ class RefreshTokenResponse extends $pb.GeneratedMessage {
   void clearRefreshToken() => $_clearField(2);
 }
 
+/// Sign in with Google
+class SignInWithGoogleRequest extends $pb.GeneratedMessage {
+  factory SignInWithGoogleRequest({
+    $core.String? idToken,
+  }) {
+    final result = create();
+    if (idToken != null) result.idToken = idToken;
+    return result;
+  }
+
+  SignInWithGoogleRequest._();
+
+  factory SignInWithGoogleRequest.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory SignInWithGoogleRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SignInWithGoogleRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.auth.v1'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'idToken')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignInWithGoogleRequest clone() => SignInWithGoogleRequest()..mergeFromMessage(this);
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignInWithGoogleRequest copyWith(void Function(SignInWithGoogleRequest) updates) => super.copyWith((message) => updates(message as SignInWithGoogleRequest)) as SignInWithGoogleRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SignInWithGoogleRequest create() => SignInWithGoogleRequest._();
+  @$core.override
+  SignInWithGoogleRequest createEmptyInstance() => create();
+  static $pb.PbList<SignInWithGoogleRequest> createRepeated() => $pb.PbList<SignInWithGoogleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SignInWithGoogleRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SignInWithGoogleRequest>(create);
+  static SignInWithGoogleRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get idToken => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set idToken($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasIdToken() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearIdToken() => $_clearField(1);
+}
+
+class SignInWithGoogleResponse extends $pb.GeneratedMessage {
+  factory SignInWithGoogleResponse({
+    $1.User? user,
+    $core.String? accessToken,
+    $core.String? refreshToken,
+    $core.bool? isNewUser,
+  }) {
+    final result = create();
+    if (user != null) result.user = user;
+    if (accessToken != null) result.accessToken = accessToken;
+    if (refreshToken != null) result.refreshToken = refreshToken;
+    if (isNewUser != null) result.isNewUser = isNewUser;
+    return result;
+  }
+
+  SignInWithGoogleResponse._();
+
+  factory SignInWithGoogleResponse.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory SignInWithGoogleResponse.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SignInWithGoogleResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.auth.v1'), createEmptyInstance: create)
+    ..aOM<$1.User>(1, _omitFieldNames ? '' : 'user', subBuilder: $1.User.create)
+    ..aOS(2, _omitFieldNames ? '' : 'accessToken')
+    ..aOS(3, _omitFieldNames ? '' : 'refreshToken')
+    ..aOB(4, _omitFieldNames ? '' : 'isNewUser')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignInWithGoogleResponse clone() => SignInWithGoogleResponse()..mergeFromMessage(this);
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignInWithGoogleResponse copyWith(void Function(SignInWithGoogleResponse) updates) => super.copyWith((message) => updates(message as SignInWithGoogleResponse)) as SignInWithGoogleResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SignInWithGoogleResponse create() => SignInWithGoogleResponse._();
+  @$core.override
+  SignInWithGoogleResponse createEmptyInstance() => create();
+  static $pb.PbList<SignInWithGoogleResponse> createRepeated() => $pb.PbList<SignInWithGoogleResponse>();
+  @$core.pragma('dart2js:noInline')
+  static SignInWithGoogleResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SignInWithGoogleResponse>(create);
+  static SignInWithGoogleResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $1.User get user => $_getN(0);
+  @$pb.TagNumber(1)
+  set user($1.User value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasUser() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearUser() => $_clearField(1);
+  @$pb.TagNumber(1)
+  $1.User ensureUser() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get accessToken => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set accessToken($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasAccessToken() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAccessToken() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get refreshToken => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set refreshToken($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasRefreshToken() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearRefreshToken() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get isNewUser => $_getBF(3);
+  @$pb.TagNumber(4)
+  set isNewUser($core.bool value) => $_setBool(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasIsNewUser() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearIsNewUser() => $_clearField(4);
+}
+
 /// Error handling
 class AuthError extends $pb.GeneratedMessage {
   factory AuthError({

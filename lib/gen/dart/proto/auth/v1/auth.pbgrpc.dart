@@ -73,6 +73,11 @@ class AuthServiceClient extends $grpc.Client {
     return $createUnaryCall(_$refreshToken, request, options: options);
   }
 
+  /// Sign in with Google OAuth
+  $grpc.ResponseFuture<$0.SignInWithGoogleResponse> signInWithGoogle($0.SignInWithGoogleRequest request, {$grpc.CallOptions? options,}) {
+    return $createUnaryCall(_$signInWithGoogle, request, options: options);
+  }
+
     // method descriptors
 
   static final _$register = $grpc.ClientMethod<$0.RegisterRequest, $0.RegisterResponse>(
@@ -107,6 +112,10 @@ class AuthServiceClient extends $grpc.Client {
       '/proto.auth.v1.AuthService/RefreshToken',
       ($0.RefreshTokenRequest value) => value.writeToBuffer(),
       $0.RefreshTokenResponse.fromBuffer);
+  static final _$signInWithGoogle = $grpc.ClientMethod<$0.SignInWithGoogleRequest, $0.SignInWithGoogleResponse>(
+      '/proto.auth.v1.AuthService/SignInWithGoogle',
+      ($0.SignInWithGoogleRequest value) => value.writeToBuffer(),
+      $0.SignInWithGoogleResponse.fromBuffer);
 }
 
 @$pb.GrpcServiceName('proto.auth.v1.AuthService')
@@ -170,6 +179,13 @@ abstract class AuthServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.RefreshTokenRequest.fromBuffer(value),
         ($0.RefreshTokenResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SignInWithGoogleRequest, $0.SignInWithGoogleResponse>(
+        'SignInWithGoogle',
+        signInWithGoogle_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.SignInWithGoogleRequest.fromBuffer(value),
+        ($0.SignInWithGoogleResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.RegisterResponse> register_Pre($grpc.ServiceCall $call, $async.Future<$0.RegisterRequest> $request) async {
@@ -219,5 +235,11 @@ abstract class AuthServiceBase extends $grpc.Service {
   }
 
   $async.Future<$0.RefreshTokenResponse> refreshToken($grpc.ServiceCall call, $0.RefreshTokenRequest request);
+
+  $async.Future<$0.SignInWithGoogleResponse> signInWithGoogle_Pre($grpc.ServiceCall $call, $async.Future<$0.SignInWithGoogleRequest> $request) async {
+    return signInWithGoogle($call, await $request);
+  }
+
+  $async.Future<$0.SignInWithGoogleResponse> signInWithGoogle($grpc.ServiceCall call, $0.SignInWithGoogleRequest request);
 
 }

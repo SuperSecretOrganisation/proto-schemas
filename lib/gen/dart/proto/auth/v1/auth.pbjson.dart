@@ -232,6 +232,36 @@ final $typed_data.Uint8List refreshTokenResponseDescriptor = $convert.base64Deco
     'ChRSZWZyZXNoVG9rZW5SZXNwb25zZRIhCgxhY2Nlc3NfdG9rZW4YASABKAlSC2FjY2Vzc1Rva2'
     'VuEiMKDXJlZnJlc2hfdG9rZW4YAiABKAlSDHJlZnJlc2hUb2tlbg==');
 
+@$core.Deprecated('Use signInWithGoogleRequestDescriptor instead')
+const SignInWithGoogleRequest$json = {
+  '1': 'SignInWithGoogleRequest',
+  '2': [
+    {'1': 'id_token', '3': 1, '4': 1, '5': 9, '10': 'idToken'},
+  ],
+};
+
+/// Descriptor for `SignInWithGoogleRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List signInWithGoogleRequestDescriptor = $convert.base64Decode(
+    'ChdTaWduSW5XaXRoR29vZ2xlUmVxdWVzdBIZCghpZF90b2tlbhgBIAEoCVIHaWRUb2tlbg==');
+
+@$core.Deprecated('Use signInWithGoogleResponseDescriptor instead')
+const SignInWithGoogleResponse$json = {
+  '1': 'SignInWithGoogleResponse',
+  '2': [
+    {'1': 'user', '3': 1, '4': 1, '5': 11, '6': '.proto.user.v1.User', '10': 'user'},
+    {'1': 'access_token', '3': 2, '4': 1, '5': 9, '10': 'accessToken'},
+    {'1': 'refresh_token', '3': 3, '4': 1, '5': 9, '10': 'refreshToken'},
+    {'1': 'is_new_user', '3': 4, '4': 1, '5': 8, '10': 'isNewUser'},
+  ],
+};
+
+/// Descriptor for `SignInWithGoogleResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List signInWithGoogleResponseDescriptor = $convert.base64Decode(
+    'ChhTaWduSW5XaXRoR29vZ2xlUmVzcG9uc2USJwoEdXNlchgBIAEoCzITLnByb3RvLnVzZXIudj'
+    'EuVXNlclIEdXNlchIhCgxhY2Nlc3NfdG9rZW4YAiABKAlSC2FjY2Vzc1Rva2VuEiMKDXJlZnJl'
+    'c2hfdG9rZW4YAyABKAlSDHJlZnJlc2hUb2tlbhIeCgtpc19uZXdfdXNlchgEIAEoCFIJaXNOZX'
+    'dVc2Vy');
+
 @$core.Deprecated('Use authErrorDescriptor instead')
 const AuthError$json = {
   '1': 'AuthError',

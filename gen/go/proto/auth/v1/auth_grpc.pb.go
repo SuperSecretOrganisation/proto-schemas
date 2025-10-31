@@ -27,6 +27,7 @@ const (
 	AuthService_VerifyEmail_FullMethodName          = "/proto.auth.v1.AuthService/VerifyEmail"
 	AuthService_GetCurrentUser_FullMethodName       = "/proto.auth.v1.AuthService/GetCurrentUser"
 	AuthService_RefreshToken_FullMethodName         = "/proto.auth.v1.AuthService/RefreshToken"
+	AuthService_SignInWithGoogle_FullMethodName     = "/proto.auth.v1.AuthService/SignInWithGoogle"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -51,6 +52,8 @@ type AuthServiceClient interface {
 	GetCurrentUser(ctx context.Context, in *GetCurrentUserRequest, opts ...grpc.CallOption) (*GetCurrentUserResponse, error)
 	// Refresh authentication token
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
+	// Sign in with Google OAuth
+	SignInWithGoogle(ctx context.Context, in *SignInWithGoogleRequest, opts ...grpc.CallOption) (*SignInWithGoogleResponse, error)
 }
 
 type authServiceClient struct {
@@ -141,6 +144,16 @@ func (c *authServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRe
 	return out, nil
 }
 
+func (c *authServiceClient) SignInWithGoogle(ctx context.Context, in *SignInWithGoogleRequest, opts ...grpc.CallOption) (*SignInWithGoogleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SignInWithGoogleResponse)
+	err := c.cc.Invoke(ctx, AuthService_SignInWithGoogle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServiceServer is the server API for AuthService service.
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
@@ -163,6 +176,8 @@ type AuthServiceServer interface {
 	GetCurrentUser(context.Context, *GetCurrentUserRequest) (*GetCurrentUserResponse, error)
 	// Refresh authentication token
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
+	// Sign in with Google OAuth
+	SignInWithGoogle(context.Context, *SignInWithGoogleRequest) (*SignInWithGoogleResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -196,6 +211,9 @@ func (UnimplementedAuthServiceServer) GetCurrentUser(context.Context, *GetCurren
 }
 func (UnimplementedAuthServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
+}
+func (UnimplementedAuthServiceServer) SignInWithGoogle(context.Context, *SignInWithGoogleRequest) (*SignInWithGoogleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignInWithGoogle not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -362,6 +380,24 @@ func _AuthService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_SignInWithGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignInWithGoogleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).SignInWithGoogle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_SignInWithGoogle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).SignInWithGoogle(ctx, req.(*SignInWithGoogleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -400,6 +436,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RefreshToken",
 			Handler:    _AuthService_RefreshToken_Handler,
+		},
+		{
+			MethodName: "SignInWithGoogle",
+			Handler:    _AuthService_SignInWithGoogle_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
