@@ -31,6 +31,9 @@ service AuthService {
 
   // Refresh authentication token
   rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
+
+  // Sign in with Google OAuth
+  rpc SignInWithGoogle (SignInWithGoogleRequest) returns (SignInWithGoogleResponse);
 }
 
 // Register request and response
@@ -115,6 +118,18 @@ message RefreshTokenRequest {
 message RefreshTokenResponse {
   string access_token = 1;
   string refresh_token = 2;
+}
+
+// Sign in with Google
+message SignInWithGoogleRequest {
+  string id_token = 1; // Google ID token obtained from Google Sign-In
+}
+
+message SignInWithGoogleResponse {
+  user.v1.User user = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+  bool is_new_user = 4; // True if this is a newly created account
 }
 
 // Error handling
