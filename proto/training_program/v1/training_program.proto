@@ -1,0 +1,149 @@
+syntax = "proto3";
+
+package proto.training_program.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/training_program/v1;trainingprogrampb";
+
+service TrainingProgramService {
+  rpc CreateProgram (CreateProgramRequest) returns (CreateProgramResponse);
+  rpc GetProgram (GetProgramRequest) returns (GetProgramResponse);
+  rpc UpdateProgram (UpdateProgramRequest) returns (UpdateProgramResponse);
+  rpc DeleteProgram (DeleteProgramRequest) returns (DeleteProgramResponse);
+  rpc ListPrograms (ListProgramsRequest) returns (ListProgramsResponse);
+  rpc StartProgram (StartProgramRequest) returns (StartProgramResponse);
+  rpc CompleteWorkout (CompleteWorkoutRequest) returns (CompleteWorkoutResponse);
+}
+
+// Nested messages for program structure
+message WorkoutSet {
+  int32 set_number = 1;
+  int32 reps = 2;
+  double weight_kg = 3;              // Optional: target weight
+  int32 duration_seconds = 4;        // Optional: for timed exercises
+  int32 rest_seconds = 5;            // Rest time after this set
+  string notes = 6;                  // Optional notes
+}
+
+message WorkoutExercise {
+  string exercise_id = 1;            // Reference to Exercise
+  string exercise_name = 2;          // Cached for display
+  int32 order_index = 3;             // Order in workout
+  repeated WorkoutSet sets = 4;
+  string notes = 5;                  // Exercise-specific notes
+}
+
+message ProgramWorkout {
+  string id = 1;                     // UUID
+  string name = 2;                   // Workout name (e.g., "Upper Body A")
+  string description = 3;
+  int32 day_of_week = 4;             // 1-7 (Monday-Sunday)
+  repeated WorkoutExercise exercises = 5;
+  int32 estimated_duration_minutes = 6;
+}
+
+message ProgramWeek {
+  int32 week_number = 1;
+  repeated ProgramWorkout workouts = 2;
+  bool is_deload_week = 3;
+  string description = 4;            // Optional week description
+}
+
+// TrainingProgram message definition
+message TrainingProgram {
+  string id = 1;                     // UUID
+  string name = 2;
+  string description = 3;
+  string goal = 4;                   // weight_loss, muscle_building, strength, marathon_prep, 5k, 10k, general_fitness, sport_specific
+  string intensity = 5;              // beginner, intermediate, advanced
+  int32 duration_weeks = 6;
+  repeated ProgramWeek weeks = 7;
+  repeated string equipment_required = 8;
+  string author = 9;                 // Optional: program creator
+  bool is_custom = 10;               // Whether this is a user-created program
+  string user_id = 11;               // ID of user who created (if custom)
+  string created_at = 12;            // RFC3339 format
+  string updated_at = 13;            // RFC3339 format
+}
+
+// Create program request and response
+message CreateProgramRequest {
+  string name = 1;
+  string description = 2;
+  string goal = 3;
+  string intensity = 4;
+  int32 duration_weeks = 5;
+  repeated ProgramWeek weeks = 6;
+  repeated string equipment_required = 7;
+  string author = 8;
+  bool is_custom = 9;
+}
+message CreateProgramResponse {
+  TrainingProgram program = 1;
+}
+
+// Get program request and response
+message GetProgramRequest {
+  string id = 1;
+}
+message GetProgramResponse {
+  TrainingProgram program = 1;
+}
+
+// Update program request and response
+message UpdateProgramRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string goal = 4;
+  string intensity = 5;
+  int32 duration_weeks = 6;
+  repeated ProgramWeek weeks = 7;
+  repeated string equipment_required = 8;
+  string author = 9;
+}
+message UpdateProgramResponse {
+  TrainingProgram program = 1;
+}
+
+// Delete program request and response
+message DeleteProgramRequest {
+  string id = 1;
+}
+message DeleteProgramResponse {
+  bool success = 1;
+}
+
+// List programs request and response
+message ListProgramsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string goal = 3;                   // Optional filter by goal
+  string intensity = 4;              // Optional filter by intensity
+  bool custom_only = 5;              // Optional: only return custom programs
+}
+message ListProgramsResponse {
+  repeated TrainingProgram programs = 1;
+  int32 total_count = 2;
+}
+
+// Start program request and response
+message StartProgramRequest {
+  string program_id = 1;
+  string user_id = 2;
+  string start_date = 3;             // RFC3339 format
+}
+message StartProgramResponse {
+  string progress_id = 1;            // ID of created UserProgramProgress
+  bool success = 2;
+}
+
+// Complete workout request and response
+message CompleteWorkoutRequest {
+  string progress_id = 1;            // UserProgramProgress ID
+  string workout_id = 2;
+  string completed_at = 3;           // RFC3339 format
+}
+message CompleteWorkoutResponse {
+  bool success = 1;
+  int32 workouts_completed = 2;      // Total workouts completed in program
+}

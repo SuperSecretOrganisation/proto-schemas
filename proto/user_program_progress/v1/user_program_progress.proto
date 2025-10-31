@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package proto.user_program_progress.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_program_progress/v1;userprogramprogresspb";
+
+service UserProgramProgressService {
+  rpc GetActiveProgram (GetActiveProgramRequest) returns (GetActiveProgramResponse);
+  rpc GetProgressHistory (GetProgressHistoryRequest) returns (GetProgressHistoryResponse);
+  rpc UpdateProgress (UpdateProgressRequest) returns (UpdateProgressResponse);
+  rpc AbandonProgram (AbandonProgramRequest) returns (AbandonProgramResponse);
+  rpc GetWorkoutHistory (GetWorkoutHistoryRequest) returns (GetWorkoutHistoryResponse);
+}
+
+// Nested message for workout completion
+message CompletedWorkout {
+  string workout_id = 1;
+  string workout_name = 2;
+  int32 week_number = 3;
+  string completed_at = 4;           // RFC3339 format
+  int32 duration_minutes = 5;        // Actual duration
+  string notes = 6;                  // User notes about the workout
+}
+
+// UserProgramProgress message definition
+message UserProgramProgress {
+  string id = 1;                     // UUID
+  string user_id = 2;
+  string program_id = 3;
+  string program_name = 4;           // Cached for display
+  int32 current_week = 5;
+  repeated CompletedWorkout completed_workouts = 6;
+  string started_at = 7;             // RFC3339 format
+  string completed_at = 8;           // RFC3339 format (null if active)
+  bool is_active = 9;
+  string created_at = 10;            // RFC3339 format
+  string updated_at = 11;            // RFC3339 format
+}
+
+// Get active program request and response
+message GetActiveProgramRequest {
+  string user_id = 1;
+}
+message GetActiveProgramResponse {
+  UserProgramProgress progress = 1;  // null if no active program
+  bool has_active_program = 2;
+}
+
+// Get progress history request and response
+message GetProgressHistoryRequest {
+  string user_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+  bool include_active = 4;           // Include currently active program
+}
+message GetProgressHistoryResponse {
+  repeated UserProgramProgress progress_entries = 1;
+  int32 total_count = 2;
+}
+
+// Update progress request and response
+message UpdateProgressRequest {
+  string id = 1;
+  int32 current_week = 2;
+  repeated CompletedWorkout completed_workouts = 3;
+}
+message UpdateProgressResponse {
+  UserProgramProgress progress = 1;
+}
+
+// Abandon program request and response
+message AbandonProgramRequest {
+  string id = 1;                     // UserProgramProgress ID
+  string user_id = 2;
+}
+message AbandonProgramResponse {
+  bool success = 1;
+}
+
+// Get workout history request and response
+message GetWorkoutHistoryRequest {
+  string user_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+  string from_date = 4;              // Optional: filter from date (RFC3339)
+  string to_date = 5;                // Optional: filter to date (RFC3339)
+}
+message GetWorkoutHistoryResponse {
+  repeated CompletedWorkout workouts = 1;
+  int32 total_count = 2;
+  int32 total_duration_minutes = 3;  // Sum of all workout durations
+}
