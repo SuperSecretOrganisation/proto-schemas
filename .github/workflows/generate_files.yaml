@@ -1,31 +1,57 @@
 name: Generate Proto Files
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-  delete:
+
 permissions:
   contents: write
   pull-requests: write
+
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history needed for buf breaking and tagging
 
       - name: Set up Buf
         uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
-      - run: buf dep update
-      - run: buf generate
-      - run: buf lint
-      - run: buf push
-        if: github.ref == 'refs/heads/main'
 
-      - name: Commit and push generated files
+      # VERSION file is the single source of truth for all version references
+      - name: Verify VERSION and pubspec.yaml are in sync
+        run: |
+          VERSION=$(cat VERSION | tr -d '[:space:]')
+          PUBSPEC_VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | tr -d '[:space:]')
+          if [ "$VERSION" != "$PUBSPEC_VERSION" ]; then
+            echo "::error::VERSION ($VERSION) and pubspec.yaml ($PUBSPEC_VERSION) are out of sync"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Version: $VERSION"
+
+      - name: Buf lint
+        run: buf lint
+
+      # Catch unintentional breaking changes on PRs by comparing against main
+      - name: Buf breaking (PR check)
+        if: github.event_name == 'pull_request'
+        run: buf breaking --against '.git#branch=main'
+
+      - name: Buf generate
+        run: buf generate
+
+      - name: Buf push
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: buf push
+
+      - name: Commit generated files
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -34,30 +60,20 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: auto-generate proto files [skip ci]"
           git push
 
-      - name: Create version tag from commit message
+      # Tag based on VERSION file instead of parsing commit messages.
+      # Only creates tags — never overwrites existing ones.
+      - name: Create version tag from VERSION file
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          # Extract version tag from commit message if it contains "v2.x.x" pattern
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          VERSION_TAG=$(echo "$COMMIT_MSG" | grep -oP 'v2\.\d+\.\d+' || echo "")
+          VERSION_TAG="v${VERSION}"
+          echo "Checking for tag: $VERSION_TAG"
 
-          if [ -n "$VERSION_TAG" ]; then
-            echo "Found version tag: $VERSION_TAG"
+          git pull origin main
 
-            # Pull latest changes to get the auto-generated files commit
-            git pull origin main
-
-            # Check if tag already exists
-            if git rev-parse "$VERSION_TAG" >/dev/null 2>&1; then
-              echo "Tag $VERSION_TAG already exists, deleting remote tag first"
-              git push origin :refs/tags/$VERSION_TAG || true
-              git tag -d $VERSION_TAG || true
-            fi
-
-            # Create and push new tag on the latest commit (with generated files)
-            git tag $VERSION_TAG
-            git push origin $VERSION_TAG
-            echo "Created and pushed tag: $VERSION_TAG on commit $(git rev-parse HEAD)"
+          if git rev-parse "$VERSION_TAG" >/dev/null 2>&1; then
+            echo "Tag $VERSION_TAG already exists — skipping"
           else
-            echo "No version tag found in commit message"
+            git tag "$VERSION_TAG"
+            git push origin "$VERSION_TAG"
+            echo "Created and pushed tag: $VERSION_TAG"
           fi
