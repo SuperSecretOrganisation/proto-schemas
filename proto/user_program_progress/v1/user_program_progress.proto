@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package proto.user_program_progress.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_program_progress/v1;userprogramprogresspb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_program_progress/v1;userprogramprogresspb";
+
+import "google/protobuf/timestamp.proto";
 
 service UserProgramProgressService {
   rpc GetActiveProgram (GetActiveProgramRequest) returns (GetActiveProgramResponse);
@@ -17,7 +19,7 @@ message CompletedWorkout {
   string workout_id = 1;
   string workout_name = 2;
   int32 week_number = 3;
-  string completed_at = 4;           // RFC3339 format
+  google.protobuf.Timestamp completed_at = 4;
   int32 duration_minutes = 5;        // Actual duration
   string notes = 6;                  // User notes about the workout
 }
@@ -30,11 +32,11 @@ message UserProgramProgress {
   string program_name = 4;           // Cached for display
   int32 current_week = 5;
   repeated CompletedWorkout completed_workouts = 6;
-  string started_at = 7;             // RFC3339 format
-  string completed_at = 8;           // RFC3339 format (null if active)
+  google.protobuf.Timestamp started_at = 7;
+  google.protobuf.Timestamp completed_at = 8;
   bool is_active = 9;
-  string created_at = 10;            // RFC3339 format
-  string updated_at = 11;            // RFC3339 format
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
 }
 
 // Get active program request and response

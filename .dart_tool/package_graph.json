@@ -5,7 +5,7 @@
   "packages": [
     {
       "name": "proto_schemas",
-      "version": "2.4.1",
+      "version": "2.5.4",
       "dependencies": [
         "fixnum",
         "grpc",

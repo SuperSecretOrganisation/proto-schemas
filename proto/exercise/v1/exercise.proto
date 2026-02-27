@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package proto.exercise.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/exercise/v1;exercisepb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/exercise/v1;exercisepb";
+
+import "google/protobuf/timestamp.proto";
 
 service ExerciseService {
   rpc CreateExercise (CreateExerciseRequest) returns (CreateExerciseResponse);
@@ -27,12 +29,13 @@ message Exercise {
   string video_url = 10;            // URL to demonstration video (optional)
   bool is_custom = 11;              // Whether this is a user-created exercise
   string user_id = 12;              // ID of user who created (if custom)
-  string created_at = 13;           // RFC3339 format
-  string updated_at = 14;           // RFC3339 format
+  google.protobuf.Timestamp created_at = 13;
+  google.protobuf.Timestamp updated_at = 14;
 }
 
 // Create exercise request and response
 message CreateExerciseRequest {
+  string idempotency_key = 11;
   string name = 1;
   string description = 2;
   string category = 3;

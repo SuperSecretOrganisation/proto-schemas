@@ -2,7 +2,7 @@ syntax="proto3";
 
 package proto.notification_token.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/notification_token/v1;notification_tokenpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/notification_token/v1;notification_tokenpb";
 
 import "google/protobuf/timestamp.proto";
 
@@ -16,7 +16,7 @@ service NotificationTokenService {
 
 message NotificationToken {
     int64 id = 1;     
-    int64 user_id = 2;
+    string user_id = 2;
     string token = 3; // Device token for push notifications
     string platform = 4; // Platform type, e.g., 'apns', 'fcm'
     google.protobuf.Timestamp last_seen_at = 5; // Last time the token was used
@@ -24,7 +24,7 @@ message NotificationToken {
 }
 
 message CreateNotificationTokenRequest {
-    int64 user_id = 1;
+    string user_id = 1;
     string token = 2; // Device token for push notifications
     string platform = 3; // Platform type, e.g., 'apns', 'fcm'
 }
@@ -34,7 +34,7 @@ message CreateNotificationTokenResponse {
 }
 
 message GetNotificationTokenRequest {
-    int64 user_id = 1;
+    string user_id = 1;
 }
 
 message GetNotificationTokenResponse {
@@ -42,7 +42,7 @@ message GetNotificationTokenResponse {
 }
 
 message UpdateNotificationTokenRequest {
-    int64 user_id = 1;
+    string user_id = 1;
     string token = 2; // Device token for push notifications
     string platform = 3; // Platform type, e.g., 'apns', 'fcm'
 }
@@ -60,15 +60,11 @@ message DeleteNotificationTokenResponse {
 }
 
 message ListNotificationTokensRequest {
-    int64 user_id = 1;
+    string user_id = 1;
 }
 
 message ListNotificationTokensResponse {
     repeated NotificationToken tokens = 1;
 }
 
-message Error {
-    string code = 1;
-    string message = 2;
-}
 

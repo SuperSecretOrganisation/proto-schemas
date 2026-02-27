@@ -2,7 +2,7 @@ syntax="proto3";
 
 package proto.measurement.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/measurement/v1;measurementpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/measurement/v1;measurementpb";
 
 import "google/protobuf/timestamp.proto";
 
@@ -17,7 +17,7 @@ message Measurement {
   google.protobuf.Timestamp time_stamp = 8;
 }
 
-message MeasurementDTO {
+message MeasurementBatch {
   string user_id = 1;
   string activity_id = 2;
   string activity_type = 3;
@@ -77,7 +77,8 @@ message ListAllMeasurementsResponse {
 
 // Measurement creation and update request and response
 message CreateMeasurementRequest {
-  MeasurementDTO measurement_dto = 1;
+  string idempotency_key = 2;
+  MeasurementBatch measurement_batch = 1;
 }
 message CreateMeasurementResponse {
   bool success = 1;

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.ping.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/ping/v1;pingpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/ping/v1;pingpb";
 
 service PingService {
     rpc Ping (PingRequest) returns (PingResponse);
@@ -14,9 +14,4 @@ message PingRequest {
 message PingResponse {
     string message = 1;
 }
-message Error {
-    string code = 1;
-    string message = 2;
-}
-
 

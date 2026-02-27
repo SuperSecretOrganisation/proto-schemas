@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package proto.user.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user/v1;userpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user/v1;userpb";
 
 import "proto/notification_token/v1/notification_token.proto";
-
+import "google/protobuf/timestamp.proto";
 
 service UserService {
   rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
@@ -20,12 +20,12 @@ message User {
   string uuid = 1;            // maps to User.UUID
   string username = 2;        // maps to User.Username
   string email = 3;           // maps to User.Email
-  string created_at = 4;      // maps to User.CreatedAt.Format(time.RFC3339)
-  string updated_at = 5;      // maps to User.UpdatedAt.Format(time.RFC3339)
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
   int64 id = 6;                // maps to User.ID
   repeated notification_token.v1.NotificationToken notification_tokens = 7; // maps to User.NotificationTokens
   bool email_verified = 8;    // maps to User.EmailVerified
-  string last_login = 9;      // maps to User.LastLogin (optional, RFC3339 format)
+  google.protobuf.Timestamp last_login = 9;
   // Note: password_hash, password_reset_token, password_reset_expires are NOT exposed in proto
 }
 
@@ -73,10 +73,4 @@ message ListUsersRequest {
 message ListUsersResponse {
   repeated User users = 1;
   int32 total_count = 2;
-}
-
-// Error handling
-message Error {
-  string code = 1;
-  string message = 2;
 }

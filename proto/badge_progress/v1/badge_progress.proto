@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package proto.badge_progress.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/badge_progress/v1;badgeprogresspb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/badge_progress/v1;badgeprogresspb";
 
 import "proto/badge/v1/badge.proto";
+import "google/protobuf/timestamp.proto";
 
 service BadgeProgressService {
   rpc GetUserBadgeProgress (GetUserBadgeProgressRequest) returns (GetUserBadgeProgressResponse);
@@ -15,18 +16,18 @@ service BadgeProgressService {
 // BadgeProgress message definition
 message BadgeProgress {
   int64 id = 1;
-  int32 user_id = 2;
+  string user_id = 2;
   int32 badge_id = 3;
   int32 current_progress = 4;
   int32 target_progress = 5;
-  string last_updated = 6;
+  google.protobuf.Timestamp last_updated = 6;
   double progress_percentage = 7;
   badge.v1.Badge badge = 8; // Preloaded badge information
 }
 
 // Get user badge progress request and response
 message GetUserBadgeProgressRequest {
-  int32 user_id = 1;
+  string user_id = 1;
 }
 message GetUserBadgeProgressResponse {
   repeated BadgeProgress progress_list = 1;
@@ -34,7 +35,7 @@ message GetUserBadgeProgressResponse {
 
 // Update progress request and response
 message UpdateProgressRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   int32 badge_id = 2;
   int32 current_progress = 3;
 }
@@ -45,7 +46,7 @@ message UpdateProgressResponse {
 
 // Get progress for specific badge request and response
 message GetProgressForBadgeRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   int32 badge_id = 2;
 }
 message GetProgressForBadgeResponse {

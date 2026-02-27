@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package proto.shared_goal.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/shared_goal/v1;sharedgoalpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/shared_goal/v1;sharedgoalpb";
+
+import "google/protobuf/timestamp.proto";
 
 service SharedGoalService {
   rpc CreateSharedGoal (CreateSharedGoalRequest) returns (CreateSharedGoalResponse);
@@ -35,7 +37,7 @@ enum GoalStatus {
 message SharedGoal {
   int64 id = 1;
   string uuid = 2;
-  int32 creator_id = 3;
+  string creator_id = 3;
   string title = 4;
   string description = 5;
   GoalType goal_type = 6;
@@ -48,8 +50,8 @@ message SharedGoal {
   GoalStatus status = 13;
   int32 max_participants = 14;
   int32 current_participants = 15;
-  string created_at = 16;
-  string updated_at = 17;
+  google.protobuf.Timestamp created_at = 16;
+  google.protobuf.Timestamp updated_at = 17;
   repeated GoalParticipant participants = 18;
 }
 
@@ -58,11 +60,11 @@ message GoalParticipant {
   int64 id = 1;
   string uuid = 2;
   int64 goal_id = 3;
-  int32 user_id = 4;
+  string user_id = 4;
   string display_name = 5;
   bool is_creator = 6;
   double total_progress = 7;
-  string joined_at = 8;
+  google.protobuf.Timestamp joined_at = 8;
 }
 
 // DailyProgress message definition
@@ -83,6 +85,7 @@ message ParticipantProgress {
 
 // Create shared goal request and response
 message CreateSharedGoalRequest {
+  string idempotency_key = 10;
   string title = 1;
   string description = 2;
   GoalType goal_type = 3;

@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package proto.user_badge.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_badge/v1;userbadgepb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_badge/v1;userbadgepb";
 
 import "proto/badge/v1/badge.proto";
+import "google/protobuf/timestamp.proto";
 
 service UserBadgeService {
   rpc GetUserBadges (GetUserBadgesRequest) returns (GetUserBadgesResponse);
@@ -17,17 +18,17 @@ service UserBadgeService {
 // UserBadge message definition
 message UserBadge {
   int64 id = 1;
-  int32 user_id = 2;
+  string user_id = 2;
   int32 badge_id = 3;
-  string earned_at = 4;
+  google.protobuf.Timestamp earned_at = 4;
   bool is_shared = 5;
-  string shared_at = 6;
+  google.protobuf.Timestamp shared_at = 6;
   badge.v1.Badge badge = 7; // Preloaded badge information
 }
 
 // Get user badges request and response
 message GetUserBadgesRequest {
-  int32 user_id = 1;
+  string user_id = 1;
 }
 message GetUserBadgesResponse {
   repeated UserBadge user_badges = 1;
@@ -36,7 +37,7 @@ message GetUserBadgesResponse {
 
 // Award badge request and response
 message AwardBadgeRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   int32 badge_id = 2;
 }
 message AwardBadgeResponse {
@@ -46,7 +47,7 @@ message AwardBadgeResponse {
 
 // Share badge request and response
 message ShareBadgeRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   int32 badge_id = 2;
 }
 message ShareBadgeResponse {
@@ -56,7 +57,7 @@ message ShareBadgeResponse {
 
 // Get recent badges request and response
 message GetRecentBadgesRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   int32 limit = 2;
 }
 message GetRecentBadgesResponse {
@@ -65,7 +66,7 @@ message GetRecentBadgesResponse {
 
 // Check badge unlock request and response (checks if user should unlock any badges)
 message CheckBadgeUnlockRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   string activity_type = 2; // e.g., "workout_completed", "streak_updated"
 }
 message CheckBadgeUnlockResponse {

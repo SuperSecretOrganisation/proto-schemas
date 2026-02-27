@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.auth.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/auth/v1;authpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/auth/v1;authpb";
 
 import "proto/user/v1/user.proto";
 
@@ -62,9 +62,8 @@ message LoginResponse {
 }
 
 // Logout request and response
-message LogoutRequest {
-  string access_token = 1;
-}
+// Auth token is sent via gRPC metadata, so no fields needed here
+message LogoutRequest {}
 
 message LogoutResponse {
   bool success = 1;
@@ -102,9 +101,8 @@ message VerifyEmailResponse {
 }
 
 // Get current user
-message GetCurrentUserRequest {
-  string access_token = 1;
-}
+// Auth token is sent via gRPC metadata, so no fields needed here
+message GetCurrentUserRequest {}
 
 message GetCurrentUserResponse {
   user.v1.User user = 1;
@@ -130,10 +128,4 @@ message SignInWithGoogleResponse {
   string access_token = 2;
   string refresh_token = 3;
   bool is_new_user = 4; // True if this is a newly created account
-}
-
-// Error handling
-message AuthError {
-  string code = 1;
-  string message = 2;
 }

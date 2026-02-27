@@ -2,7 +2,7 @@ syntax="proto3";
 
 package proto.prediction.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/prediction/v1;predictionpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/prediction/v1;predictionpb";
 
 import "google/protobuf/timestamp.proto";
 
@@ -17,7 +17,7 @@ service PredictionService {
 
 message Prediction {
     string uuid = 1;     
-    string user_uuid = 2;
+    string user_id = 2;
     int32 prediction = 3;
     int32 error_range = 4;
     google.protobuf.Timestamp timestamp = 5;
@@ -38,7 +38,7 @@ message PredictionFilter {
 }
 
 message CreatePredictionRequest {
-    string user_uuid = 1;
+    string user_id = 1;
     int32 prediction = 2;
     int32 error_range = 3;
     google.protobuf.Timestamp timestamp = 4; // Optional, defaults to current time if not provided
@@ -46,7 +46,7 @@ message CreatePredictionRequest {
 
 message CreatePredictionResponse {
     string uuid = 1;
-    string user_uuid = 2;
+    string user_id = 2;
     int32 prediction = 3;
     int32 error_range = 4;
     google.protobuf.Timestamp timestamp = 5; // Timestamp of creation
@@ -58,14 +58,14 @@ message GetPredictionRequest {
 
 message GetPredictionResponse {
     string uuid = 1;
-    string user_uuid = 2;
+    string user_id = 2;
     int32 prediction = 3;
     int32 error_range = 4;
     google.protobuf.Timestamp timestamp = 5; // Timestamp of the prediction
 }
 
 message GetByUserIDRequest {
-    string user_uuid = 1; // User UUID to filter predictions
+    string user_id = 1; // User UUID to filter predictions
     PredictionFilter filter = 2;
 }
 
@@ -75,7 +75,7 @@ message GetByUserIDResponse {
 
 message UpdatePredictionRequest {
     string uuid = 1;
-    string user_uuid = 2;
+    string user_id = 2;
     int32 prediction = 3;
     int32 error_range = 4;
     google.protobuf.Timestamp timestamp = 5; // Optional, defaults to current time if not provided
@@ -83,7 +83,7 @@ message UpdatePredictionRequest {
 
 message UpdatePredictionResponse {
     string uuid = 1;
-    string user_uuid = 2;
+    string user_id = 2;
     int32 prediction = 3;
     int32 error_range = 4;
     google.protobuf.Timestamp timestamp = 5; // Timestamp of the update

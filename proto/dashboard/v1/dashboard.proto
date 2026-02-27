@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.dashboard.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/dashboard/v1;dashboardpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/dashboard/v1;dashboardpb";
 
 import "proto/user_badge/v1/user_badge.proto";
 import "google/protobuf/timestamp.proto";
@@ -76,7 +76,7 @@ message UserLevelInfo {
 
 // Get dashboard data request and response
 message GetDashboardDataRequest {
-  int32 user_id = 1;
+  string user_id = 1;
   bool include_leaderboard_rank = 2; // Whether to include user's leaderboard position
 }
 message GetDashboardDataResponse {
@@ -85,7 +85,7 @@ message GetDashboardDataResponse {
 
 // Refresh dashboard request and response (forces recalculation)
 message RefreshDashboardRequest {
-  int32 user_id = 1;
+  string user_id = 1;
 }
 message RefreshDashboardResponse {
   DashboardData dashboard = 1;

@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package proto.badge.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/badge/v1;badgepb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/badge/v1;badgepb";
+
+import "google/protobuf/timestamp.proto";
 
 service BadgeService {
   rpc GetBadge (GetBadgeRequest) returns (GetBadgeResponse);
@@ -27,8 +29,8 @@ message Badge {
   int32 requirement_value = 9;
   int32 points = 10;
   bool is_active = 11;
-  string created_at = 12;
-  string updated_at = 13;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
 }
 
 // Get badge request and response
@@ -67,6 +69,7 @@ message GetBadgesByLevelResponse {
 
 // Create badge request and response
 message CreateBadgeRequest {
+  string idempotency_key = 10;
   string badge_key = 1;
   string name = 2;
   string description = 3;

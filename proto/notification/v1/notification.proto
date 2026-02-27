@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package proto.notification.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/notification/v1;notificationpb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/notification/v1;notificationpb";
 
 import "google/protobuf/timestamp.proto";
 
 message Notification {
     int64 id = 1; // Unique identifier for the notification
     string notification_uuid = 2; // UUID for the notification
-    int64 user_id = 3; // ID of the user associated with the notification
+    string user_id = 3; // ID of the user associated with the notification
     string title = 4; // Title of the notification
     string body = 5; // Body content of the notification
     string status = 6; // Status of the notification (e.g., "sent", "opened")
@@ -42,7 +42,7 @@ message GetNotificationResponse {
 
 
 message ListNotificationsRequest {
-    int64 user_id = 1; // ID of the user to list notifications for
+    string user_id = 1; // ID of the user to list notifications for
     int32 page = 2; // Page number for pagination
     int32 page_size = 3; // Number of notifications per page
 }

@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package proto.training_program.v1;
 
-option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/training_program/v1;trainingprogrampb";
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/training_program/v1;trainingprogrampb";
+
+import "google/protobuf/timestamp.proto";
 
 service TrainingProgramService {
   rpc CreateProgram (CreateProgramRequest) returns (CreateProgramResponse);
@@ -61,12 +63,13 @@ message TrainingProgram {
   string author = 9;                 // Optional: program creator
   bool is_custom = 10;               // Whether this is a user-created program
   string user_id = 11;               // ID of user who created (if custom)
-  string created_at = 12;            // RFC3339 format
-  string updated_at = 13;            // RFC3339 format
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
 }
 
 // Create program request and response
 message CreateProgramRequest {
+  string idempotency_key = 10;
   string name = 1;
   string description = 2;
   string goal = 3;
@@ -141,7 +144,7 @@ message StartProgramResponse {
 message CompleteWorkoutRequest {
   string progress_id = 1;            // UserProgramProgress ID
   string workout_id = 2;
-  string completed_at = 3;           // RFC3339 format
+  google.protobuf.Timestamp completed_at = 3;
 }
 message CompleteWorkoutResponse {
   bool success = 1;
