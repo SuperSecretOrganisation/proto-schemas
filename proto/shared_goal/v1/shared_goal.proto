@@ -1,0 +1,167 @@
+syntax = "proto3";
+
+package proto.shared_goal.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/shared_goal/v1;sharedgoalpb";
+
+service SharedGoalService {
+  rpc CreateSharedGoal (CreateSharedGoalRequest) returns (CreateSharedGoalResponse);
+  rpc GetSharedGoal (GetSharedGoalRequest) returns (GetSharedGoalResponse);
+  rpc GetGoalByShareCode (GetGoalByShareCodeRequest) returns (GetGoalByShareCodeResponse);
+  rpc JoinSharedGoal (JoinSharedGoalRequest) returns (JoinSharedGoalResponse);
+  rpc LeaveSharedGoal (LeaveSharedGoalRequest) returns (LeaveSharedGoalResponse);
+  rpc ListUserSharedGoals (ListUserSharedGoalsRequest) returns (ListUserSharedGoalsResponse);
+  rpc UpdateProgress (UpdateProgressRequest) returns (UpdateProgressResponse);
+  rpc GetGoalProgress (GetGoalProgressRequest) returns (GetGoalProgressResponse);
+}
+
+// Goal type enum
+enum GoalType {
+  GOAL_TYPE_UNSPECIFIED = 0;
+  GOAL_TYPE_STEPS = 1;
+  GOAL_TYPE_WORKOUTS = 2;
+  GOAL_TYPE_CUSTOM = 3;
+}
+
+// Goal status enum
+enum GoalStatus {
+  GOAL_STATUS_UNSPECIFIED = 0;
+  GOAL_STATUS_ACTIVE = 1;
+  GOAL_STATUS_COMPLETED = 2;
+  GOAL_STATUS_EXPIRED = 3;
+}
+
+// SharedGoal message definition
+message SharedGoal {
+  int64 id = 1;
+  string uuid = 2;
+  int32 creator_id = 3;
+  string title = 4;
+  string description = 5;
+  GoalType goal_type = 6;
+  double target_value = 7;
+  string target_unit = 8;           // 'steps', 'workouts', or custom unit
+  bool is_daily_target = 9;
+  string start_date = 10;           // ISO 8601 date (YYYY-MM-DD)
+  string end_date = 11;             // ISO 8601 date (YYYY-MM-DD)
+  string share_code = 12;           // 8-char unique code
+  GoalStatus status = 13;
+  int32 max_participants = 14;
+  int32 current_participants = 15;
+  string created_at = 16;
+  string updated_at = 17;
+  repeated GoalParticipant participants = 18;
+}
+
+// GoalParticipant message definition
+message GoalParticipant {
+  int64 id = 1;
+  string uuid = 2;
+  int64 goal_id = 3;
+  int32 user_id = 4;
+  string display_name = 5;
+  bool is_creator = 6;
+  double total_progress = 7;
+  string joined_at = 8;
+}
+
+// DailyProgress message definition
+message DailyProgress {
+  int64 id = 1;
+  int64 participant_id = 2;
+  string date = 3;                  // ISO 8601 date (YYYY-MM-DD)
+  double value = 4;
+}
+
+// ParticipantProgress - for displaying progress per participant
+message ParticipantProgress {
+  GoalParticipant participant = 1;
+  double total_progress = 2;
+  double today_progress = 3;
+  repeated DailyProgress daily_history = 4;
+}
+
+// Create shared goal request and response
+message CreateSharedGoalRequest {
+  string title = 1;
+  string description = 2;
+  GoalType goal_type = 3;
+  double target_value = 4;
+  string target_unit = 5;
+  bool is_daily_target = 6;
+  string start_date = 7;            // ISO 8601 date (YYYY-MM-DD)
+  string end_date = 8;              // ISO 8601 date (YYYY-MM-DD)
+  int32 max_participants = 9;
+}
+message CreateSharedGoalResponse {
+  SharedGoal shared_goal = 1;
+}
+
+// Get shared goal request and response
+message GetSharedGoalRequest {
+  int64 goal_id = 1;
+}
+message GetSharedGoalResponse {
+  SharedGoal shared_goal = 1;
+}
+
+// Get goal by share code request and response
+message GetGoalByShareCodeRequest {
+  string share_code = 1;
+}
+message GetGoalByShareCodeResponse {
+  SharedGoal shared_goal = 1;
+  bool is_member = 2;               // Whether current user is already a member
+}
+
+// Join shared goal request and response
+message JoinSharedGoalRequest {
+  string share_code = 1;
+  string display_name = 2;          // Optional custom display name
+}
+message JoinSharedGoalResponse {
+  SharedGoal shared_goal = 1;
+  GoalParticipant participant = 2;
+}
+
+// Leave shared goal request and response
+message LeaveSharedGoalRequest {
+  int64 goal_id = 1;
+}
+message LeaveSharedGoalResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// List user shared goals request and response
+message ListUserSharedGoalsRequest {
+  GoalStatus status_filter = 1;     // Optional: filter by status (0 = all)
+  int32 page = 2;
+  int32 page_size = 3;
+}
+message ListUserSharedGoalsResponse {
+  repeated SharedGoal shared_goals = 1;
+  int32 total_count = 2;
+}
+
+// Update progress request and response
+message UpdateProgressRequest {
+  int64 goal_id = 1;
+  double value = 2;                 // The progress value to add
+  string date = 3;                  // Optional: ISO 8601 date, defaults to today
+}
+message UpdateProgressResponse {
+  DailyProgress daily_progress = 1;
+  double new_total_progress = 2;
+  bool goal_completed = 3;          // True if this update completed the goal
+}
+
+// Get goal progress request and response
+message GetGoalProgressRequest {
+  int64 goal_id = 1;
+  int32 days = 2;                   // Number of days of history to retrieve (default 7)
+}
+message GetGoalProgressResponse {
+  SharedGoal shared_goal = 1;
+  repeated ParticipantProgress participant_progress = 2;
+}
