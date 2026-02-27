@@ -26,7 +26,7 @@ type Notification struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                    // Unique identifier for the notification
 	NotificationUuid string                 `protobuf:"bytes,2,opt,name=notification_uuid,json=notificationUuid,proto3" json:"notification_uuid,omitempty"` // UUID for the notification
-	UserId           int64                  `protobuf:"varint,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                              // ID of the user associated with the notification
+	UserId           string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                               // ID of the user associated with the notification
 	Title            string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`                                               // Title of the notification
 	Body             string                 `protobuf:"bytes,5,opt,name=body,proto3" json:"body,omitempty"`                                                 // Body content of the notification
 	Status           string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`                                             // Status of the notification (e.g., "sent", "opened")
@@ -80,11 +80,11 @@ func (x *Notification) GetNotificationUuid() string {
 	return ""
 }
 
-func (x *Notification) GetUserId() int64 {
+func (x *Notification) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *Notification) GetTitle() string {
@@ -300,7 +300,7 @@ func (x *GetNotificationResponse) GetNotification() *Notification {
 
 type ListNotificationsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`       // ID of the user to list notifications for
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`        // ID of the user to list notifications for
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`                         // Page number for pagination
 	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of notifications per page
 	unknownFields protoimpl.UnknownFields
@@ -337,11 +337,11 @@ func (*ListNotificationsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_v1_notification_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ListNotificationsRequest) GetUserId() int64 {
+func (x *ListNotificationsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *ListNotificationsRequest) GetPage() int32 {
@@ -506,7 +506,7 @@ const file_proto_notification_v1_notification_proto_rawDesc = "" +
 	"\fNotification\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12+\n" +
 	"\x11notification_uuid\x18\x02 \x01(\tR\x10notificationUuid\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\x03R\x06userId\x12\x14\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05title\x18\x04 \x01(\tR\x05title\x12\x12\n" +
 	"\x04body\x18\x05 \x01(\tR\x04body\x12\x16\n" +
 	"\x06status\x18\x06 \x01(\tR\x06status\x123\n" +
@@ -521,7 +521,7 @@ const file_proto_notification_v1_notification_proto_rawDesc = "" +
 	"\x17GetNotificationResponse\x12G\n" +
 	"\fnotification\x18\x01 \x01(\v2#.proto.notification.v1.NotificationR\fnotification\"d\n" +
 	"\x18ListNotificationsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x12\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\"\x87\x01\n" +
 	"\x19ListNotificationsResponse\x12I\n" +
@@ -536,7 +536,7 @@ const file_proto_notification_v1_notification_proto_rawDesc = "" +
 	"\x12CreateNotification\x120.proto.notification.v1.CreateNotificationRequest\x1a1.proto.notification.v1.CreateNotificationResponse\x12p\n" +
 	"\x0fGetNotification\x12-.proto.notification.v1.GetNotificationRequest\x1a..proto.notification.v1.GetNotificationResponse\x12v\n" +
 	"\x11ListNotifications\x12/.proto.notification.v1.ListNotificationsRequest\x1a0.proto.notification.v1.ListNotificationsResponse\x12y\n" +
-	"\x12UpdateNotification\x120.proto.notification.v1.UpdateNotificationRequest\x1a1.proto.notification.v1.UpdateNotificationResponseBaZ_github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/notification/v1;notificationpbb\x06proto3"
+	"\x12UpdateNotification\x120.proto.notification.v1.UpdateNotificationRequest\x1a1.proto.notification.v1.UpdateNotificationResponseBaZ_github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/notification/v1;notificationpbb\x06proto3"
 
 var (
 	file_proto_notification_v1_notification_proto_rawDescOnce sync.Once

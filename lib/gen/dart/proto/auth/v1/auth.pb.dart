@@ -293,14 +293,9 @@ class LoginResponse extends $pb.GeneratedMessage {
 }
 
 /// Logout request and response
+/// Auth token is sent via gRPC metadata, so no fields needed here
 class LogoutRequest extends $pb.GeneratedMessage {
-  factory LogoutRequest({
-    $core.String? accessToken,
-  }) {
-    final result = create();
-    if (accessToken != null) result.accessToken = accessToken;
-    return result;
-  }
+  factory LogoutRequest() => create();
 
   LogoutRequest._();
 
@@ -308,7 +303,6 @@ class LogoutRequest extends $pb.GeneratedMessage {
   factory LogoutRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LogoutRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.auth.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'accessToken')
     ..hasRequiredFields = false
   ;
 
@@ -328,15 +322,6 @@ class LogoutRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static LogoutRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LogoutRequest>(create);
   static LogoutRequest? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get accessToken => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set accessToken($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasAccessToken() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearAccessToken() => $_clearField(1);
 }
 
 class LogoutResponse extends $pb.GeneratedMessage {
@@ -715,14 +700,9 @@ class VerifyEmailResponse extends $pb.GeneratedMessage {
 }
 
 /// Get current user
+/// Auth token is sent via gRPC metadata, so no fields needed here
 class GetCurrentUserRequest extends $pb.GeneratedMessage {
-  factory GetCurrentUserRequest({
-    $core.String? accessToken,
-  }) {
-    final result = create();
-    if (accessToken != null) result.accessToken = accessToken;
-    return result;
-  }
+  factory GetCurrentUserRequest() => create();
 
   GetCurrentUserRequest._();
 
@@ -730,7 +710,6 @@ class GetCurrentUserRequest extends $pb.GeneratedMessage {
   factory GetCurrentUserRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetCurrentUserRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.auth.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'accessToken')
     ..hasRequiredFields = false
   ;
 
@@ -750,15 +729,6 @@ class GetCurrentUserRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static GetCurrentUserRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetCurrentUserRequest>(create);
   static GetCurrentUserRequest? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get accessToken => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set accessToken($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasAccessToken() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearAccessToken() => $_clearField(1);
 }
 
 class GetCurrentUserResponse extends $pb.GeneratedMessage {
@@ -1043,65 +1013,6 @@ class SignInWithGoogleResponse extends $pb.GeneratedMessage {
   $core.bool hasIsNewUser() => $_has(3);
   @$pb.TagNumber(4)
   void clearIsNewUser() => $_clearField(4);
-}
-
-/// Error handling
-class AuthError extends $pb.GeneratedMessage {
-  factory AuthError({
-    $core.String? code,
-    $core.String? message,
-  }) {
-    final result = create();
-    if (code != null) result.code = code;
-    if (message != null) result.message = message;
-    return result;
-  }
-
-  AuthError._();
-
-  factory AuthError.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
-  factory AuthError.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthError', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.auth.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'code')
-    ..aOS(2, _omitFieldNames ? '' : 'message')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  AuthError clone() => AuthError()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  AuthError copyWith(void Function(AuthError) updates) => super.copyWith((message) => updates(message as AuthError)) as AuthError;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static AuthError create() => AuthError._();
-  @$core.override
-  AuthError createEmptyInstance() => create();
-  static $pb.PbList<AuthError> createRepeated() => $pb.PbList<AuthError>();
-  @$core.pragma('dart2js:noInline')
-  static AuthError getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthError>(create);
-  static AuthError? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get code => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set code($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasCode() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearCode() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get message => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set message($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasMessage() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMessage() => $_clearField(2);
 }
 
 

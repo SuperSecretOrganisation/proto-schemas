@@ -14,6 +14,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// Badge message definition
@@ -30,8 +32,8 @@ class Badge extends $pb.GeneratedMessage {
     $core.int? requirementValue,
     $core.int? points,
     $core.bool? isActive,
-    $core.String? createdAt,
-    $core.String? updatedAt,
+    $1.Timestamp? createdAt,
+    $1.Timestamp? updatedAt,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -67,8 +69,8 @@ class Badge extends $pb.GeneratedMessage {
     ..a<$core.int>(9, _omitFieldNames ? '' : 'requirementValue', $pb.PbFieldType.O3)
     ..a<$core.int>(10, _omitFieldNames ? '' : 'points', $pb.PbFieldType.O3)
     ..aOB(11, _omitFieldNames ? '' : 'isActive')
-    ..aOS(12, _omitFieldNames ? '' : 'createdAt')
-    ..aOS(13, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(12, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(13, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -189,22 +191,26 @@ class Badge extends $pb.GeneratedMessage {
   void clearIsActive() => $_clearField(11);
 
   @$pb.TagNumber(12)
-  $core.String get createdAt => $_getSZ(11);
+  $1.Timestamp get createdAt => $_getN(11);
   @$pb.TagNumber(12)
-  set createdAt($core.String value) => $_setString(11, value);
+  set createdAt($1.Timestamp value) => $_setField(12, value);
   @$pb.TagNumber(12)
   $core.bool hasCreatedAt() => $_has(11);
   @$pb.TagNumber(12)
   void clearCreatedAt() => $_clearField(12);
+  @$pb.TagNumber(12)
+  $1.Timestamp ensureCreatedAt() => $_ensure(11);
 
   @$pb.TagNumber(13)
-  $core.String get updatedAt => $_getSZ(12);
+  $1.Timestamp get updatedAt => $_getN(12);
   @$pb.TagNumber(13)
-  set updatedAt($core.String value) => $_setString(12, value);
+  set updatedAt($1.Timestamp value) => $_setField(13, value);
   @$pb.TagNumber(13)
   $core.bool hasUpdatedAt() => $_has(12);
   @$pb.TagNumber(13)
   void clearUpdatedAt() => $_clearField(13);
+  @$pb.TagNumber(13)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(12);
 }
 
 /// Get badge request and response
@@ -599,6 +605,7 @@ class CreateBadgeRequest extends $pb.GeneratedMessage {
     $core.String? requirementType,
     $core.int? requirementValue,
     $core.int? points,
+    $core.String? idempotencyKey,
   }) {
     final result = create();
     if (badgeKey != null) result.badgeKey = badgeKey;
@@ -610,6 +617,7 @@ class CreateBadgeRequest extends $pb.GeneratedMessage {
     if (requirementType != null) result.requirementType = requirementType;
     if (requirementValue != null) result.requirementValue = requirementValue;
     if (points != null) result.points = points;
+    if (idempotencyKey != null) result.idempotencyKey = idempotencyKey;
     return result;
   }
 
@@ -628,6 +636,7 @@ class CreateBadgeRequest extends $pb.GeneratedMessage {
     ..aOS(7, _omitFieldNames ? '' : 'requirementType')
     ..a<$core.int>(8, _omitFieldNames ? '' : 'requirementValue', $pb.PbFieldType.O3)
     ..a<$core.int>(9, _omitFieldNames ? '' : 'points', $pb.PbFieldType.O3)
+    ..aOS(10, _omitFieldNames ? '' : 'idempotencyKey')
     ..hasRequiredFields = false
   ;
 
@@ -728,6 +737,15 @@ class CreateBadgeRequest extends $pb.GeneratedMessage {
   $core.bool hasPoints() => $_has(8);
   @$pb.TagNumber(9)
   void clearPoints() => $_clearField(9);
+
+  @$pb.TagNumber(10)
+  $core.String get idempotencyKey => $_getSZ(9);
+  @$pb.TagNumber(10)
+  set idempotencyKey($core.String value) => $_setString(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasIdempotencyKey() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearIdempotencyKey() => $_clearField(10);
 }
 
 class CreateBadgeResponse extends $pb.GeneratedMessage {

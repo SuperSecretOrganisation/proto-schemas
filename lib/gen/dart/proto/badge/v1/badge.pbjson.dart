@@ -29,8 +29,8 @@ const Badge$json = {
     {'1': 'requirement_value', '3': 9, '4': 1, '5': 5, '10': 'requirementValue'},
     {'1': 'points', '3': 10, '4': 1, '5': 5, '10': 'points'},
     {'1': 'is_active', '3': 11, '4': 1, '5': 8, '10': 'isActive'},
-    {'1': 'created_at', '3': 12, '4': 1, '5': 9, '10': 'createdAt'},
-    {'1': 'updated_at', '3': 13, '4': 1, '5': 9, '10': 'updatedAt'},
+    {'1': 'created_at', '3': 12, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
+    {'1': 'updated_at', '3': 13, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
 };
 
@@ -41,8 +41,9 @@ final $typed_data.Uint8List badgeDescriptor = $convert.base64Decode(
     'YXRlZ29yeRgFIAEoCVIIY2F0ZWdvcnkSFAoFbGV2ZWwYBiABKAVSBWxldmVsEhkKCGljb25fdX'
     'JsGAcgASgJUgdpY29uVXJsEikKEHJlcXVpcmVtZW50X3R5cGUYCCABKAlSD3JlcXVpcmVtZW50'
     'VHlwZRIrChFyZXF1aXJlbWVudF92YWx1ZRgJIAEoBVIQcmVxdWlyZW1lbnRWYWx1ZRIWCgZwb2'
-    'ludHMYCiABKAVSBnBvaW50cxIbCglpc19hY3RpdmUYCyABKAhSCGlzQWN0aXZlEh0KCmNyZWF0'
-    'ZWRfYXQYDCABKAlSCWNyZWF0ZWRBdBIdCgp1cGRhdGVkX2F0GA0gASgJUgl1cGRhdGVkQXQ=');
+    'ludHMYCiABKAVSBnBvaW50cxIbCglpc19hY3RpdmUYCyABKAhSCGlzQWN0aXZlEjkKCmNyZWF0'
+    'ZWRfYXQYDCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgljcmVhdGVkQXQSOQoKdX'
+    'BkYXRlZF9hdBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXVwZGF0ZWRBdA==');
 
 @$core.Deprecated('Use getBadgeRequestDescriptor instead')
 const GetBadgeRequest$json = {
@@ -152,6 +153,7 @@ final $typed_data.Uint8List getBadgesByLevelResponseDescriptor = $convert.base64
 const CreateBadgeRequest$json = {
   '1': 'CreateBadgeRequest',
   '2': [
+    {'1': 'idempotency_key', '3': 10, '4': 1, '5': 9, '10': 'idempotencyKey'},
     {'1': 'badge_key', '3': 1, '4': 1, '5': 9, '10': 'badgeKey'},
     {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
     {'1': 'description', '3': 3, '4': 1, '5': 9, '10': 'description'},
@@ -166,12 +168,12 @@ const CreateBadgeRequest$json = {
 
 /// Descriptor for `CreateBadgeRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List createBadgeRequestDescriptor = $convert.base64Decode(
-    'ChJDcmVhdGVCYWRnZVJlcXVlc3QSGwoJYmFkZ2Vfa2V5GAEgASgJUghiYWRnZUtleRISCgRuYW'
-    '1lGAIgASgJUgRuYW1lEiAKC2Rlc2NyaXB0aW9uGAMgASgJUgtkZXNjcmlwdGlvbhIaCghjYXRl'
-    'Z29yeRgEIAEoCVIIY2F0ZWdvcnkSFAoFbGV2ZWwYBSABKAVSBWxldmVsEhkKCGljb25fdXJsGA'
-    'YgASgJUgdpY29uVXJsEikKEHJlcXVpcmVtZW50X3R5cGUYByABKAlSD3JlcXVpcmVtZW50VHlw'
-    'ZRIrChFyZXF1aXJlbWVudF92YWx1ZRgIIAEoBVIQcmVxdWlyZW1lbnRWYWx1ZRIWCgZwb2ludH'
-    'MYCSABKAVSBnBvaW50cw==');
+    'ChJDcmVhdGVCYWRnZVJlcXVlc3QSJwoPaWRlbXBvdGVuY3lfa2V5GAogASgJUg5pZGVtcG90ZW'
+    '5jeUtleRIbCgliYWRnZV9rZXkYASABKAlSCGJhZGdlS2V5EhIKBG5hbWUYAiABKAlSBG5hbWUS'
+    'IAoLZGVzY3JpcHRpb24YAyABKAlSC2Rlc2NyaXB0aW9uEhoKCGNhdGVnb3J5GAQgASgJUghjYX'
+    'RlZ29yeRIUCgVsZXZlbBgFIAEoBVIFbGV2ZWwSGQoIaWNvbl91cmwYBiABKAlSB2ljb25VcmwS'
+    'KQoQcmVxdWlyZW1lbnRfdHlwZRgHIAEoCVIPcmVxdWlyZW1lbnRUeXBlEisKEXJlcXVpcmVtZW'
+    '50X3ZhbHVlGAggASgFUhByZXF1aXJlbWVudFZhbHVlEhYKBnBvaW50cxgJIAEoBVIGcG9pbnRz');
 
 @$core.Deprecated('Use createBadgeResponseDescriptor instead')
 const CreateBadgeResponse$json = {

@@ -19,58 +19,60 @@ const UserStreak$json = {
   '1': 'UserStreak',
   '2': [
     {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
-    {'1': 'user_id', '3': 2, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'current_streak', '3': 3, '4': 1, '5': 5, '10': 'currentStreak'},
     {'1': 'longest_streak', '3': 4, '4': 1, '5': 5, '10': 'longestStreak'},
     {'1': 'last_active_date', '3': 5, '4': 1, '5': 9, '10': 'lastActiveDate'},
     {'1': 'streak_start_date', '3': 6, '4': 1, '5': 9, '10': 'streakStartDate'},
     {'1': 'is_active_today', '3': 7, '4': 1, '5': 8, '10': 'isActiveToday'},
-    {'1': 'created_at', '3': 8, '4': 1, '5': 9, '10': 'createdAt'},
-    {'1': 'updated_at', '3': 9, '4': 1, '5': 9, '10': 'updatedAt'},
+    {'1': 'created_at', '3': 8, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
+    {'1': 'updated_at', '3': 9, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
 };
 
 /// Descriptor for `UserStreak`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userStreakDescriptor = $convert.base64Decode(
-    'CgpVc2VyU3RyZWFrEg4KAmlkGAEgASgFUgJpZBIXCgd1c2VyX2lkGAIgASgFUgZ1c2VySWQSJQ'
+    'CgpVc2VyU3RyZWFrEg4KAmlkGAEgASgFUgJpZBIXCgd1c2VyX2lkGAIgASgJUgZ1c2VySWQSJQ'
     'oOY3VycmVudF9zdHJlYWsYAyABKAVSDWN1cnJlbnRTdHJlYWsSJQoObG9uZ2VzdF9zdHJlYWsY'
     'BCABKAVSDWxvbmdlc3RTdHJlYWsSKAoQbGFzdF9hY3RpdmVfZGF0ZRgFIAEoCVIObGFzdEFjdG'
     'l2ZURhdGUSKgoRc3RyZWFrX3N0YXJ0X2RhdGUYBiABKAlSD3N0cmVha1N0YXJ0RGF0ZRImCg9p'
-    'c19hY3RpdmVfdG9kYXkYByABKAhSDWlzQWN0aXZlVG9kYXkSHQoKY3JlYXRlZF9hdBgIIAEoCV'
-    'IJY3JlYXRlZEF0Eh0KCnVwZGF0ZWRfYXQYCSABKAlSCXVwZGF0ZWRBdA==');
+    'c19hY3RpdmVfdG9kYXkYByABKAhSDWlzQWN0aXZlVG9kYXkSOQoKY3JlYXRlZF9hdBgIIAEoCz'
+    'IaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCWNyZWF0ZWRBdBI5Cgp1cGRhdGVkX2F0GAkg'
+    'ASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdXBkYXRlZEF0');
 
 @$core.Deprecated('Use streakHistoryDescriptor instead')
 const StreakHistory$json = {
   '1': 'StreakHistory',
   '2': [
     {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
-    {'1': 'user_id', '3': 2, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'activity_date', '3': 3, '4': 1, '5': 9, '10': 'activityDate'},
     {'1': 'steps', '3': 4, '4': 1, '5': 5, '10': 'steps'},
     {'1': 'active_minutes', '3': 5, '4': 1, '5': 5, '10': 'activeMinutes'},
     {'1': 'distance_km', '3': 6, '4': 1, '5': 1, '10': 'distanceKm'},
-    {'1': 'created_at', '3': 7, '4': 1, '5': 9, '10': 'createdAt'},
+    {'1': 'created_at', '3': 7, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
   ],
 };
 
 /// Descriptor for `StreakHistory`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List streakHistoryDescriptor = $convert.base64Decode(
-    'Cg1TdHJlYWtIaXN0b3J5Eg4KAmlkGAEgASgFUgJpZBIXCgd1c2VyX2lkGAIgASgFUgZ1c2VySW'
+    'Cg1TdHJlYWtIaXN0b3J5Eg4KAmlkGAEgASgFUgJpZBIXCgd1c2VyX2lkGAIgASgJUgZ1c2VySW'
     'QSIwoNYWN0aXZpdHlfZGF0ZRgDIAEoCVIMYWN0aXZpdHlEYXRlEhQKBXN0ZXBzGAQgASgFUgVz'
     'dGVwcxIlCg5hY3RpdmVfbWludXRlcxgFIAEoBVINYWN0aXZlTWludXRlcxIfCgtkaXN0YW5jZV'
-    '9rbRgGIAEoAVIKZGlzdGFuY2VLbRIdCgpjcmVhdGVkX2F0GAcgASgJUgljcmVhdGVkQXQ=');
+    '9rbRgGIAEoAVIKZGlzdGFuY2VLbRI5CgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3Rv'
+    'YnVmLlRpbWVzdGFtcFIJY3JlYXRlZEF0');
 
 @$core.Deprecated('Use getUserStreakRequestDescriptor instead')
 const GetUserStreakRequest$json = {
   '1': 'GetUserStreakRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
   ],
 };
 
 /// Descriptor for `GetUserStreakRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserStreakRequestDescriptor = $convert.base64Decode(
-    'ChRHZXRVc2VyU3RyZWFrUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgFUgZ1c2VySWQ=');
+    'ChRHZXRVc2VyU3RyZWFrUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQ=');
 
 @$core.Deprecated('Use getUserStreakResponseDescriptor instead')
 const GetUserStreakResponse$json = {
@@ -89,7 +91,7 @@ final $typed_data.Uint8List getUserStreakResponseDescriptor = $convert.base64Dec
 const UpdateStreakRequest$json = {
   '1': 'UpdateStreakRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'steps', '3': 2, '4': 1, '5': 5, '10': 'steps'},
     {'1': 'active_minutes', '3': 3, '4': 1, '5': 5, '10': 'activeMinutes'},
     {'1': 'distance_km', '3': 4, '4': 1, '5': 1, '10': 'distanceKm'},
@@ -98,7 +100,7 @@ const UpdateStreakRequest$json = {
 
 /// Descriptor for `UpdateStreakRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updateStreakRequestDescriptor = $convert.base64Decode(
-    'ChNVcGRhdGVTdHJlYWtSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAVSBnVzZXJJZBIUCgVzdGVwcx'
+    'ChNVcGRhdGVTdHJlYWtSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBIUCgVzdGVwcx'
     'gCIAEoBVIFc3RlcHMSJQoOYWN0aXZlX21pbnV0ZXMYAyABKAVSDWFjdGl2ZU1pbnV0ZXMSHwoL'
     'ZGlzdGFuY2Vfa20YBCABKAFSCmRpc3RhbmNlS20=');
 
@@ -123,14 +125,14 @@ final $typed_data.Uint8List updateStreakResponseDescriptor = $convert.base64Deco
 const GetStreakHistoryRequest$json = {
   '1': 'GetStreakHistoryRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'days', '3': 2, '4': 1, '5': 5, '10': 'days'},
   ],
 };
 
 /// Descriptor for `GetStreakHistoryRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getStreakHistoryRequestDescriptor = $convert.base64Decode(
-    'ChdHZXRTdHJlYWtIaXN0b3J5UmVxdWVzdBIXCgd1c2VyX2lkGAEgASgFUgZ1c2VySWQSEgoEZG'
+    'ChdHZXRTdHJlYWtIaXN0b3J5UmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSEgoEZG'
     'F5cxgCIAEoBVIEZGF5cw==');
 
 @$core.Deprecated('Use getStreakHistoryResponseDescriptor instead')
@@ -152,13 +154,13 @@ final $typed_data.Uint8List getStreakHistoryResponseDescriptor = $convert.base64
 const ResetStreakRequest$json = {
   '1': 'ResetStreakRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
   ],
 };
 
 /// Descriptor for `ResetStreakRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List resetStreakRequestDescriptor = $convert.base64Decode(
-    'ChJSZXNldFN0cmVha1JlcXVlc3QSFwoHdXNlcl9pZBgBIAEoBVIGdXNlcklk');
+    'ChJSZXNldFN0cmVha1JlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklk');
 
 @$core.Deprecated('Use resetStreakResponseDescriptor instead')
 const ResetStreakResponse$json = {

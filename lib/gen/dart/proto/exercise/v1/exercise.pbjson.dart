@@ -30,8 +30,8 @@ const Exercise$json = {
     {'1': 'video_url', '3': 10, '4': 1, '5': 9, '10': 'videoUrl'},
     {'1': 'is_custom', '3': 11, '4': 1, '5': 8, '10': 'isCustom'},
     {'1': 'user_id', '3': 12, '4': 1, '5': 9, '10': 'userId'},
-    {'1': 'created_at', '3': 13, '4': 1, '5': 9, '10': 'createdAt'},
-    {'1': 'updated_at', '3': 14, '4': 1, '5': 9, '10': 'updatedAt'},
+    {'1': 'created_at', '3': 13, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
+    {'1': 'updated_at', '3': 14, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
 };
 
@@ -44,13 +44,15 @@ final $typed_data.Uint8List exerciseDescriptor = $convert.base64Decode(
     'ZGlmZmljdWx0eUxldmVsEikKEGVxdWlwbWVudF9uZWVkZWQYCCADKAlSD2VxdWlwbWVudE5lZW'
     'RlZBIiCgxpbnN0cnVjdGlvbnMYCSABKAlSDGluc3RydWN0aW9ucxIbCgl2aWRlb191cmwYCiAB'
     'KAlSCHZpZGVvVXJsEhsKCWlzX2N1c3RvbRgLIAEoCFIIaXNDdXN0b20SFwoHdXNlcl9pZBgMIA'
-    'EoCVIGdXNlcklkEh0KCmNyZWF0ZWRfYXQYDSABKAlSCWNyZWF0ZWRBdBIdCgp1cGRhdGVkX2F0'
-    'GA4gASgJUgl1cGRhdGVkQXQ=');
+    'EoCVIGdXNlcklkEjkKCmNyZWF0ZWRfYXQYDSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0'
+    'YW1wUgljcmVhdGVkQXQSOQoKdXBkYXRlZF9hdBgOIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW'
+    '1lc3RhbXBSCXVwZGF0ZWRBdA==');
 
 @$core.Deprecated('Use createExerciseRequestDescriptor instead')
 const CreateExerciseRequest$json = {
   '1': 'CreateExerciseRequest',
   '2': [
+    {'1': 'idempotency_key', '3': 11, '4': 1, '5': 9, '10': 'idempotencyKey'},
     {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     {'1': 'description', '3': 2, '4': 1, '5': 9, '10': 'description'},
     {'1': 'category', '3': 3, '4': 1, '5': 9, '10': 'category'},
@@ -66,13 +68,14 @@ const CreateExerciseRequest$json = {
 
 /// Descriptor for `CreateExerciseRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List createExerciseRequestDescriptor = $convert.base64Decode(
-    'ChVDcmVhdGVFeGVyY2lzZVJlcXVlc3QSEgoEbmFtZRgBIAEoCVIEbmFtZRIgCgtkZXNjcmlwdG'
-    'lvbhgCIAEoCVILZGVzY3JpcHRpb24SGgoIY2F0ZWdvcnkYAyABKAlSCGNhdGVnb3J5EicKD3By'
-    'aW1hcnlfbXVzY2xlcxgEIAMoCVIOcHJpbWFyeU11c2NsZXMSKwoRc2Vjb25kYXJ5X211c2NsZX'
-    'MYBSADKAlSEHNlY29uZGFyeU11c2NsZXMSKQoQZGlmZmljdWx0eV9sZXZlbBgGIAEoCVIPZGlm'
-    'ZmljdWx0eUxldmVsEikKEGVxdWlwbWVudF9uZWVkZWQYByADKAlSD2VxdWlwbWVudE5lZWRlZB'
-    'IiCgxpbnN0cnVjdGlvbnMYCCABKAlSDGluc3RydWN0aW9ucxIbCgl2aWRlb191cmwYCSABKAlS'
-    'CHZpZGVvVXJsEhsKCWlzX2N1c3RvbRgKIAEoCFIIaXNDdXN0b20=');
+    'ChVDcmVhdGVFeGVyY2lzZVJlcXVlc3QSJwoPaWRlbXBvdGVuY3lfa2V5GAsgASgJUg5pZGVtcG'
+    '90ZW5jeUtleRISCgRuYW1lGAEgASgJUgRuYW1lEiAKC2Rlc2NyaXB0aW9uGAIgASgJUgtkZXNj'
+    'cmlwdGlvbhIaCghjYXRlZ29yeRgDIAEoCVIIY2F0ZWdvcnkSJwoPcHJpbWFyeV9tdXNjbGVzGA'
+    'QgAygJUg5wcmltYXJ5TXVzY2xlcxIrChFzZWNvbmRhcnlfbXVzY2xlcxgFIAMoCVIQc2Vjb25k'
+    'YXJ5TXVzY2xlcxIpChBkaWZmaWN1bHR5X2xldmVsGAYgASgJUg9kaWZmaWN1bHR5TGV2ZWwSKQ'
+    'oQZXF1aXBtZW50X25lZWRlZBgHIAMoCVIPZXF1aXBtZW50TmVlZGVkEiIKDGluc3RydWN0aW9u'
+    'cxgIIAEoCVIMaW5zdHJ1Y3Rpb25zEhsKCXZpZGVvX3VybBgJIAEoCVIIdmlkZW9VcmwSGwoJaX'
+    'NfY3VzdG9tGAogASgIUghpc0N1c3RvbQ==');
 
 @$core.Deprecated('Use createExerciseResponseDescriptor instead')
 const CreateExerciseResponse$json = {

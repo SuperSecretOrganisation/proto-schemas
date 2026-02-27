@@ -9,6 +9,7 @@ package userxppb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -24,11 +25,11 @@ const (
 // UserXP message definition
 type UserXP struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	TotalXp       int64                  `protobuf:"varint,2,opt,name=total_xp,json=totalXp,proto3" json:"total_xp,omitempty"`
 	CurrentLevel  int32                  `protobuf:"varint,3,opt,name=current_level,json=currentLevel,proto3" json:"current_level,omitempty"`
 	XpToNextLevel int32                  `protobuf:"varint,4,opt,name=xp_to_next_level,json=xpToNextLevel,proto3" json:"xp_to_next_level,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	Username      string                 `protobuf:"bytes,6,opt,name=username,proto3" json:"username,omitempty"` // For leaderboard display
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -64,11 +65,11 @@ func (*UserXP) Descriptor() ([]byte, []int) {
 	return file_proto_user_xp_v1_user_xp_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserXP) GetUserId() int32 {
+func (x *UserXP) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UserXP) GetTotalXp() int64 {
@@ -92,11 +93,11 @@ func (x *UserXP) GetXpToNextLevel() int32 {
 	return 0
 }
 
-func (x *UserXP) GetUpdatedAt() string {
+func (x *UserXP) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *UserXP) GetUsername() string {
@@ -109,7 +110,7 @@ func (x *UserXP) GetUsername() string {
 // Get user XP request and response
 type GetUserXPRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -144,11 +145,11 @@ func (*GetUserXPRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_xp_v1_user_xp_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetUserXPRequest) GetUserId() int32 {
+func (x *GetUserXPRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type GetUserXPResponse struct {
@@ -198,7 +199,7 @@ func (x *GetUserXPResponse) GetUserXp() *UserXP {
 // Add XP request and response
 type AddXPRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	XpAmount      int32                  `protobuf:"varint,2,opt,name=xp_amount,json=xpAmount,proto3" json:"xp_amount,omitempty"`
 	ActivityKey   string                 `protobuf:"bytes,3,opt,name=activity_key,json=activityKey,proto3" json:"activity_key,omitempty"` // e.g., "workout_complete", "streak_3_days"
 	unknownFields protoimpl.UnknownFields
@@ -235,11 +236,11 @@ func (*AddXPRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_xp_v1_user_xp_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *AddXPRequest) GetUserId() int32 {
+func (x *AddXPRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *AddXPRequest) GetXpAmount() int32 {
@@ -424,7 +425,7 @@ func (x *GetLeaderboardResponse) GetTotalUsers() int32 {
 // Get user level request and response
 type GetUserLevelRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -459,11 +460,11 @@ func (*GetUserLevelRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_xp_v1_user_xp_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetUserLevelRequest) GetUserId() int32 {
+func (x *GetUserLevelRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type GetUserLevelResponse struct {
@@ -538,21 +539,21 @@ var File_proto_user_xp_v1_user_xp_proto protoreflect.FileDescriptor
 
 const file_proto_user_xp_v1_user_xp_proto_rawDesc = "" +
 	"\n" +
-	"\x1eproto/user_xp/v1/user_xp.proto\x12\x10proto.user_xp.v1\"\xc5\x01\n" +
+	"\x1eproto/user_xp/v1/user_xp.proto\x12\x10proto.user_xp.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe1\x01\n" +
 	"\x06UserXP\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x19\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
 	"\btotal_xp\x18\x02 \x01(\x03R\atotalXp\x12#\n" +
 	"\rcurrent_level\x18\x03 \x01(\x05R\fcurrentLevel\x12'\n" +
-	"\x10xp_to_next_level\x18\x04 \x01(\x05R\rxpToNextLevel\x12\x1d\n" +
+	"\x10xp_to_next_level\x18\x04 \x01(\x05R\rxpToNextLevel\x129\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\tR\tupdatedAt\x12\x1a\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1a\n" +
 	"\busername\x18\x06 \x01(\tR\busername\"+\n" +
 	"\x10GetUserXPRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\"F\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"F\n" +
 	"\x11GetUserXPResponse\x121\n" +
 	"\auser_xp\x18\x01 \x01(\v2\x18.proto.user_xp.v1.UserXPR\x06userXp\"g\n" +
 	"\fAddXPRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\txp_amount\x18\x02 \x01(\x05R\bxpAmount\x12!\n" +
 	"\factivity_key\x18\x03 \x01(\tR\vactivityKey\"\x84\x01\n" +
 	"\rAddXPResponse\x121\n" +
@@ -567,7 +568,7 @@ const file_proto_user_xp_v1_user_xp_proto_rawDesc = "" +
 	"\vtotal_users\x18\x02 \x01(\x05R\n" +
 	"totalUsers\".\n" +
 	"\x13GetUserLevelRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\"\xb0\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xb0\x01\n" +
 	"\x14GetUserLevelResponse\x12#\n" +
 	"\rcurrent_level\x18\x01 \x01(\x05R\fcurrentLevel\x12\x19\n" +
 	"\btotal_xp\x18\x02 \x01(\x03R\atotalXp\x12'\n" +
@@ -577,7 +578,7 @@ const file_proto_user_xp_v1_user_xp_proto_rawDesc = "" +
 	"\tGetUserXP\x12\".proto.user_xp.v1.GetUserXPRequest\x1a#.proto.user_xp.v1.GetUserXPResponse\x12H\n" +
 	"\x05AddXP\x12\x1e.proto.user_xp.v1.AddXPRequest\x1a\x1f.proto.user_xp.v1.AddXPResponse\x12c\n" +
 	"\x0eGetLeaderboard\x12'.proto.user_xp.v1.GetLeaderboardRequest\x1a(.proto.user_xp.v1.GetLeaderboardResponse\x12]\n" +
-	"\fGetUserLevel\x12%.proto.user_xp.v1.GetUserLevelRequest\x1a&.proto.user_xp.v1.GetUserLevelResponseBVZTgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_xp/v1;userxppbb\x06proto3"
+	"\fGetUserLevel\x12%.proto.user_xp.v1.GetUserLevelRequest\x1a&.proto.user_xp.v1.GetUserLevelResponseBVZTgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_xp/v1;userxppbb\x06proto3"
 
 var (
 	file_proto_user_xp_v1_user_xp_proto_rawDescOnce sync.Once
@@ -602,24 +603,26 @@ var file_proto_user_xp_v1_user_xp_proto_goTypes = []any{
 	(*GetLeaderboardResponse)(nil), // 6: proto.user_xp.v1.GetLeaderboardResponse
 	(*GetUserLevelRequest)(nil),    // 7: proto.user_xp.v1.GetUserLevelRequest
 	(*GetUserLevelResponse)(nil),   // 8: proto.user_xp.v1.GetUserLevelResponse
+	(*timestamppb.Timestamp)(nil),  // 9: google.protobuf.Timestamp
 }
 var file_proto_user_xp_v1_user_xp_proto_depIdxs = []int32{
-	0, // 0: proto.user_xp.v1.GetUserXPResponse.user_xp:type_name -> proto.user_xp.v1.UserXP
-	0, // 1: proto.user_xp.v1.AddXPResponse.user_xp:type_name -> proto.user_xp.v1.UserXP
-	0, // 2: proto.user_xp.v1.GetLeaderboardResponse.leaderboard:type_name -> proto.user_xp.v1.UserXP
-	1, // 3: proto.user_xp.v1.UserXPService.GetUserXP:input_type -> proto.user_xp.v1.GetUserXPRequest
-	3, // 4: proto.user_xp.v1.UserXPService.AddXP:input_type -> proto.user_xp.v1.AddXPRequest
-	5, // 5: proto.user_xp.v1.UserXPService.GetLeaderboard:input_type -> proto.user_xp.v1.GetLeaderboardRequest
-	7, // 6: proto.user_xp.v1.UserXPService.GetUserLevel:input_type -> proto.user_xp.v1.GetUserLevelRequest
-	2, // 7: proto.user_xp.v1.UserXPService.GetUserXP:output_type -> proto.user_xp.v1.GetUserXPResponse
-	4, // 8: proto.user_xp.v1.UserXPService.AddXP:output_type -> proto.user_xp.v1.AddXPResponse
-	6, // 9: proto.user_xp.v1.UserXPService.GetLeaderboard:output_type -> proto.user_xp.v1.GetLeaderboardResponse
-	8, // 10: proto.user_xp.v1.UserXPService.GetUserLevel:output_type -> proto.user_xp.v1.GetUserLevelResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	9, // 0: proto.user_xp.v1.UserXP.updated_at:type_name -> google.protobuf.Timestamp
+	0, // 1: proto.user_xp.v1.GetUserXPResponse.user_xp:type_name -> proto.user_xp.v1.UserXP
+	0, // 2: proto.user_xp.v1.AddXPResponse.user_xp:type_name -> proto.user_xp.v1.UserXP
+	0, // 3: proto.user_xp.v1.GetLeaderboardResponse.leaderboard:type_name -> proto.user_xp.v1.UserXP
+	1, // 4: proto.user_xp.v1.UserXPService.GetUserXP:input_type -> proto.user_xp.v1.GetUserXPRequest
+	3, // 5: proto.user_xp.v1.UserXPService.AddXP:input_type -> proto.user_xp.v1.AddXPRequest
+	5, // 6: proto.user_xp.v1.UserXPService.GetLeaderboard:input_type -> proto.user_xp.v1.GetLeaderboardRequest
+	7, // 7: proto.user_xp.v1.UserXPService.GetUserLevel:input_type -> proto.user_xp.v1.GetUserLevelRequest
+	2, // 8: proto.user_xp.v1.UserXPService.GetUserXP:output_type -> proto.user_xp.v1.GetUserXPResponse
+	4, // 9: proto.user_xp.v1.UserXPService.AddXP:output_type -> proto.user_xp.v1.AddXPResponse
+	6, // 10: proto.user_xp.v1.UserXPService.GetLeaderboard:output_type -> proto.user_xp.v1.GetLeaderboardResponse
+	8, // 11: proto.user_xp.v1.UserXPService.GetUserLevel:output_type -> proto.user_xp.v1.GetUserLevelResponse
+	8, // [8:12] is the sub-list for method output_type
+	4, // [4:8] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_xp_v1_user_xp_proto_init() }

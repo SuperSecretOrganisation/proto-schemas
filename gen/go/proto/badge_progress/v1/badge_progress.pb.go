@@ -7,9 +7,10 @@
 package badgeprogresspb
 
 import (
-	v1 "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/badge/v1"
+	v1 "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/badge/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -26,11 +27,11 @@ const (
 type BadgeProgress struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Id                 int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId             int32                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId             string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	BadgeId            int32                  `protobuf:"varint,3,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
 	CurrentProgress    int32                  `protobuf:"varint,4,opt,name=current_progress,json=currentProgress,proto3" json:"current_progress,omitempty"`
 	TargetProgress     int32                  `protobuf:"varint,5,opt,name=target_progress,json=targetProgress,proto3" json:"target_progress,omitempty"`
-	LastUpdated        string                 `protobuf:"bytes,6,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
+	LastUpdated        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
 	ProgressPercentage float64                `protobuf:"fixed64,7,opt,name=progress_percentage,json=progressPercentage,proto3" json:"progress_percentage,omitempty"`
 	Badge              *v1.Badge              `protobuf:"bytes,8,opt,name=badge,proto3" json:"badge,omitempty"` // Preloaded badge information
 	unknownFields      protoimpl.UnknownFields
@@ -74,11 +75,11 @@ func (x *BadgeProgress) GetId() int64 {
 	return 0
 }
 
-func (x *BadgeProgress) GetUserId() int32 {
+func (x *BadgeProgress) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *BadgeProgress) GetBadgeId() int32 {
@@ -102,11 +103,11 @@ func (x *BadgeProgress) GetTargetProgress() int32 {
 	return 0
 }
 
-func (x *BadgeProgress) GetLastUpdated() string {
+func (x *BadgeProgress) GetLastUpdated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastUpdated
 	}
-	return ""
+	return nil
 }
 
 func (x *BadgeProgress) GetProgressPercentage() float64 {
@@ -126,7 +127,7 @@ func (x *BadgeProgress) GetBadge() *v1.Badge {
 // Get user badge progress request and response
 type GetUserBadgeProgressRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -161,11 +162,11 @@ func (*GetUserBadgeProgressRequest) Descriptor() ([]byte, []int) {
 	return file_proto_badge_progress_v1_badge_progress_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetUserBadgeProgressRequest) GetUserId() int32 {
+func (x *GetUserBadgeProgressRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type GetUserBadgeProgressResponse struct {
@@ -215,7 +216,7 @@ func (x *GetUserBadgeProgressResponse) GetProgressList() []*BadgeProgress {
 // Update progress request and response
 type UpdateProgressRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserId          int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	BadgeId         int32                  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
 	CurrentProgress int32                  `protobuf:"varint,3,opt,name=current_progress,json=currentProgress,proto3" json:"current_progress,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -252,11 +253,11 @@ func (*UpdateProgressRequest) Descriptor() ([]byte, []int) {
 	return file_proto_badge_progress_v1_badge_progress_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *UpdateProgressRequest) GetUserId() int32 {
+func (x *UpdateProgressRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateProgressRequest) GetBadgeId() int32 {
@@ -328,7 +329,7 @@ func (x *UpdateProgressResponse) GetBadgeCompleted() bool {
 // Get progress for specific badge request and response
 type GetProgressForBadgeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	BadgeId       int32                  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -364,11 +365,11 @@ func (*GetProgressForBadgeRequest) Descriptor() ([]byte, []int) {
 	return file_proto_badge_progress_v1_badge_progress_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetProgressForBadgeRequest) GetUserId() int32 {
+func (x *GetProgressForBadgeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *GetProgressForBadgeRequest) GetBadgeId() int32 {
@@ -426,36 +427,36 @@ var File_proto_badge_progress_v1_badge_progress_proto protoreflect.FileDescripto
 
 const file_proto_badge_progress_v1_badge_progress_proto_rawDesc = "" +
 	"\n" +
-	",proto/badge_progress/v1/badge_progress.proto\x12\x17proto.badge_progress.v1\x1a\x1aproto/badge/v1/badge.proto\"\xa8\x02\n" +
+	",proto/badge_progress/v1/badge_progress.proto\x12\x17proto.badge_progress.v1\x1a\x1aproto/badge/v1/badge.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc4\x02\n" +
 	"\rBadgeProgress\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x05R\x06userId\x12\x19\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x03 \x01(\x05R\abadgeId\x12)\n" +
 	"\x10current_progress\x18\x04 \x01(\x05R\x0fcurrentProgress\x12'\n" +
-	"\x0ftarget_progress\x18\x05 \x01(\x05R\x0etargetProgress\x12!\n" +
-	"\flast_updated\x18\x06 \x01(\tR\vlastUpdated\x12/\n" +
+	"\x0ftarget_progress\x18\x05 \x01(\x05R\x0etargetProgress\x12=\n" +
+	"\flast_updated\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\vlastUpdated\x12/\n" +
 	"\x13progress_percentage\x18\a \x01(\x01R\x12progressPercentage\x12+\n" +
 	"\x05badge\x18\b \x01(\v2\x15.proto.badge.v1.BadgeR\x05badge\"6\n" +
 	"\x1bGetUserBadgeProgressRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\"k\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"k\n" +
 	"\x1cGetUserBadgeProgressResponse\x12K\n" +
 	"\rprogress_list\x18\x01 \x03(\v2&.proto.badge_progress.v1.BadgeProgressR\fprogressList\"v\n" +
 	"\x15UpdateProgressRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x19\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x02 \x01(\x05R\abadgeId\x12)\n" +
 	"\x10current_progress\x18\x03 \x01(\x05R\x0fcurrentProgress\"\x85\x01\n" +
 	"\x16UpdateProgressResponse\x12B\n" +
 	"\bprogress\x18\x01 \x01(\v2&.proto.badge_progress.v1.BadgeProgressR\bprogress\x12'\n" +
 	"\x0fbadge_completed\x18\x02 \x01(\bR\x0ebadgeCompleted\"P\n" +
 	"\x1aGetProgressForBadgeRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x19\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x02 \x01(\x05R\abadgeId\"a\n" +
 	"\x1bGetProgressForBadgeResponse\x12B\n" +
 	"\bprogress\x18\x01 \x01(\v2&.proto.badge_progress.v1.BadgeProgressR\bprogress2\x92\x03\n" +
 	"\x14BadgeProgressService\x12\x83\x01\n" +
 	"\x14GetUserBadgeProgress\x124.proto.badge_progress.v1.GetUserBadgeProgressRequest\x1a5.proto.badge_progress.v1.GetUserBadgeProgressResponse\x12q\n" +
 	"\x0eUpdateProgress\x12..proto.badge_progress.v1.UpdateProgressRequest\x1a/.proto.badge_progress.v1.UpdateProgressResponse\x12\x80\x01\n" +
-	"\x13GetProgressForBadge\x123.proto.badge_progress.v1.GetProgressForBadgeRequest\x1a4.proto.badge_progress.v1.GetProgressForBadgeResponseBdZbgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/badge_progress/v1;badgeprogresspbb\x06proto3"
+	"\x13GetProgressForBadge\x123.proto.badge_progress.v1.GetProgressForBadgeRequest\x1a4.proto.badge_progress.v1.GetProgressForBadgeResponseBdZbgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/badge_progress/v1;badgeprogresspbb\x06proto3"
 
 var (
 	file_proto_badge_progress_v1_badge_progress_proto_rawDescOnce sync.Once
@@ -478,24 +479,26 @@ var file_proto_badge_progress_v1_badge_progress_proto_goTypes = []any{
 	(*UpdateProgressResponse)(nil),       // 4: proto.badge_progress.v1.UpdateProgressResponse
 	(*GetProgressForBadgeRequest)(nil),   // 5: proto.badge_progress.v1.GetProgressForBadgeRequest
 	(*GetProgressForBadgeResponse)(nil),  // 6: proto.badge_progress.v1.GetProgressForBadgeResponse
-	(*v1.Badge)(nil),                     // 7: proto.badge.v1.Badge
+	(*timestamppb.Timestamp)(nil),        // 7: google.protobuf.Timestamp
+	(*v1.Badge)(nil),                     // 8: proto.badge.v1.Badge
 }
 var file_proto_badge_progress_v1_badge_progress_proto_depIdxs = []int32{
-	7, // 0: proto.badge_progress.v1.BadgeProgress.badge:type_name -> proto.badge.v1.Badge
-	0, // 1: proto.badge_progress.v1.GetUserBadgeProgressResponse.progress_list:type_name -> proto.badge_progress.v1.BadgeProgress
-	0, // 2: proto.badge_progress.v1.UpdateProgressResponse.progress:type_name -> proto.badge_progress.v1.BadgeProgress
-	0, // 3: proto.badge_progress.v1.GetProgressForBadgeResponse.progress:type_name -> proto.badge_progress.v1.BadgeProgress
-	1, // 4: proto.badge_progress.v1.BadgeProgressService.GetUserBadgeProgress:input_type -> proto.badge_progress.v1.GetUserBadgeProgressRequest
-	3, // 5: proto.badge_progress.v1.BadgeProgressService.UpdateProgress:input_type -> proto.badge_progress.v1.UpdateProgressRequest
-	5, // 6: proto.badge_progress.v1.BadgeProgressService.GetProgressForBadge:input_type -> proto.badge_progress.v1.GetProgressForBadgeRequest
-	2, // 7: proto.badge_progress.v1.BadgeProgressService.GetUserBadgeProgress:output_type -> proto.badge_progress.v1.GetUserBadgeProgressResponse
-	4, // 8: proto.badge_progress.v1.BadgeProgressService.UpdateProgress:output_type -> proto.badge_progress.v1.UpdateProgressResponse
-	6, // 9: proto.badge_progress.v1.BadgeProgressService.GetProgressForBadge:output_type -> proto.badge_progress.v1.GetProgressForBadgeResponse
-	7, // [7:10] is the sub-list for method output_type
-	4, // [4:7] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	7, // 0: proto.badge_progress.v1.BadgeProgress.last_updated:type_name -> google.protobuf.Timestamp
+	8, // 1: proto.badge_progress.v1.BadgeProgress.badge:type_name -> proto.badge.v1.Badge
+	0, // 2: proto.badge_progress.v1.GetUserBadgeProgressResponse.progress_list:type_name -> proto.badge_progress.v1.BadgeProgress
+	0, // 3: proto.badge_progress.v1.UpdateProgressResponse.progress:type_name -> proto.badge_progress.v1.BadgeProgress
+	0, // 4: proto.badge_progress.v1.GetProgressForBadgeResponse.progress:type_name -> proto.badge_progress.v1.BadgeProgress
+	1, // 5: proto.badge_progress.v1.BadgeProgressService.GetUserBadgeProgress:input_type -> proto.badge_progress.v1.GetUserBadgeProgressRequest
+	3, // 6: proto.badge_progress.v1.BadgeProgressService.UpdateProgress:input_type -> proto.badge_progress.v1.UpdateProgressRequest
+	5, // 7: proto.badge_progress.v1.BadgeProgressService.GetProgressForBadge:input_type -> proto.badge_progress.v1.GetProgressForBadgeRequest
+	2, // 8: proto.badge_progress.v1.BadgeProgressService.GetUserBadgeProgress:output_type -> proto.badge_progress.v1.GetUserBadgeProgressResponse
+	4, // 9: proto.badge_progress.v1.BadgeProgressService.UpdateProgress:output_type -> proto.badge_progress.v1.UpdateProgressResponse
+	6, // 10: proto.badge_progress.v1.BadgeProgressService.GetProgressForBadge:output_type -> proto.badge_progress.v1.GetProgressForBadgeResponse
+	8, // [8:11] is the sub-list for method output_type
+	5, // [5:8] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_proto_badge_progress_v1_badge_progress_proto_init() }

@@ -7,9 +7,10 @@
 package userpb
 
 import (
-	v1 "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/notification_token/v1"
+	v1 "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/notification_token/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -25,15 +26,15 @@ const (
 // User message definition
 type User struct {
 	state              protoimpl.MessageState  `protogen:"open.v1"`
-	Uuid               string                  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                                                       // maps to User.UUID
-	Username           string                  `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`                                               // maps to User.Username
-	Email              string                  `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`                                                     // maps to User.Email
-	CreatedAt          string                  `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`                            // maps to User.CreatedAt.Format(time.RFC3339)
-	UpdatedAt          string                  `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`                            // maps to User.UpdatedAt.Format(time.RFC3339)
+	Uuid               string                  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`         // maps to User.UUID
+	Username           string                  `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"` // maps to User.Username
+	Email              string                  `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`       // maps to User.Email
+	CreatedAt          *timestamppb.Timestamp  `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt          *timestamppb.Timestamp  `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	Id                 int64                   `protobuf:"varint,6,opt,name=id,proto3" json:"id,omitempty"`                                                          // maps to User.ID
 	NotificationTokens []*v1.NotificationToken `protobuf:"bytes,7,rep,name=notification_tokens,json=notificationTokens,proto3" json:"notification_tokens,omitempty"` // maps to User.NotificationTokens
 	EmailVerified      bool                    `protobuf:"varint,8,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty"`               // maps to User.EmailVerified
-	LastLogin          string                  `protobuf:"bytes,9,opt,name=last_login,json=lastLogin,proto3" json:"last_login,omitempty"`                            // maps to User.LastLogin (optional, RFC3339 format)
+	LastLogin          *timestamppb.Timestamp  `protobuf:"bytes,9,opt,name=last_login,json=lastLogin,proto3" json:"last_login,omitempty"`                            // Note: password_hash, password_reset_token, password_reset_expires are NOT exposed in proto
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -89,18 +90,18 @@ func (x *User) GetEmail() string {
 	return ""
 }
 
-func (x *User) GetCreatedAt() string {
+func (x *User) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *User) GetUpdatedAt() string {
+func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *User) GetId() int64 {
@@ -124,11 +125,11 @@ func (x *User) GetEmailVerified() bool {
 	return false
 }
 
-func (x *User) GetLastLogin() string {
+func (x *User) GetLastLogin() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastLogin
 	}
-	return ""
+	return nil
 }
 
 // User creation request and response
@@ -616,77 +617,24 @@ func (x *ListUsersResponse) GetTotalCount() int32 {
 	return 0
 }
 
-// Error handling
-type Error struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Error) Reset() {
-	*x = Error{}
-	mi := &file_proto_user_v1_user_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Error) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Error) ProtoMessage() {}
-
-func (x *Error) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_v1_user_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Error.ProtoReflect.Descriptor instead.
-func (*Error) Descriptor() ([]byte, []int) {
-	return file_proto_user_v1_user_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *Error) GetCode() string {
-	if x != nil {
-		return x.Code
-	}
-	return ""
-}
-
-func (x *Error) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 var File_proto_user_v1_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x18proto/user/v1/user.proto\x12\rproto.user.v1\x1a4proto/notification_token/v1/notification_token.proto\"\xc1\x02\n" +
+	"\x18proto/user/v1/user.proto\x12\rproto.user.v1\x1a4proto/notification_token/v1/notification_token.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x95\x03\n" +
 	"\x04User\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\x12\x1d\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\x129\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\tR\tupdatedAt\x12\x0e\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x0e\n" +
 	"\x02id\x18\x06 \x01(\x03R\x02id\x12_\n" +
 	"\x13notification_tokens\x18\a \x03(\v2..proto.notification_token.v1.NotificationTokenR\x12notificationTokens\x12%\n" +
-	"\x0eemail_verified\x18\b \x01(\bR\remailVerified\x12\x1d\n" +
+	"\x0eemail_verified\x18\b \x01(\bR\remailVerified\x129\n" +
 	"\n" +
-	"last_login\x18\t \x01(\tR\tlastLogin\"E\n" +
+	"last_login\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tlastLogin\"E\n" +
 	"\x11CreateUserRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\"=\n" +
@@ -712,10 +660,7 @@ const file_proto_user_v1_user_proto_rawDesc = "" +
 	"\x11ListUsersResponse\x12)\n" +
 	"\x05users\x18\x01 \x03(\v2\x13.proto.user.v1.UserR\x05users\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"5\n" +
-	"\x05Error\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xa0\x03\n" +
+	"totalCount2\xa0\x03\n" +
 	"\vUserService\x12Q\n" +
 	"\n" +
 	"CreateUser\x12 .proto.user.v1.CreateUserRequest\x1a!.proto.user.v1.CreateUserResponse\x12H\n" +
@@ -724,7 +669,7 @@ const file_proto_user_v1_user_proto_rawDesc = "" +
 	"UpdateUser\x12 .proto.user.v1.UpdateUserRequest\x1a!.proto.user.v1.UpdateUserResponse\x12Q\n" +
 	"\n" +
 	"DeleteUser\x12 .proto.user.v1.DeleteUserRequest\x1a!.proto.user.v1.DeleteUserResponse\x12N\n" +
-	"\tListUsers\x12\x1f.proto.user.v1.ListUsersRequest\x1a .proto.user.v1.ListUsersResponseBQZOgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user/v1;userpbb\x06proto3"
+	"\tListUsers\x12\x1f.proto.user.v1.ListUsersRequest\x1a .proto.user.v1.ListUsersResponseBQZOgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user/v1;userpbb\x06proto3"
 
 var (
 	file_proto_user_v1_user_proto_rawDescOnce sync.Once
@@ -738,43 +683,46 @@ func file_proto_user_v1_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_v1_user_proto_rawDescData
 }
 
-var file_proto_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_proto_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_proto_user_v1_user_proto_goTypes = []any{
-	(*User)(nil),                 // 0: proto.user.v1.User
-	(*CreateUserRequest)(nil),    // 1: proto.user.v1.CreateUserRequest
-	(*CreateUserResponse)(nil),   // 2: proto.user.v1.CreateUserResponse
-	(*GetUserRequest)(nil),       // 3: proto.user.v1.GetUserRequest
-	(*GetUserResponse)(nil),      // 4: proto.user.v1.GetUserResponse
-	(*UpdateUserRequest)(nil),    // 5: proto.user.v1.UpdateUserRequest
-	(*UpdateUserResponse)(nil),   // 6: proto.user.v1.UpdateUserResponse
-	(*DeleteUserRequest)(nil),    // 7: proto.user.v1.DeleteUserRequest
-	(*DeleteUserResponse)(nil),   // 8: proto.user.v1.DeleteUserResponse
-	(*ListUsersRequest)(nil),     // 9: proto.user.v1.ListUsersRequest
-	(*ListUsersResponse)(nil),    // 10: proto.user.v1.ListUsersResponse
-	(*Error)(nil),                // 11: proto.user.v1.Error
-	(*v1.NotificationToken)(nil), // 12: proto.notification_token.v1.NotificationToken
+	(*User)(nil),                  // 0: proto.user.v1.User
+	(*CreateUserRequest)(nil),     // 1: proto.user.v1.CreateUserRequest
+	(*CreateUserResponse)(nil),    // 2: proto.user.v1.CreateUserResponse
+	(*GetUserRequest)(nil),        // 3: proto.user.v1.GetUserRequest
+	(*GetUserResponse)(nil),       // 4: proto.user.v1.GetUserResponse
+	(*UpdateUserRequest)(nil),     // 5: proto.user.v1.UpdateUserRequest
+	(*UpdateUserResponse)(nil),    // 6: proto.user.v1.UpdateUserResponse
+	(*DeleteUserRequest)(nil),     // 7: proto.user.v1.DeleteUserRequest
+	(*DeleteUserResponse)(nil),    // 8: proto.user.v1.DeleteUserResponse
+	(*ListUsersRequest)(nil),      // 9: proto.user.v1.ListUsersRequest
+	(*ListUsersResponse)(nil),     // 10: proto.user.v1.ListUsersResponse
+	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
+	(*v1.NotificationToken)(nil),  // 12: proto.notification_token.v1.NotificationToken
 }
 var file_proto_user_v1_user_proto_depIdxs = []int32{
-	12, // 0: proto.user.v1.User.notification_tokens:type_name -> proto.notification_token.v1.NotificationToken
-	0,  // 1: proto.user.v1.CreateUserResponse.user:type_name -> proto.user.v1.User
-	0,  // 2: proto.user.v1.GetUserResponse.user:type_name -> proto.user.v1.User
-	0,  // 3: proto.user.v1.UpdateUserResponse.user:type_name -> proto.user.v1.User
-	0,  // 4: proto.user.v1.ListUsersResponse.users:type_name -> proto.user.v1.User
-	1,  // 5: proto.user.v1.UserService.CreateUser:input_type -> proto.user.v1.CreateUserRequest
-	3,  // 6: proto.user.v1.UserService.GetUser:input_type -> proto.user.v1.GetUserRequest
-	5,  // 7: proto.user.v1.UserService.UpdateUser:input_type -> proto.user.v1.UpdateUserRequest
-	7,  // 8: proto.user.v1.UserService.DeleteUser:input_type -> proto.user.v1.DeleteUserRequest
-	9,  // 9: proto.user.v1.UserService.ListUsers:input_type -> proto.user.v1.ListUsersRequest
-	2,  // 10: proto.user.v1.UserService.CreateUser:output_type -> proto.user.v1.CreateUserResponse
-	4,  // 11: proto.user.v1.UserService.GetUser:output_type -> proto.user.v1.GetUserResponse
-	6,  // 12: proto.user.v1.UserService.UpdateUser:output_type -> proto.user.v1.UpdateUserResponse
-	8,  // 13: proto.user.v1.UserService.DeleteUser:output_type -> proto.user.v1.DeleteUserResponse
-	10, // 14: proto.user.v1.UserService.ListUsers:output_type -> proto.user.v1.ListUsersResponse
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	11, // 0: proto.user.v1.User.created_at:type_name -> google.protobuf.Timestamp
+	11, // 1: proto.user.v1.User.updated_at:type_name -> google.protobuf.Timestamp
+	12, // 2: proto.user.v1.User.notification_tokens:type_name -> proto.notification_token.v1.NotificationToken
+	11, // 3: proto.user.v1.User.last_login:type_name -> google.protobuf.Timestamp
+	0,  // 4: proto.user.v1.CreateUserResponse.user:type_name -> proto.user.v1.User
+	0,  // 5: proto.user.v1.GetUserResponse.user:type_name -> proto.user.v1.User
+	0,  // 6: proto.user.v1.UpdateUserResponse.user:type_name -> proto.user.v1.User
+	0,  // 7: proto.user.v1.ListUsersResponse.users:type_name -> proto.user.v1.User
+	1,  // 8: proto.user.v1.UserService.CreateUser:input_type -> proto.user.v1.CreateUserRequest
+	3,  // 9: proto.user.v1.UserService.GetUser:input_type -> proto.user.v1.GetUserRequest
+	5,  // 10: proto.user.v1.UserService.UpdateUser:input_type -> proto.user.v1.UpdateUserRequest
+	7,  // 11: proto.user.v1.UserService.DeleteUser:input_type -> proto.user.v1.DeleteUserRequest
+	9,  // 12: proto.user.v1.UserService.ListUsers:input_type -> proto.user.v1.ListUsersRequest
+	2,  // 13: proto.user.v1.UserService.CreateUser:output_type -> proto.user.v1.CreateUserResponse
+	4,  // 14: proto.user.v1.UserService.GetUser:output_type -> proto.user.v1.GetUserResponse
+	6,  // 15: proto.user.v1.UserService.UpdateUser:output_type -> proto.user.v1.UpdateUserResponse
+	8,  // 16: proto.user.v1.UserService.DeleteUser:output_type -> proto.user.v1.DeleteUserResponse
+	10, // 17: proto.user.v1.UserService.ListUsers:output_type -> proto.user.v1.ListUsersResponse
+	13, // [13:18] is the sub-list for method output_type
+	8,  // [8:13] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_v1_user_proto_init() }
@@ -788,7 +736,7 @@ func file_proto_user_v1_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_v1_user_proto_rawDesc), len(file_proto_user_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

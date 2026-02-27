@@ -25,7 +25,7 @@ const (
 type NotificationToken struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`                               // Device token for push notifications
 	Platform      string                 `protobuf:"bytes,4,opt,name=platform,proto3" json:"platform,omitempty"`                         // Platform type, e.g., 'apns', 'fcm'
 	LastSeenAt    *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"` // Last time the token was used
@@ -71,11 +71,11 @@ func (x *NotificationToken) GetId() int64 {
 	return 0
 }
 
-func (x *NotificationToken) GetUserId() int64 {
+func (x *NotificationToken) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *NotificationToken) GetToken() string {
@@ -108,7 +108,7 @@ func (x *NotificationToken) GetCreatedAt() *timestamppb.Timestamp {
 
 type CreateNotificationTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`       // Device token for push notifications
 	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"` // Platform type, e.g., 'apns', 'fcm'
 	unknownFields protoimpl.UnknownFields
@@ -145,11 +145,11 @@ func (*CreateNotificationTokenRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateNotificationTokenRequest) GetUserId() int64 {
+func (x *CreateNotificationTokenRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *CreateNotificationTokenRequest) GetToken() string {
@@ -212,7 +212,7 @@ func (x *CreateNotificationTokenResponse) GetToken() *NotificationToken {
 
 type GetNotificationTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -247,11 +247,11 @@ func (*GetNotificationTokenRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetNotificationTokenRequest) GetUserId() int64 {
+func (x *GetNotificationTokenRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type GetNotificationTokenResponse struct {
@@ -300,7 +300,7 @@ func (x *GetNotificationTokenResponse) GetToken() *NotificationToken {
 
 type UpdateNotificationTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`       // Device token for push notifications
 	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"` // Platform type, e.g., 'apns', 'fcm'
 	unknownFields protoimpl.UnknownFields
@@ -337,11 +337,11 @@ func (*UpdateNotificationTokenRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *UpdateNotificationTokenRequest) GetUserId() int64 {
+func (x *UpdateNotificationTokenRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateNotificationTokenRequest) GetToken() string {
@@ -492,7 +492,7 @@ func (x *DeleteNotificationTokenResponse) GetSuccess() bool {
 
 type ListNotificationTokensRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -527,11 +527,11 @@ func (*ListNotificationTokensRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ListNotificationTokensRequest) GetUserId() int64 {
+func (x *ListNotificationTokensRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type ListNotificationTokensResponse struct {
@@ -578,58 +578,6 @@ func (x *ListNotificationTokensResponse) GetTokens() []*NotificationToken {
 	return nil
 }
 
-type Error struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Error) Reset() {
-	*x = Error{}
-	mi := &file_proto_notification_token_v1_notification_token_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Error) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Error) ProtoMessage() {}
-
-func (x *Error) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_notification_token_v1_notification_token_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Error.ProtoReflect.Descriptor instead.
-func (*Error) Descriptor() ([]byte, []int) {
-	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *Error) GetCode() string {
-	if x != nil {
-		return x.Code
-	}
-	return ""
-}
-
-func (x *Error) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 var File_proto_notification_token_v1_notification_token_proto protoreflect.FileDescriptor
 
 const file_proto_notification_token_v1_notification_token_proto_rawDesc = "" +
@@ -637,7 +585,7 @@ const file_proto_notification_token_v1_notification_token_proto_rawDesc = "" +
 	"4proto/notification_token/v1/notification_token.proto\x12\x1bproto.notification_token.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe7\x01\n" +
 	"\x11NotificationToken\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x14\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\x12\x1a\n" +
 	"\bplatform\x18\x04 \x01(\tR\bplatform\x12<\n" +
 	"\flast_seen_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
@@ -645,17 +593,17 @@ const file_proto_notification_token_v1_notification_token_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"k\n" +
 	"\x1eCreateNotificationTokenRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1a\n" +
 	"\bplatform\x18\x03 \x01(\tR\bplatform\"g\n" +
 	"\x1fCreateNotificationTokenResponse\x12D\n" +
 	"\x05token\x18\x01 \x01(\v2..proto.notification_token.v1.NotificationTokenR\x05token\"6\n" +
 	"\x1bGetNotificationTokenRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"d\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"d\n" +
 	"\x1cGetNotificationTokenResponse\x12D\n" +
 	"\x05token\x18\x01 \x01(\v2..proto.notification_token.v1.NotificationTokenR\x05token\"k\n" +
 	"\x1eUpdateNotificationTokenRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1a\n" +
 	"\bplatform\x18\x03 \x01(\tR\bplatform\"g\n" +
 	"\x1fUpdateNotificationTokenResponse\x12D\n" +
@@ -665,18 +613,15 @@ const file_proto_notification_token_v1_notification_token_proto_rawDesc = "" +
 	"\x1fDeleteNotificationTokenResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"8\n" +
 	"\x1dListNotificationTokensRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"h\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"h\n" +
 	"\x1eListNotificationTokensResponse\x12F\n" +
-	"\x06tokens\x18\x01 \x03(\v2..proto.notification_token.v1.NotificationTokenR\x06tokens\"5\n" +
-	"\x05Error\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\x81\x06\n" +
+	"\x06tokens\x18\x01 \x03(\v2..proto.notification_token.v1.NotificationTokenR\x06tokens2\x81\x06\n" +
 	"\x18NotificationTokenService\x12\x94\x01\n" +
 	"\x17CreateNotificationToken\x12;.proto.notification_token.v1.CreateNotificationTokenRequest\x1a<.proto.notification_token.v1.CreateNotificationTokenResponse\x12\x8b\x01\n" +
 	"\x14GetNotificationToken\x128.proto.notification_token.v1.GetNotificationTokenRequest\x1a9.proto.notification_token.v1.GetNotificationTokenResponse\x12\x94\x01\n" +
 	"\x17UpdateNotificationToken\x12;.proto.notification_token.v1.UpdateNotificationTokenRequest\x1a<.proto.notification_token.v1.UpdateNotificationTokenResponse\x12\x94\x01\n" +
 	"\x17DeleteNotificationToken\x12;.proto.notification_token.v1.DeleteNotificationTokenRequest\x1a<.proto.notification_token.v1.DeleteNotificationTokenResponse\x12\x91\x01\n" +
-	"\x16ListNotificationTokens\x12:.proto.notification_token.v1.ListNotificationTokensRequest\x1a;.proto.notification_token.v1.ListNotificationTokensResponseBmZkgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/notification_token/v1;notification_tokenpbb\x06proto3"
+	"\x16ListNotificationTokens\x12:.proto.notification_token.v1.ListNotificationTokensRequest\x1a;.proto.notification_token.v1.ListNotificationTokensResponseBmZkgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/notification_token/v1;notification_tokenpbb\x06proto3"
 
 var (
 	file_proto_notification_token_v1_notification_token_proto_rawDescOnce sync.Once
@@ -690,7 +635,7 @@ func file_proto_notification_token_v1_notification_token_proto_rawDescGZIP() []b
 	return file_proto_notification_token_v1_notification_token_proto_rawDescData
 }
 
-var file_proto_notification_token_v1_notification_token_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_proto_notification_token_v1_notification_token_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_proto_notification_token_v1_notification_token_proto_goTypes = []any{
 	(*NotificationToken)(nil),               // 0: proto.notification_token.v1.NotificationToken
 	(*CreateNotificationTokenRequest)(nil),  // 1: proto.notification_token.v1.CreateNotificationTokenRequest
@@ -703,12 +648,11 @@ var file_proto_notification_token_v1_notification_token_proto_goTypes = []any{
 	(*DeleteNotificationTokenResponse)(nil), // 8: proto.notification_token.v1.DeleteNotificationTokenResponse
 	(*ListNotificationTokensRequest)(nil),   // 9: proto.notification_token.v1.ListNotificationTokensRequest
 	(*ListNotificationTokensResponse)(nil),  // 10: proto.notification_token.v1.ListNotificationTokensResponse
-	(*Error)(nil),                           // 11: proto.notification_token.v1.Error
-	(*timestamppb.Timestamp)(nil),           // 12: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil),           // 11: google.protobuf.Timestamp
 }
 var file_proto_notification_token_v1_notification_token_proto_depIdxs = []int32{
-	12, // 0: proto.notification_token.v1.NotificationToken.last_seen_at:type_name -> google.protobuf.Timestamp
-	12, // 1: proto.notification_token.v1.NotificationToken.created_at:type_name -> google.protobuf.Timestamp
+	11, // 0: proto.notification_token.v1.NotificationToken.last_seen_at:type_name -> google.protobuf.Timestamp
+	11, // 1: proto.notification_token.v1.NotificationToken.created_at:type_name -> google.protobuf.Timestamp
 	0,  // 2: proto.notification_token.v1.CreateNotificationTokenResponse.token:type_name -> proto.notification_token.v1.NotificationToken
 	0,  // 3: proto.notification_token.v1.GetNotificationTokenResponse.token:type_name -> proto.notification_token.v1.NotificationToken
 	0,  // 4: proto.notification_token.v1.UpdateNotificationTokenResponse.token:type_name -> proto.notification_token.v1.NotificationToken
@@ -741,7 +685,7 @@ func file_proto_notification_token_v1_notification_token_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_notification_token_v1_notification_token_proto_rawDesc), len(file_proto_notification_token_v1_notification_token_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

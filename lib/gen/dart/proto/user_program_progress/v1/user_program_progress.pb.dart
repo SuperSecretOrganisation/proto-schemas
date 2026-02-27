@@ -14,6 +14,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// Nested message for workout completion
@@ -22,7 +24,7 @@ class CompletedWorkout extends $pb.GeneratedMessage {
     $core.String? workoutId,
     $core.String? workoutName,
     $core.int? weekNumber,
-    $core.String? completedAt,
+    $1.Timestamp? completedAt,
     $core.int? durationMinutes,
     $core.String? notes,
   }) {
@@ -45,7 +47,7 @@ class CompletedWorkout extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'workoutId')
     ..aOS(2, _omitFieldNames ? '' : 'workoutName')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'weekNumber', $pb.PbFieldType.O3)
-    ..aOS(4, _omitFieldNames ? '' : 'completedAt')
+    ..aOM<$1.Timestamp>(4, _omitFieldNames ? '' : 'completedAt', subBuilder: $1.Timestamp.create)
     ..a<$core.int>(5, _omitFieldNames ? '' : 'durationMinutes', $pb.PbFieldType.O3)
     ..aOS(6, _omitFieldNames ? '' : 'notes')
     ..hasRequiredFields = false
@@ -96,13 +98,15 @@ class CompletedWorkout extends $pb.GeneratedMessage {
   void clearWeekNumber() => $_clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get completedAt => $_getSZ(3);
+  $1.Timestamp get completedAt => $_getN(3);
   @$pb.TagNumber(4)
-  set completedAt($core.String value) => $_setString(3, value);
+  set completedAt($1.Timestamp value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasCompletedAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearCompletedAt() => $_clearField(4);
+  @$pb.TagNumber(4)
+  $1.Timestamp ensureCompletedAt() => $_ensure(3);
 
   @$pb.TagNumber(5)
   $core.int get durationMinutes => $_getIZ(4);
@@ -132,11 +136,11 @@ class UserProgramProgress extends $pb.GeneratedMessage {
     $core.String? programName,
     $core.int? currentWeek,
     $core.Iterable<CompletedWorkout>? completedWorkouts,
-    $core.String? startedAt,
-    $core.String? completedAt,
+    $1.Timestamp? startedAt,
+    $1.Timestamp? completedAt,
     $core.bool? isActive,
-    $core.String? createdAt,
-    $core.String? updatedAt,
+    $1.Timestamp? createdAt,
+    $1.Timestamp? updatedAt,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -165,11 +169,11 @@ class UserProgramProgress extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'programName')
     ..a<$core.int>(5, _omitFieldNames ? '' : 'currentWeek', $pb.PbFieldType.O3)
     ..pc<CompletedWorkout>(6, _omitFieldNames ? '' : 'completedWorkouts', $pb.PbFieldType.PM, subBuilder: CompletedWorkout.create)
-    ..aOS(7, _omitFieldNames ? '' : 'startedAt')
-    ..aOS(8, _omitFieldNames ? '' : 'completedAt')
+    ..aOM<$1.Timestamp>(7, _omitFieldNames ? '' : 'startedAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(8, _omitFieldNames ? '' : 'completedAt', subBuilder: $1.Timestamp.create)
     ..aOB(9, _omitFieldNames ? '' : 'isActive')
-    ..aOS(10, _omitFieldNames ? '' : 'createdAt')
-    ..aOS(11, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(10, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(11, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -239,22 +243,26 @@ class UserProgramProgress extends $pb.GeneratedMessage {
   $pb.PbList<CompletedWorkout> get completedWorkouts => $_getList(5);
 
   @$pb.TagNumber(7)
-  $core.String get startedAt => $_getSZ(6);
+  $1.Timestamp get startedAt => $_getN(6);
   @$pb.TagNumber(7)
-  set startedAt($core.String value) => $_setString(6, value);
+  set startedAt($1.Timestamp value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasStartedAt() => $_has(6);
   @$pb.TagNumber(7)
   void clearStartedAt() => $_clearField(7);
+  @$pb.TagNumber(7)
+  $1.Timestamp ensureStartedAt() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  $core.String get completedAt => $_getSZ(7);
+  $1.Timestamp get completedAt => $_getN(7);
   @$pb.TagNumber(8)
-  set completedAt($core.String value) => $_setString(7, value);
+  set completedAt($1.Timestamp value) => $_setField(8, value);
   @$pb.TagNumber(8)
   $core.bool hasCompletedAt() => $_has(7);
   @$pb.TagNumber(8)
   void clearCompletedAt() => $_clearField(8);
+  @$pb.TagNumber(8)
+  $1.Timestamp ensureCompletedAt() => $_ensure(7);
 
   @$pb.TagNumber(9)
   $core.bool get isActive => $_getBF(8);
@@ -266,22 +274,26 @@ class UserProgramProgress extends $pb.GeneratedMessage {
   void clearIsActive() => $_clearField(9);
 
   @$pb.TagNumber(10)
-  $core.String get createdAt => $_getSZ(9);
+  $1.Timestamp get createdAt => $_getN(9);
   @$pb.TagNumber(10)
-  set createdAt($core.String value) => $_setString(9, value);
+  set createdAt($1.Timestamp value) => $_setField(10, value);
   @$pb.TagNumber(10)
   $core.bool hasCreatedAt() => $_has(9);
   @$pb.TagNumber(10)
   void clearCreatedAt() => $_clearField(10);
+  @$pb.TagNumber(10)
+  $1.Timestamp ensureCreatedAt() => $_ensure(9);
 
   @$pb.TagNumber(11)
-  $core.String get updatedAt => $_getSZ(10);
+  $1.Timestamp get updatedAt => $_getN(10);
   @$pb.TagNumber(11)
-  set updatedAt($core.String value) => $_setString(10, value);
+  set updatedAt($1.Timestamp value) => $_setField(11, value);
   @$pb.TagNumber(11)
   $core.bool hasUpdatedAt() => $_has(10);
   @$pb.TagNumber(11)
   void clearUpdatedAt() => $_clearField(11);
+  @$pb.TagNumber(11)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(10);
 }
 
 /// Get active program request and response

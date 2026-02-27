@@ -78,14 +78,11 @@ final $typed_data.Uint8List loginResponseDescriptor = $convert.base64Decode(
 @$core.Deprecated('Use logoutRequestDescriptor instead')
 const LogoutRequest$json = {
   '1': 'LogoutRequest',
-  '2': [
-    {'1': 'access_token', '3': 1, '4': 1, '5': 9, '10': 'accessToken'},
-  ],
 };
 
 /// Descriptor for `LogoutRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List logoutRequestDescriptor = $convert.base64Decode(
-    'Cg1Mb2dvdXRSZXF1ZXN0EiEKDGFjY2Vzc190b2tlbhgBIAEoCVILYWNjZXNzVG9rZW4=');
+    'Cg1Mb2dvdXRSZXF1ZXN0');
 
 @$core.Deprecated('Use logoutResponseDescriptor instead')
 const LogoutResponse$json = {
@@ -182,15 +179,11 @@ final $typed_data.Uint8List verifyEmailResponseDescriptor = $convert.base64Decod
 @$core.Deprecated('Use getCurrentUserRequestDescriptor instead')
 const GetCurrentUserRequest$json = {
   '1': 'GetCurrentUserRequest',
-  '2': [
-    {'1': 'access_token', '3': 1, '4': 1, '5': 9, '10': 'accessToken'},
-  ],
 };
 
 /// Descriptor for `GetCurrentUserRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getCurrentUserRequestDescriptor = $convert.base64Decode(
-    'ChVHZXRDdXJyZW50VXNlclJlcXVlc3QSIQoMYWNjZXNzX3Rva2VuGAEgASgJUgthY2Nlc3NUb2'
-    'tlbg==');
+    'ChVHZXRDdXJyZW50VXNlclJlcXVlc3Q=');
 
 @$core.Deprecated('Use getCurrentUserResponseDescriptor instead')
 const GetCurrentUserResponse$json = {
@@ -261,18 +254,4 @@ final $typed_data.Uint8List signInWithGoogleResponseDescriptor = $convert.base64
     'EuVXNlclIEdXNlchIhCgxhY2Nlc3NfdG9rZW4YAiABKAlSC2FjY2Vzc1Rva2VuEiMKDXJlZnJl'
     'c2hfdG9rZW4YAyABKAlSDHJlZnJlc2hUb2tlbhIeCgtpc19uZXdfdXNlchgEIAEoCFIJaXNOZX'
     'dVc2Vy');
-
-@$core.Deprecated('Use authErrorDescriptor instead')
-const AuthError$json = {
-  '1': 'AuthError',
-  '2': [
-    {'1': 'code', '3': 1, '4': 1, '5': 9, '10': 'code'},
-    {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
-  ],
-};
-
-/// Descriptor for `AuthError`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authErrorDescriptor = $convert.base64Decode(
-    'CglBdXRoRXJyb3ISEgoEY29kZRgBIAEoCVIEY29kZRIYCgdtZXNzYWdlGAIgASgJUgdtZXNzYW'
-    'dl');
 

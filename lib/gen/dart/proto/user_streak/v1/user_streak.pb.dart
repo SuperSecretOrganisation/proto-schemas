@@ -14,20 +14,22 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// UserStreak message definition
 class UserStreak extends $pb.GeneratedMessage {
   factory UserStreak({
     $core.int? id,
-    $core.int? userId,
+    $core.String? userId,
     $core.int? currentStreak,
     $core.int? longestStreak,
     $core.String? lastActiveDate,
     $core.String? streakStartDate,
     $core.bool? isActiveToday,
-    $core.String? createdAt,
-    $core.String? updatedAt,
+    $1.Timestamp? createdAt,
+    $1.Timestamp? updatedAt,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -49,14 +51,14 @@ class UserStreak extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserStreak', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_streak.v1'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'currentStreak', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'longestStreak', $pb.PbFieldType.O3)
     ..aOS(5, _omitFieldNames ? '' : 'lastActiveDate')
     ..aOS(6, _omitFieldNames ? '' : 'streakStartDate')
     ..aOB(7, _omitFieldNames ? '' : 'isActiveToday')
-    ..aOS(8, _omitFieldNames ? '' : 'createdAt')
-    ..aOS(9, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(8, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(9, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -87,9 +89,9 @@ class UserStreak extends $pb.GeneratedMessage {
   void clearId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get userId => $_getIZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userId($core.int value) => $_setSignedInt32(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
   $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
@@ -141,34 +143,38 @@ class UserStreak extends $pb.GeneratedMessage {
   void clearIsActiveToday() => $_clearField(7);
 
   @$pb.TagNumber(8)
-  $core.String get createdAt => $_getSZ(7);
+  $1.Timestamp get createdAt => $_getN(7);
   @$pb.TagNumber(8)
-  set createdAt($core.String value) => $_setString(7, value);
+  set createdAt($1.Timestamp value) => $_setField(8, value);
   @$pb.TagNumber(8)
   $core.bool hasCreatedAt() => $_has(7);
   @$pb.TagNumber(8)
   void clearCreatedAt() => $_clearField(8);
+  @$pb.TagNumber(8)
+  $1.Timestamp ensureCreatedAt() => $_ensure(7);
 
   @$pb.TagNumber(9)
-  $core.String get updatedAt => $_getSZ(8);
+  $1.Timestamp get updatedAt => $_getN(8);
   @$pb.TagNumber(9)
-  set updatedAt($core.String value) => $_setString(8, value);
+  set updatedAt($1.Timestamp value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasUpdatedAt() => $_has(8);
   @$pb.TagNumber(9)
   void clearUpdatedAt() => $_clearField(9);
+  @$pb.TagNumber(9)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(8);
 }
 
 /// StreakHistory message definition
 class StreakHistory extends $pb.GeneratedMessage {
   factory StreakHistory({
     $core.int? id,
-    $core.int? userId,
+    $core.String? userId,
     $core.String? activityDate,
     $core.int? steps,
     $core.int? activeMinutes,
     $core.double? distanceKm,
-    $core.String? createdAt,
+    $1.Timestamp? createdAt,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -188,12 +194,12 @@ class StreakHistory extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StreakHistory', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_streak.v1'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..aOS(3, _omitFieldNames ? '' : 'activityDate')
     ..a<$core.int>(4, _omitFieldNames ? '' : 'steps', $pb.PbFieldType.O3)
     ..a<$core.int>(5, _omitFieldNames ? '' : 'activeMinutes', $pb.PbFieldType.O3)
     ..a<$core.double>(6, _omitFieldNames ? '' : 'distanceKm', $pb.PbFieldType.OD)
-    ..aOS(7, _omitFieldNames ? '' : 'createdAt')
+    ..aOM<$1.Timestamp>(7, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -224,9 +230,9 @@ class StreakHistory extends $pb.GeneratedMessage {
   void clearId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get userId => $_getIZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userId($core.int value) => $_setSignedInt32(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
   $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
@@ -269,19 +275,21 @@ class StreakHistory extends $pb.GeneratedMessage {
   void clearDistanceKm() => $_clearField(6);
 
   @$pb.TagNumber(7)
-  $core.String get createdAt => $_getSZ(6);
+  $1.Timestamp get createdAt => $_getN(6);
   @$pb.TagNumber(7)
-  set createdAt($core.String value) => $_setString(6, value);
+  set createdAt($1.Timestamp value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasCreatedAt() => $_has(6);
   @$pb.TagNumber(7)
   void clearCreatedAt() => $_clearField(7);
+  @$pb.TagNumber(7)
+  $1.Timestamp ensureCreatedAt() => $_ensure(6);
 }
 
 /// Get user streak request and response
 class GetUserStreakRequest extends $pb.GeneratedMessage {
   factory GetUserStreakRequest({
-    $core.int? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -294,7 +302,7 @@ class GetUserStreakRequest extends $pb.GeneratedMessage {
   factory GetUserStreakRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserStreakRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_streak.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -316,9 +324,9 @@ class GetUserStreakRequest extends $pb.GeneratedMessage {
   static GetUserStreakRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -376,7 +384,7 @@ class GetUserStreakResponse extends $pb.GeneratedMessage {
 /// Update streak request and response
 class UpdateStreakRequest extends $pb.GeneratedMessage {
   factory UpdateStreakRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? steps,
     $core.int? activeMinutes,
     $core.double? distanceKm,
@@ -395,7 +403,7 @@ class UpdateStreakRequest extends $pb.GeneratedMessage {
   factory UpdateStreakRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateStreakRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_streak.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'steps', $pb.PbFieldType.O3)
     ..a<$core.int>(3, _omitFieldNames ? '' : 'activeMinutes', $pb.PbFieldType.O3)
     ..a<$core.double>(4, _omitFieldNames ? '' : 'distanceKm', $pb.PbFieldType.OD)
@@ -420,9 +428,9 @@ class UpdateStreakRequest extends $pb.GeneratedMessage {
   static UpdateStreakRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -531,7 +539,7 @@ class UpdateStreakResponse extends $pb.GeneratedMessage {
 /// Get streak history request and response
 class GetStreakHistoryRequest extends $pb.GeneratedMessage {
   factory GetStreakHistoryRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? days,
   }) {
     final result = create();
@@ -546,7 +554,7 @@ class GetStreakHistoryRequest extends $pb.GeneratedMessage {
   factory GetStreakHistoryRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetStreakHistoryRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_streak.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'days', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -569,9 +577,9 @@ class GetStreakHistoryRequest extends $pb.GeneratedMessage {
   static GetStreakHistoryRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -642,7 +650,7 @@ class GetStreakHistoryResponse extends $pb.GeneratedMessage {
 /// Reset streak request and response
 class ResetStreakRequest extends $pb.GeneratedMessage {
   factory ResetStreakRequest({
-    $core.int? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -655,7 +663,7 @@ class ResetStreakRequest extends $pb.GeneratedMessage {
   factory ResetStreakRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ResetStreakRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_streak.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -677,9 +685,9 @@ class ResetStreakRequest extends $pb.GeneratedMessage {
   static ResetStreakRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)

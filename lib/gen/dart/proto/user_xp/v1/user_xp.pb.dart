@@ -15,16 +15,18 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// UserXP message definition
 class UserXP extends $pb.GeneratedMessage {
   factory UserXP({
-    $core.int? userId,
+    $core.String? userId,
     $fixnum.Int64? totalXp,
     $core.int? currentLevel,
     $core.int? xpToNextLevel,
-    $core.String? updatedAt,
+    $1.Timestamp? updatedAt,
     $core.String? username,
   }) {
     final result = create();
@@ -43,11 +45,11 @@ class UserXP extends $pb.GeneratedMessage {
   factory UserXP.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserXP', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_xp.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aInt64(2, _omitFieldNames ? '' : 'totalXp')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'currentLevel', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'xpToNextLevel', $pb.PbFieldType.O3)
-    ..aOS(5, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..aOS(6, _omitFieldNames ? '' : 'username')
     ..hasRequiredFields = false
   ;
@@ -70,9 +72,9 @@ class UserXP extends $pb.GeneratedMessage {
   static UserXP? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -106,13 +108,15 @@ class UserXP extends $pb.GeneratedMessage {
   void clearXpToNextLevel() => $_clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get updatedAt => $_getSZ(4);
+  $1.Timestamp get updatedAt => $_getN(4);
   @$pb.TagNumber(5)
-  set updatedAt($core.String value) => $_setString(4, value);
+  set updatedAt($1.Timestamp value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasUpdatedAt() => $_has(4);
   @$pb.TagNumber(5)
   void clearUpdatedAt() => $_clearField(5);
+  @$pb.TagNumber(5)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(4);
 
   @$pb.TagNumber(6)
   $core.String get username => $_getSZ(5);
@@ -127,7 +131,7 @@ class UserXP extends $pb.GeneratedMessage {
 /// Get user XP request and response
 class GetUserXPRequest extends $pb.GeneratedMessage {
   factory GetUserXPRequest({
-    $core.int? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -140,7 +144,7 @@ class GetUserXPRequest extends $pb.GeneratedMessage {
   factory GetUserXPRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserXPRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_xp.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -162,9 +166,9 @@ class GetUserXPRequest extends $pb.GeneratedMessage {
   static GetUserXPRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -222,7 +226,7 @@ class GetUserXPResponse extends $pb.GeneratedMessage {
 /// Add XP request and response
 class AddXPRequest extends $pb.GeneratedMessage {
   factory AddXPRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? xpAmount,
     $core.String? activityKey,
   }) {
@@ -239,7 +243,7 @@ class AddXPRequest extends $pb.GeneratedMessage {
   factory AddXPRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AddXPRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_xp.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'xpAmount', $pb.PbFieldType.O3)
     ..aOS(3, _omitFieldNames ? '' : 'activityKey')
     ..hasRequiredFields = false
@@ -263,9 +267,9 @@ class AddXPRequest extends $pb.GeneratedMessage {
   static AddXPRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -476,7 +480,7 @@ class GetLeaderboardResponse extends $pb.GeneratedMessage {
 /// Get user level request and response
 class GetUserLevelRequest extends $pb.GeneratedMessage {
   factory GetUserLevelRequest({
-    $core.int? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -489,7 +493,7 @@ class GetUserLevelRequest extends $pb.GeneratedMessage {
   factory GetUserLevelRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserLevelRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_xp.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -511,9 +515,9 @@ class GetUserLevelRequest extends $pb.GeneratedMessage {
   static GetUserLevelRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)

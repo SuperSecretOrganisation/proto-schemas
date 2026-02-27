@@ -21,14 +21,14 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 class Prediction extends $pb.GeneratedMessage {
   factory Prediction({
     $core.String? uuid,
-    $core.String? userUuid,
+    $core.String? userId,
     $core.int? prediction,
     $core.int? errorRange,
     $1.Timestamp? timestamp,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
-    if (userUuid != null) result.userUuid = userUuid;
+    if (userId != null) result.userId = userId;
     if (prediction != null) result.prediction = prediction;
     if (errorRange != null) result.errorRange = errorRange;
     if (timestamp != null) result.timestamp = timestamp;
@@ -42,7 +42,7 @@ class Prediction extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Prediction', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.prediction.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'userUuid')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'prediction', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'errorRange', $pb.PbFieldType.O3)
     ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
@@ -76,13 +76,13 @@ class Prediction extends $pb.GeneratedMessage {
   void clearUuid() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get userUuid => $_getSZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userUuid($core.String value) => $_setString(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasUserUuid() => $_has(1);
+  $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearUserUuid() => $_clearField(2);
+  void clearUserId() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.int get prediction => $_getIZ(2);
@@ -266,13 +266,13 @@ class PredictionFilter extends $pb.GeneratedMessage {
 
 class CreatePredictionRequest extends $pb.GeneratedMessage {
   factory CreatePredictionRequest({
-    $core.String? userUuid,
+    $core.String? userId,
     $core.int? prediction,
     $core.int? errorRange,
     $1.Timestamp? timestamp,
   }) {
     final result = create();
-    if (userUuid != null) result.userUuid = userUuid;
+    if (userId != null) result.userId = userId;
     if (prediction != null) result.prediction = prediction;
     if (errorRange != null) result.errorRange = errorRange;
     if (timestamp != null) result.timestamp = timestamp;
@@ -285,7 +285,7 @@ class CreatePredictionRequest extends $pb.GeneratedMessage {
   factory CreatePredictionRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreatePredictionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.prediction.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'userUuid')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'prediction', $pb.PbFieldType.O3)
     ..a<$core.int>(3, _omitFieldNames ? '' : 'errorRange', $pb.PbFieldType.O3)
     ..aOM<$1.Timestamp>(4, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
@@ -310,13 +310,13 @@ class CreatePredictionRequest extends $pb.GeneratedMessage {
   static CreatePredictionRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get userUuid => $_getSZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userUuid($core.String value) => $_setString(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
-  $core.bool hasUserUuid() => $_has(0);
+  $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUserUuid() => $_clearField(1);
+  void clearUserId() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.int get prediction => $_getIZ(1);
@@ -351,14 +351,14 @@ class CreatePredictionRequest extends $pb.GeneratedMessage {
 class CreatePredictionResponse extends $pb.GeneratedMessage {
   factory CreatePredictionResponse({
     $core.String? uuid,
-    $core.String? userUuid,
+    $core.String? userId,
     $core.int? prediction,
     $core.int? errorRange,
     $1.Timestamp? timestamp,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
-    if (userUuid != null) result.userUuid = userUuid;
+    if (userId != null) result.userId = userId;
     if (prediction != null) result.prediction = prediction;
     if (errorRange != null) result.errorRange = errorRange;
     if (timestamp != null) result.timestamp = timestamp;
@@ -372,7 +372,7 @@ class CreatePredictionResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreatePredictionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.prediction.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'userUuid')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'prediction', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'errorRange', $pb.PbFieldType.O3)
     ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
@@ -406,13 +406,13 @@ class CreatePredictionResponse extends $pb.GeneratedMessage {
   void clearUuid() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get userUuid => $_getSZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userUuid($core.String value) => $_setString(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasUserUuid() => $_has(1);
+  $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearUserUuid() => $_clearField(2);
+  void clearUserId() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.int get prediction => $_getIZ(2);
@@ -493,14 +493,14 @@ class GetPredictionRequest extends $pb.GeneratedMessage {
 class GetPredictionResponse extends $pb.GeneratedMessage {
   factory GetPredictionResponse({
     $core.String? uuid,
-    $core.String? userUuid,
+    $core.String? userId,
     $core.int? prediction,
     $core.int? errorRange,
     $1.Timestamp? timestamp,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
-    if (userUuid != null) result.userUuid = userUuid;
+    if (userId != null) result.userId = userId;
     if (prediction != null) result.prediction = prediction;
     if (errorRange != null) result.errorRange = errorRange;
     if (timestamp != null) result.timestamp = timestamp;
@@ -514,7 +514,7 @@ class GetPredictionResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetPredictionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.prediction.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'userUuid')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'prediction', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'errorRange', $pb.PbFieldType.O3)
     ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
@@ -548,13 +548,13 @@ class GetPredictionResponse extends $pb.GeneratedMessage {
   void clearUuid() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get userUuid => $_getSZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userUuid($core.String value) => $_setString(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasUserUuid() => $_has(1);
+  $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearUserUuid() => $_clearField(2);
+  void clearUserId() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.int get prediction => $_getIZ(2);
@@ -588,11 +588,11 @@ class GetPredictionResponse extends $pb.GeneratedMessage {
 
 class GetByUserIDRequest extends $pb.GeneratedMessage {
   factory GetByUserIDRequest({
-    $core.String? userUuid,
+    $core.String? userId,
     PredictionFilter? filter,
   }) {
     final result = create();
-    if (userUuid != null) result.userUuid = userUuid;
+    if (userId != null) result.userId = userId;
     if (filter != null) result.filter = filter;
     return result;
   }
@@ -603,7 +603,7 @@ class GetByUserIDRequest extends $pb.GeneratedMessage {
   factory GetByUserIDRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetByUserIDRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.prediction.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'userUuid')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOM<PredictionFilter>(2, _omitFieldNames ? '' : 'filter', subBuilder: PredictionFilter.create)
     ..hasRequiredFields = false
   ;
@@ -626,13 +626,13 @@ class GetByUserIDRequest extends $pb.GeneratedMessage {
   static GetByUserIDRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get userUuid => $_getSZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userUuid($core.String value) => $_setString(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
-  $core.bool hasUserUuid() => $_has(0);
+  $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUserUuid() => $_clearField(1);
+  void clearUserId() => $_clearField(1);
 
   @$pb.TagNumber(2)
   PredictionFilter get filter => $_getN(1);
@@ -697,14 +697,14 @@ class GetByUserIDResponse extends $pb.GeneratedMessage {
 class UpdatePredictionRequest extends $pb.GeneratedMessage {
   factory UpdatePredictionRequest({
     $core.String? uuid,
-    $core.String? userUuid,
+    $core.String? userId,
     $core.int? prediction,
     $core.int? errorRange,
     $1.Timestamp? timestamp,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
-    if (userUuid != null) result.userUuid = userUuid;
+    if (userId != null) result.userId = userId;
     if (prediction != null) result.prediction = prediction;
     if (errorRange != null) result.errorRange = errorRange;
     if (timestamp != null) result.timestamp = timestamp;
@@ -718,7 +718,7 @@ class UpdatePredictionRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePredictionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.prediction.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'userUuid')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'prediction', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'errorRange', $pb.PbFieldType.O3)
     ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
@@ -752,13 +752,13 @@ class UpdatePredictionRequest extends $pb.GeneratedMessage {
   void clearUuid() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get userUuid => $_getSZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userUuid($core.String value) => $_setString(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasUserUuid() => $_has(1);
+  $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearUserUuid() => $_clearField(2);
+  void clearUserId() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.int get prediction => $_getIZ(2);
@@ -793,14 +793,14 @@ class UpdatePredictionRequest extends $pb.GeneratedMessage {
 class UpdatePredictionResponse extends $pb.GeneratedMessage {
   factory UpdatePredictionResponse({
     $core.String? uuid,
-    $core.String? userUuid,
+    $core.String? userId,
     $core.int? prediction,
     $core.int? errorRange,
     $1.Timestamp? timestamp,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
-    if (userUuid != null) result.userUuid = userUuid;
+    if (userId != null) result.userId = userId;
     if (prediction != null) result.prediction = prediction;
     if (errorRange != null) result.errorRange = errorRange;
     if (timestamp != null) result.timestamp = timestamp;
@@ -814,7 +814,7 @@ class UpdatePredictionResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePredictionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.prediction.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..aOS(2, _omitFieldNames ? '' : 'userUuid')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'prediction', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'errorRange', $pb.PbFieldType.O3)
     ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
@@ -848,13 +848,13 @@ class UpdatePredictionResponse extends $pb.GeneratedMessage {
   void clearUuid() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get userUuid => $_getSZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userUuid($core.String value) => $_setString(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasUserUuid() => $_has(1);
+  $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearUserUuid() => $_clearField(2);
+  void clearUserId() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.int get prediction => $_getIZ(2);

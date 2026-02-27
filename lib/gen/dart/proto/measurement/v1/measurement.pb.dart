@@ -150,8 +150,8 @@ class Measurement extends $pb.GeneratedMessage {
   $1.Timestamp ensureTimeStamp() => $_ensure(7);
 }
 
-class MeasurementDTO extends $pb.GeneratedMessage {
-  factory MeasurementDTO({
+class MeasurementBatch extends $pb.GeneratedMessage {
+  factory MeasurementBatch({
     $core.String? userId,
     $core.String? activityId,
     $core.String? activityType,
@@ -171,12 +171,12 @@ class MeasurementDTO extends $pb.GeneratedMessage {
     return result;
   }
 
-  MeasurementDTO._();
+  MeasurementBatch._();
 
-  factory MeasurementDTO.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
-  factory MeasurementDTO.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
+  factory MeasurementBatch.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory MeasurementBatch.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MeasurementDTO', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.measurement.v1'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MeasurementBatch', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.measurement.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOS(2, _omitFieldNames ? '' : 'activityId')
     ..aOS(3, _omitFieldNames ? '' : 'activityType')
@@ -188,21 +188,21 @@ class MeasurementDTO extends $pb.GeneratedMessage {
   ;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  MeasurementDTO clone() => MeasurementDTO()..mergeFromMessage(this);
+  MeasurementBatch clone() => MeasurementBatch()..mergeFromMessage(this);
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  MeasurementDTO copyWith(void Function(MeasurementDTO) updates) => super.copyWith((message) => updates(message as MeasurementDTO)) as MeasurementDTO;
+  MeasurementBatch copyWith(void Function(MeasurementBatch) updates) => super.copyWith((message) => updates(message as MeasurementBatch)) as MeasurementBatch;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static MeasurementDTO create() => MeasurementDTO._();
+  static MeasurementBatch create() => MeasurementBatch._();
   @$core.override
-  MeasurementDTO createEmptyInstance() => create();
-  static $pb.PbList<MeasurementDTO> createRepeated() => $pb.PbList<MeasurementDTO>();
+  MeasurementBatch createEmptyInstance() => create();
+  static $pb.PbList<MeasurementBatch> createRepeated() => $pb.PbList<MeasurementBatch>();
   @$core.pragma('dart2js:noInline')
-  static MeasurementDTO getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MeasurementDTO>(create);
-  static MeasurementDTO? _defaultInstance;
+  static MeasurementBatch getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MeasurementBatch>(create);
+  static MeasurementBatch? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
@@ -686,10 +686,12 @@ class ListAllMeasurementsResponse extends $pb.GeneratedMessage {
 /// Measurement creation and update request and response
 class CreateMeasurementRequest extends $pb.GeneratedMessage {
   factory CreateMeasurementRequest({
-    MeasurementDTO? measurementDto,
+    MeasurementBatch? measurementBatch,
+    $core.String? idempotencyKey,
   }) {
     final result = create();
-    if (measurementDto != null) result.measurementDto = measurementDto;
+    if (measurementBatch != null) result.measurementBatch = measurementBatch;
+    if (idempotencyKey != null) result.idempotencyKey = idempotencyKey;
     return result;
   }
 
@@ -699,7 +701,8 @@ class CreateMeasurementRequest extends $pb.GeneratedMessage {
   factory CreateMeasurementRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreateMeasurementRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.measurement.v1'), createEmptyInstance: create)
-    ..aOM<MeasurementDTO>(1, _omitFieldNames ? '' : 'measurementDto', subBuilder: MeasurementDTO.create)
+    ..aOM<MeasurementBatch>(1, _omitFieldNames ? '' : 'measurementBatch', subBuilder: MeasurementBatch.create)
+    ..aOS(2, _omitFieldNames ? '' : 'idempotencyKey')
     ..hasRequiredFields = false
   ;
 
@@ -721,15 +724,24 @@ class CreateMeasurementRequest extends $pb.GeneratedMessage {
   static CreateMeasurementRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  MeasurementDTO get measurementDto => $_getN(0);
+  MeasurementBatch get measurementBatch => $_getN(0);
   @$pb.TagNumber(1)
-  set measurementDto(MeasurementDTO value) => $_setField(1, value);
+  set measurementBatch(MeasurementBatch value) => $_setField(1, value);
   @$pb.TagNumber(1)
-  $core.bool hasMeasurementDto() => $_has(0);
+  $core.bool hasMeasurementBatch() => $_has(0);
   @$pb.TagNumber(1)
-  void clearMeasurementDto() => $_clearField(1);
+  void clearMeasurementBatch() => $_clearField(1);
   @$pb.TagNumber(1)
-  MeasurementDTO ensureMeasurementDto() => $_ensure(0);
+  MeasurementBatch ensureMeasurementBatch() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get idempotencyKey => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set idempotencyKey($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasIdempotencyKey() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearIdempotencyKey() => $_clearField(2);
 }
 
 class CreateMeasurementResponse extends $pb.GeneratedMessage {

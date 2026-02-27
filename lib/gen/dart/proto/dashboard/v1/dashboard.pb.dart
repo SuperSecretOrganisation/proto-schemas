@@ -706,7 +706,7 @@ class UserLevelInfo extends $pb.GeneratedMessage {
 /// Get dashboard data request and response
 class GetDashboardDataRequest extends $pb.GeneratedMessage {
   factory GetDashboardDataRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.bool? includeLeaderboardRank,
   }) {
     final result = create();
@@ -721,7 +721,7 @@ class GetDashboardDataRequest extends $pb.GeneratedMessage {
   factory GetDashboardDataRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetDashboardDataRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.dashboard.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOB(2, _omitFieldNames ? '' : 'includeLeaderboardRank')
     ..hasRequiredFields = false
   ;
@@ -744,9 +744,9 @@ class GetDashboardDataRequest extends $pb.GeneratedMessage {
   static GetDashboardDataRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -813,7 +813,7 @@ class GetDashboardDataResponse extends $pb.GeneratedMessage {
 /// Refresh dashboard request and response (forces recalculation)
 class RefreshDashboardRequest extends $pb.GeneratedMessage {
   factory RefreshDashboardRequest({
-    $core.int? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -826,7 +826,7 @@ class RefreshDashboardRequest extends $pb.GeneratedMessage {
   factory RefreshDashboardRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RefreshDashboardRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.dashboard.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -848,9 +848,9 @@ class RefreshDashboardRequest extends $pb.GeneratedMessage {
   static RefreshDashboardRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)

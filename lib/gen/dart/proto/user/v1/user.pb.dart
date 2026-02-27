@@ -15,7 +15,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../../notification_token/v1/notification_token.pb.dart' as $1;
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+import '../../notification_token/v1/notification_token.pb.dart' as $2;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -25,12 +26,12 @@ class User extends $pb.GeneratedMessage {
     $core.String? uuid,
     $core.String? username,
     $core.String? email,
-    $core.String? createdAt,
-    $core.String? updatedAt,
+    $1.Timestamp? createdAt,
+    $1.Timestamp? updatedAt,
     $fixnum.Int64? id,
-    $core.Iterable<$1.NotificationToken>? notificationTokens,
+    $core.Iterable<$2.NotificationToken>? notificationTokens,
     $core.bool? emailVerified,
-    $core.String? lastLogin,
+    $1.Timestamp? lastLogin,
   }) {
     final result = create();
     if (uuid != null) result.uuid = uuid;
@@ -54,12 +55,12 @@ class User extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
     ..aOS(2, _omitFieldNames ? '' : 'username')
     ..aOS(3, _omitFieldNames ? '' : 'email')
-    ..aOS(4, _omitFieldNames ? '' : 'createdAt')
-    ..aOS(5, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(4, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..aInt64(6, _omitFieldNames ? '' : 'id')
-    ..pc<$1.NotificationToken>(7, _omitFieldNames ? '' : 'notificationTokens', $pb.PbFieldType.PM, subBuilder: $1.NotificationToken.create)
+    ..pc<$2.NotificationToken>(7, _omitFieldNames ? '' : 'notificationTokens', $pb.PbFieldType.PM, subBuilder: $2.NotificationToken.create)
     ..aOB(8, _omitFieldNames ? '' : 'emailVerified')
-    ..aOS(9, _omitFieldNames ? '' : 'lastLogin')
+    ..aOM<$1.Timestamp>(9, _omitFieldNames ? '' : 'lastLogin', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -108,22 +109,26 @@ class User extends $pb.GeneratedMessage {
   void clearEmail() => $_clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get createdAt => $_getSZ(3);
+  $1.Timestamp get createdAt => $_getN(3);
   @$pb.TagNumber(4)
-  set createdAt($core.String value) => $_setString(3, value);
+  set createdAt($1.Timestamp value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasCreatedAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearCreatedAt() => $_clearField(4);
+  @$pb.TagNumber(4)
+  $1.Timestamp ensureCreatedAt() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $core.String get updatedAt => $_getSZ(4);
+  $1.Timestamp get updatedAt => $_getN(4);
   @$pb.TagNumber(5)
-  set updatedAt($core.String value) => $_setString(4, value);
+  set updatedAt($1.Timestamp value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasUpdatedAt() => $_has(4);
   @$pb.TagNumber(5)
   void clearUpdatedAt() => $_clearField(5);
+  @$pb.TagNumber(5)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(4);
 
   @$pb.TagNumber(6)
   $fixnum.Int64 get id => $_getI64(5);
@@ -135,7 +140,7 @@ class User extends $pb.GeneratedMessage {
   void clearId() => $_clearField(6);
 
   @$pb.TagNumber(7)
-  $pb.PbList<$1.NotificationToken> get notificationTokens => $_getList(6);
+  $pb.PbList<$2.NotificationToken> get notificationTokens => $_getList(6);
 
   @$pb.TagNumber(8)
   $core.bool get emailVerified => $_getBF(7);
@@ -147,13 +152,15 @@ class User extends $pb.GeneratedMessage {
   void clearEmailVerified() => $_clearField(8);
 
   @$pb.TagNumber(9)
-  $core.String get lastLogin => $_getSZ(8);
+  $1.Timestamp get lastLogin => $_getN(8);
   @$pb.TagNumber(9)
-  set lastLogin($core.String value) => $_setString(8, value);
+  set lastLogin($1.Timestamp value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasLastLogin() => $_has(8);
   @$pb.TagNumber(9)
   void clearLastLogin() => $_clearField(9);
+  @$pb.TagNumber(9)
+  $1.Timestamp ensureLastLogin() => $_ensure(8);
 }
 
 /// User creation request and response
@@ -679,65 +686,6 @@ class ListUsersResponse extends $pb.GeneratedMessage {
   $core.bool hasTotalCount() => $_has(1);
   @$pb.TagNumber(2)
   void clearTotalCount() => $_clearField(2);
-}
-
-/// Error handling
-class Error extends $pb.GeneratedMessage {
-  factory Error({
-    $core.String? code,
-    $core.String? message,
-  }) {
-    final result = create();
-    if (code != null) result.code = code;
-    if (message != null) result.message = message;
-    return result;
-  }
-
-  Error._();
-
-  factory Error.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
-  factory Error.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Error', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'code')
-    ..aOS(2, _omitFieldNames ? '' : 'message')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Error clone() => Error()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Error copyWith(void Function(Error) updates) => super.copyWith((message) => updates(message as Error)) as Error;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static Error create() => Error._();
-  @$core.override
-  Error createEmptyInstance() => create();
-  static $pb.PbList<Error> createRepeated() => $pb.PbList<Error>();
-  @$core.pragma('dart2js:noInline')
-  static Error getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Error>(create);
-  static Error? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get code => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set code($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasCode() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearCode() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get message => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set message($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasMessage() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMessage() => $_clearField(2);
 }
 
 

@@ -9,6 +9,7 @@ package badgepb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -35,8 +36,8 @@ type Badge struct {
 	RequirementValue int32                  `protobuf:"varint,9,opt,name=requirement_value,json=requirementValue,proto3" json:"requirement_value,omitempty"`
 	Points           int32                  `protobuf:"varint,10,opt,name=points,proto3" json:"points,omitempty"`
 	IsActive         bool                   `protobuf:"varint,11,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CreatedAt        string                 `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt        string                 `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -148,18 +149,18 @@ func (x *Badge) GetIsActive() bool {
 	return false
 }
 
-func (x *Badge) GetCreatedAt() string {
+func (x *Badge) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *Badge) GetUpdatedAt() string {
+func (x *Badge) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 // Get badge request and response
@@ -537,6 +538,7 @@ func (x *GetBadgesByLevelResponse) GetBadges() []*Badge {
 // Create badge request and response
 type CreateBadgeRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
+	IdempotencyKey   string                 `protobuf:"bytes,10,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
 	BadgeKey         string                 `protobuf:"bytes,1,opt,name=badge_key,json=badgeKey,proto3" json:"badge_key,omitempty"`
 	Name             string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description      string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
@@ -578,6 +580,13 @@ func (x *CreateBadgeRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CreateBadgeRequest.ProtoReflect.Descriptor instead.
 func (*CreateBadgeRequest) Descriptor() ([]byte, []int) {
 	return file_proto_badge_v1_badge_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *CreateBadgeRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
 }
 
 func (x *CreateBadgeRequest) GetBadgeKey() string {
@@ -909,7 +918,7 @@ var File_proto_badge_v1_badge_proto protoreflect.FileDescriptor
 
 const file_proto_badge_v1_badge_proto_rawDesc = "" +
 	"\n" +
-	"\x1aproto/badge/v1/badge.proto\x12\x0eproto.badge.v1\"\x82\x03\n" +
+	"\x1aproto/badge/v1/badge.proto\x12\x0eproto.badge.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xba\x03\n" +
 	"\x05Badge\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1b\n" +
 	"\tbadge_key\x18\x02 \x01(\tR\bbadgeKey\x12\x12\n" +
@@ -922,11 +931,11 @@ const file_proto_badge_v1_badge_proto_rawDesc = "" +
 	"\x11requirement_value\x18\t \x01(\x05R\x10requirementValue\x12\x16\n" +
 	"\x06points\x18\n" +
 	" \x01(\x05R\x06points\x12\x1b\n" +
-	"\tis_active\x18\v \x01(\bR\bisActive\x12\x1d\n" +
+	"\tis_active\x18\v \x01(\bR\bisActive\x129\n" +
 	"\n" +
-	"created_at\x18\f \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\r \x01(\tR\tupdatedAt\"!\n" +
+	"updated_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"!\n" +
 	"\x0fGetBadgeRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"?\n" +
 	"\x10GetBadgeResponse\x12+\n" +
@@ -945,8 +954,10 @@ const file_proto_badge_v1_badge_proto_rawDesc = "" +
 	"\x17GetBadgesByLevelRequest\x12\x14\n" +
 	"\x05level\x18\x01 \x01(\x05R\x05level\"I\n" +
 	"\x18GetBadgesByLevelResponse\x12-\n" +
-	"\x06badges\x18\x01 \x03(\v2\x15.proto.badge.v1.BadgeR\x06badges\"\xa4\x02\n" +
-	"\x12CreateBadgeRequest\x12\x1b\n" +
+	"\x06badges\x18\x01 \x03(\v2\x15.proto.badge.v1.BadgeR\x06badges\"\xcd\x02\n" +
+	"\x12CreateBadgeRequest\x12'\n" +
+	"\x0fidempotency_key\x18\n" +
+	" \x01(\tR\x0eidempotencyKey\x12\x1b\n" +
 	"\tbadge_key\x18\x01 \x01(\tR\bbadgeKey\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1a\n" +
@@ -979,7 +990,7 @@ const file_proto_badge_v1_badge_proto_rawDesc = "" +
 	"\x10GetBadgesByLevel\x12'.proto.badge.v1.GetBadgesByLevelRequest\x1a(.proto.badge.v1.GetBadgesByLevelResponse\x12V\n" +
 	"\vCreateBadge\x12\".proto.badge.v1.CreateBadgeRequest\x1a#.proto.badge.v1.CreateBadgeResponse\x12V\n" +
 	"\vUpdateBadge\x12\".proto.badge.v1.UpdateBadgeRequest\x1a#.proto.badge.v1.UpdateBadgeResponse\x12V\n" +
-	"\vDeleteBadge\x12\".proto.badge.v1.DeleteBadgeRequest\x1a#.proto.badge.v1.DeleteBadgeResponseBSZQgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/badge/v1;badgepbb\x06proto3"
+	"\vDeleteBadge\x12\".proto.badge.v1.DeleteBadgeRequest\x1a#.proto.badge.v1.DeleteBadgeResponseBSZQgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/badge/v1;badgepbb\x06proto3"
 
 var (
 	file_proto_badge_v1_badge_proto_rawDescOnce sync.Once
@@ -1010,33 +1021,36 @@ var file_proto_badge_v1_badge_proto_goTypes = []any{
 	(*UpdateBadgeResponse)(nil),         // 12: proto.badge.v1.UpdateBadgeResponse
 	(*DeleteBadgeRequest)(nil),          // 13: proto.badge.v1.DeleteBadgeRequest
 	(*DeleteBadgeResponse)(nil),         // 14: proto.badge.v1.DeleteBadgeResponse
+	(*timestamppb.Timestamp)(nil),       // 15: google.protobuf.Timestamp
 }
 var file_proto_badge_v1_badge_proto_depIdxs = []int32{
-	0,  // 0: proto.badge.v1.GetBadgeResponse.badge:type_name -> proto.badge.v1.Badge
-	0,  // 1: proto.badge.v1.ListBadgesResponse.badges:type_name -> proto.badge.v1.Badge
-	0,  // 2: proto.badge.v1.GetBadgesByCategoryResponse.badges:type_name -> proto.badge.v1.Badge
-	0,  // 3: proto.badge.v1.GetBadgesByLevelResponse.badges:type_name -> proto.badge.v1.Badge
-	0,  // 4: proto.badge.v1.CreateBadgeResponse.badge:type_name -> proto.badge.v1.Badge
-	0,  // 5: proto.badge.v1.UpdateBadgeResponse.badge:type_name -> proto.badge.v1.Badge
-	1,  // 6: proto.badge.v1.BadgeService.GetBadge:input_type -> proto.badge.v1.GetBadgeRequest
-	3,  // 7: proto.badge.v1.BadgeService.ListBadges:input_type -> proto.badge.v1.ListBadgesRequest
-	5,  // 8: proto.badge.v1.BadgeService.GetBadgesByCategory:input_type -> proto.badge.v1.GetBadgesByCategoryRequest
-	7,  // 9: proto.badge.v1.BadgeService.GetBadgesByLevel:input_type -> proto.badge.v1.GetBadgesByLevelRequest
-	9,  // 10: proto.badge.v1.BadgeService.CreateBadge:input_type -> proto.badge.v1.CreateBadgeRequest
-	11, // 11: proto.badge.v1.BadgeService.UpdateBadge:input_type -> proto.badge.v1.UpdateBadgeRequest
-	13, // 12: proto.badge.v1.BadgeService.DeleteBadge:input_type -> proto.badge.v1.DeleteBadgeRequest
-	2,  // 13: proto.badge.v1.BadgeService.GetBadge:output_type -> proto.badge.v1.GetBadgeResponse
-	4,  // 14: proto.badge.v1.BadgeService.ListBadges:output_type -> proto.badge.v1.ListBadgesResponse
-	6,  // 15: proto.badge.v1.BadgeService.GetBadgesByCategory:output_type -> proto.badge.v1.GetBadgesByCategoryResponse
-	8,  // 16: proto.badge.v1.BadgeService.GetBadgesByLevel:output_type -> proto.badge.v1.GetBadgesByLevelResponse
-	10, // 17: proto.badge.v1.BadgeService.CreateBadge:output_type -> proto.badge.v1.CreateBadgeResponse
-	12, // 18: proto.badge.v1.BadgeService.UpdateBadge:output_type -> proto.badge.v1.UpdateBadgeResponse
-	14, // 19: proto.badge.v1.BadgeService.DeleteBadge:output_type -> proto.badge.v1.DeleteBadgeResponse
-	13, // [13:20] is the sub-list for method output_type
-	6,  // [6:13] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	15, // 0: proto.badge.v1.Badge.created_at:type_name -> google.protobuf.Timestamp
+	15, // 1: proto.badge.v1.Badge.updated_at:type_name -> google.protobuf.Timestamp
+	0,  // 2: proto.badge.v1.GetBadgeResponse.badge:type_name -> proto.badge.v1.Badge
+	0,  // 3: proto.badge.v1.ListBadgesResponse.badges:type_name -> proto.badge.v1.Badge
+	0,  // 4: proto.badge.v1.GetBadgesByCategoryResponse.badges:type_name -> proto.badge.v1.Badge
+	0,  // 5: proto.badge.v1.GetBadgesByLevelResponse.badges:type_name -> proto.badge.v1.Badge
+	0,  // 6: proto.badge.v1.CreateBadgeResponse.badge:type_name -> proto.badge.v1.Badge
+	0,  // 7: proto.badge.v1.UpdateBadgeResponse.badge:type_name -> proto.badge.v1.Badge
+	1,  // 8: proto.badge.v1.BadgeService.GetBadge:input_type -> proto.badge.v1.GetBadgeRequest
+	3,  // 9: proto.badge.v1.BadgeService.ListBadges:input_type -> proto.badge.v1.ListBadgesRequest
+	5,  // 10: proto.badge.v1.BadgeService.GetBadgesByCategory:input_type -> proto.badge.v1.GetBadgesByCategoryRequest
+	7,  // 11: proto.badge.v1.BadgeService.GetBadgesByLevel:input_type -> proto.badge.v1.GetBadgesByLevelRequest
+	9,  // 12: proto.badge.v1.BadgeService.CreateBadge:input_type -> proto.badge.v1.CreateBadgeRequest
+	11, // 13: proto.badge.v1.BadgeService.UpdateBadge:input_type -> proto.badge.v1.UpdateBadgeRequest
+	13, // 14: proto.badge.v1.BadgeService.DeleteBadge:input_type -> proto.badge.v1.DeleteBadgeRequest
+	2,  // 15: proto.badge.v1.BadgeService.GetBadge:output_type -> proto.badge.v1.GetBadgeResponse
+	4,  // 16: proto.badge.v1.BadgeService.ListBadges:output_type -> proto.badge.v1.ListBadgesResponse
+	6,  // 17: proto.badge.v1.BadgeService.GetBadgesByCategory:output_type -> proto.badge.v1.GetBadgesByCategoryResponse
+	8,  // 18: proto.badge.v1.BadgeService.GetBadgesByLevel:output_type -> proto.badge.v1.GetBadgesByLevelResponse
+	10, // 19: proto.badge.v1.BadgeService.CreateBadge:output_type -> proto.badge.v1.CreateBadgeResponse
+	12, // 20: proto.badge.v1.BadgeService.UpdateBadge:output_type -> proto.badge.v1.UpdateBadgeResponse
+	14, // 21: proto.badge.v1.BadgeService.DeleteBadge:output_type -> proto.badge.v1.DeleteBadgeResponse
+	15, // [15:22] is the sub-list for method output_type
+	8,  // [8:15] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_proto_badge_v1_badge_proto_init() }

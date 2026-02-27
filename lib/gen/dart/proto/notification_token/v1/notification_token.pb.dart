@@ -22,7 +22,7 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 class NotificationToken extends $pb.GeneratedMessage {
   factory NotificationToken({
     $fixnum.Int64? id,
-    $fixnum.Int64? userId,
+    $core.String? userId,
     $core.String? token,
     $core.String? platform,
     $1.Timestamp? lastSeenAt,
@@ -45,7 +45,7 @@ class NotificationToken extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'NotificationToken', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification_token.v1'), createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'id')
-    ..aInt64(2, _omitFieldNames ? '' : 'userId')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..aOS(3, _omitFieldNames ? '' : 'token')
     ..aOS(4, _omitFieldNames ? '' : 'platform')
     ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'lastSeenAt', subBuilder: $1.Timestamp.create)
@@ -80,9 +80,9 @@ class NotificationToken extends $pb.GeneratedMessage {
   void clearId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $fixnum.Int64 get userId => $_getI64(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userId($fixnum.Int64 value) => $_setInt64(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
   $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
@@ -131,7 +131,7 @@ class NotificationToken extends $pb.GeneratedMessage {
 
 class CreateNotificationTokenRequest extends $pb.GeneratedMessage {
   factory CreateNotificationTokenRequest({
-    $fixnum.Int64? userId,
+    $core.String? userId,
     $core.String? token,
     $core.String? platform,
   }) {
@@ -148,7 +148,7 @@ class CreateNotificationTokenRequest extends $pb.GeneratedMessage {
   factory CreateNotificationTokenRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreateNotificationTokenRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification_token.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOS(2, _omitFieldNames ? '' : 'token')
     ..aOS(3, _omitFieldNames ? '' : 'platform')
     ..hasRequiredFields = false
@@ -172,9 +172,9 @@ class CreateNotificationTokenRequest extends $pb.GeneratedMessage {
   static CreateNotificationTokenRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -249,7 +249,7 @@ class CreateNotificationTokenResponse extends $pb.GeneratedMessage {
 
 class GetNotificationTokenRequest extends $pb.GeneratedMessage {
   factory GetNotificationTokenRequest({
-    $fixnum.Int64? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -262,7 +262,7 @@ class GetNotificationTokenRequest extends $pb.GeneratedMessage {
   factory GetNotificationTokenRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetNotificationTokenRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification_token.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -284,9 +284,9 @@ class GetNotificationTokenRequest extends $pb.GeneratedMessage {
   static GetNotificationTokenRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -343,7 +343,7 @@ class GetNotificationTokenResponse extends $pb.GeneratedMessage {
 
 class UpdateNotificationTokenRequest extends $pb.GeneratedMessage {
   factory UpdateNotificationTokenRequest({
-    $fixnum.Int64? userId,
+    $core.String? userId,
     $core.String? token,
     $core.String? platform,
   }) {
@@ -360,7 +360,7 @@ class UpdateNotificationTokenRequest extends $pb.GeneratedMessage {
   factory UpdateNotificationTokenRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateNotificationTokenRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification_token.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOS(2, _omitFieldNames ? '' : 'token')
     ..aOS(3, _omitFieldNames ? '' : 'platform')
     ..hasRequiredFields = false
@@ -384,9 +384,9 @@ class UpdateNotificationTokenRequest extends $pb.GeneratedMessage {
   static UpdateNotificationTokenRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -553,7 +553,7 @@ class DeleteNotificationTokenResponse extends $pb.GeneratedMessage {
 
 class ListNotificationTokensRequest extends $pb.GeneratedMessage {
   factory ListNotificationTokensRequest({
-    $fixnum.Int64? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -566,7 +566,7 @@ class ListNotificationTokensRequest extends $pb.GeneratedMessage {
   factory ListNotificationTokensRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ListNotificationTokensRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification_token.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -588,9 +588,9 @@ class ListNotificationTokensRequest extends $pb.GeneratedMessage {
   static ListNotificationTokensRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -635,64 +635,6 @@ class ListNotificationTokensResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $pb.PbList<NotificationToken> get tokens => $_getList(0);
-}
-
-class Error extends $pb.GeneratedMessage {
-  factory Error({
-    $core.String? code,
-    $core.String? message,
-  }) {
-    final result = create();
-    if (code != null) result.code = code;
-    if (message != null) result.message = message;
-    return result;
-  }
-
-  Error._();
-
-  factory Error.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
-  factory Error.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Error', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification_token.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'code')
-    ..aOS(2, _omitFieldNames ? '' : 'message')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Error clone() => Error()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Error copyWith(void Function(Error) updates) => super.copyWith((message) => updates(message as Error)) as Error;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static Error create() => Error._();
-  @$core.override
-  Error createEmptyInstance() => create();
-  static $pb.PbList<Error> createRepeated() => $pb.PbList<Error>();
-  @$core.pragma('dart2js:noInline')
-  static Error getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Error>(create);
-  static Error? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get code => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set code($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasCode() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearCode() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get message => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set message($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasMessage() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMessage() => $_clearField(2);
 }
 
 

@@ -18,7 +18,7 @@ import 'dart:typed_data' as $typed_data;
 const UserSettings$json = {
   '1': 'UserSettings',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 3, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'phone_number', '3': 2, '4': 1, '5': 9, '10': 'phoneNumber'},
     {'1': 'bio', '3': 3, '4': 1, '5': 9, '10': 'bio'},
     {'1': 'avatar_url', '3': 4, '4': 1, '5': 9, '10': 'avatarUrl'},
@@ -33,14 +33,14 @@ const UserSettings$json = {
     {'1': 'language', '3': 13, '4': 1, '5': 9, '10': 'language'},
     {'1': 'measurement_unit', '3': 14, '4': 1, '5': 9, '10': 'measurementUnit'},
     {'1': 'timezone', '3': 15, '4': 1, '5': 9, '10': 'timezone'},
-    {'1': 'created_at', '3': 16, '4': 1, '5': 9, '10': 'createdAt'},
-    {'1': 'updated_at', '3': 17, '4': 1, '5': 9, '10': 'updatedAt'},
+    {'1': 'created_at', '3': 16, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
+    {'1': 'updated_at', '3': 17, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
 };
 
 /// Descriptor for `UserSettings`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userSettingsDescriptor = $convert.base64Decode(
-    'CgxVc2VyU2V0dGluZ3MSFwoHdXNlcl9pZBgBIAEoA1IGdXNlcklkEiEKDHBob25lX251bWJlch'
+    'CgxVc2VyU2V0dGluZ3MSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEiEKDHBob25lX251bWJlch'
     'gCIAEoCVILcGhvbmVOdW1iZXISEAoDYmlvGAMgASgJUgNiaW8SHQoKYXZhdGFyX3VybBgEIAEo'
     'CVIJYXZhdGFyVXJsEjwKGnB1c2hfbm90aWZpY2F0aW9uc19lbmFibGVkGAUgASgIUhhwdXNoTm'
     '90aWZpY2F0aW9uc0VuYWJsZWQSPgobZW1haWxfbm90aWZpY2F0aW9uc19lbmFibGVkGAYgASgI'
@@ -51,20 +51,21 @@ final $typed_data.Uint8List userSettingsDescriptor = $convert.base64Decode(
     'VmlzaWJsZRIwChRkYXRhX3NoYXJpbmdfZW5hYmxlZBgLIAEoCFISZGF0YVNoYXJpbmdFbmFibG'
     'VkEhQKBXRoZW1lGAwgASgJUgV0aGVtZRIaCghsYW5ndWFnZRgNIAEoCVIIbGFuZ3VhZ2USKQoQ'
     'bWVhc3VyZW1lbnRfdW5pdBgOIAEoCVIPbWVhc3VyZW1lbnRVbml0EhoKCHRpbWV6b25lGA8gAS'
-    'gJUgh0aW1lem9uZRIdCgpjcmVhdGVkX2F0GBAgASgJUgljcmVhdGVkQXQSHQoKdXBkYXRlZF9h'
-    'dBgRIAEoCVIJdXBkYXRlZEF0');
+    'gJUgh0aW1lem9uZRI5CgpjcmVhdGVkX2F0GBAgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVz'
+    'dGFtcFIJY3JlYXRlZEF0EjkKCnVwZGF0ZWRfYXQYESABKAsyGi5nb29nbGUucHJvdG9idWYuVG'
+    'ltZXN0YW1wUgl1cGRhdGVkQXQ=');
 
 @$core.Deprecated('Use getUserSettingsRequestDescriptor instead')
 const GetUserSettingsRequest$json = {
   '1': 'GetUserSettingsRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 3, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
   ],
 };
 
 /// Descriptor for `GetUserSettingsRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserSettingsRequestDescriptor = $convert.base64Decode(
-    'ChZHZXRVc2VyU2V0dGluZ3NSZXF1ZXN0EhcKB3VzZXJfaWQYASABKANSBnVzZXJJZA==');
+    'ChZHZXRVc2VyU2V0dGluZ3NSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZA==');
 
 @$core.Deprecated('Use getUserSettingsResponseDescriptor instead')
 const GetUserSettingsResponse$json = {
@@ -83,14 +84,14 @@ final $typed_data.Uint8List getUserSettingsResponseDescriptor = $convert.base64D
 const UpdateUserSettingsRequest$json = {
   '1': 'UpdateUserSettingsRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 3, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'settings', '3': 2, '4': 1, '5': 11, '6': '.proto.user_settings.v1.UserSettings', '10': 'settings'},
   ],
 };
 
 /// Descriptor for `UpdateUserSettingsRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updateUserSettingsRequestDescriptor = $convert.base64Decode(
-    'ChlVcGRhdGVVc2VyU2V0dGluZ3NSZXF1ZXN0EhcKB3VzZXJfaWQYASABKANSBnVzZXJJZBJACg'
+    'ChlVcGRhdGVVc2VyU2V0dGluZ3NSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBJACg'
     'hzZXR0aW5ncxgCIAEoCzIkLnByb3RvLnVzZXJfc2V0dGluZ3MudjEuVXNlclNldHRpbmdzUghz'
     'ZXR0aW5ncw==');
 
@@ -106,17 +107,4 @@ const UpdateUserSettingsResponse$json = {
 final $typed_data.Uint8List updateUserSettingsResponseDescriptor = $convert.base64Decode(
     'ChpVcGRhdGVVc2VyU2V0dGluZ3NSZXNwb25zZRJACghzZXR0aW5ncxgBIAEoCzIkLnByb3RvLn'
     'VzZXJfc2V0dGluZ3MudjEuVXNlclNldHRpbmdzUghzZXR0aW5ncw==');
-
-@$core.Deprecated('Use errorDescriptor instead')
-const Error$json = {
-  '1': 'Error',
-  '2': [
-    {'1': 'code', '3': 1, '4': 1, '5': 9, '10': 'code'},
-    {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
-  ],
-};
-
-/// Descriptor for `Error`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List errorDescriptor = $convert.base64Decode(
-    'CgVFcnJvchISCgRjb2RlGAEgASgJUgRjb2RlEhgKB21lc3NhZ2UYAiABKAlSB21lc3NhZ2U=');
 

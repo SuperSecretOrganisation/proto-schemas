@@ -107,8 +107,8 @@ const TrainingProgram$json = {
     {'1': 'author', '3': 9, '4': 1, '5': 9, '10': 'author'},
     {'1': 'is_custom', '3': 10, '4': 1, '5': 8, '10': 'isCustom'},
     {'1': 'user_id', '3': 11, '4': 1, '5': 9, '10': 'userId'},
-    {'1': 'created_at', '3': 12, '4': 1, '5': 9, '10': 'createdAt'},
-    {'1': 'updated_at', '3': 13, '4': 1, '5': 9, '10': 'updatedAt'},
+    {'1': 'created_at', '3': 12, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
+    {'1': 'updated_at', '3': 13, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
 };
 
@@ -120,13 +120,15 @@ final $typed_data.Uint8List trainingProgramDescriptor = $convert.base64Decode(
     'F0aW9uV2Vla3MSPAoFd2Vla3MYByADKAsyJi5wcm90by50cmFpbmluZ19wcm9ncmFtLnYxLlBy'
     'b2dyYW1XZWVrUgV3ZWVrcxItChJlcXVpcG1lbnRfcmVxdWlyZWQYCCADKAlSEWVxdWlwbWVudF'
     'JlcXVpcmVkEhYKBmF1dGhvchgJIAEoCVIGYXV0aG9yEhsKCWlzX2N1c3RvbRgKIAEoCFIIaXND'
-    'dXN0b20SFwoHdXNlcl9pZBgLIAEoCVIGdXNlcklkEh0KCmNyZWF0ZWRfYXQYDCABKAlSCWNyZW'
-    'F0ZWRBdBIdCgp1cGRhdGVkX2F0GA0gASgJUgl1cGRhdGVkQXQ=');
+    'dXN0b20SFwoHdXNlcl9pZBgLIAEoCVIGdXNlcklkEjkKCmNyZWF0ZWRfYXQYDCABKAsyGi5nb2'
+    '9nbGUucHJvdG9idWYuVGltZXN0YW1wUgljcmVhdGVkQXQSOQoKdXBkYXRlZF9hdBgNIAEoCzIa'
+    'Lmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXVwZGF0ZWRBdA==');
 
 @$core.Deprecated('Use createProgramRequestDescriptor instead')
 const CreateProgramRequest$json = {
   '1': 'CreateProgramRequest',
   '2': [
+    {'1': 'idempotency_key', '3': 10, '4': 1, '5': 9, '10': 'idempotencyKey'},
     {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     {'1': 'description', '3': 2, '4': 1, '5': 9, '10': 'description'},
     {'1': 'goal', '3': 3, '4': 1, '5': 9, '10': 'goal'},
@@ -141,12 +143,13 @@ const CreateProgramRequest$json = {
 
 /// Descriptor for `CreateProgramRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List createProgramRequestDescriptor = $convert.base64Decode(
-    'ChRDcmVhdGVQcm9ncmFtUmVxdWVzdBISCgRuYW1lGAEgASgJUgRuYW1lEiAKC2Rlc2NyaXB0aW'
-    '9uGAIgASgJUgtkZXNjcmlwdGlvbhISCgRnb2FsGAMgASgJUgRnb2FsEhwKCWludGVuc2l0eRgE'
-    'IAEoCVIJaW50ZW5zaXR5EiUKDmR1cmF0aW9uX3dlZWtzGAUgASgFUg1kdXJhdGlvbldlZWtzEj'
-    'wKBXdlZWtzGAYgAygLMiYucHJvdG8udHJhaW5pbmdfcHJvZ3JhbS52MS5Qcm9ncmFtV2Vla1IF'
-    'd2Vla3MSLQoSZXF1aXBtZW50X3JlcXVpcmVkGAcgAygJUhFlcXVpcG1lbnRSZXF1aXJlZBIWCg'
-    'ZhdXRob3IYCCABKAlSBmF1dGhvchIbCglpc19jdXN0b20YCSABKAhSCGlzQ3VzdG9t');
+    'ChRDcmVhdGVQcm9ncmFtUmVxdWVzdBInCg9pZGVtcG90ZW5jeV9rZXkYCiABKAlSDmlkZW1wb3'
+    'RlbmN5S2V5EhIKBG5hbWUYASABKAlSBG5hbWUSIAoLZGVzY3JpcHRpb24YAiABKAlSC2Rlc2Ny'
+    'aXB0aW9uEhIKBGdvYWwYAyABKAlSBGdvYWwSHAoJaW50ZW5zaXR5GAQgASgJUglpbnRlbnNpdH'
+    'kSJQoOZHVyYXRpb25fd2Vla3MYBSABKAVSDWR1cmF0aW9uV2Vla3MSPAoFd2Vla3MYBiADKAsy'
+    'Ji5wcm90by50cmFpbmluZ19wcm9ncmFtLnYxLlByb2dyYW1XZWVrUgV3ZWVrcxItChJlcXVpcG'
+    '1lbnRfcmVxdWlyZWQYByADKAlSEWVxdWlwbWVudFJlcXVpcmVkEhYKBmF1dGhvchgIIAEoCVIG'
+    'YXV0aG9yEhsKCWlzX2N1c3RvbRgJIAEoCFIIaXNDdXN0b20=');
 
 @$core.Deprecated('Use createProgramResponseDescriptor instead')
 const CreateProgramResponse$json = {
@@ -316,15 +319,15 @@ const CompleteWorkoutRequest$json = {
   '2': [
     {'1': 'progress_id', '3': 1, '4': 1, '5': 9, '10': 'progressId'},
     {'1': 'workout_id', '3': 2, '4': 1, '5': 9, '10': 'workoutId'},
-    {'1': 'completed_at', '3': 3, '4': 1, '5': 9, '10': 'completedAt'},
+    {'1': 'completed_at', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'completedAt'},
   ],
 };
 
 /// Descriptor for `CompleteWorkoutRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List completeWorkoutRequestDescriptor = $convert.base64Decode(
     'ChZDb21wbGV0ZVdvcmtvdXRSZXF1ZXN0Eh8KC3Byb2dyZXNzX2lkGAEgASgJUgpwcm9ncmVzc0'
-    'lkEh0KCndvcmtvdXRfaWQYAiABKAlSCXdvcmtvdXRJZBIhCgxjb21wbGV0ZWRfYXQYAyABKAlS'
-    'C2NvbXBsZXRlZEF0');
+    'lkEh0KCndvcmtvdXRfaWQYAiABKAlSCXdvcmtvdXRJZBI9Cgxjb21wbGV0ZWRfYXQYAyABKAsy'
+    'Gi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgtjb21wbGV0ZWRBdA==');
 
 @$core.Deprecated('Use completeWorkoutResponseDescriptor instead')
 const CompleteWorkoutResponse$json = {

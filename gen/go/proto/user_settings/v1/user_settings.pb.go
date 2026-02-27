@@ -9,6 +9,7 @@ package usersettingspb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -24,7 +25,7 @@ const (
 // User Settings message definition
 type UserSettings struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	UserId      int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId      string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PhoneNumber string                 `protobuf:"bytes,2,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"` // Optional phone number
 	Bio         string                 `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`                                    // Optional bio/description
 	AvatarUrl   string                 `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`       // URL to profile picture
@@ -38,12 +39,12 @@ type UserSettings struct {
 	ActivityVisible    bool   `protobuf:"varint,10,opt,name=activity_visible,json=activityVisible,proto3" json:"activity_visible,omitempty"`
 	DataSharingEnabled bool   `protobuf:"varint,11,opt,name=data_sharing_enabled,json=dataSharingEnabled,proto3" json:"data_sharing_enabled,omitempty"`
 	// App preferences
-	Theme           string `protobuf:"bytes,12,opt,name=theme,proto3" json:"theme,omitempty"`                                            // "light", "dark", "system"
-	Language        string `protobuf:"bytes,13,opt,name=language,proto3" json:"language,omitempty"`                                      // "en", "nl", etc.
-	MeasurementUnit string `protobuf:"bytes,14,opt,name=measurement_unit,json=measurementUnit,proto3" json:"measurement_unit,omitempty"` // "metric", "imperial"
-	Timezone        string `protobuf:"bytes,15,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	CreatedAt       string `protobuf:"bytes,16,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt       string `protobuf:"bytes,17,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Theme           string                 `protobuf:"bytes,12,opt,name=theme,proto3" json:"theme,omitempty"`                                            // "light", "dark", "system"
+	Language        string                 `protobuf:"bytes,13,opt,name=language,proto3" json:"language,omitempty"`                                      // "en", "nl", etc.
+	MeasurementUnit string                 `protobuf:"bytes,14,opt,name=measurement_unit,json=measurementUnit,proto3" json:"measurement_unit,omitempty"` // "metric", "imperial"
+	Timezone        string                 `protobuf:"bytes,15,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -78,11 +79,11 @@ func (*UserSettings) Descriptor() ([]byte, []int) {
 	return file_proto_user_settings_v1_user_settings_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserSettings) GetUserId() int64 {
+func (x *UserSettings) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UserSettings) GetPhoneNumber() string {
@@ -183,24 +184,24 @@ func (x *UserSettings) GetTimezone() string {
 	return ""
 }
 
-func (x *UserSettings) GetCreatedAt() string {
+func (x *UserSettings) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *UserSettings) GetUpdatedAt() string {
+func (x *UserSettings) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 // Get user settings request and response
 type GetUserSettingsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -235,11 +236,11 @@ func (*GetUserSettingsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_settings_v1_user_settings_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetUserSettingsRequest) GetUserId() int64 {
+func (x *GetUserSettingsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type GetUserSettingsResponse struct {
@@ -289,7 +290,7 @@ func (x *GetUserSettingsResponse) GetSettings() *UserSettings {
 // Update user settings request and response
 type UpdateUserSettingsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Settings      *UserSettings          `protobuf:"bytes,2,opt,name=settings,proto3" json:"settings,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -325,11 +326,11 @@ func (*UpdateUserSettingsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_settings_v1_user_settings_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *UpdateUserSettingsRequest) GetUserId() int64 {
+func (x *UpdateUserSettingsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateUserSettingsRequest) GetSettings() *UserSettings {
@@ -383,66 +384,13 @@ func (x *UpdateUserSettingsResponse) GetSettings() *UserSettings {
 	return nil
 }
 
-// Error handling
-type Error struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Error) Reset() {
-	*x = Error{}
-	mi := &file_proto_user_settings_v1_user_settings_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Error) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Error) ProtoMessage() {}
-
-func (x *Error) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_settings_v1_user_settings_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Error.ProtoReflect.Descriptor instead.
-func (*Error) Descriptor() ([]byte, []int) {
-	return file_proto_user_settings_v1_user_settings_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *Error) GetCode() string {
-	if x != nil {
-		return x.Code
-	}
-	return ""
-}
-
-func (x *Error) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 var File_proto_user_settings_v1_user_settings_proto protoreflect.FileDescriptor
 
 const file_proto_user_settings_v1_user_settings_proto_rawDesc = "" +
 	"\n" +
-	"*proto/user_settings/v1/user_settings.proto\x12\x16proto.user_settings.v1\"\xac\x05\n" +
+	"*proto/user_settings/v1/user_settings.proto\x12\x16proto.user_settings.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x05\n" +
 	"\fUserSettings\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
 	"\fphone_number\x18\x02 \x01(\tR\vphoneNumber\x12\x10\n" +
 	"\x03bio\x18\x03 \x01(\tR\x03bio\x12\x1d\n" +
 	"\n" +
@@ -458,26 +406,23 @@ const file_proto_user_settings_v1_user_settings_proto_rawDesc = "" +
 	"\x05theme\x18\f \x01(\tR\x05theme\x12\x1a\n" +
 	"\blanguage\x18\r \x01(\tR\blanguage\x12)\n" +
 	"\x10measurement_unit\x18\x0e \x01(\tR\x0fmeasurementUnit\x12\x1a\n" +
-	"\btimezone\x18\x0f \x01(\tR\btimezone\x12\x1d\n" +
+	"\btimezone\x18\x0f \x01(\tR\btimezone\x129\n" +
 	"\n" +
-	"created_at\x18\x10 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x11 \x01(\tR\tupdatedAt\"1\n" +
+	"updated_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"1\n" +
 	"\x16GetUserSettingsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"[\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"[\n" +
 	"\x17GetUserSettingsResponse\x12@\n" +
 	"\bsettings\x18\x01 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings\"v\n" +
 	"\x19UpdateUserSettingsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12@\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12@\n" +
 	"\bsettings\x18\x02 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings\"^\n" +
 	"\x1aUpdateUserSettingsResponse\x12@\n" +
-	"\bsettings\x18\x01 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings\"5\n" +
-	"\x05Error\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\x86\x02\n" +
+	"\bsettings\x18\x01 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings2\x86\x02\n" +
 	"\x13UserSettingsService\x12r\n" +
 	"\x0fGetUserSettings\x12..proto.user_settings.v1.GetUserSettingsRequest\x1a/.proto.user_settings.v1.GetUserSettingsResponse\x12{\n" +
-	"\x12UpdateUserSettings\x121.proto.user_settings.v1.UpdateUserSettingsRequest\x1a2.proto.user_settings.v1.UpdateUserSettingsResponseBbZ`github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_settings/v1;usersettingspbb\x06proto3"
+	"\x12UpdateUserSettings\x121.proto.user_settings.v1.UpdateUserSettingsRequest\x1a2.proto.user_settings.v1.UpdateUserSettingsResponseBbZ`github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_settings/v1;usersettingspbb\x06proto3"
 
 var (
 	file_proto_user_settings_v1_user_settings_proto_rawDescOnce sync.Once
@@ -491,28 +436,30 @@ func file_proto_user_settings_v1_user_settings_proto_rawDescGZIP() []byte {
 	return file_proto_user_settings_v1_user_settings_proto_rawDescData
 }
 
-var file_proto_user_settings_v1_user_settings_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_proto_user_settings_v1_user_settings_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_proto_user_settings_v1_user_settings_proto_goTypes = []any{
 	(*UserSettings)(nil),               // 0: proto.user_settings.v1.UserSettings
 	(*GetUserSettingsRequest)(nil),     // 1: proto.user_settings.v1.GetUserSettingsRequest
 	(*GetUserSettingsResponse)(nil),    // 2: proto.user_settings.v1.GetUserSettingsResponse
 	(*UpdateUserSettingsRequest)(nil),  // 3: proto.user_settings.v1.UpdateUserSettingsRequest
 	(*UpdateUserSettingsResponse)(nil), // 4: proto.user_settings.v1.UpdateUserSettingsResponse
-	(*Error)(nil),                      // 5: proto.user_settings.v1.Error
+	(*timestamppb.Timestamp)(nil),      // 5: google.protobuf.Timestamp
 }
 var file_proto_user_settings_v1_user_settings_proto_depIdxs = []int32{
-	0, // 0: proto.user_settings.v1.GetUserSettingsResponse.settings:type_name -> proto.user_settings.v1.UserSettings
-	0, // 1: proto.user_settings.v1.UpdateUserSettingsRequest.settings:type_name -> proto.user_settings.v1.UserSettings
-	0, // 2: proto.user_settings.v1.UpdateUserSettingsResponse.settings:type_name -> proto.user_settings.v1.UserSettings
-	1, // 3: proto.user_settings.v1.UserSettingsService.GetUserSettings:input_type -> proto.user_settings.v1.GetUserSettingsRequest
-	3, // 4: proto.user_settings.v1.UserSettingsService.UpdateUserSettings:input_type -> proto.user_settings.v1.UpdateUserSettingsRequest
-	2, // 5: proto.user_settings.v1.UserSettingsService.GetUserSettings:output_type -> proto.user_settings.v1.GetUserSettingsResponse
-	4, // 6: proto.user_settings.v1.UserSettingsService.UpdateUserSettings:output_type -> proto.user_settings.v1.UpdateUserSettingsResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	5, // 0: proto.user_settings.v1.UserSettings.created_at:type_name -> google.protobuf.Timestamp
+	5, // 1: proto.user_settings.v1.UserSettings.updated_at:type_name -> google.protobuf.Timestamp
+	0, // 2: proto.user_settings.v1.GetUserSettingsResponse.settings:type_name -> proto.user_settings.v1.UserSettings
+	0, // 3: proto.user_settings.v1.UpdateUserSettingsRequest.settings:type_name -> proto.user_settings.v1.UserSettings
+	0, // 4: proto.user_settings.v1.UpdateUserSettingsResponse.settings:type_name -> proto.user_settings.v1.UserSettings
+	1, // 5: proto.user_settings.v1.UserSettingsService.GetUserSettings:input_type -> proto.user_settings.v1.GetUserSettingsRequest
+	3, // 6: proto.user_settings.v1.UserSettingsService.UpdateUserSettings:input_type -> proto.user_settings.v1.UpdateUserSettingsRequest
+	2, // 7: proto.user_settings.v1.UserSettingsService.GetUserSettings:output_type -> proto.user_settings.v1.GetUserSettingsResponse
+	4, // 8: proto.user_settings.v1.UserSettingsService.UpdateUserSettings:output_type -> proto.user_settings.v1.UpdateUserSettingsResponse
+	7, // [7:9] is the sub-list for method output_type
+	5, // [5:7] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_settings_v1_user_settings_proto_init() }
@@ -526,7 +473,7 @@ func file_proto_user_settings_v1_user_settings_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_settings_v1_user_settings_proto_rawDesc), len(file_proto_user_settings_v1_user_settings_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

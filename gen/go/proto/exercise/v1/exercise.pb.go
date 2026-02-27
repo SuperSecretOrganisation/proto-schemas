@@ -9,6 +9,7 @@ package exercisepb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -36,8 +37,8 @@ type Exercise struct {
 	VideoUrl         string                 `protobuf:"bytes,10,opt,name=video_url,json=videoUrl,proto3" json:"video_url,omitempty"`                        // URL to demonstration video (optional)
 	IsCustom         bool                   `protobuf:"varint,11,opt,name=is_custom,json=isCustom,proto3" json:"is_custom,omitempty"`                       // Whether this is a user-created exercise
 	UserId           string                 `protobuf:"bytes,12,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                              // ID of user who created (if custom)
-	CreatedAt        string                 `protobuf:"bytes,13,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`                     // RFC3339 format
-	UpdatedAt        string                 `protobuf:"bytes,14,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`                     // RFC3339 format
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -156,23 +157,24 @@ func (x *Exercise) GetUserId() string {
 	return ""
 }
 
-func (x *Exercise) GetCreatedAt() string {
+func (x *Exercise) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *Exercise) GetUpdatedAt() string {
+func (x *Exercise) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 // Create exercise request and response
 type CreateExerciseRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
+	IdempotencyKey   string                 `protobuf:"bytes,11,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
 	Name             string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description      string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Category         string                 `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
@@ -215,6 +217,13 @@ func (x *CreateExerciseRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CreateExerciseRequest.ProtoReflect.Descriptor instead.
 func (*CreateExerciseRequest) Descriptor() ([]byte, []int) {
 	return file_proto_exercise_v1_exercise_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CreateExerciseRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
 }
 
 func (x *CreateExerciseRequest) GetName() string {
@@ -940,7 +949,7 @@ var File_proto_exercise_v1_exercise_proto protoreflect.FileDescriptor
 
 const file_proto_exercise_v1_exercise_proto_rawDesc = "" +
 	"\n" +
-	" proto/exercise/v1/exercise.proto\x12\x11proto.exercise.v1\"\xcd\x03\n" +
+	" proto/exercise/v1/exercise.proto\x12\x11proto.exercise.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x85\x04\n" +
 	"\bExercise\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -954,12 +963,13 @@ const file_proto_exercise_v1_exercise_proto_rawDesc = "" +
 	"\tvideo_url\x18\n" +
 	" \x01(\tR\bvideoUrl\x12\x1b\n" +
 	"\tis_custom\x18\v \x01(\bR\bisCustom\x12\x17\n" +
-	"\auser_id\x18\f \x01(\tR\x06userId\x12\x1d\n" +
+	"\auser_id\x18\f \x01(\tR\x06userId\x129\n" +
 	"\n" +
-	"created_at\x18\r \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x0e \x01(\tR\tupdatedAt\"\xf3\x02\n" +
-	"\x15CreateExerciseRequest\x12\x12\n" +
+	"updated_at\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x9c\x03\n" +
+	"\x15CreateExerciseRequest\x12'\n" +
+	"\x0fidempotency_key\x18\v \x01(\tR\x0eidempotencyKey\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1a\n" +
 	"\bcategory\x18\x03 \x01(\tR\bcategory\x12'\n" +
@@ -1023,7 +1033,7 @@ const file_proto_exercise_v1_exercise_proto_rawDesc = "" +
 	"\x0eUpdateExercise\x12(.proto.exercise.v1.UpdateExerciseRequest\x1a).proto.exercise.v1.UpdateExerciseResponse\x12e\n" +
 	"\x0eDeleteExercise\x12(.proto.exercise.v1.DeleteExerciseRequest\x1a).proto.exercise.v1.DeleteExerciseResponse\x12b\n" +
 	"\rListExercises\x12'.proto.exercise.v1.ListExercisesRequest\x1a(.proto.exercise.v1.ListExercisesResponse\x12h\n" +
-	"\x0fSearchExercises\x12).proto.exercise.v1.SearchExercisesRequest\x1a*.proto.exercise.v1.SearchExercisesResponseBYZWgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/exercise/v1;exercisepbb\x06proto3"
+	"\x0fSearchExercises\x12).proto.exercise.v1.SearchExercisesRequest\x1a*.proto.exercise.v1.SearchExercisesResponseBYZWgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/exercise/v1;exercisepbb\x06proto3"
 
 var (
 	file_proto_exercise_v1_exercise_proto_rawDescOnce sync.Once
@@ -1052,30 +1062,33 @@ var file_proto_exercise_v1_exercise_proto_goTypes = []any{
 	(*ListExercisesResponse)(nil),   // 10: proto.exercise.v1.ListExercisesResponse
 	(*SearchExercisesRequest)(nil),  // 11: proto.exercise.v1.SearchExercisesRequest
 	(*SearchExercisesResponse)(nil), // 12: proto.exercise.v1.SearchExercisesResponse
+	(*timestamppb.Timestamp)(nil),   // 13: google.protobuf.Timestamp
 }
 var file_proto_exercise_v1_exercise_proto_depIdxs = []int32{
-	0,  // 0: proto.exercise.v1.CreateExerciseResponse.exercise:type_name -> proto.exercise.v1.Exercise
-	0,  // 1: proto.exercise.v1.GetExerciseResponse.exercise:type_name -> proto.exercise.v1.Exercise
-	0,  // 2: proto.exercise.v1.UpdateExerciseResponse.exercise:type_name -> proto.exercise.v1.Exercise
-	0,  // 3: proto.exercise.v1.ListExercisesResponse.exercises:type_name -> proto.exercise.v1.Exercise
-	0,  // 4: proto.exercise.v1.SearchExercisesResponse.exercises:type_name -> proto.exercise.v1.Exercise
-	1,  // 5: proto.exercise.v1.ExerciseService.CreateExercise:input_type -> proto.exercise.v1.CreateExerciseRequest
-	3,  // 6: proto.exercise.v1.ExerciseService.GetExercise:input_type -> proto.exercise.v1.GetExerciseRequest
-	5,  // 7: proto.exercise.v1.ExerciseService.UpdateExercise:input_type -> proto.exercise.v1.UpdateExerciseRequest
-	7,  // 8: proto.exercise.v1.ExerciseService.DeleteExercise:input_type -> proto.exercise.v1.DeleteExerciseRequest
-	9,  // 9: proto.exercise.v1.ExerciseService.ListExercises:input_type -> proto.exercise.v1.ListExercisesRequest
-	11, // 10: proto.exercise.v1.ExerciseService.SearchExercises:input_type -> proto.exercise.v1.SearchExercisesRequest
-	2,  // 11: proto.exercise.v1.ExerciseService.CreateExercise:output_type -> proto.exercise.v1.CreateExerciseResponse
-	4,  // 12: proto.exercise.v1.ExerciseService.GetExercise:output_type -> proto.exercise.v1.GetExerciseResponse
-	6,  // 13: proto.exercise.v1.ExerciseService.UpdateExercise:output_type -> proto.exercise.v1.UpdateExerciseResponse
-	8,  // 14: proto.exercise.v1.ExerciseService.DeleteExercise:output_type -> proto.exercise.v1.DeleteExerciseResponse
-	10, // 15: proto.exercise.v1.ExerciseService.ListExercises:output_type -> proto.exercise.v1.ListExercisesResponse
-	12, // 16: proto.exercise.v1.ExerciseService.SearchExercises:output_type -> proto.exercise.v1.SearchExercisesResponse
-	11, // [11:17] is the sub-list for method output_type
-	5,  // [5:11] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	13, // 0: proto.exercise.v1.Exercise.created_at:type_name -> google.protobuf.Timestamp
+	13, // 1: proto.exercise.v1.Exercise.updated_at:type_name -> google.protobuf.Timestamp
+	0,  // 2: proto.exercise.v1.CreateExerciseResponse.exercise:type_name -> proto.exercise.v1.Exercise
+	0,  // 3: proto.exercise.v1.GetExerciseResponse.exercise:type_name -> proto.exercise.v1.Exercise
+	0,  // 4: proto.exercise.v1.UpdateExerciseResponse.exercise:type_name -> proto.exercise.v1.Exercise
+	0,  // 5: proto.exercise.v1.ListExercisesResponse.exercises:type_name -> proto.exercise.v1.Exercise
+	0,  // 6: proto.exercise.v1.SearchExercisesResponse.exercises:type_name -> proto.exercise.v1.Exercise
+	1,  // 7: proto.exercise.v1.ExerciseService.CreateExercise:input_type -> proto.exercise.v1.CreateExerciseRequest
+	3,  // 8: proto.exercise.v1.ExerciseService.GetExercise:input_type -> proto.exercise.v1.GetExerciseRequest
+	5,  // 9: proto.exercise.v1.ExerciseService.UpdateExercise:input_type -> proto.exercise.v1.UpdateExerciseRequest
+	7,  // 10: proto.exercise.v1.ExerciseService.DeleteExercise:input_type -> proto.exercise.v1.DeleteExerciseRequest
+	9,  // 11: proto.exercise.v1.ExerciseService.ListExercises:input_type -> proto.exercise.v1.ListExercisesRequest
+	11, // 12: proto.exercise.v1.ExerciseService.SearchExercises:input_type -> proto.exercise.v1.SearchExercisesRequest
+	2,  // 13: proto.exercise.v1.ExerciseService.CreateExercise:output_type -> proto.exercise.v1.CreateExerciseResponse
+	4,  // 14: proto.exercise.v1.ExerciseService.GetExercise:output_type -> proto.exercise.v1.GetExerciseResponse
+	6,  // 15: proto.exercise.v1.ExerciseService.UpdateExercise:output_type -> proto.exercise.v1.UpdateExerciseResponse
+	8,  // 16: proto.exercise.v1.ExerciseService.DeleteExercise:output_type -> proto.exercise.v1.DeleteExerciseResponse
+	10, // 17: proto.exercise.v1.ExerciseService.ListExercises:output_type -> proto.exercise.v1.ListExercisesResponse
+	12, // 18: proto.exercise.v1.ExerciseService.SearchExercises:output_type -> proto.exercise.v1.SearchExercisesResponse
+	13, // [13:19] is the sub-list for method output_type
+	7,  // [7:13] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_exercise_v1_exercise_proto_init() }

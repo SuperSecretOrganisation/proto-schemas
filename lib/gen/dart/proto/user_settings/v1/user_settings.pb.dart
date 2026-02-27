@@ -12,15 +12,16 @@
 
 import 'dart:core' as $core;
 
-import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
+
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// User Settings message definition
 class UserSettings extends $pb.GeneratedMessage {
   factory UserSettings({
-    $fixnum.Int64? userId,
+    $core.String? userId,
     $core.String? phoneNumber,
     $core.String? bio,
     $core.String? avatarUrl,
@@ -35,8 +36,8 @@ class UserSettings extends $pb.GeneratedMessage {
     $core.String? language,
     $core.String? measurementUnit,
     $core.String? timezone,
-    $core.String? createdAt,
-    $core.String? updatedAt,
+    $1.Timestamp? createdAt,
+    $1.Timestamp? updatedAt,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -65,7 +66,7 @@ class UserSettings extends $pb.GeneratedMessage {
   factory UserSettings.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserSettings', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_settings.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOS(2, _omitFieldNames ? '' : 'phoneNumber')
     ..aOS(3, _omitFieldNames ? '' : 'bio')
     ..aOS(4, _omitFieldNames ? '' : 'avatarUrl')
@@ -80,8 +81,8 @@ class UserSettings extends $pb.GeneratedMessage {
     ..aOS(13, _omitFieldNames ? '' : 'language')
     ..aOS(14, _omitFieldNames ? '' : 'measurementUnit')
     ..aOS(15, _omitFieldNames ? '' : 'timezone')
-    ..aOS(16, _omitFieldNames ? '' : 'createdAt')
-    ..aOS(17, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(16, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(17, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -103,9 +104,9 @@ class UserSettings extends $pb.GeneratedMessage {
   static UserSettings? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -235,28 +236,32 @@ class UserSettings extends $pb.GeneratedMessage {
   void clearTimezone() => $_clearField(15);
 
   @$pb.TagNumber(16)
-  $core.String get createdAt => $_getSZ(15);
+  $1.Timestamp get createdAt => $_getN(15);
   @$pb.TagNumber(16)
-  set createdAt($core.String value) => $_setString(15, value);
+  set createdAt($1.Timestamp value) => $_setField(16, value);
   @$pb.TagNumber(16)
   $core.bool hasCreatedAt() => $_has(15);
   @$pb.TagNumber(16)
   void clearCreatedAt() => $_clearField(16);
+  @$pb.TagNumber(16)
+  $1.Timestamp ensureCreatedAt() => $_ensure(15);
 
   @$pb.TagNumber(17)
-  $core.String get updatedAt => $_getSZ(16);
+  $1.Timestamp get updatedAt => $_getN(16);
   @$pb.TagNumber(17)
-  set updatedAt($core.String value) => $_setString(16, value);
+  set updatedAt($1.Timestamp value) => $_setField(17, value);
   @$pb.TagNumber(17)
   $core.bool hasUpdatedAt() => $_has(16);
   @$pb.TagNumber(17)
   void clearUpdatedAt() => $_clearField(17);
+  @$pb.TagNumber(17)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(16);
 }
 
 /// Get user settings request and response
 class GetUserSettingsRequest extends $pb.GeneratedMessage {
   factory GetUserSettingsRequest({
-    $fixnum.Int64? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -269,7 +274,7 @@ class GetUserSettingsRequest extends $pb.GeneratedMessage {
   factory GetUserSettingsRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserSettingsRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_settings.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -291,9 +296,9 @@ class GetUserSettingsRequest extends $pb.GeneratedMessage {
   static GetUserSettingsRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -351,7 +356,7 @@ class GetUserSettingsResponse extends $pb.GeneratedMessage {
 /// Update user settings request and response
 class UpdateUserSettingsRequest extends $pb.GeneratedMessage {
   factory UpdateUserSettingsRequest({
-    $fixnum.Int64? userId,
+    $core.String? userId,
     UserSettings? settings,
   }) {
     final result = create();
@@ -366,7 +371,7 @@ class UpdateUserSettingsRequest extends $pb.GeneratedMessage {
   factory UpdateUserSettingsRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateUserSettingsRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_settings.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOM<UserSettings>(2, _omitFieldNames ? '' : 'settings', subBuilder: UserSettings.create)
     ..hasRequiredFields = false
   ;
@@ -389,9 +394,9 @@ class UpdateUserSettingsRequest extends $pb.GeneratedMessage {
   static UpdateUserSettingsRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -455,65 +460,6 @@ class UpdateUserSettingsResponse extends $pb.GeneratedMessage {
   void clearSettings() => $_clearField(1);
   @$pb.TagNumber(1)
   UserSettings ensureSettings() => $_ensure(0);
-}
-
-/// Error handling
-class Error extends $pb.GeneratedMessage {
-  factory Error({
-    $core.String? code,
-    $core.String? message,
-  }) {
-    final result = create();
-    if (code != null) result.code = code;
-    if (message != null) result.message = message;
-    return result;
-  }
-
-  Error._();
-
-  factory Error.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
-  factory Error.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Error', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_settings.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'code')
-    ..aOS(2, _omitFieldNames ? '' : 'message')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Error clone() => Error()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Error copyWith(void Function(Error) updates) => super.copyWith((message) => updates(message as Error)) as Error;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static Error create() => Error._();
-  @$core.override
-  Error createEmptyInstance() => create();
-  static $pb.PbList<Error> createRepeated() => $pb.PbList<Error>();
-  @$core.pragma('dart2js:noInline')
-  static Error getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Error>(create);
-  static Error? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get code => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set code($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasCode() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearCode() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get message => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set message($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasMessage() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMessage() => $_clearField(2);
 }
 
 

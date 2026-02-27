@@ -9,6 +9,7 @@ package userstreakpb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -25,14 +26,14 @@ const (
 type UserStreak struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Id              int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId          int32                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId          string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	CurrentStreak   int32                  `protobuf:"varint,3,opt,name=current_streak,json=currentStreak,proto3" json:"current_streak,omitempty"`
 	LongestStreak   int32                  `protobuf:"varint,4,opt,name=longest_streak,json=longestStreak,proto3" json:"longest_streak,omitempty"`
 	LastActiveDate  string                 `protobuf:"bytes,5,opt,name=last_active_date,json=lastActiveDate,proto3" json:"last_active_date,omitempty"`    // ISO 8601 date (YYYY-MM-DD)
 	StreakStartDate string                 `protobuf:"bytes,6,opt,name=streak_start_date,json=streakStartDate,proto3" json:"streak_start_date,omitempty"` // ISO 8601 date (YYYY-MM-DD)
 	IsActiveToday   bool                   `protobuf:"varint,7,opt,name=is_active_today,json=isActiveToday,proto3" json:"is_active_today,omitempty"`
-	CreatedAt       string                 `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt       string                 `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -74,11 +75,11 @@ func (x *UserStreak) GetId() int32 {
 	return 0
 }
 
-func (x *UserStreak) GetUserId() int32 {
+func (x *UserStreak) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UserStreak) GetCurrentStreak() int32 {
@@ -116,30 +117,30 @@ func (x *UserStreak) GetIsActiveToday() bool {
 	return false
 }
 
-func (x *UserStreak) GetCreatedAt() string {
+func (x *UserStreak) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *UserStreak) GetUpdatedAt() string {
+func (x *UserStreak) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 // StreakHistory message definition
 type StreakHistory struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId        int32                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ActivityDate  string                 `protobuf:"bytes,3,opt,name=activity_date,json=activityDate,proto3" json:"activity_date,omitempty"` // ISO 8601 date (YYYY-MM-DD)
 	Steps         int32                  `protobuf:"varint,4,opt,name=steps,proto3" json:"steps,omitempty"`
 	ActiveMinutes int32                  `protobuf:"varint,5,opt,name=active_minutes,json=activeMinutes,proto3" json:"active_minutes,omitempty"`
 	DistanceKm    float64                `protobuf:"fixed64,6,opt,name=distance_km,json=distanceKm,proto3" json:"distance_km,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -181,11 +182,11 @@ func (x *StreakHistory) GetId() int32 {
 	return 0
 }
 
-func (x *StreakHistory) GetUserId() int32 {
+func (x *StreakHistory) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *StreakHistory) GetActivityDate() string {
@@ -216,17 +217,17 @@ func (x *StreakHistory) GetDistanceKm() float64 {
 	return 0
 }
 
-func (x *StreakHistory) GetCreatedAt() string {
+func (x *StreakHistory) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
 // Get user streak request and response
 type GetUserStreakRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -261,11 +262,11 @@ func (*GetUserStreakRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetUserStreakRequest) GetUserId() int32 {
+func (x *GetUserStreakRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type GetUserStreakResponse struct {
@@ -315,7 +316,7 @@ func (x *GetUserStreakResponse) GetUserStreak() *UserStreak {
 // Update streak request and response
 type UpdateStreakRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Steps         int32                  `protobuf:"varint,2,opt,name=steps,proto3" json:"steps,omitempty"`
 	ActiveMinutes int32                  `protobuf:"varint,3,opt,name=active_minutes,json=activeMinutes,proto3" json:"active_minutes,omitempty"`
 	DistanceKm    float64                `protobuf:"fixed64,4,opt,name=distance_km,json=distanceKm,proto3" json:"distance_km,omitempty"`
@@ -353,11 +354,11 @@ func (*UpdateStreakRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *UpdateStreakRequest) GetUserId() int32 {
+func (x *UpdateStreakRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateStreakRequest) GetSteps() int32 {
@@ -444,7 +445,7 @@ func (x *UpdateStreakResponse) GetPreviousStreak() int32 {
 // Get streak history request and response
 type GetStreakHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Days          int32                  `protobuf:"varint,2,opt,name=days,proto3" json:"days,omitempty"` // Number of days to retrieve (default 30)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -480,11 +481,11 @@ func (*GetStreakHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetStreakHistoryRequest) GetUserId() int32 {
+func (x *GetStreakHistoryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *GetStreakHistoryRequest) GetDays() int32 {
@@ -549,7 +550,7 @@ func (x *GetStreakHistoryResponse) GetTotalActiveDays() int32 {
 // Reset streak request and response
 type ResetStreakRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -584,11 +585,11 @@ func (*ResetStreakRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ResetStreakRequest) GetUserId() int32 {
+func (x *ResetStreakRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type ResetStreakResponse struct {
@@ -647,37 +648,37 @@ var File_proto_user_streak_v1_user_streak_proto protoreflect.FileDescriptor
 
 const file_proto_user_streak_v1_user_streak_proto_rawDesc = "" +
 	"\n" +
-	"&proto/user_streak/v1/user_streak.proto\x12\x14proto.user_streak.v1\"\xbf\x02\n" +
+	"&proto/user_streak/v1/user_streak.proto\x12\x14proto.user_streak.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf7\x02\n" +
 	"\n" +
 	"UserStreak\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x05R\x06userId\x12%\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12%\n" +
 	"\x0ecurrent_streak\x18\x03 \x01(\x05R\rcurrentStreak\x12%\n" +
 	"\x0elongest_streak\x18\x04 \x01(\x05R\rlongestStreak\x12(\n" +
 	"\x10last_active_date\x18\x05 \x01(\tR\x0elastActiveDate\x12*\n" +
 	"\x11streak_start_date\x18\x06 \x01(\tR\x0fstreakStartDate\x12&\n" +
-	"\x0fis_active_today\x18\a \x01(\bR\risActiveToday\x12\x1d\n" +
+	"\x0fis_active_today\x18\a \x01(\bR\risActiveToday\x129\n" +
 	"\n" +
-	"created_at\x18\b \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\tR\tupdatedAt\"\xda\x01\n" +
+	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xf6\x01\n" +
 	"\rStreakHistory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x05R\x06userId\x12#\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12#\n" +
 	"\ractivity_date\x18\x03 \x01(\tR\factivityDate\x12\x14\n" +
 	"\x05steps\x18\x04 \x01(\x05R\x05steps\x12%\n" +
 	"\x0eactive_minutes\x18\x05 \x01(\x05R\ractiveMinutes\x12\x1f\n" +
 	"\vdistance_km\x18\x06 \x01(\x01R\n" +
-	"distanceKm\x12\x1d\n" +
+	"distanceKm\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\tR\tcreatedAt\"/\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"/\n" +
 	"\x14GetUserStreakRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\"Z\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"Z\n" +
 	"\x15GetUserStreakResponse\x12A\n" +
 	"\vuser_streak\x18\x01 \x01(\v2 .proto.user_streak.v1.UserStreakR\n" +
 	"userStreak\"\x8c\x01\n" +
 	"\x13UpdateStreakRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x14\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05steps\x18\x02 \x01(\x05R\x05steps\x12%\n" +
 	"\x0eactive_minutes\x18\x03 \x01(\x05R\ractiveMinutes\x12\x1f\n" +
 	"\vdistance_km\x18\x04 \x01(\x01R\n" +
@@ -688,13 +689,13 @@ const file_proto_user_streak_v1_user_streak_proto_rawDesc = "" +
 	"\x10streak_increased\x18\x02 \x01(\bR\x0fstreakIncreased\x12'\n" +
 	"\x0fprevious_streak\x18\x03 \x01(\x05R\x0epreviousStreak\"F\n" +
 	"\x17GetStreakHistoryRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x12\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04days\x18\x02 \x01(\x05R\x04days\"\x85\x01\n" +
 	"\x18GetStreakHistoryResponse\x12=\n" +
 	"\ahistory\x18\x01 \x03(\v2#.proto.user_streak.v1.StreakHistoryR\ahistory\x12*\n" +
 	"\x11total_active_days\x18\x02 \x01(\x05R\x0ftotalActiveDays\"-\n" +
 	"\x12ResetStreakRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\"I\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"I\n" +
 	"\x13ResetStreakResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage2\xbb\x03\n" +
@@ -702,7 +703,7 @@ const file_proto_user_streak_v1_user_streak_proto_rawDesc = "" +
 	"\rGetUserStreak\x12*.proto.user_streak.v1.GetUserStreakRequest\x1a+.proto.user_streak.v1.GetUserStreakResponse\x12e\n" +
 	"\fUpdateStreak\x12).proto.user_streak.v1.UpdateStreakRequest\x1a*.proto.user_streak.v1.UpdateStreakResponse\x12q\n" +
 	"\x10GetStreakHistory\x12-.proto.user_streak.v1.GetStreakHistoryRequest\x1a..proto.user_streak.v1.GetStreakHistoryResponse\x12b\n" +
-	"\vResetStreak\x12(.proto.user_streak.v1.ResetStreakRequest\x1a).proto.user_streak.v1.ResetStreakResponseB^Z\\github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_streak/v1;userstreakpbb\x06proto3"
+	"\vResetStreak\x12(.proto.user_streak.v1.ResetStreakRequest\x1a).proto.user_streak.v1.ResetStreakResponseB^Z\\github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_streak/v1;userstreakpbb\x06proto3"
 
 var (
 	file_proto_user_streak_v1_user_streak_proto_rawDescOnce sync.Once
@@ -728,24 +729,28 @@ var file_proto_user_streak_v1_user_streak_proto_goTypes = []any{
 	(*GetStreakHistoryResponse)(nil), // 7: proto.user_streak.v1.GetStreakHistoryResponse
 	(*ResetStreakRequest)(nil),       // 8: proto.user_streak.v1.ResetStreakRequest
 	(*ResetStreakResponse)(nil),      // 9: proto.user_streak.v1.ResetStreakResponse
+	(*timestamppb.Timestamp)(nil),    // 10: google.protobuf.Timestamp
 }
 var file_proto_user_streak_v1_user_streak_proto_depIdxs = []int32{
-	0, // 0: proto.user_streak.v1.GetUserStreakResponse.user_streak:type_name -> proto.user_streak.v1.UserStreak
-	0, // 1: proto.user_streak.v1.UpdateStreakResponse.user_streak:type_name -> proto.user_streak.v1.UserStreak
-	1, // 2: proto.user_streak.v1.GetStreakHistoryResponse.history:type_name -> proto.user_streak.v1.StreakHistory
-	2, // 3: proto.user_streak.v1.UserStreakService.GetUserStreak:input_type -> proto.user_streak.v1.GetUserStreakRequest
-	4, // 4: proto.user_streak.v1.UserStreakService.UpdateStreak:input_type -> proto.user_streak.v1.UpdateStreakRequest
-	6, // 5: proto.user_streak.v1.UserStreakService.GetStreakHistory:input_type -> proto.user_streak.v1.GetStreakHistoryRequest
-	8, // 6: proto.user_streak.v1.UserStreakService.ResetStreak:input_type -> proto.user_streak.v1.ResetStreakRequest
-	3, // 7: proto.user_streak.v1.UserStreakService.GetUserStreak:output_type -> proto.user_streak.v1.GetUserStreakResponse
-	5, // 8: proto.user_streak.v1.UserStreakService.UpdateStreak:output_type -> proto.user_streak.v1.UpdateStreakResponse
-	7, // 9: proto.user_streak.v1.UserStreakService.GetStreakHistory:output_type -> proto.user_streak.v1.GetStreakHistoryResponse
-	9, // 10: proto.user_streak.v1.UserStreakService.ResetStreak:output_type -> proto.user_streak.v1.ResetStreakResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	10, // 0: proto.user_streak.v1.UserStreak.created_at:type_name -> google.protobuf.Timestamp
+	10, // 1: proto.user_streak.v1.UserStreak.updated_at:type_name -> google.protobuf.Timestamp
+	10, // 2: proto.user_streak.v1.StreakHistory.created_at:type_name -> google.protobuf.Timestamp
+	0,  // 3: proto.user_streak.v1.GetUserStreakResponse.user_streak:type_name -> proto.user_streak.v1.UserStreak
+	0,  // 4: proto.user_streak.v1.UpdateStreakResponse.user_streak:type_name -> proto.user_streak.v1.UserStreak
+	1,  // 5: proto.user_streak.v1.GetStreakHistoryResponse.history:type_name -> proto.user_streak.v1.StreakHistory
+	2,  // 6: proto.user_streak.v1.UserStreakService.GetUserStreak:input_type -> proto.user_streak.v1.GetUserStreakRequest
+	4,  // 7: proto.user_streak.v1.UserStreakService.UpdateStreak:input_type -> proto.user_streak.v1.UpdateStreakRequest
+	6,  // 8: proto.user_streak.v1.UserStreakService.GetStreakHistory:input_type -> proto.user_streak.v1.GetStreakHistoryRequest
+	8,  // 9: proto.user_streak.v1.UserStreakService.ResetStreak:input_type -> proto.user_streak.v1.ResetStreakRequest
+	3,  // 10: proto.user_streak.v1.UserStreakService.GetUserStreak:output_type -> proto.user_streak.v1.GetUserStreakResponse
+	5,  // 11: proto.user_streak.v1.UserStreakService.UpdateStreak:output_type -> proto.user_streak.v1.UpdateStreakResponse
+	7,  // 12: proto.user_streak.v1.UserStreakService.GetStreakHistory:output_type -> proto.user_streak.v1.GetStreakHistoryResponse
+	9,  // 13: proto.user_streak.v1.UserStreakService.ResetStreak:output_type -> proto.user_streak.v1.ResetStreakResponse
+	10, // [10:14] is the sub-list for method output_type
+	6,  // [6:10] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_streak_v1_user_streak_proto_init() }

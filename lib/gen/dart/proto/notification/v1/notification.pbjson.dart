@@ -20,7 +20,7 @@ const Notification$json = {
   '2': [
     {'1': 'id', '3': 1, '4': 1, '5': 3, '10': 'id'},
     {'1': 'notification_uuid', '3': 2, '4': 1, '5': 9, '10': 'notificationUuid'},
-    {'1': 'user_id', '3': 3, '4': 1, '5': 3, '10': 'userId'},
+    {'1': 'user_id', '3': 3, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'title', '3': 4, '4': 1, '5': 9, '10': 'title'},
     {'1': 'body', '3': 5, '4': 1, '5': 9, '10': 'body'},
     {'1': 'status', '3': 6, '4': 1, '5': 9, '10': 'status'},
@@ -32,7 +32,7 @@ const Notification$json = {
 /// Descriptor for `Notification`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List notificationDescriptor = $convert.base64Decode(
     'CgxOb3RpZmljYXRpb24SDgoCaWQYASABKANSAmlkEisKEW5vdGlmaWNhdGlvbl91dWlkGAIgAS'
-    'gJUhBub3RpZmljYXRpb25VdWlkEhcKB3VzZXJfaWQYAyABKANSBnVzZXJJZBIUCgV0aXRsZRgE'
+    'gJUhBub3RpZmljYXRpb25VdWlkEhcKB3VzZXJfaWQYAyABKAlSBnVzZXJJZBIUCgV0aXRsZRgE'
     'IAEoCVIFdGl0bGUSEgoEYm9keRgFIAEoCVIEYm9keRIWCgZzdGF0dXMYBiABKAlSBnN0YXR1cx'
     'IzCgdzZW50X2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIGc2VudEF0EjcK'
     'CW9wZW5lZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCG9wZW5lZEF0');
@@ -92,7 +92,7 @@ final $typed_data.Uint8List getNotificationResponseDescriptor = $convert.base64D
 const ListNotificationsRequest$json = {
   '1': 'ListNotificationsRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 3, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'page', '3': 2, '4': 1, '5': 5, '10': 'page'},
     {'1': 'page_size', '3': 3, '4': 1, '5': 5, '10': 'pageSize'},
   ],
@@ -100,7 +100,7 @@ const ListNotificationsRequest$json = {
 
 /// Descriptor for `ListNotificationsRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listNotificationsRequestDescriptor = $convert.base64Decode(
-    'ChhMaXN0Tm90aWZpY2F0aW9uc1JlcXVlc3QSFwoHdXNlcl9pZBgBIAEoA1IGdXNlcklkEhIKBH'
+    'ChhMaXN0Tm90aWZpY2F0aW9uc1JlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEhIKBH'
     'BhZ2UYAiABKAVSBHBhZ2USGwoJcGFnZV9zaXplGAMgASgFUghwYWdlU2l6ZQ==');
 
 @$core.Deprecated('Use listNotificationsResponseDescriptor instead')

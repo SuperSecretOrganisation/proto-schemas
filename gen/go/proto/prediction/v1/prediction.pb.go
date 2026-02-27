@@ -25,7 +25,7 @@ const (
 type Prediction struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Prediction    int32                  `protobuf:"varint,3,opt,name=prediction,proto3" json:"prediction,omitempty"`
 	ErrorRange    int32                  `protobuf:"varint,4,opt,name=error_range,json=errorRange,proto3" json:"error_range,omitempty"`
 	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
@@ -70,9 +70,9 @@ func (x *Prediction) GetUuid() string {
 	return ""
 }
 
-func (x *Prediction) GetUserUuid() string {
+func (x *Prediction) GetUserId() string {
 	if x != nil {
-		return x.UserUuid
+		return x.UserId
 	}
 	return ""
 }
@@ -236,7 +236,7 @@ func (x *PredictionFilter) GetAscending() bool {
 
 type CreatePredictionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserUuid      string                 `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Prediction    int32                  `protobuf:"varint,2,opt,name=prediction,proto3" json:"prediction,omitempty"`
 	ErrorRange    int32                  `protobuf:"varint,3,opt,name=error_range,json=errorRange,proto3" json:"error_range,omitempty"`
 	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp,omitempty"` // Optional, defaults to current time if not provided
@@ -274,9 +274,9 @@ func (*CreatePredictionRequest) Descriptor() ([]byte, []int) {
 	return file_proto_prediction_v1_prediction_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreatePredictionRequest) GetUserUuid() string {
+func (x *CreatePredictionRequest) GetUserId() string {
 	if x != nil {
-		return x.UserUuid
+		return x.UserId
 	}
 	return ""
 }
@@ -305,7 +305,7 @@ func (x *CreatePredictionRequest) GetTimestamp() *timestamppb.Timestamp {
 type CreatePredictionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Prediction    int32                  `protobuf:"varint,3,opt,name=prediction,proto3" json:"prediction,omitempty"`
 	ErrorRange    int32                  `protobuf:"varint,4,opt,name=error_range,json=errorRange,proto3" json:"error_range,omitempty"`
 	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"` // Timestamp of creation
@@ -350,9 +350,9 @@ func (x *CreatePredictionResponse) GetUuid() string {
 	return ""
 }
 
-func (x *CreatePredictionResponse) GetUserUuid() string {
+func (x *CreatePredictionResponse) GetUserId() string {
 	if x != nil {
-		return x.UserUuid
+		return x.UserId
 	}
 	return ""
 }
@@ -425,7 +425,7 @@ func (x *GetPredictionRequest) GetUuid() string {
 type GetPredictionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Prediction    int32                  `protobuf:"varint,3,opt,name=prediction,proto3" json:"prediction,omitempty"`
 	ErrorRange    int32                  `protobuf:"varint,4,opt,name=error_range,json=errorRange,proto3" json:"error_range,omitempty"`
 	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"` // Timestamp of the prediction
@@ -470,9 +470,9 @@ func (x *GetPredictionResponse) GetUuid() string {
 	return ""
 }
 
-func (x *GetPredictionResponse) GetUserUuid() string {
+func (x *GetPredictionResponse) GetUserId() string {
 	if x != nil {
-		return x.UserUuid
+		return x.UserId
 	}
 	return ""
 }
@@ -500,7 +500,7 @@ func (x *GetPredictionResponse) GetTimestamp() *timestamppb.Timestamp {
 
 type GetByUserIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserUuid      string                 `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"` // User UUID to filter predictions
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // User UUID to filter predictions
 	Filter        *PredictionFilter      `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -536,9 +536,9 @@ func (*GetByUserIDRequest) Descriptor() ([]byte, []int) {
 	return file_proto_prediction_v1_prediction_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetByUserIDRequest) GetUserUuid() string {
+func (x *GetByUserIDRequest) GetUserId() string {
 	if x != nil {
-		return x.UserUuid
+		return x.UserId
 	}
 	return ""
 }
@@ -597,7 +597,7 @@ func (x *GetByUserIDResponse) GetPredictions() *PredictionDTO {
 type UpdatePredictionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Prediction    int32                  `protobuf:"varint,3,opt,name=prediction,proto3" json:"prediction,omitempty"`
 	ErrorRange    int32                  `protobuf:"varint,4,opt,name=error_range,json=errorRange,proto3" json:"error_range,omitempty"`
 	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"` // Optional, defaults to current time if not provided
@@ -642,9 +642,9 @@ func (x *UpdatePredictionRequest) GetUuid() string {
 	return ""
 }
 
-func (x *UpdatePredictionRequest) GetUserUuid() string {
+func (x *UpdatePredictionRequest) GetUserId() string {
 	if x != nil {
-		return x.UserUuid
+		return x.UserId
 	}
 	return ""
 }
@@ -673,7 +673,7 @@ func (x *UpdatePredictionRequest) GetTimestamp() *timestamppb.Timestamp {
 type UpdatePredictionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Prediction    int32                  `protobuf:"varint,3,opt,name=prediction,proto3" json:"prediction,omitempty"`
 	ErrorRange    int32                  `protobuf:"varint,4,opt,name=error_range,json=errorRange,proto3" json:"error_range,omitempty"`
 	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"` // Timestamp of the update
@@ -718,9 +718,9 @@ func (x *UpdatePredictionResponse) GetUuid() string {
 	return ""
 }
 
-func (x *UpdatePredictionResponse) GetUserUuid() string {
+func (x *UpdatePredictionResponse) GetUserId() string {
 	if x != nil {
-		return x.UserUuid
+		return x.UserId
 	}
 	return ""
 }
@@ -926,11 +926,11 @@ var File_proto_prediction_v1_prediction_proto protoreflect.FileDescriptor
 
 const file_proto_prediction_v1_prediction_proto_rawDesc = "" +
 	"\n" +
-	"$proto/prediction/v1/prediction.proto\x12\x13proto.prediction.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb8\x01\n" +
+	"$proto/prediction/v1/prediction.proto\x12\x13proto.prediction.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb4\x01\n" +
 	"\n" +
 	"Prediction\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1b\n" +
-	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\x12\x1e\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"prediction\x18\x03 \x01(\x05R\n" +
 	"prediction\x12\x1f\n" +
@@ -950,18 +950,18 @@ const file_proto_prediction_v1_prediction_proto_rawDesc = "" +
 	"\bend_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x12\n" +
 	"\x04page\x18\x04 \x01(\x05R\x04page\x12\x1c\n" +
-	"\tascending\x18\x05 \x01(\bR\tascending\"\xb1\x01\n" +
-	"\x17CreatePredictionRequest\x12\x1b\n" +
-	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\x12\x1e\n" +
+	"\tascending\x18\x05 \x01(\bR\tascending\"\xad\x01\n" +
+	"\x17CreatePredictionRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"prediction\x18\x02 \x01(\x05R\n" +
 	"prediction\x12\x1f\n" +
 	"\verror_range\x18\x03 \x01(\x05R\n" +
 	"errorRange\x128\n" +
-	"\ttimestamp\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"\xc6\x01\n" +
+	"\ttimestamp\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"\xc2\x01\n" +
 	"\x18CreatePredictionResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1b\n" +
-	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\x12\x1e\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"prediction\x18\x03 \x01(\x05R\n" +
 	"prediction\x12\x1f\n" +
@@ -969,33 +969,33 @@ const file_proto_prediction_v1_prediction_proto_rawDesc = "" +
 	"errorRange\x128\n" +
 	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"*\n" +
 	"\x14GetPredictionRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xc3\x01\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xbf\x01\n" +
 	"\x15GetPredictionResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1b\n" +
-	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\x12\x1e\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"prediction\x18\x03 \x01(\x05R\n" +
 	"prediction\x12\x1f\n" +
 	"\verror_range\x18\x04 \x01(\x05R\n" +
 	"errorRange\x128\n" +
-	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"p\n" +
-	"\x12GetByUserIDRequest\x12\x1b\n" +
-	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\x12=\n" +
+	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"l\n" +
+	"\x12GetByUserIDRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12=\n" +
 	"\x06filter\x18\x02 \x01(\v2%.proto.prediction.v1.PredictionFilterR\x06filter\"[\n" +
 	"\x13GetByUserIDResponse\x12D\n" +
-	"\vpredictions\x18\x01 \x01(\v2\".proto.prediction.v1.PredictionDTOR\vpredictions\"\xc5\x01\n" +
+	"\vpredictions\x18\x01 \x01(\v2\".proto.prediction.v1.PredictionDTOR\vpredictions\"\xc1\x01\n" +
 	"\x17UpdatePredictionRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1b\n" +
-	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\x12\x1e\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"prediction\x18\x03 \x01(\x05R\n" +
 	"prediction\x12\x1f\n" +
 	"\verror_range\x18\x04 \x01(\x05R\n" +
 	"errorRange\x128\n" +
-	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"\xc6\x01\n" +
+	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"\xc2\x01\n" +
 	"\x18UpdatePredictionResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1b\n" +
-	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\x12\x1e\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"prediction\x18\x03 \x01(\x05R\n" +
 	"prediction\x12\x1f\n" +
@@ -1016,7 +1016,7 @@ const file_proto_prediction_v1_prediction_proto_rawDesc = "" +
 	"\vGetByUserID\x12'.proto.prediction.v1.GetByUserIDRequest\x1a(.proto.prediction.v1.GetByUserIDResponse\x12o\n" +
 	"\x10UpdatePrediction\x12,.proto.prediction.v1.UpdatePredictionRequest\x1a-.proto.prediction.v1.UpdatePredictionResponse\x12o\n" +
 	"\x10DeletePrediction\x12,.proto.prediction.v1.DeletePredictionRequest\x1a-.proto.prediction.v1.DeletePredictionResponse\x12l\n" +
-	"\x0fListPredictions\x12+.proto.prediction.v1.ListPredictionsRequest\x1a,.proto.prediction.v1.ListPredictionsResponseB]Z[github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/prediction/v1;predictionpbb\x06proto3"
+	"\x0fListPredictions\x12+.proto.prediction.v1.ListPredictionsRequest\x1a,.proto.prediction.v1.ListPredictionsResponseB]Z[github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/prediction/v1;predictionpbb\x06proto3"
 
 var (
 	file_proto_prediction_v1_prediction_proto_rawDescOnce sync.Once

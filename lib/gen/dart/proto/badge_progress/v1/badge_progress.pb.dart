@@ -15,7 +15,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../../badge/v1/badge.pb.dart' as $1;
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+import '../../badge/v1/badge.pb.dart' as $2;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -23,13 +24,13 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 class BadgeProgress extends $pb.GeneratedMessage {
   factory BadgeProgress({
     $fixnum.Int64? id,
-    $core.int? userId,
+    $core.String? userId,
     $core.int? badgeId,
     $core.int? currentProgress,
     $core.int? targetProgress,
-    $core.String? lastUpdated,
+    $1.Timestamp? lastUpdated,
     $core.double? progressPercentage,
-    $1.Badge? badge,
+    $2.Badge? badge,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -50,13 +51,13 @@ class BadgeProgress extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BadgeProgress', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.badge_progress.v1'), createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'id')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'badgeId', $pb.PbFieldType.O3)
     ..a<$core.int>(4, _omitFieldNames ? '' : 'currentProgress', $pb.PbFieldType.O3)
     ..a<$core.int>(5, _omitFieldNames ? '' : 'targetProgress', $pb.PbFieldType.O3)
-    ..aOS(6, _omitFieldNames ? '' : 'lastUpdated')
+    ..aOM<$1.Timestamp>(6, _omitFieldNames ? '' : 'lastUpdated', subBuilder: $1.Timestamp.create)
     ..a<$core.double>(7, _omitFieldNames ? '' : 'progressPercentage', $pb.PbFieldType.OD)
-    ..aOM<$1.Badge>(8, _omitFieldNames ? '' : 'badge', subBuilder: $1.Badge.create)
+    ..aOM<$2.Badge>(8, _omitFieldNames ? '' : 'badge', subBuilder: $2.Badge.create)
     ..hasRequiredFields = false
   ;
 
@@ -87,9 +88,9 @@ class BadgeProgress extends $pb.GeneratedMessage {
   void clearId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get userId => $_getIZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userId($core.int value) => $_setSignedInt32(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
   $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
@@ -123,13 +124,15 @@ class BadgeProgress extends $pb.GeneratedMessage {
   void clearTargetProgress() => $_clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get lastUpdated => $_getSZ(5);
+  $1.Timestamp get lastUpdated => $_getN(5);
   @$pb.TagNumber(6)
-  set lastUpdated($core.String value) => $_setString(5, value);
+  set lastUpdated($1.Timestamp value) => $_setField(6, value);
   @$pb.TagNumber(6)
   $core.bool hasLastUpdated() => $_has(5);
   @$pb.TagNumber(6)
   void clearLastUpdated() => $_clearField(6);
+  @$pb.TagNumber(6)
+  $1.Timestamp ensureLastUpdated() => $_ensure(5);
 
   @$pb.TagNumber(7)
   $core.double get progressPercentage => $_getN(6);
@@ -141,21 +144,21 @@ class BadgeProgress extends $pb.GeneratedMessage {
   void clearProgressPercentage() => $_clearField(7);
 
   @$pb.TagNumber(8)
-  $1.Badge get badge => $_getN(7);
+  $2.Badge get badge => $_getN(7);
   @$pb.TagNumber(8)
-  set badge($1.Badge value) => $_setField(8, value);
+  set badge($2.Badge value) => $_setField(8, value);
   @$pb.TagNumber(8)
   $core.bool hasBadge() => $_has(7);
   @$pb.TagNumber(8)
   void clearBadge() => $_clearField(8);
   @$pb.TagNumber(8)
-  $1.Badge ensureBadge() => $_ensure(7);
+  $2.Badge ensureBadge() => $_ensure(7);
 }
 
 /// Get user badge progress request and response
 class GetUserBadgeProgressRequest extends $pb.GeneratedMessage {
   factory GetUserBadgeProgressRequest({
-    $core.int? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -168,7 +171,7 @@ class GetUserBadgeProgressRequest extends $pb.GeneratedMessage {
   factory GetUserBadgeProgressRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserBadgeProgressRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.badge_progress.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -190,9 +193,9 @@ class GetUserBadgeProgressRequest extends $pb.GeneratedMessage {
   static GetUserBadgeProgressRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -242,7 +245,7 @@ class GetUserBadgeProgressResponse extends $pb.GeneratedMessage {
 /// Update progress request and response
 class UpdateProgressRequest extends $pb.GeneratedMessage {
   factory UpdateProgressRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? badgeId,
     $core.int? currentProgress,
   }) {
@@ -259,7 +262,7 @@ class UpdateProgressRequest extends $pb.GeneratedMessage {
   factory UpdateProgressRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateProgressRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.badge_progress.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'badgeId', $pb.PbFieldType.O3)
     ..a<$core.int>(3, _omitFieldNames ? '' : 'currentProgress', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
@@ -283,9 +286,9 @@ class UpdateProgressRequest extends $pb.GeneratedMessage {
   static UpdateProgressRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -373,7 +376,7 @@ class UpdateProgressResponse extends $pb.GeneratedMessage {
 /// Get progress for specific badge request and response
 class GetProgressForBadgeRequest extends $pb.GeneratedMessage {
   factory GetProgressForBadgeRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? badgeId,
   }) {
     final result = create();
@@ -388,7 +391,7 @@ class GetProgressForBadgeRequest extends $pb.GeneratedMessage {
   factory GetProgressForBadgeRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetProgressForBadgeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.badge_progress.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'badgeId', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -411,9 +414,9 @@ class GetProgressForBadgeRequest extends $pb.GeneratedMessage {
   static GetProgressForBadgeRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)

@@ -14,6 +14,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// Exercise message definition
@@ -31,8 +33,8 @@ class Exercise extends $pb.GeneratedMessage {
     $core.String? videoUrl,
     $core.bool? isCustom,
     $core.String? userId,
-    $core.String? createdAt,
-    $core.String? updatedAt,
+    $1.Timestamp? createdAt,
+    $1.Timestamp? updatedAt,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -70,8 +72,8 @@ class Exercise extends $pb.GeneratedMessage {
     ..aOS(10, _omitFieldNames ? '' : 'videoUrl')
     ..aOB(11, _omitFieldNames ? '' : 'isCustom')
     ..aOS(12, _omitFieldNames ? '' : 'userId')
-    ..aOS(13, _omitFieldNames ? '' : 'createdAt')
-    ..aOS(14, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(13, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(14, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -183,22 +185,26 @@ class Exercise extends $pb.GeneratedMessage {
   void clearUserId() => $_clearField(12);
 
   @$pb.TagNumber(13)
-  $core.String get createdAt => $_getSZ(12);
+  $1.Timestamp get createdAt => $_getN(12);
   @$pb.TagNumber(13)
-  set createdAt($core.String value) => $_setString(12, value);
+  set createdAt($1.Timestamp value) => $_setField(13, value);
   @$pb.TagNumber(13)
   $core.bool hasCreatedAt() => $_has(12);
   @$pb.TagNumber(13)
   void clearCreatedAt() => $_clearField(13);
+  @$pb.TagNumber(13)
+  $1.Timestamp ensureCreatedAt() => $_ensure(12);
 
   @$pb.TagNumber(14)
-  $core.String get updatedAt => $_getSZ(13);
+  $1.Timestamp get updatedAt => $_getN(13);
   @$pb.TagNumber(14)
-  set updatedAt($core.String value) => $_setString(13, value);
+  set updatedAt($1.Timestamp value) => $_setField(14, value);
   @$pb.TagNumber(14)
   $core.bool hasUpdatedAt() => $_has(13);
   @$pb.TagNumber(14)
   void clearUpdatedAt() => $_clearField(14);
+  @$pb.TagNumber(14)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(13);
 }
 
 /// Create exercise request and response
@@ -214,6 +220,7 @@ class CreateExerciseRequest extends $pb.GeneratedMessage {
     $core.String? instructions,
     $core.String? videoUrl,
     $core.bool? isCustom,
+    $core.String? idempotencyKey,
   }) {
     final result = create();
     if (name != null) result.name = name;
@@ -226,6 +233,7 @@ class CreateExerciseRequest extends $pb.GeneratedMessage {
     if (instructions != null) result.instructions = instructions;
     if (videoUrl != null) result.videoUrl = videoUrl;
     if (isCustom != null) result.isCustom = isCustom;
+    if (idempotencyKey != null) result.idempotencyKey = idempotencyKey;
     return result;
   }
 
@@ -245,6 +253,7 @@ class CreateExerciseRequest extends $pb.GeneratedMessage {
     ..aOS(8, _omitFieldNames ? '' : 'instructions')
     ..aOS(9, _omitFieldNames ? '' : 'videoUrl')
     ..aOB(10, _omitFieldNames ? '' : 'isCustom')
+    ..aOS(11, _omitFieldNames ? '' : 'idempotencyKey')
     ..hasRequiredFields = false
   ;
 
@@ -336,6 +345,15 @@ class CreateExerciseRequest extends $pb.GeneratedMessage {
   $core.bool hasIsCustom() => $_has(9);
   @$pb.TagNumber(10)
   void clearIsCustom() => $_clearField(10);
+
+  @$pb.TagNumber(11)
+  $core.String get idempotencyKey => $_getSZ(10);
+  @$pb.TagNumber(11)
+  set idempotencyKey($core.String value) => $_setString(10, value);
+  @$pb.TagNumber(11)
+  $core.bool hasIdempotencyKey() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearIdempotencyKey() => $_clearField(11);
 }
 
 class CreateExerciseResponse extends $pb.GeneratedMessage {

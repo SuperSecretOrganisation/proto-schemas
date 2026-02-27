@@ -15,7 +15,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../../badge/v1/badge.pb.dart' as $1;
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+import '../../badge/v1/badge.pb.dart' as $2;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -23,12 +24,12 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 class UserBadge extends $pb.GeneratedMessage {
   factory UserBadge({
     $fixnum.Int64? id,
-    $core.int? userId,
+    $core.String? userId,
     $core.int? badgeId,
-    $core.String? earnedAt,
+    $1.Timestamp? earnedAt,
     $core.bool? isShared,
-    $core.String? sharedAt,
-    $1.Badge? badge,
+    $1.Timestamp? sharedAt,
+    $2.Badge? badge,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -48,12 +49,12 @@ class UserBadge extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserBadge', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_badge.v1'), createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'id')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(3, _omitFieldNames ? '' : 'badgeId', $pb.PbFieldType.O3)
-    ..aOS(4, _omitFieldNames ? '' : 'earnedAt')
+    ..aOM<$1.Timestamp>(4, _omitFieldNames ? '' : 'earnedAt', subBuilder: $1.Timestamp.create)
     ..aOB(5, _omitFieldNames ? '' : 'isShared')
-    ..aOS(6, _omitFieldNames ? '' : 'sharedAt')
-    ..aOM<$1.Badge>(7, _omitFieldNames ? '' : 'badge', subBuilder: $1.Badge.create)
+    ..aOM<$1.Timestamp>(6, _omitFieldNames ? '' : 'sharedAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$2.Badge>(7, _omitFieldNames ? '' : 'badge', subBuilder: $2.Badge.create)
     ..hasRequiredFields = false
   ;
 
@@ -84,9 +85,9 @@ class UserBadge extends $pb.GeneratedMessage {
   void clearId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get userId => $_getIZ(1);
+  $core.String get userId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userId($core.int value) => $_setSignedInt32(1, value);
+  set userId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
   $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
@@ -102,13 +103,15 @@ class UserBadge extends $pb.GeneratedMessage {
   void clearBadgeId() => $_clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get earnedAt => $_getSZ(3);
+  $1.Timestamp get earnedAt => $_getN(3);
   @$pb.TagNumber(4)
-  set earnedAt($core.String value) => $_setString(3, value);
+  set earnedAt($1.Timestamp value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasEarnedAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearEarnedAt() => $_clearField(4);
+  @$pb.TagNumber(4)
+  $1.Timestamp ensureEarnedAt() => $_ensure(3);
 
   @$pb.TagNumber(5)
   $core.bool get isShared => $_getBF(4);
@@ -120,30 +123,32 @@ class UserBadge extends $pb.GeneratedMessage {
   void clearIsShared() => $_clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get sharedAt => $_getSZ(5);
+  $1.Timestamp get sharedAt => $_getN(5);
   @$pb.TagNumber(6)
-  set sharedAt($core.String value) => $_setString(5, value);
+  set sharedAt($1.Timestamp value) => $_setField(6, value);
   @$pb.TagNumber(6)
   $core.bool hasSharedAt() => $_has(5);
   @$pb.TagNumber(6)
   void clearSharedAt() => $_clearField(6);
+  @$pb.TagNumber(6)
+  $1.Timestamp ensureSharedAt() => $_ensure(5);
 
   @$pb.TagNumber(7)
-  $1.Badge get badge => $_getN(6);
+  $2.Badge get badge => $_getN(6);
   @$pb.TagNumber(7)
-  set badge($1.Badge value) => $_setField(7, value);
+  set badge($2.Badge value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasBadge() => $_has(6);
   @$pb.TagNumber(7)
   void clearBadge() => $_clearField(7);
   @$pb.TagNumber(7)
-  $1.Badge ensureBadge() => $_ensure(6);
+  $2.Badge ensureBadge() => $_ensure(6);
 }
 
 /// Get user badges request and response
 class GetUserBadgesRequest extends $pb.GeneratedMessage {
   factory GetUserBadgesRequest({
-    $core.int? userId,
+    $core.String? userId,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
@@ -156,7 +161,7 @@ class GetUserBadgesRequest extends $pb.GeneratedMessage {
   factory GetUserBadgesRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserBadgesRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_badge.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..hasRequiredFields = false
   ;
 
@@ -178,9 +183,9 @@ class GetUserBadgesRequest extends $pb.GeneratedMessage {
   static GetUserBadgesRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -242,7 +247,7 @@ class GetUserBadgesResponse extends $pb.GeneratedMessage {
 /// Award badge request and response
 class AwardBadgeRequest extends $pb.GeneratedMessage {
   factory AwardBadgeRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? badgeId,
   }) {
     final result = create();
@@ -257,7 +262,7 @@ class AwardBadgeRequest extends $pb.GeneratedMessage {
   factory AwardBadgeRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AwardBadgeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_badge.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'badgeId', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -280,9 +285,9 @@ class AwardBadgeRequest extends $pb.GeneratedMessage {
   static AwardBadgeRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -361,7 +366,7 @@ class AwardBadgeResponse extends $pb.GeneratedMessage {
 /// Share badge request and response
 class ShareBadgeRequest extends $pb.GeneratedMessage {
   factory ShareBadgeRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? badgeId,
   }) {
     final result = create();
@@ -376,7 +381,7 @@ class ShareBadgeRequest extends $pb.GeneratedMessage {
   factory ShareBadgeRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ShareBadgeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_badge.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'badgeId', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -399,9 +404,9 @@ class ShareBadgeRequest extends $pb.GeneratedMessage {
   static ShareBadgeRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -478,7 +483,7 @@ class ShareBadgeResponse extends $pb.GeneratedMessage {
 /// Get recent badges request and response
 class GetRecentBadgesRequest extends $pb.GeneratedMessage {
   factory GetRecentBadgesRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.int? limit,
   }) {
     final result = create();
@@ -493,7 +498,7 @@ class GetRecentBadgesRequest extends $pb.GeneratedMessage {
   factory GetRecentBadgesRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetRecentBadgesRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_badge.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'limit', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -516,9 +521,9 @@ class GetRecentBadgesRequest extends $pb.GeneratedMessage {
   static GetRecentBadgesRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -577,7 +582,7 @@ class GetRecentBadgesResponse extends $pb.GeneratedMessage {
 /// Check badge unlock request and response (checks if user should unlock any badges)
 class CheckBadgeUnlockRequest extends $pb.GeneratedMessage {
   factory CheckBadgeUnlockRequest({
-    $core.int? userId,
+    $core.String? userId,
     $core.String? activityType,
   }) {
     final result = create();
@@ -592,7 +597,7 @@ class CheckBadgeUnlockRequest extends $pb.GeneratedMessage {
   factory CheckBadgeUnlockRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CheckBadgeUnlockRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.user_badge.v1'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'userId', $pb.PbFieldType.O3)
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..aOS(2, _omitFieldNames ? '' : 'activityType')
     ..hasRequiredFields = false
   ;
@@ -615,9 +620,9 @@ class CheckBadgeUnlockRequest extends $pb.GeneratedMessage {
   static CheckBadgeUnlockRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get userId => $_getIZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($core.int value) => $_setSignedInt32(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)

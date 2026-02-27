@@ -14,6 +14,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import '../../../google/protobuf/timestamp.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// Nested messages for program structure
@@ -401,8 +403,8 @@ class TrainingProgram extends $pb.GeneratedMessage {
     $core.String? author,
     $core.bool? isCustom,
     $core.String? userId,
-    $core.String? createdAt,
-    $core.String? updatedAt,
+    $1.Timestamp? createdAt,
+    $1.Timestamp? updatedAt,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -438,8 +440,8 @@ class TrainingProgram extends $pb.GeneratedMessage {
     ..aOS(9, _omitFieldNames ? '' : 'author')
     ..aOB(10, _omitFieldNames ? '' : 'isCustom')
     ..aOS(11, _omitFieldNames ? '' : 'userId')
-    ..aOS(12, _omitFieldNames ? '' : 'createdAt')
-    ..aOS(13, _omitFieldNames ? '' : 'updatedAt')
+    ..aOM<$1.Timestamp>(12, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOM<$1.Timestamp>(13, _omitFieldNames ? '' : 'updatedAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -548,22 +550,26 @@ class TrainingProgram extends $pb.GeneratedMessage {
   void clearUserId() => $_clearField(11);
 
   @$pb.TagNumber(12)
-  $core.String get createdAt => $_getSZ(11);
+  $1.Timestamp get createdAt => $_getN(11);
   @$pb.TagNumber(12)
-  set createdAt($core.String value) => $_setString(11, value);
+  set createdAt($1.Timestamp value) => $_setField(12, value);
   @$pb.TagNumber(12)
   $core.bool hasCreatedAt() => $_has(11);
   @$pb.TagNumber(12)
   void clearCreatedAt() => $_clearField(12);
+  @$pb.TagNumber(12)
+  $1.Timestamp ensureCreatedAt() => $_ensure(11);
 
   @$pb.TagNumber(13)
-  $core.String get updatedAt => $_getSZ(12);
+  $1.Timestamp get updatedAt => $_getN(12);
   @$pb.TagNumber(13)
-  set updatedAt($core.String value) => $_setString(12, value);
+  set updatedAt($1.Timestamp value) => $_setField(13, value);
   @$pb.TagNumber(13)
   $core.bool hasUpdatedAt() => $_has(12);
   @$pb.TagNumber(13)
   void clearUpdatedAt() => $_clearField(13);
+  @$pb.TagNumber(13)
+  $1.Timestamp ensureUpdatedAt() => $_ensure(12);
 }
 
 /// Create program request and response
@@ -578,6 +584,7 @@ class CreateProgramRequest extends $pb.GeneratedMessage {
     $core.Iterable<$core.String>? equipmentRequired,
     $core.String? author,
     $core.bool? isCustom,
+    $core.String? idempotencyKey,
   }) {
     final result = create();
     if (name != null) result.name = name;
@@ -589,6 +596,7 @@ class CreateProgramRequest extends $pb.GeneratedMessage {
     if (equipmentRequired != null) result.equipmentRequired.addAll(equipmentRequired);
     if (author != null) result.author = author;
     if (isCustom != null) result.isCustom = isCustom;
+    if (idempotencyKey != null) result.idempotencyKey = idempotencyKey;
     return result;
   }
 
@@ -607,6 +615,7 @@ class CreateProgramRequest extends $pb.GeneratedMessage {
     ..pPS(7, _omitFieldNames ? '' : 'equipmentRequired')
     ..aOS(8, _omitFieldNames ? '' : 'author')
     ..aOB(9, _omitFieldNames ? '' : 'isCustom')
+    ..aOS(10, _omitFieldNames ? '' : 'idempotencyKey')
     ..hasRequiredFields = false
   ;
 
@@ -695,6 +704,15 @@ class CreateProgramRequest extends $pb.GeneratedMessage {
   $core.bool hasIsCustom() => $_has(8);
   @$pb.TagNumber(9)
   void clearIsCustom() => $_clearField(9);
+
+  @$pb.TagNumber(10)
+  $core.String get idempotencyKey => $_getSZ(9);
+  @$pb.TagNumber(10)
+  set idempotencyKey($core.String value) => $_setString(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasIdempotencyKey() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearIdempotencyKey() => $_clearField(10);
 }
 
 class CreateProgramResponse extends $pb.GeneratedMessage {
@@ -1393,7 +1411,7 @@ class CompleteWorkoutRequest extends $pb.GeneratedMessage {
   factory CompleteWorkoutRequest({
     $core.String? progressId,
     $core.String? workoutId,
-    $core.String? completedAt,
+    $1.Timestamp? completedAt,
   }) {
     final result = create();
     if (progressId != null) result.progressId = progressId;
@@ -1410,7 +1428,7 @@ class CompleteWorkoutRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CompleteWorkoutRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.training_program.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'progressId')
     ..aOS(2, _omitFieldNames ? '' : 'workoutId')
-    ..aOS(3, _omitFieldNames ? '' : 'completedAt')
+    ..aOM<$1.Timestamp>(3, _omitFieldNames ? '' : 'completedAt', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -1450,13 +1468,15 @@ class CompleteWorkoutRequest extends $pb.GeneratedMessage {
   void clearWorkoutId() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get completedAt => $_getSZ(2);
+  $1.Timestamp get completedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set completedAt($core.String value) => $_setString(2, value);
+  set completedAt($1.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasCompletedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearCompletedAt() => $_clearField(3);
+  @$pb.TagNumber(3)
+  $1.Timestamp ensureCompletedAt() => $_ensure(2);
 }
 
 class CompleteWorkoutResponse extends $pb.GeneratedMessage {

@@ -9,6 +9,7 @@ package trainingprogrampb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -345,11 +346,11 @@ type TrainingProgram struct {
 	DurationWeeks     int32                  `protobuf:"varint,6,opt,name=duration_weeks,json=durationWeeks,proto3" json:"duration_weeks,omitempty"`
 	Weeks             []*ProgramWeek         `protobuf:"bytes,7,rep,name=weeks,proto3" json:"weeks,omitempty"`
 	EquipmentRequired []string               `protobuf:"bytes,8,rep,name=equipment_required,json=equipmentRequired,proto3" json:"equipment_required,omitempty"`
-	Author            string                 `protobuf:"bytes,9,opt,name=author,proto3" json:"author,omitempty"`                         // Optional: program creator
-	IsCustom          bool                   `protobuf:"varint,10,opt,name=is_custom,json=isCustom,proto3" json:"is_custom,omitempty"`   // Whether this is a user-created program
-	UserId            string                 `protobuf:"bytes,11,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`          // ID of user who created (if custom)
-	CreatedAt         string                 `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // RFC3339 format
-	UpdatedAt         string                 `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // RFC3339 format
+	Author            string                 `protobuf:"bytes,9,opt,name=author,proto3" json:"author,omitempty"`                       // Optional: program creator
+	IsCustom          bool                   `protobuf:"varint,10,opt,name=is_custom,json=isCustom,proto3" json:"is_custom,omitempty"` // Whether this is a user-created program
+	UserId            string                 `protobuf:"bytes,11,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`        // ID of user who created (if custom)
+	CreatedAt         *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt         *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -461,23 +462,24 @@ func (x *TrainingProgram) GetUserId() string {
 	return ""
 }
 
-func (x *TrainingProgram) GetCreatedAt() string {
+func (x *TrainingProgram) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *TrainingProgram) GetUpdatedAt() string {
+func (x *TrainingProgram) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 // Create program request and response
 type CreateProgramRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
+	IdempotencyKey    string                 `protobuf:"bytes,10,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
 	Name              string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description       string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Goal              string                 `protobuf:"bytes,3,opt,name=goal,proto3" json:"goal,omitempty"`
@@ -519,6 +521,13 @@ func (x *CreateProgramRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CreateProgramRequest.ProtoReflect.Descriptor instead.
 func (*CreateProgramRequest) Descriptor() ([]byte, []int) {
 	return file_proto_training_program_v1_training_program_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateProgramRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
 }
 
 func (x *CreateProgramRequest) GetName() string {
@@ -1206,7 +1215,7 @@ type CompleteWorkoutRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProgressId    string                 `protobuf:"bytes,1,opt,name=progress_id,json=progressId,proto3" json:"progress_id,omitempty"` // UserProgramProgress ID
 	WorkoutId     string                 `protobuf:"bytes,2,opt,name=workout_id,json=workoutId,proto3" json:"workout_id,omitempty"`
-	CompletedAt   string                 `protobuf:"bytes,3,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"` // RFC3339 format
+	CompletedAt   *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1255,11 +1264,11 @@ func (x *CompleteWorkoutRequest) GetWorkoutId() string {
 	return ""
 }
 
-func (x *CompleteWorkoutRequest) GetCompletedAt() string {
+func (x *CompleteWorkoutRequest) GetCompletedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CompletedAt
 	}
-	return ""
+	return nil
 }
 
 type CompleteWorkoutResponse struct {
@@ -1318,7 +1327,7 @@ var File_proto_training_program_v1_training_program_proto protoreflect.FileDescr
 
 const file_proto_training_program_v1_training_program_proto_rawDesc = "" +
 	"\n" +
-	"0proto/training_program/v1/training_program.proto\x12\x19proto.training_program.v1\"\xc0\x01\n" +
+	"0proto/training_program/v1/training_program.proto\x12\x19proto.training_program.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc0\x01\n" +
 	"\n" +
 	"WorkoutSet\x12\x1d\n" +
 	"\n" +
@@ -1348,7 +1357,7 @@ const file_proto_training_program_v1_training_program_proto_rawDesc = "" +
 	"weekNumber\x12E\n" +
 	"\bworkouts\x18\x02 \x03(\v2).proto.training_program.v1.ProgramWorkoutR\bworkouts\x12$\n" +
 	"\x0eis_deload_week\x18\x03 \x01(\bR\fisDeloadWeek\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\"\xa9\x03\n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\"\xe1\x03\n" +
 	"\x0fTrainingProgram\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -1361,12 +1370,14 @@ const file_proto_training_program_v1_training_program_proto_rawDesc = "" +
 	"\x06author\x18\t \x01(\tR\x06author\x12\x1b\n" +
 	"\tis_custom\x18\n" +
 	" \x01(\bR\bisCustom\x12\x17\n" +
-	"\auser_id\x18\v \x01(\tR\x06userId\x12\x1d\n" +
+	"\auser_id\x18\v \x01(\tR\x06userId\x129\n" +
 	"\n" +
-	"created_at\x18\f \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\r \x01(\tR\tupdatedAt\"\xc7\x02\n" +
-	"\x14CreateProgramRequest\x12\x12\n" +
+	"updated_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xf0\x02\n" +
+	"\x14CreateProgramRequest\x12'\n" +
+	"\x0fidempotency_key\x18\n" +
+	" \x01(\tR\x0eidempotencyKey\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x12\n" +
 	"\x04goal\x18\x03 \x01(\tR\x04goal\x12\x1c\n" +
@@ -1418,13 +1429,13 @@ const file_proto_training_program_v1_training_program_proto_rawDesc = "" +
 	"\x14StartProgramResponse\x12\x1f\n" +
 	"\vprogress_id\x18\x01 \x01(\tR\n" +
 	"progressId\x12\x18\n" +
-	"\asuccess\x18\x02 \x01(\bR\asuccess\"{\n" +
+	"\asuccess\x18\x02 \x01(\bR\asuccess\"\x97\x01\n" +
 	"\x16CompleteWorkoutRequest\x12\x1f\n" +
 	"\vprogress_id\x18\x01 \x01(\tR\n" +
 	"progressId\x12\x1d\n" +
 	"\n" +
-	"workout_id\x18\x02 \x01(\tR\tworkoutId\x12!\n" +
-	"\fcompleted_at\x18\x03 \x01(\tR\vcompletedAt\"b\n" +
+	"workout_id\x18\x02 \x01(\tR\tworkoutId\x12=\n" +
+	"\fcompleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vcompletedAt\"b\n" +
 	"\x17CompleteWorkoutResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12-\n" +
 	"\x12workouts_completed\x18\x02 \x01(\x05R\x11workoutsCompleted2\xbb\x06\n" +
@@ -1436,7 +1447,7 @@ const file_proto_training_program_v1_training_program_proto_rawDesc = "" +
 	"\rDeleteProgram\x12/.proto.training_program.v1.DeleteProgramRequest\x1a0.proto.training_program.v1.DeleteProgramResponse\x12o\n" +
 	"\fListPrograms\x12..proto.training_program.v1.ListProgramsRequest\x1a/.proto.training_program.v1.ListProgramsResponse\x12o\n" +
 	"\fStartProgram\x12..proto.training_program.v1.StartProgramRequest\x1a/.proto.training_program.v1.StartProgramResponse\x12x\n" +
-	"\x0fCompleteWorkout\x121.proto.training_program.v1.CompleteWorkoutRequest\x1a2.proto.training_program.v1.CompleteWorkoutResponseBhZfgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/training_program/v1;trainingprogrampbb\x06proto3"
+	"\x0fCompleteWorkout\x121.proto.training_program.v1.CompleteWorkoutRequest\x1a2.proto.training_program.v1.CompleteWorkoutResponseBhZfgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/training_program/v1;trainingprogrampbb\x06proto3"
 
 var (
 	file_proto_training_program_v1_training_program_proto_rawDescOnce sync.Once
@@ -1471,37 +1482,41 @@ var file_proto_training_program_v1_training_program_proto_goTypes = []any{
 	(*StartProgramResponse)(nil),    // 16: proto.training_program.v1.StartProgramResponse
 	(*CompleteWorkoutRequest)(nil),  // 17: proto.training_program.v1.CompleteWorkoutRequest
 	(*CompleteWorkoutResponse)(nil), // 18: proto.training_program.v1.CompleteWorkoutResponse
+	(*timestamppb.Timestamp)(nil),   // 19: google.protobuf.Timestamp
 }
 var file_proto_training_program_v1_training_program_proto_depIdxs = []int32{
 	0,  // 0: proto.training_program.v1.WorkoutExercise.sets:type_name -> proto.training_program.v1.WorkoutSet
 	1,  // 1: proto.training_program.v1.ProgramWorkout.exercises:type_name -> proto.training_program.v1.WorkoutExercise
 	2,  // 2: proto.training_program.v1.ProgramWeek.workouts:type_name -> proto.training_program.v1.ProgramWorkout
 	3,  // 3: proto.training_program.v1.TrainingProgram.weeks:type_name -> proto.training_program.v1.ProgramWeek
-	3,  // 4: proto.training_program.v1.CreateProgramRequest.weeks:type_name -> proto.training_program.v1.ProgramWeek
-	4,  // 5: proto.training_program.v1.CreateProgramResponse.program:type_name -> proto.training_program.v1.TrainingProgram
-	4,  // 6: proto.training_program.v1.GetProgramResponse.program:type_name -> proto.training_program.v1.TrainingProgram
-	3,  // 7: proto.training_program.v1.UpdateProgramRequest.weeks:type_name -> proto.training_program.v1.ProgramWeek
-	4,  // 8: proto.training_program.v1.UpdateProgramResponse.program:type_name -> proto.training_program.v1.TrainingProgram
-	4,  // 9: proto.training_program.v1.ListProgramsResponse.programs:type_name -> proto.training_program.v1.TrainingProgram
-	5,  // 10: proto.training_program.v1.TrainingProgramService.CreateProgram:input_type -> proto.training_program.v1.CreateProgramRequest
-	7,  // 11: proto.training_program.v1.TrainingProgramService.GetProgram:input_type -> proto.training_program.v1.GetProgramRequest
-	9,  // 12: proto.training_program.v1.TrainingProgramService.UpdateProgram:input_type -> proto.training_program.v1.UpdateProgramRequest
-	11, // 13: proto.training_program.v1.TrainingProgramService.DeleteProgram:input_type -> proto.training_program.v1.DeleteProgramRequest
-	13, // 14: proto.training_program.v1.TrainingProgramService.ListPrograms:input_type -> proto.training_program.v1.ListProgramsRequest
-	15, // 15: proto.training_program.v1.TrainingProgramService.StartProgram:input_type -> proto.training_program.v1.StartProgramRequest
-	17, // 16: proto.training_program.v1.TrainingProgramService.CompleteWorkout:input_type -> proto.training_program.v1.CompleteWorkoutRequest
-	6,  // 17: proto.training_program.v1.TrainingProgramService.CreateProgram:output_type -> proto.training_program.v1.CreateProgramResponse
-	8,  // 18: proto.training_program.v1.TrainingProgramService.GetProgram:output_type -> proto.training_program.v1.GetProgramResponse
-	10, // 19: proto.training_program.v1.TrainingProgramService.UpdateProgram:output_type -> proto.training_program.v1.UpdateProgramResponse
-	12, // 20: proto.training_program.v1.TrainingProgramService.DeleteProgram:output_type -> proto.training_program.v1.DeleteProgramResponse
-	14, // 21: proto.training_program.v1.TrainingProgramService.ListPrograms:output_type -> proto.training_program.v1.ListProgramsResponse
-	16, // 22: proto.training_program.v1.TrainingProgramService.StartProgram:output_type -> proto.training_program.v1.StartProgramResponse
-	18, // 23: proto.training_program.v1.TrainingProgramService.CompleteWorkout:output_type -> proto.training_program.v1.CompleteWorkoutResponse
-	17, // [17:24] is the sub-list for method output_type
-	10, // [10:17] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	19, // 4: proto.training_program.v1.TrainingProgram.created_at:type_name -> google.protobuf.Timestamp
+	19, // 5: proto.training_program.v1.TrainingProgram.updated_at:type_name -> google.protobuf.Timestamp
+	3,  // 6: proto.training_program.v1.CreateProgramRequest.weeks:type_name -> proto.training_program.v1.ProgramWeek
+	4,  // 7: proto.training_program.v1.CreateProgramResponse.program:type_name -> proto.training_program.v1.TrainingProgram
+	4,  // 8: proto.training_program.v1.GetProgramResponse.program:type_name -> proto.training_program.v1.TrainingProgram
+	3,  // 9: proto.training_program.v1.UpdateProgramRequest.weeks:type_name -> proto.training_program.v1.ProgramWeek
+	4,  // 10: proto.training_program.v1.UpdateProgramResponse.program:type_name -> proto.training_program.v1.TrainingProgram
+	4,  // 11: proto.training_program.v1.ListProgramsResponse.programs:type_name -> proto.training_program.v1.TrainingProgram
+	19, // 12: proto.training_program.v1.CompleteWorkoutRequest.completed_at:type_name -> google.protobuf.Timestamp
+	5,  // 13: proto.training_program.v1.TrainingProgramService.CreateProgram:input_type -> proto.training_program.v1.CreateProgramRequest
+	7,  // 14: proto.training_program.v1.TrainingProgramService.GetProgram:input_type -> proto.training_program.v1.GetProgramRequest
+	9,  // 15: proto.training_program.v1.TrainingProgramService.UpdateProgram:input_type -> proto.training_program.v1.UpdateProgramRequest
+	11, // 16: proto.training_program.v1.TrainingProgramService.DeleteProgram:input_type -> proto.training_program.v1.DeleteProgramRequest
+	13, // 17: proto.training_program.v1.TrainingProgramService.ListPrograms:input_type -> proto.training_program.v1.ListProgramsRequest
+	15, // 18: proto.training_program.v1.TrainingProgramService.StartProgram:input_type -> proto.training_program.v1.StartProgramRequest
+	17, // 19: proto.training_program.v1.TrainingProgramService.CompleteWorkout:input_type -> proto.training_program.v1.CompleteWorkoutRequest
+	6,  // 20: proto.training_program.v1.TrainingProgramService.CreateProgram:output_type -> proto.training_program.v1.CreateProgramResponse
+	8,  // 21: proto.training_program.v1.TrainingProgramService.GetProgram:output_type -> proto.training_program.v1.GetProgramResponse
+	10, // 22: proto.training_program.v1.TrainingProgramService.UpdateProgram:output_type -> proto.training_program.v1.UpdateProgramResponse
+	12, // 23: proto.training_program.v1.TrainingProgramService.DeleteProgram:output_type -> proto.training_program.v1.DeleteProgramResponse
+	14, // 24: proto.training_program.v1.TrainingProgramService.ListPrograms:output_type -> proto.training_program.v1.ListProgramsResponse
+	16, // 25: proto.training_program.v1.TrainingProgramService.StartProgram:output_type -> proto.training_program.v1.StartProgramResponse
+	18, // 26: proto.training_program.v1.TrainingProgramService.CompleteWorkout:output_type -> proto.training_program.v1.CompleteWorkoutResponse
+	20, // [20:27] is the sub-list for method output_type
+	13, // [13:20] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_proto_training_program_v1_training_program_proto_init() }

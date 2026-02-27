@@ -19,7 +19,7 @@ const Prediction$json = {
   '1': 'Prediction',
   '2': [
     {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    {'1': 'user_uuid', '3': 2, '4': 1, '5': 9, '10': 'userUuid'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'prediction', '3': 3, '4': 1, '5': 5, '10': 'prediction'},
     {'1': 'error_range', '3': 4, '4': 1, '5': 5, '10': 'errorRange'},
     {'1': 'timestamp', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
@@ -28,10 +28,10 @@ const Prediction$json = {
 
 /// Descriptor for `Prediction`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List predictionDescriptor = $convert.base64Decode(
-    'CgpQcmVkaWN0aW9uEhIKBHV1aWQYASABKAlSBHV1aWQSGwoJdXNlcl91dWlkGAIgASgJUgh1c2'
-    'VyVXVpZBIeCgpwcmVkaWN0aW9uGAMgASgFUgpwcmVkaWN0aW9uEh8KC2Vycm9yX3JhbmdlGAQg'
-    'ASgFUgplcnJvclJhbmdlEjgKCXRpbWVzdGFtcBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW'
-    '1lc3RhbXBSCXRpbWVzdGFtcA==');
+    'CgpQcmVkaWN0aW9uEhIKBHV1aWQYASABKAlSBHV1aWQSFwoHdXNlcl9pZBgCIAEoCVIGdXNlck'
+    'lkEh4KCnByZWRpY3Rpb24YAyABKAVSCnByZWRpY3Rpb24SHwoLZXJyb3JfcmFuZ2UYBCABKAVS'
+    'CmVycm9yUmFuZ2USOAoJdGltZXN0YW1wGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdG'
+    'FtcFIJdGltZXN0YW1w');
 
 @$core.Deprecated('Use predictionDTODescriptor instead')
 const PredictionDTO$json = {
@@ -72,7 +72,7 @@ final $typed_data.Uint8List predictionFilterDescriptor = $convert.base64Decode(
 const CreatePredictionRequest$json = {
   '1': 'CreatePredictionRequest',
   '2': [
-    {'1': 'user_uuid', '3': 1, '4': 1, '5': 9, '10': 'userUuid'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'prediction', '3': 2, '4': 1, '5': 5, '10': 'prediction'},
     {'1': 'error_range', '3': 3, '4': 1, '5': 5, '10': 'errorRange'},
     {'1': 'timestamp', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
@@ -81,17 +81,17 @@ const CreatePredictionRequest$json = {
 
 /// Descriptor for `CreatePredictionRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List createPredictionRequestDescriptor = $convert.base64Decode(
-    'ChdDcmVhdGVQcmVkaWN0aW9uUmVxdWVzdBIbCgl1c2VyX3V1aWQYASABKAlSCHVzZXJVdWlkEh'
-    '4KCnByZWRpY3Rpb24YAiABKAVSCnByZWRpY3Rpb24SHwoLZXJyb3JfcmFuZ2UYAyABKAVSCmVy'
-    'cm9yUmFuZ2USOAoJdGltZXN0YW1wGAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcF'
-    'IJdGltZXN0YW1w');
+    'ChdDcmVhdGVQcmVkaWN0aW9uUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSHgoKcH'
+    'JlZGljdGlvbhgCIAEoBVIKcHJlZGljdGlvbhIfCgtlcnJvcl9yYW5nZRgDIAEoBVIKZXJyb3JS'
+    'YW5nZRI4Cgl0aW1lc3RhbXAYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgl0aW'
+    '1lc3RhbXA=');
 
 @$core.Deprecated('Use createPredictionResponseDescriptor instead')
 const CreatePredictionResponse$json = {
   '1': 'CreatePredictionResponse',
   '2': [
     {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    {'1': 'user_uuid', '3': 2, '4': 1, '5': 9, '10': 'userUuid'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'prediction', '3': 3, '4': 1, '5': 5, '10': 'prediction'},
     {'1': 'error_range', '3': 4, '4': 1, '5': 5, '10': 'errorRange'},
     {'1': 'timestamp', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
@@ -100,10 +100,10 @@ const CreatePredictionResponse$json = {
 
 /// Descriptor for `CreatePredictionResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List createPredictionResponseDescriptor = $convert.base64Decode(
-    'ChhDcmVhdGVQcmVkaWN0aW9uUmVzcG9uc2USEgoEdXVpZBgBIAEoCVIEdXVpZBIbCgl1c2VyX3'
-    'V1aWQYAiABKAlSCHVzZXJVdWlkEh4KCnByZWRpY3Rpb24YAyABKAVSCnByZWRpY3Rpb24SHwoL'
-    'ZXJyb3JfcmFuZ2UYBCABKAVSCmVycm9yUmFuZ2USOAoJdGltZXN0YW1wGAUgASgLMhouZ29vZ2'
-    'xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdGltZXN0YW1w');
+    'ChhDcmVhdGVQcmVkaWN0aW9uUmVzcG9uc2USEgoEdXVpZBgBIAEoCVIEdXVpZBIXCgd1c2VyX2'
+    'lkGAIgASgJUgZ1c2VySWQSHgoKcHJlZGljdGlvbhgDIAEoBVIKcHJlZGljdGlvbhIfCgtlcnJv'
+    'cl9yYW5nZRgEIAEoBVIKZXJyb3JSYW5nZRI4Cgl0aW1lc3RhbXAYBSABKAsyGi5nb29nbGUucH'
+    'JvdG9idWYuVGltZXN0YW1wUgl0aW1lc3RhbXA=');
 
 @$core.Deprecated('Use getPredictionRequestDescriptor instead')
 const GetPredictionRequest$json = {
@@ -122,7 +122,7 @@ const GetPredictionResponse$json = {
   '1': 'GetPredictionResponse',
   '2': [
     {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    {'1': 'user_uuid', '3': 2, '4': 1, '5': 9, '10': 'userUuid'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'prediction', '3': 3, '4': 1, '5': 5, '10': 'prediction'},
     {'1': 'error_range', '3': 4, '4': 1, '5': 5, '10': 'errorRange'},
     {'1': 'timestamp', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
@@ -131,25 +131,24 @@ const GetPredictionResponse$json = {
 
 /// Descriptor for `GetPredictionResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getPredictionResponseDescriptor = $convert.base64Decode(
-    'ChVHZXRQcmVkaWN0aW9uUmVzcG9uc2USEgoEdXVpZBgBIAEoCVIEdXVpZBIbCgl1c2VyX3V1aW'
-    'QYAiABKAlSCHVzZXJVdWlkEh4KCnByZWRpY3Rpb24YAyABKAVSCnByZWRpY3Rpb24SHwoLZXJy'
-    'b3JfcmFuZ2UYBCABKAVSCmVycm9yUmFuZ2USOAoJdGltZXN0YW1wGAUgASgLMhouZ29vZ2xlLn'
-    'Byb3RvYnVmLlRpbWVzdGFtcFIJdGltZXN0YW1w');
+    'ChVHZXRQcmVkaWN0aW9uUmVzcG9uc2USEgoEdXVpZBgBIAEoCVIEdXVpZBIXCgd1c2VyX2lkGA'
+    'IgASgJUgZ1c2VySWQSHgoKcHJlZGljdGlvbhgDIAEoBVIKcHJlZGljdGlvbhIfCgtlcnJvcl9y'
+    'YW5nZRgEIAEoBVIKZXJyb3JSYW5nZRI4Cgl0aW1lc3RhbXAYBSABKAsyGi5nb29nbGUucHJvdG'
+    '9idWYuVGltZXN0YW1wUgl0aW1lc3RhbXA=');
 
 @$core.Deprecated('Use getByUserIDRequestDescriptor instead')
 const GetByUserIDRequest$json = {
   '1': 'GetByUserIDRequest',
   '2': [
-    {'1': 'user_uuid', '3': 1, '4': 1, '5': 9, '10': 'userUuid'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'filter', '3': 2, '4': 1, '5': 11, '6': '.proto.prediction.v1.PredictionFilter', '10': 'filter'},
   ],
 };
 
 /// Descriptor for `GetByUserIDRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getByUserIDRequestDescriptor = $convert.base64Decode(
-    'ChJHZXRCeVVzZXJJRFJlcXVlc3QSGwoJdXNlcl91dWlkGAEgASgJUgh1c2VyVXVpZBI9CgZmaW'
-    'x0ZXIYAiABKAsyJS5wcm90by5wcmVkaWN0aW9uLnYxLlByZWRpY3Rpb25GaWx0ZXJSBmZpbHRl'
-    'cg==');
+    'ChJHZXRCeVVzZXJJRFJlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEj0KBmZpbHRlch'
+    'gCIAEoCzIlLnByb3RvLnByZWRpY3Rpb24udjEuUHJlZGljdGlvbkZpbHRlclIGZmlsdGVy');
 
 @$core.Deprecated('Use getByUserIDResponseDescriptor instead')
 const GetByUserIDResponse$json = {
@@ -169,7 +168,7 @@ const UpdatePredictionRequest$json = {
   '1': 'UpdatePredictionRequest',
   '2': [
     {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    {'1': 'user_uuid', '3': 2, '4': 1, '5': 9, '10': 'userUuid'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'prediction', '3': 3, '4': 1, '5': 5, '10': 'prediction'},
     {'1': 'error_range', '3': 4, '4': 1, '5': 5, '10': 'errorRange'},
     {'1': 'timestamp', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
@@ -178,17 +177,17 @@ const UpdatePredictionRequest$json = {
 
 /// Descriptor for `UpdatePredictionRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updatePredictionRequestDescriptor = $convert.base64Decode(
-    'ChdVcGRhdGVQcmVkaWN0aW9uUmVxdWVzdBISCgR1dWlkGAEgASgJUgR1dWlkEhsKCXVzZXJfdX'
-    'VpZBgCIAEoCVIIdXNlclV1aWQSHgoKcHJlZGljdGlvbhgDIAEoBVIKcHJlZGljdGlvbhIfCgtl'
-    'cnJvcl9yYW5nZRgEIAEoBVIKZXJyb3JSYW5nZRI4Cgl0aW1lc3RhbXAYBSABKAsyGi5nb29nbG'
-    'UucHJvdG9idWYuVGltZXN0YW1wUgl0aW1lc3RhbXA=');
+    'ChdVcGRhdGVQcmVkaWN0aW9uUmVxdWVzdBISCgR1dWlkGAEgASgJUgR1dWlkEhcKB3VzZXJfaW'
+    'QYAiABKAlSBnVzZXJJZBIeCgpwcmVkaWN0aW9uGAMgASgFUgpwcmVkaWN0aW9uEh8KC2Vycm9y'
+    'X3JhbmdlGAQgASgFUgplcnJvclJhbmdlEjgKCXRpbWVzdGFtcBgFIAEoCzIaLmdvb2dsZS5wcm'
+    '90b2J1Zi5UaW1lc3RhbXBSCXRpbWVzdGFtcA==');
 
 @$core.Deprecated('Use updatePredictionResponseDescriptor instead')
 const UpdatePredictionResponse$json = {
   '1': 'UpdatePredictionResponse',
   '2': [
     {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    {'1': 'user_uuid', '3': 2, '4': 1, '5': 9, '10': 'userUuid'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'prediction', '3': 3, '4': 1, '5': 5, '10': 'prediction'},
     {'1': 'error_range', '3': 4, '4': 1, '5': 5, '10': 'errorRange'},
     {'1': 'timestamp', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
@@ -197,10 +196,10 @@ const UpdatePredictionResponse$json = {
 
 /// Descriptor for `UpdatePredictionResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updatePredictionResponseDescriptor = $convert.base64Decode(
-    'ChhVcGRhdGVQcmVkaWN0aW9uUmVzcG9uc2USEgoEdXVpZBgBIAEoCVIEdXVpZBIbCgl1c2VyX3'
-    'V1aWQYAiABKAlSCHVzZXJVdWlkEh4KCnByZWRpY3Rpb24YAyABKAVSCnByZWRpY3Rpb24SHwoL'
-    'ZXJyb3JfcmFuZ2UYBCABKAVSCmVycm9yUmFuZ2USOAoJdGltZXN0YW1wGAUgASgLMhouZ29vZ2'
-    'xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdGltZXN0YW1w');
+    'ChhVcGRhdGVQcmVkaWN0aW9uUmVzcG9uc2USEgoEdXVpZBgBIAEoCVIEdXVpZBIXCgd1c2VyX2'
+    'lkGAIgASgJUgZ1c2VySWQSHgoKcHJlZGljdGlvbhgDIAEoBVIKcHJlZGljdGlvbhIfCgtlcnJv'
+    'cl9yYW5nZRgEIAEoBVIKZXJyb3JSYW5nZRI4Cgl0aW1lc3RhbXAYBSABKAsyGi5nb29nbGUucH'
+    'JvdG9idWYuVGltZXN0YW1wUgl0aW1lc3RhbXA=');
 
 @$core.Deprecated('Use deletePredictionRequestDescriptor instead')
 const DeletePredictionRequest$json = {

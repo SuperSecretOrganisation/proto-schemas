@@ -19,33 +19,34 @@ const UserBadge$json = {
   '1': 'UserBadge',
   '2': [
     {'1': 'id', '3': 1, '4': 1, '5': 3, '10': 'id'},
-    {'1': 'user_id', '3': 2, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'badge_id', '3': 3, '4': 1, '5': 5, '10': 'badgeId'},
-    {'1': 'earned_at', '3': 4, '4': 1, '5': 9, '10': 'earnedAt'},
+    {'1': 'earned_at', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'earnedAt'},
     {'1': 'is_shared', '3': 5, '4': 1, '5': 8, '10': 'isShared'},
-    {'1': 'shared_at', '3': 6, '4': 1, '5': 9, '10': 'sharedAt'},
+    {'1': 'shared_at', '3': 6, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'sharedAt'},
     {'1': 'badge', '3': 7, '4': 1, '5': 11, '6': '.proto.badge.v1.Badge', '10': 'badge'},
   ],
 };
 
 /// Descriptor for `UserBadge`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userBadgeDescriptor = $convert.base64Decode(
-    'CglVc2VyQmFkZ2USDgoCaWQYASABKANSAmlkEhcKB3VzZXJfaWQYAiABKAVSBnVzZXJJZBIZCg'
-    'hiYWRnZV9pZBgDIAEoBVIHYmFkZ2VJZBIbCgllYXJuZWRfYXQYBCABKAlSCGVhcm5lZEF0EhsK'
-    'CWlzX3NoYXJlZBgFIAEoCFIIaXNTaGFyZWQSGwoJc2hhcmVkX2F0GAYgASgJUghzaGFyZWRBdB'
-    'IrCgViYWRnZRgHIAEoCzIVLnByb3RvLmJhZGdlLnYxLkJhZGdlUgViYWRnZQ==');
+    'CglVc2VyQmFkZ2USDgoCaWQYASABKANSAmlkEhcKB3VzZXJfaWQYAiABKAlSBnVzZXJJZBIZCg'
+    'hiYWRnZV9pZBgDIAEoBVIHYmFkZ2VJZBI3CgllYXJuZWRfYXQYBCABKAsyGi5nb29nbGUucHJv'
+    'dG9idWYuVGltZXN0YW1wUghlYXJuZWRBdBIbCglpc19zaGFyZWQYBSABKAhSCGlzU2hhcmVkEj'
+    'cKCXNoYXJlZF9hdBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCHNoYXJlZEF0'
+    'EisKBWJhZGdlGAcgASgLMhUucHJvdG8uYmFkZ2UudjEuQmFkZ2VSBWJhZGdl');
 
 @$core.Deprecated('Use getUserBadgesRequestDescriptor instead')
 const GetUserBadgesRequest$json = {
   '1': 'GetUserBadgesRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
   ],
 };
 
 /// Descriptor for `GetUserBadgesRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserBadgesRequestDescriptor = $convert.base64Decode(
-    'ChRHZXRVc2VyQmFkZ2VzUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgFUgZ1c2VySWQ=');
+    'ChRHZXRVc2VyQmFkZ2VzUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQ=');
 
 @$core.Deprecated('Use getUserBadgesResponseDescriptor instead')
 const GetUserBadgesResponse$json = {
@@ -66,14 +67,14 @@ final $typed_data.Uint8List getUserBadgesResponseDescriptor = $convert.base64Dec
 const AwardBadgeRequest$json = {
   '1': 'AwardBadgeRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'badge_id', '3': 2, '4': 1, '5': 5, '10': 'badgeId'},
   ],
 };
 
 /// Descriptor for `AwardBadgeRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List awardBadgeRequestDescriptor = $convert.base64Decode(
-    'ChFBd2FyZEJhZGdlUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgFUgZ1c2VySWQSGQoIYmFkZ2VfaW'
+    'ChFBd2FyZEJhZGdlUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSGQoIYmFkZ2VfaW'
     'QYAiABKAVSB2JhZGdlSWQ=');
 
 @$core.Deprecated('Use awardBadgeResponseDescriptor instead')
@@ -95,14 +96,14 @@ final $typed_data.Uint8List awardBadgeResponseDescriptor = $convert.base64Decode
 const ShareBadgeRequest$json = {
   '1': 'ShareBadgeRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'badge_id', '3': 2, '4': 1, '5': 5, '10': 'badgeId'},
   ],
 };
 
 /// Descriptor for `ShareBadgeRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List shareBadgeRequestDescriptor = $convert.base64Decode(
-    'ChFTaGFyZUJhZGdlUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgFUgZ1c2VySWQSGQoIYmFkZ2VfaW'
+    'ChFTaGFyZUJhZGdlUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSGQoIYmFkZ2VfaW'
     'QYAiABKAVSB2JhZGdlSWQ=');
 
 @$core.Deprecated('Use shareBadgeResponseDescriptor instead')
@@ -123,14 +124,14 @@ final $typed_data.Uint8List shareBadgeResponseDescriptor = $convert.base64Decode
 const GetRecentBadgesRequest$json = {
   '1': 'GetRecentBadgesRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'limit', '3': 2, '4': 1, '5': 5, '10': 'limit'},
   ],
 };
 
 /// Descriptor for `GetRecentBadgesRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getRecentBadgesRequestDescriptor = $convert.base64Decode(
-    'ChZHZXRSZWNlbnRCYWRnZXNSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAVSBnVzZXJJZBIUCgVsaW'
+    'ChZHZXRSZWNlbnRCYWRnZXNSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBIUCgVsaW'
     '1pdBgCIAEoBVIFbGltaXQ=');
 
 @$core.Deprecated('Use getRecentBadgesResponseDescriptor instead')
@@ -150,14 +151,14 @@ final $typed_data.Uint8List getRecentBadgesResponseDescriptor = $convert.base64D
 const CheckBadgeUnlockRequest$json = {
   '1': 'CheckBadgeUnlockRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'activity_type', '3': 2, '4': 1, '5': 9, '10': 'activityType'},
   ],
 };
 
 /// Descriptor for `CheckBadgeUnlockRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List checkBadgeUnlockRequestDescriptor = $convert.base64Decode(
-    'ChdDaGVja0JhZGdlVW5sb2NrUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgFUgZ1c2VySWQSIwoNYW'
+    'ChdDaGVja0JhZGdlVW5sb2NrUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSIwoNYW'
     'N0aXZpdHlfdHlwZRgCIAEoCVIMYWN0aXZpdHlUeXBl');
 
 @$core.Deprecated('Use checkBadgeUnlockResponseDescriptor instead')

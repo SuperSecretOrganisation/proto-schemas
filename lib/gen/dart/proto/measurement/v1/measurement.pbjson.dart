@@ -38,9 +38,9 @@ final $typed_data.Uint8List measurementDescriptor = $convert.base64Decode(
     'Cgp0aW1lX3N0YW1wGAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdGltZVN0YW'
     '1w');
 
-@$core.Deprecated('Use measurementDTODescriptor instead')
-const MeasurementDTO$json = {
-  '1': 'MeasurementDTO',
+@$core.Deprecated('Use measurementBatchDescriptor instead')
+const MeasurementBatch$json = {
+  '1': 'MeasurementBatch',
   '2': [
     {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'activity_id', '3': 2, '4': 1, '5': 9, '10': 'activityId'},
@@ -52,13 +52,13 @@ const MeasurementDTO$json = {
   ],
 };
 
-/// Descriptor for `MeasurementDTO`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List measurementDTODescriptor = $convert.base64Decode(
-    'Cg5NZWFzdXJlbWVudERUTxIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSHwoLYWN0aXZpdHlfaW'
-    'QYAiABKAlSCmFjdGl2aXR5SWQSIwoNYWN0aXZpdHlfdHlwZRgDIAEoCVIMYWN0aXZpdHlUeXBl'
-    'EiMKDWhlZWxfcHJlc3N1cmUYBCADKA1SDGhlZWxQcmVzc3VyZRIhCgx0b2VfcHJlc3N1cmUYBS'
-    'ADKA1SC3RvZVByZXNzdXJlEhYKBndlaWdodBgGIAMoDVIGd2VpZ2h0EjgKCXRpbWVzdGFtcBgH'
-    'IAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXRpbWVzdGFtcA==');
+/// Descriptor for `MeasurementBatch`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List measurementBatchDescriptor = $convert.base64Decode(
+    'ChBNZWFzdXJlbWVudEJhdGNoEhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBIfCgthY3Rpdml0eV'
+    '9pZBgCIAEoCVIKYWN0aXZpdHlJZBIjCg1hY3Rpdml0eV90eXBlGAMgASgJUgxhY3Rpdml0eVR5'
+    'cGUSIwoNaGVlbF9wcmVzc3VyZRgEIAMoDVIMaGVlbFByZXNzdXJlEiEKDHRvZV9wcmVzc3VyZR'
+    'gFIAMoDVILdG9lUHJlc3N1cmUSFgoGd2VpZ2h0GAYgAygNUgZ3ZWlnaHQSOAoJdGltZXN0YW1w'
+    'GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdGltZXN0YW1w');
 
 @$core.Deprecated('Use measurementFilterDescriptor instead')
 const MeasurementFilter$json = {
@@ -169,14 +169,16 @@ final $typed_data.Uint8List listAllMeasurementsResponseDescriptor = $convert.bas
 const CreateMeasurementRequest$json = {
   '1': 'CreateMeasurementRequest',
   '2': [
-    {'1': 'measurement_dto', '3': 1, '4': 1, '5': 11, '6': '.proto.measurement.v1.MeasurementDTO', '10': 'measurementDto'},
+    {'1': 'idempotency_key', '3': 2, '4': 1, '5': 9, '10': 'idempotencyKey'},
+    {'1': 'measurement_batch', '3': 1, '4': 1, '5': 11, '6': '.proto.measurement.v1.MeasurementBatch', '10': 'measurementBatch'},
   ],
 };
 
 /// Descriptor for `CreateMeasurementRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List createMeasurementRequestDescriptor = $convert.base64Decode(
-    'ChhDcmVhdGVNZWFzdXJlbWVudFJlcXVlc3QSTQoPbWVhc3VyZW1lbnRfZHRvGAEgASgLMiQucH'
-    'JvdG8ubWVhc3VyZW1lbnQudjEuTWVhc3VyZW1lbnREVE9SDm1lYXN1cmVtZW50RHRv');
+    'ChhDcmVhdGVNZWFzdXJlbWVudFJlcXVlc3QSJwoPaWRlbXBvdGVuY3lfa2V5GAIgASgJUg5pZG'
+    'VtcG90ZW5jeUtleRJTChFtZWFzdXJlbWVudF9iYXRjaBgBIAEoCzImLnByb3RvLm1lYXN1cmVt'
+    'ZW50LnYxLk1lYXN1cmVtZW50QmF0Y2hSEG1lYXN1cmVtZW50QmF0Y2g=');
 
 @$core.Deprecated('Use createMeasurementResponseDescriptor instead')
 const CreateMeasurementResponse$json = {

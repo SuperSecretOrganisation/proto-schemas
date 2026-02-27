@@ -23,7 +23,7 @@ class Notification extends $pb.GeneratedMessage {
   factory Notification({
     $fixnum.Int64? id,
     $core.String? notificationUuid,
-    $fixnum.Int64? userId,
+    $core.String? userId,
     $core.String? title,
     $core.String? body,
     $core.String? status,
@@ -50,7 +50,7 @@ class Notification extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Notification', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification.v1'), createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'notificationUuid')
-    ..aInt64(3, _omitFieldNames ? '' : 'userId')
+    ..aOS(3, _omitFieldNames ? '' : 'userId')
     ..aOS(4, _omitFieldNames ? '' : 'title')
     ..aOS(5, _omitFieldNames ? '' : 'body')
     ..aOS(6, _omitFieldNames ? '' : 'status')
@@ -95,9 +95,9 @@ class Notification extends $pb.GeneratedMessage {
   void clearNotificationUuid() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $fixnum.Int64 get userId => $_getI64(2);
+  $core.String get userId => $_getSZ(2);
   @$pb.TagNumber(3)
-  set userId($fixnum.Int64 value) => $_setInt64(2, value);
+  set userId($core.String value) => $_setString(2, value);
   @$pb.TagNumber(3)
   $core.bool hasUserId() => $_has(2);
   @$pb.TagNumber(3)
@@ -345,7 +345,7 @@ class GetNotificationResponse extends $pb.GeneratedMessage {
 
 class ListNotificationsRequest extends $pb.GeneratedMessage {
   factory ListNotificationsRequest({
-    $fixnum.Int64? userId,
+    $core.String? userId,
     $core.int? page,
     $core.int? pageSize,
   }) {
@@ -362,7 +362,7 @@ class ListNotificationsRequest extends $pb.GeneratedMessage {
   factory ListNotificationsRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ListNotificationsRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.notification.v1'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
+    ..aOS(1, _omitFieldNames ? '' : 'userId')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'page', $pb.PbFieldType.O3)
     ..a<$core.int>(3, _omitFieldNames ? '' : 'pageSize', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
@@ -386,9 +386,9 @@ class ListNotificationsRequest extends $pb.GeneratedMessage {
   static ListNotificationsRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
+  set userId($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)

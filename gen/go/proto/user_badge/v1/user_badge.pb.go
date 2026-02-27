@@ -7,9 +7,10 @@
 package userbadgepb
 
 import (
-	v1 "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/badge/v1"
+	v1 "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/badge/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -26,11 +27,11 @@ const (
 type UserBadge struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId        int32                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	BadgeId       int32                  `protobuf:"varint,3,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
-	EarnedAt      string                 `protobuf:"bytes,4,opt,name=earned_at,json=earnedAt,proto3" json:"earned_at,omitempty"`
+	EarnedAt      *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=earned_at,json=earnedAt,proto3" json:"earned_at,omitempty"`
 	IsShared      bool                   `protobuf:"varint,5,opt,name=is_shared,json=isShared,proto3" json:"is_shared,omitempty"`
-	SharedAt      string                 `protobuf:"bytes,6,opt,name=shared_at,json=sharedAt,proto3" json:"shared_at,omitempty"`
+	SharedAt      *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=shared_at,json=sharedAt,proto3" json:"shared_at,omitempty"`
 	Badge         *v1.Badge              `protobuf:"bytes,7,opt,name=badge,proto3" json:"badge,omitempty"` // Preloaded badge information
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -73,11 +74,11 @@ func (x *UserBadge) GetId() int64 {
 	return 0
 }
 
-func (x *UserBadge) GetUserId() int32 {
+func (x *UserBadge) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UserBadge) GetBadgeId() int32 {
@@ -87,11 +88,11 @@ func (x *UserBadge) GetBadgeId() int32 {
 	return 0
 }
 
-func (x *UserBadge) GetEarnedAt() string {
+func (x *UserBadge) GetEarnedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EarnedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *UserBadge) GetIsShared() bool {
@@ -101,11 +102,11 @@ func (x *UserBadge) GetIsShared() bool {
 	return false
 }
 
-func (x *UserBadge) GetSharedAt() string {
+func (x *UserBadge) GetSharedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.SharedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *UserBadge) GetBadge() *v1.Badge {
@@ -118,7 +119,7 @@ func (x *UserBadge) GetBadge() *v1.Badge {
 // Get user badges request and response
 type GetUserBadgesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -153,11 +154,11 @@ func (*GetUserBadgesRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetUserBadgesRequest) GetUserId() int32 {
+func (x *GetUserBadgesRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type GetUserBadgesResponse struct {
@@ -215,7 +216,7 @@ func (x *GetUserBadgesResponse) GetTotalCount() int32 {
 // Award badge request and response
 type AwardBadgeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	BadgeId       int32                  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -251,11 +252,11 @@ func (*AwardBadgeRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *AwardBadgeRequest) GetUserId() int32 {
+func (x *AwardBadgeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *AwardBadgeRequest) GetBadgeId() int32 {
@@ -320,7 +321,7 @@ func (x *AwardBadgeResponse) GetNewlyEarned() bool {
 // Share badge request and response
 type ShareBadgeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	BadgeId       int32                  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -356,11 +357,11 @@ func (*ShareBadgeRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ShareBadgeRequest) GetUserId() int32 {
+func (x *ShareBadgeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *ShareBadgeRequest) GetBadgeId() int32 {
@@ -425,7 +426,7 @@ func (x *ShareBadgeResponse) GetShareUrl() string {
 // Get recent badges request and response
 type GetRecentBadgesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -461,11 +462,11 @@ func (*GetRecentBadgesRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetRecentBadgesRequest) GetUserId() int32 {
+func (x *GetRecentBadgesRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *GetRecentBadgesRequest) GetLimit() int32 {
@@ -522,7 +523,7 @@ func (x *GetRecentBadgesResponse) GetUserBadges() []*UserBadge {
 // Check badge unlock request and response (checks if user should unlock any badges)
 type CheckBadgeUnlockRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ActivityType  string                 `protobuf:"bytes,2,opt,name=activity_type,json=activityType,proto3" json:"activity_type,omitempty"` // e.g., "workout_completed", "streak_updated"
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -558,11 +559,11 @@ func (*CheckBadgeUnlockRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *CheckBadgeUnlockRequest) GetUserId() int32 {
+func (x *CheckBadgeUnlockRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *CheckBadgeUnlockRequest) GetActivityType() string {
@@ -628,43 +629,43 @@ var File_proto_user_badge_v1_user_badge_proto protoreflect.FileDescriptor
 
 const file_proto_user_badge_v1_user_badge_proto_rawDesc = "" +
 	"\n" +
-	"$proto/user_badge/v1/user_badge.proto\x12\x13proto.user_badge.v1\x1a\x1aproto/badge/v1/badge.proto\"\xd3\x01\n" +
+	"$proto/user_badge/v1/user_badge.proto\x12\x13proto.user_badge.v1\x1a\x1aproto/badge/v1/badge.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8b\x02\n" +
 	"\tUserBadge\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x05R\x06userId\x12\x19\n" +
-	"\bbadge_id\x18\x03 \x01(\x05R\abadgeId\x12\x1b\n" +
-	"\tearned_at\x18\x04 \x01(\tR\bearnedAt\x12\x1b\n" +
-	"\tis_shared\x18\x05 \x01(\bR\bisShared\x12\x1b\n" +
-	"\tshared_at\x18\x06 \x01(\tR\bsharedAt\x12+\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x19\n" +
+	"\bbadge_id\x18\x03 \x01(\x05R\abadgeId\x127\n" +
+	"\tearned_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\bearnedAt\x12\x1b\n" +
+	"\tis_shared\x18\x05 \x01(\bR\bisShared\x127\n" +
+	"\tshared_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\bsharedAt\x12+\n" +
 	"\x05badge\x18\a \x01(\v2\x15.proto.badge.v1.BadgeR\x05badge\"/\n" +
 	"\x14GetUserBadgesRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\"y\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"y\n" +
 	"\x15GetUserBadgesResponse\x12?\n" +
 	"\vuser_badges\x18\x01 \x03(\v2\x1e.proto.user_badge.v1.UserBadgeR\n" +
 	"userBadges\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"G\n" +
 	"\x11AwardBadgeRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x19\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x02 \x01(\x05R\abadgeId\"v\n" +
 	"\x12AwardBadgeResponse\x12=\n" +
 	"\n" +
 	"user_badge\x18\x01 \x01(\v2\x1e.proto.user_badge.v1.UserBadgeR\tuserBadge\x12!\n" +
 	"\fnewly_earned\x18\x02 \x01(\bR\vnewlyEarned\"G\n" +
 	"\x11ShareBadgeRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x19\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x02 \x01(\x05R\abadgeId\"K\n" +
 	"\x12ShareBadgeResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x1b\n" +
 	"\tshare_url\x18\x02 \x01(\tR\bshareUrl\"G\n" +
 	"\x16GetRecentBadgesRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x14\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"Z\n" +
 	"\x17GetRecentBadgesResponse\x12?\n" +
 	"\vuser_badges\x18\x01 \x03(\v2\x1e.proto.user_badge.v1.UserBadgeR\n" +
 	"userBadges\"W\n" +
 	"\x17CheckBadgeUnlockRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12#\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
 	"\ractivity_type\x18\x02 \x01(\tR\factivityType\"\x8b\x01\n" +
 	"\x18CheckBadgeUnlockResponse\x12R\n" +
 	"\x15newly_unlocked_badges\x18\x01 \x03(\v2\x1e.proto.user_badge.v1.UserBadgeR\x13newlyUnlockedBadges\x12\x1b\n" +
@@ -676,7 +677,7 @@ const file_proto_user_badge_v1_user_badge_proto_rawDesc = "" +
 	"\n" +
 	"ShareBadge\x12&.proto.user_badge.v1.ShareBadgeRequest\x1a'.proto.user_badge.v1.ShareBadgeResponse\x12l\n" +
 	"\x0fGetRecentBadges\x12+.proto.user_badge.v1.GetRecentBadgesRequest\x1a,.proto.user_badge.v1.GetRecentBadgesResponse\x12o\n" +
-	"\x10CheckBadgeUnlock\x12,.proto.user_badge.v1.CheckBadgeUnlockRequest\x1a-.proto.user_badge.v1.CheckBadgeUnlockResponseB\\ZZgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_badge/v1;userbadgepbb\x06proto3"
+	"\x10CheckBadgeUnlock\x12,.proto.user_badge.v1.CheckBadgeUnlockRequest\x1a-.proto.user_badge.v1.CheckBadgeUnlockResponseB\\ZZgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_badge/v1;userbadgepbb\x06proto3"
 
 var (
 	file_proto_user_badge_v1_user_badge_proto_rawDescOnce sync.Once
@@ -703,29 +704,32 @@ var file_proto_user_badge_v1_user_badge_proto_goTypes = []any{
 	(*GetRecentBadgesResponse)(nil),  // 8: proto.user_badge.v1.GetRecentBadgesResponse
 	(*CheckBadgeUnlockRequest)(nil),  // 9: proto.user_badge.v1.CheckBadgeUnlockRequest
 	(*CheckBadgeUnlockResponse)(nil), // 10: proto.user_badge.v1.CheckBadgeUnlockResponse
-	(*v1.Badge)(nil),                 // 11: proto.badge.v1.Badge
+	(*timestamppb.Timestamp)(nil),    // 11: google.protobuf.Timestamp
+	(*v1.Badge)(nil),                 // 12: proto.badge.v1.Badge
 }
 var file_proto_user_badge_v1_user_badge_proto_depIdxs = []int32{
-	11, // 0: proto.user_badge.v1.UserBadge.badge:type_name -> proto.badge.v1.Badge
-	0,  // 1: proto.user_badge.v1.GetUserBadgesResponse.user_badges:type_name -> proto.user_badge.v1.UserBadge
-	0,  // 2: proto.user_badge.v1.AwardBadgeResponse.user_badge:type_name -> proto.user_badge.v1.UserBadge
-	0,  // 3: proto.user_badge.v1.GetRecentBadgesResponse.user_badges:type_name -> proto.user_badge.v1.UserBadge
-	0,  // 4: proto.user_badge.v1.CheckBadgeUnlockResponse.newly_unlocked_badges:type_name -> proto.user_badge.v1.UserBadge
-	1,  // 5: proto.user_badge.v1.UserBadgeService.GetUserBadges:input_type -> proto.user_badge.v1.GetUserBadgesRequest
-	3,  // 6: proto.user_badge.v1.UserBadgeService.AwardBadge:input_type -> proto.user_badge.v1.AwardBadgeRequest
-	5,  // 7: proto.user_badge.v1.UserBadgeService.ShareBadge:input_type -> proto.user_badge.v1.ShareBadgeRequest
-	7,  // 8: proto.user_badge.v1.UserBadgeService.GetRecentBadges:input_type -> proto.user_badge.v1.GetRecentBadgesRequest
-	9,  // 9: proto.user_badge.v1.UserBadgeService.CheckBadgeUnlock:input_type -> proto.user_badge.v1.CheckBadgeUnlockRequest
-	2,  // 10: proto.user_badge.v1.UserBadgeService.GetUserBadges:output_type -> proto.user_badge.v1.GetUserBadgesResponse
-	4,  // 11: proto.user_badge.v1.UserBadgeService.AwardBadge:output_type -> proto.user_badge.v1.AwardBadgeResponse
-	6,  // 12: proto.user_badge.v1.UserBadgeService.ShareBadge:output_type -> proto.user_badge.v1.ShareBadgeResponse
-	8,  // 13: proto.user_badge.v1.UserBadgeService.GetRecentBadges:output_type -> proto.user_badge.v1.GetRecentBadgesResponse
-	10, // 14: proto.user_badge.v1.UserBadgeService.CheckBadgeUnlock:output_type -> proto.user_badge.v1.CheckBadgeUnlockResponse
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	11, // 0: proto.user_badge.v1.UserBadge.earned_at:type_name -> google.protobuf.Timestamp
+	11, // 1: proto.user_badge.v1.UserBadge.shared_at:type_name -> google.protobuf.Timestamp
+	12, // 2: proto.user_badge.v1.UserBadge.badge:type_name -> proto.badge.v1.Badge
+	0,  // 3: proto.user_badge.v1.GetUserBadgesResponse.user_badges:type_name -> proto.user_badge.v1.UserBadge
+	0,  // 4: proto.user_badge.v1.AwardBadgeResponse.user_badge:type_name -> proto.user_badge.v1.UserBadge
+	0,  // 5: proto.user_badge.v1.GetRecentBadgesResponse.user_badges:type_name -> proto.user_badge.v1.UserBadge
+	0,  // 6: proto.user_badge.v1.CheckBadgeUnlockResponse.newly_unlocked_badges:type_name -> proto.user_badge.v1.UserBadge
+	1,  // 7: proto.user_badge.v1.UserBadgeService.GetUserBadges:input_type -> proto.user_badge.v1.GetUserBadgesRequest
+	3,  // 8: proto.user_badge.v1.UserBadgeService.AwardBadge:input_type -> proto.user_badge.v1.AwardBadgeRequest
+	5,  // 9: proto.user_badge.v1.UserBadgeService.ShareBadge:input_type -> proto.user_badge.v1.ShareBadgeRequest
+	7,  // 10: proto.user_badge.v1.UserBadgeService.GetRecentBadges:input_type -> proto.user_badge.v1.GetRecentBadgesRequest
+	9,  // 11: proto.user_badge.v1.UserBadgeService.CheckBadgeUnlock:input_type -> proto.user_badge.v1.CheckBadgeUnlockRequest
+	2,  // 12: proto.user_badge.v1.UserBadgeService.GetUserBadges:output_type -> proto.user_badge.v1.GetUserBadgesResponse
+	4,  // 13: proto.user_badge.v1.UserBadgeService.AwardBadge:output_type -> proto.user_badge.v1.AwardBadgeResponse
+	6,  // 14: proto.user_badge.v1.UserBadgeService.ShareBadge:output_type -> proto.user_badge.v1.ShareBadgeResponse
+	8,  // 15: proto.user_badge.v1.UserBadgeService.GetRecentBadges:output_type -> proto.user_badge.v1.GetRecentBadgesResponse
+	10, // 16: proto.user_badge.v1.UserBadgeService.CheckBadgeUnlock:output_type -> proto.user_badge.v1.CheckBadgeUnlockResponse
+	12, // [12:17] is the sub-list for method output_type
+	7,  // [7:12] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_badge_v1_user_badge_proto_init() }

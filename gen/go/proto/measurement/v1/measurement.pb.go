@@ -122,7 +122,7 @@ func (x *Measurement) GetTimeStamp() *timestamppb.Timestamp {
 	return nil
 }
 
-type MeasurementDTO struct {
+type MeasurementBatch struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ActivityId    string                 `protobuf:"bytes,2,opt,name=activity_id,json=activityId,proto3" json:"activity_id,omitempty"`
@@ -135,20 +135,20 @@ type MeasurementDTO struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MeasurementDTO) Reset() {
-	*x = MeasurementDTO{}
+func (x *MeasurementBatch) Reset() {
+	*x = MeasurementBatch{}
 	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MeasurementDTO) String() string {
+func (x *MeasurementBatch) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MeasurementDTO) ProtoMessage() {}
+func (*MeasurementBatch) ProtoMessage() {}
 
-func (x *MeasurementDTO) ProtoReflect() protoreflect.Message {
+func (x *MeasurementBatch) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -160,54 +160,54 @@ func (x *MeasurementDTO) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MeasurementDTO.ProtoReflect.Descriptor instead.
-func (*MeasurementDTO) Descriptor() ([]byte, []int) {
+// Deprecated: Use MeasurementBatch.ProtoReflect.Descriptor instead.
+func (*MeasurementBatch) Descriptor() ([]byte, []int) {
 	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *MeasurementDTO) GetUserId() string {
+func (x *MeasurementBatch) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *MeasurementDTO) GetActivityId() string {
+func (x *MeasurementBatch) GetActivityId() string {
 	if x != nil {
 		return x.ActivityId
 	}
 	return ""
 }
 
-func (x *MeasurementDTO) GetActivityType() string {
+func (x *MeasurementBatch) GetActivityType() string {
 	if x != nil {
 		return x.ActivityType
 	}
 	return ""
 }
 
-func (x *MeasurementDTO) GetHeelPressure() []uint32 {
+func (x *MeasurementBatch) GetHeelPressure() []uint32 {
 	if x != nil {
 		return x.HeelPressure
 	}
 	return nil
 }
 
-func (x *MeasurementDTO) GetToePressure() []uint32 {
+func (x *MeasurementBatch) GetToePressure() []uint32 {
 	if x != nil {
 		return x.ToePressure
 	}
 	return nil
 }
 
-func (x *MeasurementDTO) GetWeight() []uint32 {
+func (x *MeasurementBatch) GetWeight() []uint32 {
 	if x != nil {
 		return x.Weight
 	}
 	return nil
 }
 
-func (x *MeasurementDTO) GetTimestamp() *timestamppb.Timestamp {
+func (x *MeasurementBatch) GetTimestamp() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Timestamp
 	}
@@ -599,10 +599,11 @@ func (x *ListAllMeasurementsResponse) GetMeasurements() []*Measurement {
 
 // Measurement creation and update request and response
 type CreateMeasurementRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	MeasurementDto *MeasurementDTO        `protobuf:"bytes,1,opt,name=measurement_dto,json=measurementDto,proto3" json:"measurement_dto,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	IdempotencyKey   string                 `protobuf:"bytes,2,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	MeasurementBatch *MeasurementBatch      `protobuf:"bytes,1,opt,name=measurement_batch,json=measurementBatch,proto3" json:"measurement_batch,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CreateMeasurementRequest) Reset() {
@@ -635,9 +636,16 @@ func (*CreateMeasurementRequest) Descriptor() ([]byte, []int) {
 	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *CreateMeasurementRequest) GetMeasurementDto() *MeasurementDTO {
+func (x *CreateMeasurementRequest) GetIdempotencyKey() string {
 	if x != nil {
-		return x.MeasurementDto
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+func (x *CreateMeasurementRequest) GetMeasurementBatch() *MeasurementBatch {
+	if x != nil {
+		return x.MeasurementBatch
 	}
 	return nil
 }
@@ -879,8 +887,8 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"activityId\x12\x16\n" +
 	"\x06weight\x18\a \x01(\rR\x06weight\x129\n" +
 	"\n" +
-	"time_stamp\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStamp\"\x89\x02\n" +
-	"\x0eMeasurementDTO\x12\x17\n" +
+	"time_stamp\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStamp\"\x8b\x02\n" +
+	"\x10MeasurementBatch\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1f\n" +
 	"\vactivity_id\x18\x02 \x01(\tR\n" +
 	"activityId\x12#\n" +
@@ -913,9 +921,10 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"\x1aListAllMeasurementsRequest\x12?\n" +
 	"\x06filter\x18\x01 \x01(\v2'.proto.measurement.v1.MeasurementFilterR\x06filter\"d\n" +
 	"\x1bListAllMeasurementsResponse\x12E\n" +
-	"\fmeasurements\x18\x01 \x03(\v2!.proto.measurement.v1.MeasurementR\fmeasurements\"i\n" +
-	"\x18CreateMeasurementRequest\x12M\n" +
-	"\x0fmeasurement_dto\x18\x01 \x01(\v2$.proto.measurement.v1.MeasurementDTOR\x0emeasurementDto\"5\n" +
+	"\fmeasurements\x18\x01 \x03(\v2!.proto.measurement.v1.MeasurementR\fmeasurements\"\x98\x01\n" +
+	"\x18CreateMeasurementRequest\x12'\n" +
+	"\x0fidempotency_key\x18\x02 \x01(\tR\x0eidempotencyKey\x12S\n" +
+	"\x11measurement_batch\x18\x01 \x01(\v2&.proto.measurement.v1.MeasurementBatchR\x10measurementBatch\"5\n" +
 	"\x19CreateMeasurementResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"_\n" +
 	"\x18UpdateMeasurementRequest\x12C\n" +
@@ -932,7 +941,7 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"\x13ListAllMeasurements\x120.proto.measurement.v1.ListAllMeasurementsRequest\x1a1.proto.measurement.v1.ListAllMeasurementsResponse\x12t\n" +
 	"\x11CreateMeasurement\x12..proto.measurement.v1.CreateMeasurementRequest\x1a/.proto.measurement.v1.CreateMeasurementResponse\x12t\n" +
 	"\x11UpdateMeasurement\x12..proto.measurement.v1.UpdateMeasurementRequest\x1a/.proto.measurement.v1.UpdateMeasurementResponse\x12t\n" +
-	"\x11DeleteMeasurement\x12..proto.measurement.v1.DeleteMeasurementRequest\x1a/.proto.measurement.v1.DeleteMeasurementResponseB_Z]github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/measurement/v1;measurementpbb\x06proto3"
+	"\x11DeleteMeasurement\x12..proto.measurement.v1.DeleteMeasurementRequest\x1a/.proto.measurement.v1.DeleteMeasurementResponseB_Z]github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/measurement/v1;measurementpbb\x06proto3"
 
 var (
 	file_proto_measurement_v1_measurement_proto_rawDescOnce sync.Once
@@ -949,7 +958,7 @@ func file_proto_measurement_v1_measurement_proto_rawDescGZIP() []byte {
 var file_proto_measurement_v1_measurement_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_proto_measurement_v1_measurement_proto_goTypes = []any{
 	(*Measurement)(nil),                     // 0: proto.measurement.v1.Measurement
-	(*MeasurementDTO)(nil),                  // 1: proto.measurement.v1.MeasurementDTO
+	(*MeasurementBatch)(nil),                // 1: proto.measurement.v1.MeasurementBatch
 	(*MeasurementFilter)(nil),               // 2: proto.measurement.v1.MeasurementFilter
 	(*GetMeasurementRequest)(nil),           // 3: proto.measurement.v1.GetMeasurementRequest
 	(*GetMeasurementResponse)(nil),          // 4: proto.measurement.v1.GetMeasurementResponse
@@ -967,7 +976,7 @@ var file_proto_measurement_v1_measurement_proto_goTypes = []any{
 }
 var file_proto_measurement_v1_measurement_proto_depIdxs = []int32{
 	15, // 0: proto.measurement.v1.Measurement.time_stamp:type_name -> google.protobuf.Timestamp
-	15, // 1: proto.measurement.v1.MeasurementDTO.timestamp:type_name -> google.protobuf.Timestamp
+	15, // 1: proto.measurement.v1.MeasurementBatch.timestamp:type_name -> google.protobuf.Timestamp
 	15, // 2: proto.measurement.v1.MeasurementFilter.start_date:type_name -> google.protobuf.Timestamp
 	15, // 3: proto.measurement.v1.MeasurementFilter.end_date:type_name -> google.protobuf.Timestamp
 	0,  // 4: proto.measurement.v1.GetMeasurementResponse.measurement:type_name -> proto.measurement.v1.Measurement
@@ -975,7 +984,7 @@ var file_proto_measurement_v1_measurement_proto_depIdxs = []int32{
 	0,  // 6: proto.measurement.v1.ListMeasurementsForUserResponse.measurements:type_name -> proto.measurement.v1.Measurement
 	2,  // 7: proto.measurement.v1.ListAllMeasurementsRequest.filter:type_name -> proto.measurement.v1.MeasurementFilter
 	0,  // 8: proto.measurement.v1.ListAllMeasurementsResponse.measurements:type_name -> proto.measurement.v1.Measurement
-	1,  // 9: proto.measurement.v1.CreateMeasurementRequest.measurement_dto:type_name -> proto.measurement.v1.MeasurementDTO
+	1,  // 9: proto.measurement.v1.CreateMeasurementRequest.measurement_batch:type_name -> proto.measurement.v1.MeasurementBatch
 	0,  // 10: proto.measurement.v1.UpdateMeasurementRequest.measurement:type_name -> proto.measurement.v1.Measurement
 	0,  // 11: proto.measurement.v1.UpdateMeasurementResponse.measurement:type_name -> proto.measurement.v1.Measurement
 	3,  // 12: proto.measurement.v1.MeasurementService.GetMeasurement:input_type -> proto.measurement.v1.GetMeasurementRequest

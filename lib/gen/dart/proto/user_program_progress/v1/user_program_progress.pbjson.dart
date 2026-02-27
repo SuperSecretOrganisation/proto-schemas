@@ -21,7 +21,7 @@ const CompletedWorkout$json = {
     {'1': 'workout_id', '3': 1, '4': 1, '5': 9, '10': 'workoutId'},
     {'1': 'workout_name', '3': 2, '4': 1, '5': 9, '10': 'workoutName'},
     {'1': 'week_number', '3': 3, '4': 1, '5': 5, '10': 'weekNumber'},
-    {'1': 'completed_at', '3': 4, '4': 1, '5': 9, '10': 'completedAt'},
+    {'1': 'completed_at', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'completedAt'},
     {'1': 'duration_minutes', '3': 5, '4': 1, '5': 5, '10': 'durationMinutes'},
     {'1': 'notes', '3': 6, '4': 1, '5': 9, '10': 'notes'},
   ],
@@ -31,8 +31,9 @@ const CompletedWorkout$json = {
 final $typed_data.Uint8List completedWorkoutDescriptor = $convert.base64Decode(
     'ChBDb21wbGV0ZWRXb3Jrb3V0Eh0KCndvcmtvdXRfaWQYASABKAlSCXdvcmtvdXRJZBIhCgx3b3'
     'Jrb3V0X25hbWUYAiABKAlSC3dvcmtvdXROYW1lEh8KC3dlZWtfbnVtYmVyGAMgASgFUgp3ZWVr'
-    'TnVtYmVyEiEKDGNvbXBsZXRlZF9hdBgEIAEoCVILY29tcGxldGVkQXQSKQoQZHVyYXRpb25fbW'
-    'ludXRlcxgFIAEoBVIPZHVyYXRpb25NaW51dGVzEhQKBW5vdGVzGAYgASgJUgVub3Rlcw==');
+    'TnVtYmVyEj0KDGNvbXBsZXRlZF9hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbX'
+    'BSC2NvbXBsZXRlZEF0EikKEGR1cmF0aW9uX21pbnV0ZXMYBSABKAVSD2R1cmF0aW9uTWludXRl'
+    'cxIUCgVub3RlcxgGIAEoCVIFbm90ZXM=');
 
 @$core.Deprecated('Use userProgramProgressDescriptor instead')
 const UserProgramProgress$json = {
@@ -44,11 +45,11 @@ const UserProgramProgress$json = {
     {'1': 'program_name', '3': 4, '4': 1, '5': 9, '10': 'programName'},
     {'1': 'current_week', '3': 5, '4': 1, '5': 5, '10': 'currentWeek'},
     {'1': 'completed_workouts', '3': 6, '4': 3, '5': 11, '6': '.proto.user_program_progress.v1.CompletedWorkout', '10': 'completedWorkouts'},
-    {'1': 'started_at', '3': 7, '4': 1, '5': 9, '10': 'startedAt'},
-    {'1': 'completed_at', '3': 8, '4': 1, '5': 9, '10': 'completedAt'},
+    {'1': 'started_at', '3': 7, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'startedAt'},
+    {'1': 'completed_at', '3': 8, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'completedAt'},
     {'1': 'is_active', '3': 9, '4': 1, '5': 8, '10': 'isActive'},
-    {'1': 'created_at', '3': 10, '4': 1, '5': 9, '10': 'createdAt'},
-    {'1': 'updated_at', '3': 11, '4': 1, '5': 9, '10': 'updatedAt'},
+    {'1': 'created_at', '3': 10, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
+    {'1': 'updated_at', '3': 11, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
 };
 
@@ -58,10 +59,12 @@ final $typed_data.Uint8List userProgramProgressDescriptor = $convert.base64Decod
     'Z1c2VySWQSHQoKcHJvZ3JhbV9pZBgDIAEoCVIJcHJvZ3JhbUlkEiEKDHByb2dyYW1fbmFtZRgE'
     'IAEoCVILcHJvZ3JhbU5hbWUSIQoMY3VycmVudF93ZWVrGAUgASgFUgtjdXJyZW50V2VlaxJfCh'
     'Jjb21wbGV0ZWRfd29ya291dHMYBiADKAsyMC5wcm90by51c2VyX3Byb2dyYW1fcHJvZ3Jlc3Mu'
-    'djEuQ29tcGxldGVkV29ya291dFIRY29tcGxldGVkV29ya291dHMSHQoKc3RhcnRlZF9hdBgHIA'
-    'EoCVIJc3RhcnRlZEF0EiEKDGNvbXBsZXRlZF9hdBgIIAEoCVILY29tcGxldGVkQXQSGwoJaXNf'
-    'YWN0aXZlGAkgASgIUghpc0FjdGl2ZRIdCgpjcmVhdGVkX2F0GAogASgJUgljcmVhdGVkQXQSHQ'
-    'oKdXBkYXRlZF9hdBgLIAEoCVIJdXBkYXRlZEF0');
+    'djEuQ29tcGxldGVkV29ya291dFIRY29tcGxldGVkV29ya291dHMSOQoKc3RhcnRlZF9hdBgHIA'
+    'EoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXN0YXJ0ZWRBdBI9Cgxjb21wbGV0ZWRf'
+    'YXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgtjb21wbGV0ZWRBdBIbCglpc1'
+    '9hY3RpdmUYCSABKAhSCGlzQWN0aXZlEjkKCmNyZWF0ZWRfYXQYCiABKAsyGi5nb29nbGUucHJv'
+    'dG9idWYuVGltZXN0YW1wUgljcmVhdGVkQXQSOQoKdXBkYXRlZF9hdBgLIAEoCzIaLmdvb2dsZS'
+    '5wcm90b2J1Zi5UaW1lc3RhbXBSCXVwZGF0ZWRBdA==');
 
 @$core.Deprecated('Use getActiveProgramRequestDescriptor instead')
 const GetActiveProgramRequest$json = {

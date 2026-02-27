@@ -18,33 +18,34 @@ import 'dart:typed_data' as $typed_data;
 const UserXP$json = {
   '1': 'UserXP',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'total_xp', '3': 2, '4': 1, '5': 3, '10': 'totalXp'},
     {'1': 'current_level', '3': 3, '4': 1, '5': 5, '10': 'currentLevel'},
     {'1': 'xp_to_next_level', '3': 4, '4': 1, '5': 5, '10': 'xpToNextLevel'},
-    {'1': 'updated_at', '3': 5, '4': 1, '5': 9, '10': 'updatedAt'},
+    {'1': 'updated_at', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
     {'1': 'username', '3': 6, '4': 1, '5': 9, '10': 'username'},
   ],
 };
 
 /// Descriptor for `UserXP`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userXPDescriptor = $convert.base64Decode(
-    'CgZVc2VyWFASFwoHdXNlcl9pZBgBIAEoBVIGdXNlcklkEhkKCHRvdGFsX3hwGAIgASgDUgd0b3'
+    'CgZVc2VyWFASFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEhkKCHRvdGFsX3hwGAIgASgDUgd0b3'
     'RhbFhwEiMKDWN1cnJlbnRfbGV2ZWwYAyABKAVSDGN1cnJlbnRMZXZlbBInChB4cF90b19uZXh0'
-    'X2xldmVsGAQgASgFUg14cFRvTmV4dExldmVsEh0KCnVwZGF0ZWRfYXQYBSABKAlSCXVwZGF0ZW'
-    'RBdBIaCgh1c2VybmFtZRgGIAEoCVIIdXNlcm5hbWU=');
+    'X2xldmVsGAQgASgFUg14cFRvTmV4dExldmVsEjkKCnVwZGF0ZWRfYXQYBSABKAsyGi5nb29nbG'
+    'UucHJvdG9idWYuVGltZXN0YW1wUgl1cGRhdGVkQXQSGgoIdXNlcm5hbWUYBiABKAlSCHVzZXJu'
+    'YW1l');
 
 @$core.Deprecated('Use getUserXPRequestDescriptor instead')
 const GetUserXPRequest$json = {
   '1': 'GetUserXPRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
   ],
 };
 
 /// Descriptor for `GetUserXPRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserXPRequestDescriptor = $convert.base64Decode(
-    'ChBHZXRVc2VyWFBSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAVSBnVzZXJJZA==');
+    'ChBHZXRVc2VyWFBSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZA==');
 
 @$core.Deprecated('Use getUserXPResponseDescriptor instead')
 const GetUserXPResponse$json = {
@@ -63,7 +64,7 @@ final $typed_data.Uint8List getUserXPResponseDescriptor = $convert.base64Decode(
 const AddXPRequest$json = {
   '1': 'AddXPRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'xp_amount', '3': 2, '4': 1, '5': 5, '10': 'xpAmount'},
     {'1': 'activity_key', '3': 3, '4': 1, '5': 9, '10': 'activityKey'},
   ],
@@ -71,7 +72,7 @@ const AddXPRequest$json = {
 
 /// Descriptor for `AddXPRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List addXPRequestDescriptor = $convert.base64Decode(
-    'CgxBZGRYUFJlcXVlc3QSFwoHdXNlcl9pZBgBIAEoBVIGdXNlcklkEhsKCXhwX2Ftb3VudBgCIA'
+    'CgxBZGRYUFJlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEhsKCXhwX2Ftb3VudBgCIA'
     'EoBVIIeHBBbW91bnQSIQoMYWN0aXZpdHlfa2V5GAMgASgJUgthY3Rpdml0eUtleQ==');
 
 @$core.Deprecated('Use addXPResponseDescriptor instead')
@@ -123,13 +124,13 @@ final $typed_data.Uint8List getLeaderboardResponseDescriptor = $convert.base64De
 const GetUserLevelRequest$json = {
   '1': 'GetUserLevelRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 5, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
   ],
 };
 
 /// Descriptor for `GetUserLevelRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserLevelRequestDescriptor = $convert.base64Decode(
-    'ChNHZXRVc2VyTGV2ZWxSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAVSBnVzZXJJZA==');
+    'ChNHZXRVc2VyTGV2ZWxSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZA==');
 
 @$core.Deprecated('Use getUserLevelResponseDescriptor instead')
 const GetUserLevelResponse$json = {

@@ -9,6 +9,7 @@ package userprogramprogresspb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -27,7 +28,7 @@ type CompletedWorkout struct {
 	WorkoutId       string                 `protobuf:"bytes,1,opt,name=workout_id,json=workoutId,proto3" json:"workout_id,omitempty"`
 	WorkoutName     string                 `protobuf:"bytes,2,opt,name=workout_name,json=workoutName,proto3" json:"workout_name,omitempty"`
 	WeekNumber      int32                  `protobuf:"varint,3,opt,name=week_number,json=weekNumber,proto3" json:"week_number,omitempty"`
-	CompletedAt     string                 `protobuf:"bytes,4,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`              // RFC3339 format
+	CompletedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
 	DurationMinutes int32                  `protobuf:"varint,5,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"` // Actual duration
 	Notes           string                 `protobuf:"bytes,6,opt,name=notes,proto3" json:"notes,omitempty"`                                             // User notes about the workout
 	unknownFields   protoimpl.UnknownFields
@@ -85,11 +86,11 @@ func (x *CompletedWorkout) GetWeekNumber() int32 {
 	return 0
 }
 
-func (x *CompletedWorkout) GetCompletedAt() string {
+func (x *CompletedWorkout) GetCompletedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CompletedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *CompletedWorkout) GetDurationMinutes() int32 {
@@ -115,11 +116,11 @@ type UserProgramProgress struct {
 	ProgramName       string                 `protobuf:"bytes,4,opt,name=program_name,json=programName,proto3" json:"program_name,omitempty"` // Cached for display
 	CurrentWeek       int32                  `protobuf:"varint,5,opt,name=current_week,json=currentWeek,proto3" json:"current_week,omitempty"`
 	CompletedWorkouts []*CompletedWorkout    `protobuf:"bytes,6,rep,name=completed_workouts,json=completedWorkouts,proto3" json:"completed_workouts,omitempty"`
-	StartedAt         string                 `protobuf:"bytes,7,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`       // RFC3339 format
-	CompletedAt       string                 `protobuf:"bytes,8,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"` // RFC3339 format (null if active)
+	StartedAt         *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`
+	CompletedAt       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
 	IsActive          bool                   `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CreatedAt         string                 `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // RFC3339 format
-	UpdatedAt         string                 `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // RFC3339 format
+	CreatedAt         *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt         *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -196,18 +197,18 @@ func (x *UserProgramProgress) GetCompletedWorkouts() []*CompletedWorkout {
 	return nil
 }
 
-func (x *UserProgramProgress) GetStartedAt() string {
+func (x *UserProgramProgress) GetStartedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *UserProgramProgress) GetCompletedAt() string {
+func (x *UserProgramProgress) GetCompletedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CompletedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *UserProgramProgress) GetIsActive() bool {
@@ -217,18 +218,18 @@ func (x *UserProgramProgress) GetIsActive() bool {
 	return false
 }
 
-func (x *UserProgramProgress) GetCreatedAt() string {
+func (x *UserProgramProgress) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *UserProgramProgress) GetUpdatedAt() string {
+func (x *UserProgramProgress) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 // Get active program request and response
@@ -792,16 +793,16 @@ var File_proto_user_program_progress_v1_user_program_progress_proto protoreflect
 
 const file_proto_user_program_progress_v1_user_program_progress_proto_rawDesc = "" +
 	"\n" +
-	":proto/user_program_progress/v1/user_program_progress.proto\x12\x1eproto.user_program_progress.v1\"\xd9\x01\n" +
+	":proto/user_program_progress/v1/user_program_progress.proto\x12\x1eproto.user_program_progress.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf5\x01\n" +
 	"\x10CompletedWorkout\x12\x1d\n" +
 	"\n" +
 	"workout_id\x18\x01 \x01(\tR\tworkoutId\x12!\n" +
 	"\fworkout_name\x18\x02 \x01(\tR\vworkoutName\x12\x1f\n" +
 	"\vweek_number\x18\x03 \x01(\x05R\n" +
-	"weekNumber\x12!\n" +
-	"\fcompleted_at\x18\x04 \x01(\tR\vcompletedAt\x12)\n" +
+	"weekNumber\x12=\n" +
+	"\fcompleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\vcompletedAt\x12)\n" +
 	"\x10duration_minutes\x18\x05 \x01(\x05R\x0fdurationMinutes\x12\x14\n" +
-	"\x05notes\x18\x06 \x01(\tR\x05notes\"\xa1\x03\n" +
+	"\x05notes\x18\x06 \x01(\tR\x05notes\"\x91\x04\n" +
 	"\x13UserProgramProgress\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
@@ -809,16 +810,16 @@ const file_proto_user_program_progress_v1_user_program_progress_proto_rawDesc = 
 	"program_id\x18\x03 \x01(\tR\tprogramId\x12!\n" +
 	"\fprogram_name\x18\x04 \x01(\tR\vprogramName\x12!\n" +
 	"\fcurrent_week\x18\x05 \x01(\x05R\vcurrentWeek\x12_\n" +
-	"\x12completed_workouts\x18\x06 \x03(\v20.proto.user_program_progress.v1.CompletedWorkoutR\x11completedWorkouts\x12\x1d\n" +
+	"\x12completed_workouts\x18\x06 \x03(\v20.proto.user_program_progress.v1.CompletedWorkoutR\x11completedWorkouts\x129\n" +
 	"\n" +
-	"started_at\x18\a \x01(\tR\tstartedAt\x12!\n" +
-	"\fcompleted_at\x18\b \x01(\tR\vcompletedAt\x12\x1b\n" +
-	"\tis_active\x18\t \x01(\bR\bisActive\x12\x1d\n" +
+	"started_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tstartedAt\x12=\n" +
+	"\fcompleted_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\vcompletedAt\x12\x1b\n" +
+	"\tis_active\x18\t \x01(\bR\bisActive\x129\n" +
 	"\n" +
 	"created_at\x18\n" +
-	" \x01(\tR\tcreatedAt\x12\x1d\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\v \x01(\tR\tupdatedAt\"2\n" +
+	"updated_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"2\n" +
 	"\x17GetActiveProgramRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x99\x01\n" +
 	"\x18GetActiveProgramResponse\x12O\n" +
@@ -860,7 +861,7 @@ const file_proto_user_program_progress_v1_user_program_progress_proto_rawDesc = 
 	"\x12GetProgressHistory\x129.proto.user_program_progress.v1.GetProgressHistoryRequest\x1a:.proto.user_program_progress.v1.GetProgressHistoryResponse\x12\x7f\n" +
 	"\x0eUpdateProgress\x125.proto.user_program_progress.v1.UpdateProgressRequest\x1a6.proto.user_program_progress.v1.UpdateProgressResponse\x12\x7f\n" +
 	"\x0eAbandonProgram\x125.proto.user_program_progress.v1.AbandonProgramRequest\x1a6.proto.user_program_progress.v1.AbandonProgramResponse\x12\x88\x01\n" +
-	"\x11GetWorkoutHistory\x128.proto.user_program_progress.v1.GetWorkoutHistoryRequest\x1a9.proto.user_program_progress.v1.GetWorkoutHistoryResponseBqZogithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_program_progress/v1;userprogramprogresspbb\x06proto3"
+	"\x11GetWorkoutHistory\x128.proto.user_program_progress.v1.GetWorkoutHistoryRequest\x1a9.proto.user_program_progress.v1.GetWorkoutHistoryResponseBqZogithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_program_progress/v1;userprogramprogresspbb\x06proto3"
 
 var (
 	file_proto_user_program_progress_v1_user_program_progress_proto_rawDescOnce sync.Once
@@ -888,29 +889,35 @@ var file_proto_user_program_progress_v1_user_program_progress_proto_goTypes = []
 	(*AbandonProgramResponse)(nil),     // 9: proto.user_program_progress.v1.AbandonProgramResponse
 	(*GetWorkoutHistoryRequest)(nil),   // 10: proto.user_program_progress.v1.GetWorkoutHistoryRequest
 	(*GetWorkoutHistoryResponse)(nil),  // 11: proto.user_program_progress.v1.GetWorkoutHistoryResponse
+	(*timestamppb.Timestamp)(nil),      // 12: google.protobuf.Timestamp
 }
 var file_proto_user_program_progress_v1_user_program_progress_proto_depIdxs = []int32{
-	0,  // 0: proto.user_program_progress.v1.UserProgramProgress.completed_workouts:type_name -> proto.user_program_progress.v1.CompletedWorkout
-	1,  // 1: proto.user_program_progress.v1.GetActiveProgramResponse.progress:type_name -> proto.user_program_progress.v1.UserProgramProgress
-	1,  // 2: proto.user_program_progress.v1.GetProgressHistoryResponse.progress_entries:type_name -> proto.user_program_progress.v1.UserProgramProgress
-	0,  // 3: proto.user_program_progress.v1.UpdateProgressRequest.completed_workouts:type_name -> proto.user_program_progress.v1.CompletedWorkout
-	1,  // 4: proto.user_program_progress.v1.UpdateProgressResponse.progress:type_name -> proto.user_program_progress.v1.UserProgramProgress
-	0,  // 5: proto.user_program_progress.v1.GetWorkoutHistoryResponse.workouts:type_name -> proto.user_program_progress.v1.CompletedWorkout
-	2,  // 6: proto.user_program_progress.v1.UserProgramProgressService.GetActiveProgram:input_type -> proto.user_program_progress.v1.GetActiveProgramRequest
-	4,  // 7: proto.user_program_progress.v1.UserProgramProgressService.GetProgressHistory:input_type -> proto.user_program_progress.v1.GetProgressHistoryRequest
-	6,  // 8: proto.user_program_progress.v1.UserProgramProgressService.UpdateProgress:input_type -> proto.user_program_progress.v1.UpdateProgressRequest
-	8,  // 9: proto.user_program_progress.v1.UserProgramProgressService.AbandonProgram:input_type -> proto.user_program_progress.v1.AbandonProgramRequest
-	10, // 10: proto.user_program_progress.v1.UserProgramProgressService.GetWorkoutHistory:input_type -> proto.user_program_progress.v1.GetWorkoutHistoryRequest
-	3,  // 11: proto.user_program_progress.v1.UserProgramProgressService.GetActiveProgram:output_type -> proto.user_program_progress.v1.GetActiveProgramResponse
-	5,  // 12: proto.user_program_progress.v1.UserProgramProgressService.GetProgressHistory:output_type -> proto.user_program_progress.v1.GetProgressHistoryResponse
-	7,  // 13: proto.user_program_progress.v1.UserProgramProgressService.UpdateProgress:output_type -> proto.user_program_progress.v1.UpdateProgressResponse
-	9,  // 14: proto.user_program_progress.v1.UserProgramProgressService.AbandonProgram:output_type -> proto.user_program_progress.v1.AbandonProgramResponse
-	11, // 15: proto.user_program_progress.v1.UserProgramProgressService.GetWorkoutHistory:output_type -> proto.user_program_progress.v1.GetWorkoutHistoryResponse
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	12, // 0: proto.user_program_progress.v1.CompletedWorkout.completed_at:type_name -> google.protobuf.Timestamp
+	0,  // 1: proto.user_program_progress.v1.UserProgramProgress.completed_workouts:type_name -> proto.user_program_progress.v1.CompletedWorkout
+	12, // 2: proto.user_program_progress.v1.UserProgramProgress.started_at:type_name -> google.protobuf.Timestamp
+	12, // 3: proto.user_program_progress.v1.UserProgramProgress.completed_at:type_name -> google.protobuf.Timestamp
+	12, // 4: proto.user_program_progress.v1.UserProgramProgress.created_at:type_name -> google.protobuf.Timestamp
+	12, // 5: proto.user_program_progress.v1.UserProgramProgress.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 6: proto.user_program_progress.v1.GetActiveProgramResponse.progress:type_name -> proto.user_program_progress.v1.UserProgramProgress
+	1,  // 7: proto.user_program_progress.v1.GetProgressHistoryResponse.progress_entries:type_name -> proto.user_program_progress.v1.UserProgramProgress
+	0,  // 8: proto.user_program_progress.v1.UpdateProgressRequest.completed_workouts:type_name -> proto.user_program_progress.v1.CompletedWorkout
+	1,  // 9: proto.user_program_progress.v1.UpdateProgressResponse.progress:type_name -> proto.user_program_progress.v1.UserProgramProgress
+	0,  // 10: proto.user_program_progress.v1.GetWorkoutHistoryResponse.workouts:type_name -> proto.user_program_progress.v1.CompletedWorkout
+	2,  // 11: proto.user_program_progress.v1.UserProgramProgressService.GetActiveProgram:input_type -> proto.user_program_progress.v1.GetActiveProgramRequest
+	4,  // 12: proto.user_program_progress.v1.UserProgramProgressService.GetProgressHistory:input_type -> proto.user_program_progress.v1.GetProgressHistoryRequest
+	6,  // 13: proto.user_program_progress.v1.UserProgramProgressService.UpdateProgress:input_type -> proto.user_program_progress.v1.UpdateProgressRequest
+	8,  // 14: proto.user_program_progress.v1.UserProgramProgressService.AbandonProgram:input_type -> proto.user_program_progress.v1.AbandonProgramRequest
+	10, // 15: proto.user_program_progress.v1.UserProgramProgressService.GetWorkoutHistory:input_type -> proto.user_program_progress.v1.GetWorkoutHistoryRequest
+	3,  // 16: proto.user_program_progress.v1.UserProgramProgressService.GetActiveProgram:output_type -> proto.user_program_progress.v1.GetActiveProgramResponse
+	5,  // 17: proto.user_program_progress.v1.UserProgramProgressService.GetProgressHistory:output_type -> proto.user_program_progress.v1.GetProgressHistoryResponse
+	7,  // 18: proto.user_program_progress.v1.UserProgramProgressService.UpdateProgress:output_type -> proto.user_program_progress.v1.UpdateProgressResponse
+	9,  // 19: proto.user_program_progress.v1.UserProgramProgressService.AbandonProgram:output_type -> proto.user_program_progress.v1.AbandonProgramResponse
+	11, // 20: proto.user_program_progress.v1.UserProgramProgressService.GetWorkoutHistory:output_type -> proto.user_program_progress.v1.GetWorkoutHistoryResponse
+	16, // [16:21] is the sub-list for method output_type
+	11, // [11:16] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_program_progress_v1_user_program_progress_proto_init() }

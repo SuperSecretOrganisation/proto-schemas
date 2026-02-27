@@ -7,7 +7,7 @@
 package dashboardpb
 
 import (
-	v1 "github.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/user_badge/v1"
+	v1 "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/user_badge/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -547,7 +547,7 @@ func (x *UserLevelInfo) GetRankPosition() int32 {
 // Get dashboard data request and response
 type GetDashboardDataRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
-	UserId                 int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId                 string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	IncludeLeaderboardRank bool                   `protobuf:"varint,2,opt,name=include_leaderboard_rank,json=includeLeaderboardRank,proto3" json:"include_leaderboard_rank,omitempty"` // Whether to include user's leaderboard position
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
@@ -583,11 +583,11 @@ func (*GetDashboardDataRequest) Descriptor() ([]byte, []int) {
 	return file_proto_dashboard_v1_dashboard_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetDashboardDataRequest) GetUserId() int32 {
+func (x *GetDashboardDataRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *GetDashboardDataRequest) GetIncludeLeaderboardRank() bool {
@@ -644,7 +644,7 @@ func (x *GetDashboardDataResponse) GetDashboard() *DashboardData {
 // Refresh dashboard request and response (forces recalculation)
 type RefreshDashboardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -679,11 +679,11 @@ func (*RefreshDashboardRequest) Descriptor() ([]byte, []int) {
 	return file_proto_dashboard_v1_dashboard_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *RefreshDashboardRequest) GetUserId() int32 {
+func (x *RefreshDashboardRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type RefreshDashboardResponse struct {
@@ -798,18 +798,18 @@ const file_proto_dashboard_v1_dashboard_proto_rawDesc = "" +
 	"\x0elevel_progress\x18\x05 \x01(\x01R\rlevelProgress\x12#\n" +
 	"\rrank_position\x18\x06 \x01(\x05R\frankPosition\"l\n" +
 	"\x17GetDashboardDataRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x128\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x128\n" +
 	"\x18include_leaderboard_rank\x18\x02 \x01(\bR\x16includeLeaderboardRank\"[\n" +
 	"\x18GetDashboardDataResponse\x12?\n" +
 	"\tdashboard\x18\x01 \x01(\v2!.proto.dashboard.v1.DashboardDataR\tdashboard\"2\n" +
 	"\x17RefreshDashboardRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\"u\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"u\n" +
 	"\x18RefreshDashboardResponse\x12?\n" +
 	"\tdashboard\x18\x01 \x01(\v2!.proto.dashboard.v1.DashboardDataR\tdashboard\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess2\xf0\x01\n" +
 	"\x10DashboardService\x12m\n" +
 	"\x10GetDashboardData\x12+.proto.dashboard.v1.GetDashboardDataRequest\x1a,.proto.dashboard.v1.GetDashboardDataResponse\x12m\n" +
-	"\x10RefreshDashboard\x12+.proto.dashboard.v1.RefreshDashboardRequest\x1a,.proto.dashboard.v1.RefreshDashboardResponseB[ZYgithub.com/supersecretorganisation/proto-schemas/v2/gen/go/proto/dashboard/v1;dashboardpbb\x06proto3"
+	"\x10RefreshDashboard\x12+.proto.dashboard.v1.RefreshDashboardRequest\x1a,.proto.dashboard.v1.RefreshDashboardResponseB[ZYgithub.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/dashboard/v1;dashboardpbb\x06proto3"
 
 var (
 	file_proto_dashboard_v1_dashboard_proto_rawDescOnce sync.Once
