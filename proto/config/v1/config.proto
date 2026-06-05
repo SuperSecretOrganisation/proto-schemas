@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package proto.config.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/config/v1;configpb";
+
+// ConfigService delivers server-driven application configuration (Firebase
+// Remote Config, surfaced over gRPC) to the app at startup.
+//
+// Sync uses a server-owned opaque token: the client sends the token it
+// currently holds (empty on first run); the server replies "unchanged" (cache
+// hit) when the token still matches the live template, or the new config plus
+// a new token (cache miss). The client never computes the token — it only
+// stores and echoes whatever the server last returned. This mirrors the
+// Firebase Remote Config fetch protocol, which is itself ETag-based, and
+// avoids the cross-language hash-agreement fragility of having the client hash
+// its own configuration.
+service ConfigService {
+  // Fetch the active app configuration only if it has changed since the token
+  // the client holds. The server is the source of truth; nothing is derived
+  // from the client's local configuration.
+  rpc SyncConfig (SyncConfigRequest) returns (SyncConfigResponse);
+}
+
+// SyncConfigRequest carries the opaque config token the client currently
+// holds. Empty on first launch, which forces a full payload in the response.
+message SyncConfigRequest {
+  // Opaque server-issued token (a Remote Config ETag) the client last
+  // received. Leave empty to always receive the full current config.
+  string config_etag = 1;
+}
+
+// SyncConfigResponse is either a cache hit (changed = false, config unset) or a
+// cache miss (changed = true, config populated). config_etag always carries the
+// server's current token so the client can persist it for the next call.
+message SyncConfigResponse {
+  // False when the client's token still matches the live template (cache hit);
+  // true when the config changed and the client must apply the new payload.
+  bool changed = 1;
+
+  // The active configuration. Only populated when changed = true.
+  AppConfig config = 2;
+
+  // The server's current opaque token. The client persists this verbatim and
+  // sends it back on the next SyncConfig call.
+  string config_etag = 3;
+}
+
+// AppConfig is the server-driven, remote-config-eligible subset of application
+// settings — never the build-time transport config (host/port/TLS/environment),
+// which the client owns and the server cannot be the source of truth for.
+//
+// Parameters are keyed by name, mirroring the Firebase Remote Config template
+// model, so flags can be added or retired without a proto change.
+message AppConfig {
+  // Remote Config parameters keyed by parameter name.
+  map<string, ConfigParameter> parameters = 1;
+}
+
+// ConfigParameter is a single Remote Config parameter: a raw string value plus
+// the type the client should coerce it to. Remote Config stores every value as
+// a string; the type tells the client how to parse it.
+message ConfigParameter {
+  // Raw value as stored in Remote Config (always a string on the wire).
+  string value = 1;
+
+  // How the client should interpret value.
+  ParameterValueType type = 2;
+
+  // Human-readable description, sourced from the Remote Config template.
+  string description = 3;
+}
+
+// ParameterValueType mirrors Firebase Remote Config's parameter value types.
+enum ParameterValueType {
+  PARAMETER_VALUE_TYPE_UNSPECIFIED = 0;
+  PARAMETER_VALUE_TYPE_STRING = 1;
+  PARAMETER_VALUE_TYPE_BOOLEAN = 2;
+  PARAMETER_VALUE_TYPE_NUMBER = 3;
+  PARAMETER_VALUE_TYPE_JSON = 4;
+}
