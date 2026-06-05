@@ -132,7 +132,7 @@ message ListProgramsResponse {
 // Start program request and response
 message StartProgramRequest {
   string program_id = 1;
-  string user_id = 2;
+  string user_id = 2 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   string start_date = 3;             // RFC3339 format
 }
 message StartProgramResponse {

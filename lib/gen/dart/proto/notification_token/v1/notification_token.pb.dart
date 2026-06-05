@@ -131,6 +131,7 @@ class NotificationToken extends $pb.GeneratedMessage {
 
 class CreateNotificationTokenRequest extends $pb.GeneratedMessage {
   factory CreateNotificationTokenRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.String? token,
     $core.String? platform,
@@ -171,12 +172,16 @@ class CreateNotificationTokenRequest extends $pb.GeneratedMessage {
   static CreateNotificationTokenRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateNotificationTokenRequest>(create);
   static CreateNotificationTokenRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 
@@ -249,6 +254,7 @@ class CreateNotificationTokenResponse extends $pb.GeneratedMessage {
 
 class GetNotificationTokenRequest extends $pb.GeneratedMessage {
   factory GetNotificationTokenRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
   }) {
     final result = create();
@@ -283,12 +289,16 @@ class GetNotificationTokenRequest extends $pb.GeneratedMessage {
   static GetNotificationTokenRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetNotificationTokenRequest>(create);
   static GetNotificationTokenRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 }
@@ -343,6 +353,7 @@ class GetNotificationTokenResponse extends $pb.GeneratedMessage {
 
 class UpdateNotificationTokenRequest extends $pb.GeneratedMessage {
   factory UpdateNotificationTokenRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.String? token,
     $core.String? platform,
@@ -383,12 +394,16 @@ class UpdateNotificationTokenRequest extends $pb.GeneratedMessage {
   static UpdateNotificationTokenRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateNotificationTokenRequest>(create);
   static UpdateNotificationTokenRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 
@@ -553,6 +568,7 @@ class DeleteNotificationTokenResponse extends $pb.GeneratedMessage {
 
 class ListNotificationTokensRequest extends $pb.GeneratedMessage {
   factory ListNotificationTokensRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
   }) {
     final result = create();
@@ -587,12 +603,16 @@ class ListNotificationTokensRequest extends $pb.GeneratedMessage {
   static ListNotificationTokensRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListNotificationTokensRequest>(create);
   static ListNotificationTokensRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 }

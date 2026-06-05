@@ -234,8 +234,9 @@ func (x *UserProgramProgress) GetUpdatedAt() *timestamppb.Timestamp {
 
 // Get active program request and response
 type GetActiveProgramRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -270,6 +271,7 @@ func (*GetActiveProgramRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_program_progress_v1_user_program_progress_proto_rawDescGZIP(), []int{2}
 }
 
+// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
 func (x *GetActiveProgramRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -331,11 +333,12 @@ func (x *GetActiveProgramResponse) GetHasActiveProgram() bool {
 
 // Get progress history request and response
 type GetProgressHistoryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	IncludeActive bool                   `protobuf:"varint,4,opt,name=include_active,json=includeActive,proto3" json:"include_active,omitempty"` // Include currently active program
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Page          int32  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	IncludeActive bool   `protobuf:"varint,4,opt,name=include_active,json=includeActive,proto3" json:"include_active,omitempty"` // Include currently active program
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -370,6 +373,7 @@ func (*GetProgressHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_program_progress_v1_user_program_progress_proto_rawDescGZIP(), []int{4}
 }
 
+// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
 func (x *GetProgressHistoryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -557,9 +561,10 @@ func (x *UpdateProgressResponse) GetProgress() *UserProgramProgress {
 
 // Abandon program request and response
 type AbandonProgramRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // UserProgramProgress ID
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Id    string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // UserProgramProgress ID
+	// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
+	UserId        string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -601,6 +606,7 @@ func (x *AbandonProgramRequest) GetId() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
 func (x *AbandonProgramRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -654,12 +660,13 @@ func (x *AbandonProgramResponse) GetSuccess() bool {
 
 // Get workout history request and response
 type GetWorkoutHistoryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	FromDate      string                 `protobuf:"bytes,4,opt,name=from_date,json=fromDate,proto3" json:"from_date,omitempty"` // Optional: filter from date (RFC3339)
-	ToDate        string                 `protobuf:"bytes,5,opt,name=to_date,json=toDate,proto3" json:"to_date,omitempty"`       // Optional: filter to date (RFC3339)
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Page          int32  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	FromDate      string `protobuf:"bytes,4,opt,name=from_date,json=fromDate,proto3" json:"from_date,omitempty"` // Optional: filter from date (RFC3339)
+	ToDate        string `protobuf:"bytes,5,opt,name=to_date,json=toDate,proto3" json:"to_date,omitempty"`       // Optional: filter to date (RFC3339)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -694,6 +701,7 @@ func (*GetWorkoutHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_program_progress_v1_user_program_progress_proto_rawDescGZIP(), []int{10}
 }
 
+// Deprecated: Marked as deprecated in proto/user_program_progress/v1/user_program_progress.proto.
 func (x *GetWorkoutHistoryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -819,14 +827,14 @@ const file_proto_user_program_progress_v1_user_program_progress_proto_rawDesc = 
 	"created_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"2\n" +
-	"\x17GetActiveProgramRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x99\x01\n" +
+	"updated_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"6\n" +
+	"\x17GetActiveProgramRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"\x99\x01\n" +
 	"\x18GetActiveProgramResponse\x12O\n" +
 	"\bprogress\x18\x01 \x01(\v23.proto.user_program_progress.v1.UserProgramProgressR\bprogress\x12,\n" +
-	"\x12has_active_program\x18\x02 \x01(\bR\x10hasActiveProgram\"\x8c\x01\n" +
-	"\x19GetProgressHistoryRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x12has_active_program\x18\x02 \x01(\bR\x10hasActiveProgram\"\x90\x01\n" +
+	"\x19GetProgressHistoryRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12%\n" +
 	"\x0einclude_active\x18\x04 \x01(\bR\rincludeActive\"\x9d\x01\n" +
@@ -839,14 +847,14 @@ const file_proto_user_program_progress_v1_user_program_progress_proto_rawDesc = 
 	"\fcurrent_week\x18\x02 \x01(\x05R\vcurrentWeek\x12_\n" +
 	"\x12completed_workouts\x18\x03 \x03(\v20.proto.user_program_progress.v1.CompletedWorkoutR\x11completedWorkouts\"i\n" +
 	"\x16UpdateProgressResponse\x12O\n" +
-	"\bprogress\x18\x01 \x01(\v23.proto.user_program_progress.v1.UserProgramProgressR\bprogress\"@\n" +
+	"\bprogress\x18\x01 \x01(\v23.proto.user_program_progress.v1.UserProgramProgressR\bprogress\"D\n" +
 	"\x15AbandonProgramRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"2\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
+	"\auser_id\x18\x02 \x01(\tB\x02\x18\x01R\x06userId\"2\n" +
 	"\x16AbandonProgramResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x9a\x01\n" +
-	"\x18GetWorkoutHistoryRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x9e\x01\n" +
+	"\x18GetWorkoutHistoryRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x1b\n" +
 	"\tfrom_date\x18\x04 \x01(\tR\bfromDate\x12\x17\n" +

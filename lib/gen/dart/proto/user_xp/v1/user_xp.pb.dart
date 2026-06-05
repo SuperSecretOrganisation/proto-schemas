@@ -131,6 +131,7 @@ class UserXP extends $pb.GeneratedMessage {
 /// Get user XP request and response
 class GetUserXPRequest extends $pb.GeneratedMessage {
   factory GetUserXPRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
   }) {
     final result = create();
@@ -165,12 +166,16 @@ class GetUserXPRequest extends $pb.GeneratedMessage {
   static GetUserXPRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetUserXPRequest>(create);
   static GetUserXPRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 }
@@ -480,6 +485,7 @@ class GetLeaderboardResponse extends $pb.GeneratedMessage {
 /// Get user level request and response
 class GetUserLevelRequest extends $pb.GeneratedMessage {
   factory GetUserLevelRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
   }) {
     final result = create();
@@ -514,12 +520,16 @@ class GetUserLevelRequest extends $pb.GeneratedMessage {
   static GetUserLevelRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetUserLevelRequest>(create);
   static GetUserLevelRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 }

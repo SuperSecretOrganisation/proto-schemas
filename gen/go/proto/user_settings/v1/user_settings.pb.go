@@ -200,8 +200,9 @@ func (x *UserSettings) GetUpdatedAt() *timestamppb.Timestamp {
 
 // Get user settings request and response
 type GetUserSettingsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_settings/v1/user_settings.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -236,6 +237,7 @@ func (*GetUserSettingsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_settings_v1_user_settings_proto_rawDescGZIP(), []int{1}
 }
 
+// Deprecated: Marked as deprecated in proto/user_settings/v1/user_settings.proto.
 func (x *GetUserSettingsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -289,9 +291,10 @@ func (x *GetUserSettingsResponse) GetSettings() *UserSettings {
 
 // Update user settings request and response
 type UpdateUserSettingsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Settings      *UserSettings          `protobuf:"bytes,2,opt,name=settings,proto3" json:"settings,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_settings/v1/user_settings.proto.
+	UserId        string        `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Settings      *UserSettings `protobuf:"bytes,2,opt,name=settings,proto3" json:"settings,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,6 +329,7 @@ func (*UpdateUserSettingsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_settings_v1_user_settings_proto_rawDescGZIP(), []int{3}
 }
 
+// Deprecated: Marked as deprecated in proto/user_settings/v1/user_settings.proto.
 func (x *UpdateUserSettingsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -410,13 +414,13 @@ const file_proto_user_settings_v1_user_settings_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"1\n" +
-	"\x16GetUserSettingsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"[\n" +
+	"updated_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"5\n" +
+	"\x16GetUserSettingsRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"[\n" +
 	"\x17GetUserSettingsResponse\x12@\n" +
-	"\bsettings\x18\x01 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings\"v\n" +
-	"\x19UpdateUserSettingsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12@\n" +
+	"\bsettings\x18\x01 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings\"z\n" +
+	"\x19UpdateUserSettingsRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12@\n" +
 	"\bsettings\x18\x02 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings\"^\n" +
 	"\x1aUpdateUserSettingsResponse\x12@\n" +
 	"\bsettings\x18\x01 \x01(\v2$.proto.user_settings.v1.UserSettingsR\bsettings2\x86\x02\n" +

@@ -39,7 +39,14 @@ final $typed_data.Uint8List notificationTokenDescriptor = $convert.base64Decode(
 const CreateNotificationTokenRequest$json = {
   '1': 'CreateNotificationTokenRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'token', '3': 2, '4': 1, '5': 9, '10': 'token'},
     {'1': 'platform', '3': 3, '4': 1, '5': 9, '10': 'platform'},
   ],
@@ -47,8 +54,8 @@ const CreateNotificationTokenRequest$json = {
 
 /// Descriptor for `CreateNotificationTokenRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List createNotificationTokenRequestDescriptor = $convert.base64Decode(
-    'Ch5DcmVhdGVOb3RpZmljYXRpb25Ub2tlblJlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlck'
-    'lkEhQKBXRva2VuGAIgASgJUgV0b2tlbhIaCghwbGF0Zm9ybRgDIAEoCVIIcGxhdGZvcm0=');
+    'Ch5DcmVhdGVOb3RpZmljYXRpb25Ub2tlblJlcXVlc3QSGwoHdXNlcl9pZBgBIAEoCUICGAFSBn'
+    'VzZXJJZBIUCgV0b2tlbhgCIAEoCVIFdG9rZW4SGgoIcGxhdGZvcm0YAyABKAlSCHBsYXRmb3Jt');
 
 @$core.Deprecated('Use createNotificationTokenResponseDescriptor instead')
 const CreateNotificationTokenResponse$json = {
@@ -67,13 +74,21 @@ final $typed_data.Uint8List createNotificationTokenResponseDescriptor = $convert
 const GetNotificationTokenRequest$json = {
   '1': 'GetNotificationTokenRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
   ],
 };
 
 /// Descriptor for `GetNotificationTokenRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getNotificationTokenRequestDescriptor = $convert.base64Decode(
-    'ChtHZXROb3RpZmljYXRpb25Ub2tlblJlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklk');
+    'ChtHZXROb3RpZmljYXRpb25Ub2tlblJlcXVlc3QSGwoHdXNlcl9pZBgBIAEoCUICGAFSBnVzZX'
+    'JJZA==');
 
 @$core.Deprecated('Use getNotificationTokenResponseDescriptor instead')
 const GetNotificationTokenResponse$json = {
@@ -92,7 +107,14 @@ final $typed_data.Uint8List getNotificationTokenResponseDescriptor = $convert.ba
 const UpdateNotificationTokenRequest$json = {
   '1': 'UpdateNotificationTokenRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'token', '3': 2, '4': 1, '5': 9, '10': 'token'},
     {'1': 'platform', '3': 3, '4': 1, '5': 9, '10': 'platform'},
   ],
@@ -100,8 +122,8 @@ const UpdateNotificationTokenRequest$json = {
 
 /// Descriptor for `UpdateNotificationTokenRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updateNotificationTokenRequestDescriptor = $convert.base64Decode(
-    'Ch5VcGRhdGVOb3RpZmljYXRpb25Ub2tlblJlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlck'
-    'lkEhQKBXRva2VuGAIgASgJUgV0b2tlbhIaCghwbGF0Zm9ybRgDIAEoCVIIcGxhdGZvcm0=');
+    'Ch5VcGRhdGVOb3RpZmljYXRpb25Ub2tlblJlcXVlc3QSGwoHdXNlcl9pZBgBIAEoCUICGAFSBn'
+    'VzZXJJZBIUCgV0b2tlbhgCIAEoCVIFdG9rZW4SGgoIcGxhdGZvcm0YAyABKAlSCHBsYXRmb3Jt');
 
 @$core.Deprecated('Use updateNotificationTokenResponseDescriptor instead')
 const UpdateNotificationTokenResponse$json = {
@@ -145,14 +167,21 @@ final $typed_data.Uint8List deleteNotificationTokenResponseDescriptor = $convert
 const ListNotificationTokensRequest$json = {
   '1': 'ListNotificationTokensRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
   ],
 };
 
 /// Descriptor for `ListNotificationTokensRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listNotificationTokensRequestDescriptor = $convert.base64Decode(
-    'Ch1MaXN0Tm90aWZpY2F0aW9uVG9rZW5zUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySW'
-    'Q=');
+    'Ch1MaXN0Tm90aWZpY2F0aW9uVG9rZW5zUmVxdWVzdBIbCgd1c2VyX2lkGAEgASgJQgIYAVIGdX'
+    'Nlcklk');
 
 @$core.Deprecated('Use listNotificationTokensResponseDescriptor instead')
 const ListNotificationTokensResponse$json = {

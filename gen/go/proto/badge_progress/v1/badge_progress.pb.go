@@ -126,8 +126,9 @@ func (x *BadgeProgress) GetBadge() *v1.Badge {
 
 // Get user badge progress request and response
 type GetUserBadgeProgressRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/badge_progress/v1/badge_progress.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -162,6 +163,7 @@ func (*GetUserBadgeProgressRequest) Descriptor() ([]byte, []int) {
 	return file_proto_badge_progress_v1_badge_progress_proto_rawDescGZIP(), []int{1}
 }
 
+// Deprecated: Marked as deprecated in proto/badge_progress/v1/badge_progress.proto.
 func (x *GetUserBadgeProgressRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -215,10 +217,11 @@ func (x *GetUserBadgeProgressResponse) GetProgressList() []*BadgeProgress {
 
 // Update progress request and response
 type UpdateProgressRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	BadgeId         int32                  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
-	CurrentProgress int32                  `protobuf:"varint,3,opt,name=current_progress,json=currentProgress,proto3" json:"current_progress,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/badge_progress/v1/badge_progress.proto.
+	UserId          string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	BadgeId         int32  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
+	CurrentProgress int32  `protobuf:"varint,3,opt,name=current_progress,json=currentProgress,proto3" json:"current_progress,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -253,6 +256,7 @@ func (*UpdateProgressRequest) Descriptor() ([]byte, []int) {
 	return file_proto_badge_progress_v1_badge_progress_proto_rawDescGZIP(), []int{3}
 }
 
+// Deprecated: Marked as deprecated in proto/badge_progress/v1/badge_progress.proto.
 func (x *UpdateProgressRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -328,9 +332,10 @@ func (x *UpdateProgressResponse) GetBadgeCompleted() bool {
 
 // Get progress for specific badge request and response
 type GetProgressForBadgeRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	BadgeId       int32                  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/badge_progress/v1/badge_progress.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	BadgeId       int32  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -365,6 +370,7 @@ func (*GetProgressForBadgeRequest) Descriptor() ([]byte, []int) {
 	return file_proto_badge_progress_v1_badge_progress_proto_rawDescGZIP(), []int{5}
 }
 
+// Deprecated: Marked as deprecated in proto/badge_progress/v1/badge_progress.proto.
 func (x *GetProgressForBadgeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -436,20 +442,20 @@ const file_proto_badge_progress_v1_badge_progress_proto_rawDesc = "" +
 	"\x0ftarget_progress\x18\x05 \x01(\x05R\x0etargetProgress\x12=\n" +
 	"\flast_updated\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\vlastUpdated\x12/\n" +
 	"\x13progress_percentage\x18\a \x01(\x01R\x12progressPercentage\x12+\n" +
-	"\x05badge\x18\b \x01(\v2\x15.proto.badge.v1.BadgeR\x05badge\"6\n" +
-	"\x1bGetUserBadgeProgressRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"k\n" +
+	"\x05badge\x18\b \x01(\v2\x15.proto.badge.v1.BadgeR\x05badge\":\n" +
+	"\x1bGetUserBadgeProgressRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"k\n" +
 	"\x1cGetUserBadgeProgressResponse\x12K\n" +
-	"\rprogress_list\x18\x01 \x03(\v2&.proto.badge_progress.v1.BadgeProgressR\fprogressList\"v\n" +
-	"\x15UpdateProgressRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\rprogress_list\x18\x01 \x03(\v2&.proto.badge_progress.v1.BadgeProgressR\fprogressList\"z\n" +
+	"\x15UpdateProgressRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x02 \x01(\x05R\abadgeId\x12)\n" +
 	"\x10current_progress\x18\x03 \x01(\x05R\x0fcurrentProgress\"\x85\x01\n" +
 	"\x16UpdateProgressResponse\x12B\n" +
 	"\bprogress\x18\x01 \x01(\v2&.proto.badge_progress.v1.BadgeProgressR\bprogress\x12'\n" +
-	"\x0fbadge_completed\x18\x02 \x01(\bR\x0ebadgeCompleted\"P\n" +
-	"\x1aGetProgressForBadgeRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\x0fbadge_completed\x18\x02 \x01(\bR\x0ebadgeCompleted\"T\n" +
+	"\x1aGetProgressForBadgeRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x02 \x01(\x05R\abadgeId\"a\n" +
 	"\x1bGetProgressForBadgeResponse\x12B\n" +
 	"\bprogress\x18\x01 \x01(\v2&.proto.badge_progress.v1.BadgeProgressR\bprogress2\x92\x03\n" +

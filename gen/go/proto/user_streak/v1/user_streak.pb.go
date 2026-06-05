@@ -226,8 +226,9 @@ func (x *StreakHistory) GetCreatedAt() *timestamppb.Timestamp {
 
 // Get user streak request and response
 type GetUserStreakRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -262,6 +263,7 @@ func (*GetUserStreakRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{2}
 }
 
+// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
 func (x *GetUserStreakRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -315,11 +317,12 @@ func (x *GetUserStreakResponse) GetUserStreak() *UserStreak {
 
 // Update streak request and response
 type UpdateStreakRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Steps         int32                  `protobuf:"varint,2,opt,name=steps,proto3" json:"steps,omitempty"`
-	ActiveMinutes int32                  `protobuf:"varint,3,opt,name=active_minutes,json=activeMinutes,proto3" json:"active_minutes,omitempty"`
-	DistanceKm    float64                `protobuf:"fixed64,4,opt,name=distance_km,json=distanceKm,proto3" json:"distance_km,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
+	UserId        string  `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Steps         int32   `protobuf:"varint,2,opt,name=steps,proto3" json:"steps,omitempty"`
+	ActiveMinutes int32   `protobuf:"varint,3,opt,name=active_minutes,json=activeMinutes,proto3" json:"active_minutes,omitempty"`
+	DistanceKm    float64 `protobuf:"fixed64,4,opt,name=distance_km,json=distanceKm,proto3" json:"distance_km,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -354,6 +357,7 @@ func (*UpdateStreakRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{4}
 }
 
+// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
 func (x *UpdateStreakRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -444,9 +448,10 @@ func (x *UpdateStreakResponse) GetPreviousStreak() int32 {
 
 // Get streak history request and response
 type GetStreakHistoryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Days          int32                  `protobuf:"varint,2,opt,name=days,proto3" json:"days,omitempty"` // Number of days to retrieve (default 30)
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Days          int32  `protobuf:"varint,2,opt,name=days,proto3" json:"days,omitempty"`                  // Number of days to retrieve (default 30)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -481,6 +486,7 @@ func (*GetStreakHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{6}
 }
 
+// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
 func (x *GetStreakHistoryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -549,8 +555,9 @@ func (x *GetStreakHistoryResponse) GetTotalActiveDays() int32 {
 
 // Reset streak request and response
 type ResetStreakRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -585,6 +592,7 @@ func (*ResetStreakRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_streak_v1_user_streak_proto_rawDescGZIP(), []int{8}
 }
 
+// Deprecated: Marked as deprecated in proto/user_streak/v1/user_streak.proto.
 func (x *ResetStreakRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -671,14 +679,14 @@ const file_proto_user_streak_v1_user_streak_proto_rawDesc = "" +
 	"\vdistance_km\x18\x06 \x01(\x01R\n" +
 	"distanceKm\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"/\n" +
-	"\x14GetUserStreakRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"Z\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"3\n" +
+	"\x14GetUserStreakRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"Z\n" +
 	"\x15GetUserStreakResponse\x12A\n" +
 	"\vuser_streak\x18\x01 \x01(\v2 .proto.user_streak.v1.UserStreakR\n" +
-	"userStreak\"\x8c\x01\n" +
-	"\x13UpdateStreakRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
+	"userStreak\"\x90\x01\n" +
+	"\x13UpdateStreakRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x14\n" +
 	"\x05steps\x18\x02 \x01(\x05R\x05steps\x12%\n" +
 	"\x0eactive_minutes\x18\x03 \x01(\x05R\ractiveMinutes\x12\x1f\n" +
 	"\vdistance_km\x18\x04 \x01(\x01R\n" +
@@ -687,15 +695,15 @@ const file_proto_user_streak_v1_user_streak_proto_rawDesc = "" +
 	"\vuser_streak\x18\x01 \x01(\v2 .proto.user_streak.v1.UserStreakR\n" +
 	"userStreak\x12)\n" +
 	"\x10streak_increased\x18\x02 \x01(\bR\x0fstreakIncreased\x12'\n" +
-	"\x0fprevious_streak\x18\x03 \x01(\x05R\x0epreviousStreak\"F\n" +
-	"\x17GetStreakHistoryRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x0fprevious_streak\x18\x03 \x01(\x05R\x0epreviousStreak\"J\n" +
+	"\x17GetStreakHistoryRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x12\n" +
 	"\x04days\x18\x02 \x01(\x05R\x04days\"\x85\x01\n" +
 	"\x18GetStreakHistoryResponse\x12=\n" +
 	"\ahistory\x18\x01 \x03(\v2#.proto.user_streak.v1.StreakHistoryR\ahistory\x12*\n" +
-	"\x11total_active_days\x18\x02 \x01(\x05R\x0ftotalActiveDays\"-\n" +
-	"\x12ResetStreakRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"I\n" +
+	"\x11total_active_days\x18\x02 \x01(\x05R\x0ftotalActiveDays\"1\n" +
+	"\x12ResetStreakRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"I\n" +
 	"\x13ResetStreakResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage2\xbb\x03\n" +

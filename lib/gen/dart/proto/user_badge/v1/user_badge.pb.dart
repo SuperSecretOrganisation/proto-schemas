@@ -148,6 +148,7 @@ class UserBadge extends $pb.GeneratedMessage {
 /// Get user badges request and response
 class GetUserBadgesRequest extends $pb.GeneratedMessage {
   factory GetUserBadgesRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
   }) {
     final result = create();
@@ -182,12 +183,16 @@ class GetUserBadgesRequest extends $pb.GeneratedMessage {
   static GetUserBadgesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetUserBadgesRequest>(create);
   static GetUserBadgesRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 }
@@ -366,6 +371,7 @@ class AwardBadgeResponse extends $pb.GeneratedMessage {
 /// Share badge request and response
 class ShareBadgeRequest extends $pb.GeneratedMessage {
   factory ShareBadgeRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.int? badgeId,
   }) {
@@ -403,12 +409,16 @@ class ShareBadgeRequest extends $pb.GeneratedMessage {
   static ShareBadgeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ShareBadgeRequest>(create);
   static ShareBadgeRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 
@@ -483,6 +493,7 @@ class ShareBadgeResponse extends $pb.GeneratedMessage {
 /// Get recent badges request and response
 class GetRecentBadgesRequest extends $pb.GeneratedMessage {
   factory GetRecentBadgesRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.int? limit,
   }) {
@@ -520,12 +531,16 @@ class GetRecentBadgesRequest extends $pb.GeneratedMessage {
   static GetRecentBadgesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetRecentBadgesRequest>(create);
   static GetRecentBadgesRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 
@@ -582,6 +597,7 @@ class GetRecentBadgesResponse extends $pb.GeneratedMessage {
 /// Check badge unlock request and response (checks if user should unlock any badges)
 class CheckBadgeUnlockRequest extends $pb.GeneratedMessage {
   factory CheckBadgeUnlockRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.String? activityType,
   }) {
@@ -619,12 +635,16 @@ class CheckBadgeUnlockRequest extends $pb.GeneratedMessage {
   static CheckBadgeUnlockRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CheckBadgeUnlockRequest>(create);
   static CheckBadgeUnlockRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 

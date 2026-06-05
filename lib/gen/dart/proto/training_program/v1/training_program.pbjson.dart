@@ -289,15 +289,23 @@ const StartProgramRequest$json = {
   '1': 'StartProgramRequest',
   '2': [
     {'1': 'program_id', '3': 1, '4': 1, '5': 9, '10': 'programId'},
-    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 2,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'start_date', '3': 3, '4': 1, '5': 9, '10': 'startDate'},
   ],
 };
 
 /// Descriptor for `StartProgramRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List startProgramRequestDescriptor = $convert.base64Decode(
-    'ChNTdGFydFByb2dyYW1SZXF1ZXN0Eh0KCnByb2dyYW1faWQYASABKAlSCXByb2dyYW1JZBIXCg'
-    'd1c2VyX2lkGAIgASgJUgZ1c2VySWQSHQoKc3RhcnRfZGF0ZRgDIAEoCVIJc3RhcnREYXRl');
+    'ChNTdGFydFByb2dyYW1SZXF1ZXN0Eh0KCnByb2dyYW1faWQYASABKAlSCXByb2dyYW1JZBIbCg'
+    'd1c2VyX2lkGAIgASgJQgIYAVIGdXNlcklkEh0KCnN0YXJ0X2RhdGUYAyABKAlSCXN0YXJ0RGF0'
+    'ZQ==');
 
 @$core.Deprecated('Use startProgramResponseDescriptor instead')
 const StartProgramResponse$json = {

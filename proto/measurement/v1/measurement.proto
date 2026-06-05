@@ -18,7 +18,7 @@ message Measurement {
 }
 
 message MeasurementBatch {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   string activity_id = 2;
   string activity_type = 3;
   repeated uint32 heel_pressure = 4;

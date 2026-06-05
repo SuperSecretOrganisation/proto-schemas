@@ -59,13 +59,20 @@ final $typed_data.Uint8List userSettingsDescriptor = $convert.base64Decode(
 const GetUserSettingsRequest$json = {
   '1': 'GetUserSettingsRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
   ],
 };
 
 /// Descriptor for `GetUserSettingsRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserSettingsRequestDescriptor = $convert.base64Decode(
-    'ChZHZXRVc2VyU2V0dGluZ3NSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZA==');
+    'ChZHZXRVc2VyU2V0dGluZ3NSZXF1ZXN0EhsKB3VzZXJfaWQYASABKAlCAhgBUgZ1c2VySWQ=');
 
 @$core.Deprecated('Use getUserSettingsResponseDescriptor instead')
 const GetUserSettingsResponse$json = {
@@ -84,16 +91,23 @@ final $typed_data.Uint8List getUserSettingsResponseDescriptor = $convert.base64D
 const UpdateUserSettingsRequest$json = {
   '1': 'UpdateUserSettingsRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'settings', '3': 2, '4': 1, '5': 11, '6': '.proto.user_settings.v1.UserSettings', '10': 'settings'},
   ],
 };
 
 /// Descriptor for `UpdateUserSettingsRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updateUserSettingsRequestDescriptor = $convert.base64Decode(
-    'ChlVcGRhdGVVc2VyU2V0dGluZ3NSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBJACg'
-    'hzZXR0aW5ncxgCIAEoCzIkLnByb3RvLnVzZXJfc2V0dGluZ3MudjEuVXNlclNldHRpbmdzUghz'
-    'ZXR0aW5ncw==');
+    'ChlVcGRhdGVVc2VyU2V0dGluZ3NSZXF1ZXN0EhsKB3VzZXJfaWQYASABKAlCAhgBUgZ1c2VySW'
+    'QSQAoIc2V0dGluZ3MYAiABKAsyJC5wcm90by51c2VyX3NldHRpbmdzLnYxLlVzZXJTZXR0aW5n'
+    'c1IIc2V0dGluZ3M=');
 
 @$core.Deprecated('Use updateUserSettingsResponseDescriptor instead')
 const UpdateUserSettingsResponse$json = {

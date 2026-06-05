@@ -345,6 +345,7 @@ class GetNotificationResponse extends $pb.GeneratedMessage {
 
 class ListNotificationsRequest extends $pb.GeneratedMessage {
   factory ListNotificationsRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.int? page,
     $core.int? pageSize,
@@ -385,12 +386,16 @@ class ListNotificationsRequest extends $pb.GeneratedMessage {
   static ListNotificationsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListNotificationsRequest>(create);
   static ListNotificationsRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 

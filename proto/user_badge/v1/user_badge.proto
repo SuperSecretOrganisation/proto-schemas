@@ -28,7 +28,7 @@ message UserBadge {
 
 // Get user badges request and response
 message GetUserBadgesRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message GetUserBadgesResponse {
   repeated UserBadge user_badges = 1;
@@ -47,7 +47,7 @@ message AwardBadgeResponse {
 
 // Share badge request and response
 message ShareBadgeRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   int32 badge_id = 2;
 }
 message ShareBadgeResponse {
@@ -57,7 +57,7 @@ message ShareBadgeResponse {
 
 // Get recent badges request and response
 message GetRecentBadgesRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   int32 limit = 2;
 }
 message GetRecentBadgesResponse {
@@ -66,7 +66,7 @@ message GetRecentBadgesResponse {
 
 // Check badge unlock request and response (checks if user should unlock any badges)
 message CheckBadgeUnlockRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   string activity_type = 2; // e.g., "workout_completed", "streak_updated"
 }
 message CheckBadgeUnlockResponse {

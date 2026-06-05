@@ -41,7 +41,7 @@ message UserProgramProgress {
 
 // Get active program request and response
 message GetActiveProgramRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message GetActiveProgramResponse {
   UserProgramProgress progress = 1;  // null if no active program
@@ -50,7 +50,7 @@ message GetActiveProgramResponse {
 
 // Get progress history request and response
 message GetProgressHistoryRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   int32 page = 2;
   int32 page_size = 3;
   bool include_active = 4;           // Include currently active program
@@ -73,7 +73,7 @@ message UpdateProgressResponse {
 // Abandon program request and response
 message AbandonProgramRequest {
   string id = 1;                     // UserProgramProgress ID
-  string user_id = 2;
+  string user_id = 2 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message AbandonProgramResponse {
   bool success = 1;
@@ -81,7 +81,7 @@ message AbandonProgramResponse {
 
 // Get workout history request and response
 message GetWorkoutHistoryRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   int32 page = 2;
   int32 page_size = 3;
   string from_date = 4;              // Optional: filter from date (RFC3339)

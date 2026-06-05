@@ -148,15 +148,23 @@ final $typed_data.Uint8List userLevelInfoDescriptor = $convert.base64Decode(
 const GetDashboardDataRequest$json = {
   '1': 'GetDashboardDataRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'include_leaderboard_rank', '3': 2, '4': 1, '5': 8, '10': 'includeLeaderboardRank'},
   ],
 };
 
 /// Descriptor for `GetDashboardDataRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getDashboardDataRequestDescriptor = $convert.base64Decode(
-    'ChdHZXREYXNoYm9hcmREYXRhUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSOAoYaW'
-    '5jbHVkZV9sZWFkZXJib2FyZF9yYW5rGAIgASgIUhZpbmNsdWRlTGVhZGVyYm9hcmRSYW5r');
+    'ChdHZXREYXNoYm9hcmREYXRhUmVxdWVzdBIbCgd1c2VyX2lkGAEgASgJQgIYAVIGdXNlcklkEj'
+    'gKGGluY2x1ZGVfbGVhZGVyYm9hcmRfcmFuaxgCIAEoCFIWaW5jbHVkZUxlYWRlcmJvYXJkUmFu'
+    'aw==');
 
 @$core.Deprecated('Use getDashboardDataResponseDescriptor instead')
 const GetDashboardDataResponse$json = {
@@ -175,13 +183,20 @@ final $typed_data.Uint8List getDashboardDataResponseDescriptor = $convert.base64
 const RefreshDashboardRequest$json = {
   '1': 'RefreshDashboardRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
   ],
 };
 
 /// Descriptor for `RefreshDashboardRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List refreshDashboardRequestDescriptor = $convert.base64Decode(
-    'ChdSZWZyZXNoRGFzaGJvYXJkUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQ=');
+    'ChdSZWZyZXNoRGFzaGJvYXJkUmVxdWVzdBIbCgd1c2VyX2lkGAEgASgJQgIYAVIGdXNlcklk');
 
 @$core.Deprecated('Use refreshDashboardResponseDescriptor instead')
 const RefreshDashboardResponse$json = {

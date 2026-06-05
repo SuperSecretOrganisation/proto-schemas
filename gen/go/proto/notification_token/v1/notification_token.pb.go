@@ -107,10 +107,11 @@ func (x *NotificationToken) GetCreatedAt() *timestamppb.Timestamp {
 }
 
 type CreateNotificationTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`       // Device token for push notifications
-	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"` // Platform type, e.g., 'apns', 'fcm'
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Token         string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`                 // Device token for push notifications
+	Platform      string `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`           // Platform type, e.g., 'apns', 'fcm'
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -145,6 +146,7 @@ func (*CreateNotificationTokenRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{1}
 }
 
+// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
 func (x *CreateNotificationTokenRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -211,8 +213,9 @@ func (x *CreateNotificationTokenResponse) GetToken() *NotificationToken {
 }
 
 type GetNotificationTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -247,6 +250,7 @@ func (*GetNotificationTokenRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{3}
 }
 
+// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
 func (x *GetNotificationTokenRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -299,10 +303,11 @@ func (x *GetNotificationTokenResponse) GetToken() *NotificationToken {
 }
 
 type UpdateNotificationTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`       // Device token for push notifications
-	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"` // Platform type, e.g., 'apns', 'fcm'
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Token         string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`                 // Device token for push notifications
+	Platform      string `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`           // Platform type, e.g., 'apns', 'fcm'
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -337,6 +342,7 @@ func (*UpdateNotificationTokenRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{5}
 }
 
+// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
 func (x *UpdateNotificationTokenRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -491,8 +497,9 @@ func (x *DeleteNotificationTokenResponse) GetSuccess() bool {
 }
 
 type ListNotificationTokensRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -527,6 +534,7 @@ func (*ListNotificationTokensRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_token_v1_notification_token_proto_rawDescGZIP(), []int{9}
 }
 
+// Deprecated: Marked as deprecated in proto/notification_token/v1/notification_token.proto.
 func (x *ListNotificationTokensRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -591,19 +599,19 @@ const file_proto_notification_token_v1_notification_token_proto_rawDesc = "" +
 	"\flast_seen_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"lastSeenAt\x129\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"k\n" +
-	"\x1eCreateNotificationTokenRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
+	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"o\n" +
+	"\x1eCreateNotificationTokenRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1a\n" +
 	"\bplatform\x18\x03 \x01(\tR\bplatform\"g\n" +
 	"\x1fCreateNotificationTokenResponse\x12D\n" +
-	"\x05token\x18\x01 \x01(\v2..proto.notification_token.v1.NotificationTokenR\x05token\"6\n" +
-	"\x1bGetNotificationTokenRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"d\n" +
+	"\x05token\x18\x01 \x01(\v2..proto.notification_token.v1.NotificationTokenR\x05token\":\n" +
+	"\x1bGetNotificationTokenRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"d\n" +
 	"\x1cGetNotificationTokenResponse\x12D\n" +
-	"\x05token\x18\x01 \x01(\v2..proto.notification_token.v1.NotificationTokenR\x05token\"k\n" +
-	"\x1eUpdateNotificationTokenRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\v2..proto.notification_token.v1.NotificationTokenR\x05token\"o\n" +
+	"\x1eUpdateNotificationTokenRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1a\n" +
 	"\bplatform\x18\x03 \x01(\tR\bplatform\"g\n" +
 	"\x1fUpdateNotificationTokenResponse\x12D\n" +
@@ -611,9 +619,9 @@ const file_proto_notification_token_v1_notification_token_proto_rawDesc = "" +
 	"\x1eDeleteNotificationTokenRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\";\n" +
 	"\x1fDeleteNotificationTokenResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"8\n" +
-	"\x1dListNotificationTokensRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"h\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"<\n" +
+	"\x1dListNotificationTokensRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"h\n" +
 	"\x1eListNotificationTokensResponse\x12F\n" +
 	"\x06tokens\x18\x01 \x03(\v2..proto.notification_token.v1.NotificationTokenR\x06tokens2\x81\x06\n" +
 	"\x18NotificationTokenService\x12\x94\x01\n" +

@@ -42,7 +42,14 @@ final $typed_data.Uint8List measurementDescriptor = $convert.base64Decode(
 const MeasurementBatch$json = {
   '1': 'MeasurementBatch',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'activity_id', '3': 2, '4': 1, '5': 9, '10': 'activityId'},
     {'1': 'activity_type', '3': 3, '4': 1, '5': 9, '10': 'activityType'},
     {'1': 'heel_pressure', '3': 4, '4': 3, '5': 13, '10': 'heelPressure'},
@@ -54,11 +61,11 @@ const MeasurementBatch$json = {
 
 /// Descriptor for `MeasurementBatch`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List measurementBatchDescriptor = $convert.base64Decode(
-    'ChBNZWFzdXJlbWVudEJhdGNoEhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBIfCgthY3Rpdml0eV'
-    '9pZBgCIAEoCVIKYWN0aXZpdHlJZBIjCg1hY3Rpdml0eV90eXBlGAMgASgJUgxhY3Rpdml0eVR5'
-    'cGUSIwoNaGVlbF9wcmVzc3VyZRgEIAMoDVIMaGVlbFByZXNzdXJlEiEKDHRvZV9wcmVzc3VyZR'
-    'gFIAMoDVILdG9lUHJlc3N1cmUSFgoGd2VpZ2h0GAYgAygNUgZ3ZWlnaHQSOAoJdGltZXN0YW1w'
-    'GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdGltZXN0YW1w');
+    'ChBNZWFzdXJlbWVudEJhdGNoEhsKB3VzZXJfaWQYASABKAlCAhgBUgZ1c2VySWQSHwoLYWN0aX'
+    'ZpdHlfaWQYAiABKAlSCmFjdGl2aXR5SWQSIwoNYWN0aXZpdHlfdHlwZRgDIAEoCVIMYWN0aXZp'
+    'dHlUeXBlEiMKDWhlZWxfcHJlc3N1cmUYBCADKA1SDGhlZWxQcmVzc3VyZRIhCgx0b2VfcHJlc3'
+    'N1cmUYBSADKA1SC3RvZVByZXNzdXJlEhYKBndlaWdodBgGIAMoDVIGd2VpZ2h0EjgKCXRpbWVz'
+    'dGFtcBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXRpbWVzdGFtcA==');
 
 @$core.Deprecated('Use measurementFilterDescriptor instead')
 const MeasurementFilter$json = {

@@ -289,6 +289,7 @@ class StreakHistory extends $pb.GeneratedMessage {
 /// Get user streak request and response
 class GetUserStreakRequest extends $pb.GeneratedMessage {
   factory GetUserStreakRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
   }) {
     final result = create();
@@ -323,12 +324,16 @@ class GetUserStreakRequest extends $pb.GeneratedMessage {
   static GetUserStreakRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetUserStreakRequest>(create);
   static GetUserStreakRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 }
@@ -384,6 +389,7 @@ class GetUserStreakResponse extends $pb.GeneratedMessage {
 /// Update streak request and response
 class UpdateStreakRequest extends $pb.GeneratedMessage {
   factory UpdateStreakRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.int? steps,
     $core.int? activeMinutes,
@@ -427,12 +433,16 @@ class UpdateStreakRequest extends $pb.GeneratedMessage {
   static UpdateStreakRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateStreakRequest>(create);
   static UpdateStreakRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 
@@ -539,6 +549,7 @@ class UpdateStreakResponse extends $pb.GeneratedMessage {
 /// Get streak history request and response
 class GetStreakHistoryRequest extends $pb.GeneratedMessage {
   factory GetStreakHistoryRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.int? days,
   }) {
@@ -576,12 +587,16 @@ class GetStreakHistoryRequest extends $pb.GeneratedMessage {
   static GetStreakHistoryRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetStreakHistoryRequest>(create);
   static GetStreakHistoryRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 
@@ -650,6 +665,7 @@ class GetStreakHistoryResponse extends $pb.GeneratedMessage {
 /// Reset streak request and response
 class ResetStreakRequest extends $pb.GeneratedMessage {
   factory ResetStreakRequest({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
   }) {
     final result = create();
@@ -684,12 +700,16 @@ class ResetStreakRequest extends $pb.GeneratedMessage {
   static ResetStreakRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ResetStreakRequest>(create);
   static ResetStreakRequest? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 }

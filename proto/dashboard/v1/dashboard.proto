@@ -76,7 +76,7 @@ message UserLevelInfo {
 
 // Get dashboard data request and response
 message GetDashboardDataRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   bool include_leaderboard_rank = 2; // Whether to include user's leaderboard position
 }
 message GetDashboardDataResponse {
@@ -85,7 +85,7 @@ message GetDashboardDataResponse {
 
 // Refresh dashboard request and response (forces recalculation)
 message RefreshDashboardRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message RefreshDashboardResponse {
   DashboardData dashboard = 1;

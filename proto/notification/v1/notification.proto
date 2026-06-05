@@ -42,7 +42,7 @@ message GetNotificationResponse {
 
 
 message ListNotificationsRequest {
-    string user_id = 1; // ID of the user to list notifications for
+    string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
     int32 page = 2; // Page number for pagination
     int32 page_size = 3; // Number of notifications per page
 }

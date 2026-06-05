@@ -39,7 +39,7 @@ message StreakHistory {
 
 // Get user streak request and response
 message GetUserStreakRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message GetUserStreakResponse {
   UserStreak user_streak = 1;
@@ -47,7 +47,7 @@ message GetUserStreakResponse {
 
 // Update streak request and response
 message UpdateStreakRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   int32 steps = 2;
   int32 active_minutes = 3;
   double distance_km = 4;
@@ -60,7 +60,7 @@ message UpdateStreakResponse {
 
 // Get streak history request and response
 message GetStreakHistoryRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   int32 days = 2; // Number of days to retrieve (default 30)
 }
 message GetStreakHistoryResponse {
@@ -70,7 +70,7 @@ message GetStreakHistoryResponse {
 
 // Reset streak request and response
 message ResetStreakRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message ResetStreakResponse {
   bool success = 1;

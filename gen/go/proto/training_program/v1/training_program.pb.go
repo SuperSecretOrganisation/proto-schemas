@@ -1099,10 +1099,11 @@ func (x *ListProgramsResponse) GetTotalCount() int32 {
 
 // Start program request and response
 type StartProgramRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProgramId     string                 `protobuf:"bytes,1,opt,name=program_id,json=programId,proto3" json:"program_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	StartDate     string                 `protobuf:"bytes,3,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"` // RFC3339 format
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProgramId string                 `protobuf:"bytes,1,opt,name=program_id,json=programId,proto3" json:"program_id,omitempty"`
+	// Deprecated: Marked as deprecated in proto/training_program/v1/training_program.proto.
+	UserId        string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`          // Deprecated: the server derives the caller from the access token; do not set.
+	StartDate     string `protobuf:"bytes,3,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"` // RFC3339 format
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1144,6 +1145,7 @@ func (x *StartProgramRequest) GetProgramId() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in proto/training_program/v1/training_program.proto.
 func (x *StartProgramRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -1419,11 +1421,11 @@ const file_proto_training_program_v1_training_program_proto_rawDesc = "" +
 	"\x14ListProgramsResponse\x12F\n" +
 	"\bprograms\x18\x01 \x03(\v2*.proto.training_program.v1.TrainingProgramR\bprograms\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"l\n" +
+	"totalCount\"p\n" +
 	"\x13StartProgramRequest\x12\x1d\n" +
 	"\n" +
-	"program_id\x18\x01 \x01(\tR\tprogramId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
+	"program_id\x18\x01 \x01(\tR\tprogramId\x12\x1b\n" +
+	"\auser_id\x18\x02 \x01(\tB\x02\x18\x01R\x06userId\x12\x1d\n" +
 	"\n" +
 	"start_date\x18\x03 \x01(\tR\tstartDate\"Q\n" +
 	"\x14StartProgramResponse\x12\x1f\n" +

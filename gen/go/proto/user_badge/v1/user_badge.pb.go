@@ -118,8 +118,9 @@ func (x *UserBadge) GetBadge() *v1.Badge {
 
 // Get user badges request and response
 type GetUserBadgesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -154,6 +155,7 @@ func (*GetUserBadgesRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{1}
 }
 
+// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
 func (x *GetUserBadgesRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -320,9 +322,10 @@ func (x *AwardBadgeResponse) GetNewlyEarned() bool {
 
 // Share badge request and response
 type ShareBadgeRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	BadgeId       int32                  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	BadgeId       int32  `protobuf:"varint,2,opt,name=badge_id,json=badgeId,proto3" json:"badge_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -357,6 +360,7 @@ func (*ShareBadgeRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{5}
 }
 
+// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
 func (x *ShareBadgeRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -425,9 +429,10 @@ func (x *ShareBadgeResponse) GetShareUrl() string {
 
 // Get recent badges request and response
 type GetRecentBadgesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
+	Limit         int32  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -462,6 +467,7 @@ func (*GetRecentBadgesRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{7}
 }
 
+// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
 func (x *GetRecentBadgesRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -522,9 +528,10 @@ func (x *GetRecentBadgesResponse) GetUserBadges() []*UserBadge {
 
 // Check badge unlock request and response (checks if user should unlock any badges)
 type CheckBadgeUnlockRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	ActivityType  string                 `protobuf:"bytes,2,opt,name=activity_type,json=activityType,proto3" json:"activity_type,omitempty"` // e.g., "workout_completed", "streak_updated"
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                   // Deprecated: the server derives the caller from the access token; do not set.
+	ActivityType  string `protobuf:"bytes,2,opt,name=activity_type,json=activityType,proto3" json:"activity_type,omitempty"` // e.g., "workout_completed", "streak_updated"
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -559,6 +566,7 @@ func (*CheckBadgeUnlockRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_badge_v1_user_badge_proto_rawDescGZIP(), []int{9}
 }
 
+// Deprecated: Marked as deprecated in proto/user_badge/v1/user_badge.proto.
 func (x *CheckBadgeUnlockRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -637,9 +645,9 @@ const file_proto_user_badge_v1_user_badge_proto_rawDesc = "" +
 	"\tearned_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\bearnedAt\x12\x1b\n" +
 	"\tis_shared\x18\x05 \x01(\bR\bisShared\x127\n" +
 	"\tshared_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\bsharedAt\x12+\n" +
-	"\x05badge\x18\a \x01(\v2\x15.proto.badge.v1.BadgeR\x05badge\"/\n" +
-	"\x14GetUserBadgesRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"y\n" +
+	"\x05badge\x18\a \x01(\v2\x15.proto.badge.v1.BadgeR\x05badge\"3\n" +
+	"\x14GetUserBadgesRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"y\n" +
 	"\x15GetUserBadgesResponse\x12?\n" +
 	"\vuser_badges\x18\x01 \x03(\v2\x1e.proto.user_badge.v1.UserBadgeR\n" +
 	"userBadges\x12\x1f\n" +
@@ -651,21 +659,21 @@ const file_proto_user_badge_v1_user_badge_proto_rawDesc = "" +
 	"\x12AwardBadgeResponse\x12=\n" +
 	"\n" +
 	"user_badge\x18\x01 \x01(\v2\x1e.proto.user_badge.v1.UserBadgeR\tuserBadge\x12!\n" +
-	"\fnewly_earned\x18\x02 \x01(\bR\vnewlyEarned\"G\n" +
-	"\x11ShareBadgeRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\fnewly_earned\x18\x02 \x01(\bR\vnewlyEarned\"K\n" +
+	"\x11ShareBadgeRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x19\n" +
 	"\bbadge_id\x18\x02 \x01(\x05R\abadgeId\"K\n" +
 	"\x12ShareBadgeResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x1b\n" +
-	"\tshare_url\x18\x02 \x01(\tR\bshareUrl\"G\n" +
-	"\x16GetRecentBadgesRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
+	"\tshare_url\x18\x02 \x01(\tR\bshareUrl\"K\n" +
+	"\x16GetRecentBadgesRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"Z\n" +
 	"\x17GetRecentBadgesResponse\x12?\n" +
 	"\vuser_badges\x18\x01 \x03(\v2\x1e.proto.user_badge.v1.UserBadgeR\n" +
-	"userBadges\"W\n" +
-	"\x17CheckBadgeUnlockRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
+	"userBadges\"[\n" +
+	"\x17CheckBadgeUnlockRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12#\n" +
 	"\ractivity_type\x18\x02 \x01(\tR\factivityType\"\x8b\x01\n" +
 	"\x18CheckBadgeUnlockResponse\x12R\n" +
 	"\x15newly_unlocked_badges\x18\x01 \x03(\v2\x1e.proto.user_badge.v1.UserBadgeR\x13newlyUnlockedBadges\x12\x1b\n" +

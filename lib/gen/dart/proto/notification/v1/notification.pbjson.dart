@@ -92,7 +92,14 @@ final $typed_data.Uint8List getNotificationResponseDescriptor = $convert.base64D
 const ListNotificationsRequest$json = {
   '1': 'ListNotificationsRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'page', '3': 2, '4': 1, '5': 5, '10': 'page'},
     {'1': 'page_size', '3': 3, '4': 1, '5': 5, '10': 'pageSize'},
   ],
@@ -100,8 +107,8 @@ const ListNotificationsRequest$json = {
 
 /// Descriptor for `ListNotificationsRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listNotificationsRequestDescriptor = $convert.base64Decode(
-    'ChhMaXN0Tm90aWZpY2F0aW9uc1JlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEhIKBH'
-    'BhZ2UYAiABKAVSBHBhZ2USGwoJcGFnZV9zaXplGAMgASgFUghwYWdlU2l6ZQ==');
+    'ChhMaXN0Tm90aWZpY2F0aW9uc1JlcXVlc3QSGwoHdXNlcl9pZBgBIAEoCUICGAFSBnVzZXJJZB'
+    'ISCgRwYWdlGAIgASgFUgRwYWdlEhsKCXBhZ2Vfc2l6ZRgDIAEoBVIIcGFnZVNpemU=');
 
 @$core.Deprecated('Use listNotificationsResponseDescriptor instead')
 const ListNotificationsResponse$json = {

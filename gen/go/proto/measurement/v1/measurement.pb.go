@@ -123,8 +123,9 @@ func (x *Measurement) GetTimeStamp() *timestamppb.Timestamp {
 }
 
 type MeasurementBatch struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/measurement/v1/measurement.proto.
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	ActivityId    string                 `protobuf:"bytes,2,opt,name=activity_id,json=activityId,proto3" json:"activity_id,omitempty"`
 	ActivityType  string                 `protobuf:"bytes,3,opt,name=activity_type,json=activityType,proto3" json:"activity_type,omitempty"`
 	HeelPressure  []uint32               `protobuf:"varint,4,rep,packed,name=heel_pressure,json=heelPressure,proto3" json:"heel_pressure,omitempty"`
@@ -165,6 +166,7 @@ func (*MeasurementBatch) Descriptor() ([]byte, []int) {
 	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{1}
 }
 
+// Deprecated: Marked as deprecated in proto/measurement/v1/measurement.proto.
 func (x *MeasurementBatch) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -887,9 +889,9 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"activityId\x12\x16\n" +
 	"\x06weight\x18\a \x01(\rR\x06weight\x129\n" +
 	"\n" +
-	"time_stamp\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStamp\"\x8b\x02\n" +
-	"\x10MeasurementBatch\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1f\n" +
+	"time_stamp\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStamp\"\x8f\x02\n" +
+	"\x10MeasurementBatch\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x1f\n" +
 	"\vactivity_id\x18\x02 \x01(\tR\n" +
 	"activityId\x12#\n" +
 	"\ractivity_type\x18\x03 \x01(\tR\factivityType\x12#\n" +

@@ -1281,6 +1281,7 @@ class ListProgramsResponse extends $pb.GeneratedMessage {
 class StartProgramRequest extends $pb.GeneratedMessage {
   factory StartProgramRequest({
     $core.String? programId,
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.String? startDate,
   }) {
@@ -1329,12 +1330,16 @@ class StartProgramRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearProgramId() => $_clearField(1);
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   $core.String get userId => $_getSZ(1);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   set userId($core.String value) => $_setString(1, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   $core.bool hasUserId() => $_has(1);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   void clearUserId() => $_clearField(2);
 

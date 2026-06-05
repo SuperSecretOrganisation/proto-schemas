@@ -109,8 +109,9 @@ func (x *UserXP) GetUsername() string {
 
 // Get user XP request and response
 type GetUserXPRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_xp/v1/user_xp.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -145,6 +146,7 @@ func (*GetUserXPRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_xp_v1_user_xp_proto_rawDescGZIP(), []int{1}
 }
 
+// Deprecated: Marked as deprecated in proto/user_xp/v1/user_xp.proto.
 func (x *GetUserXPRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -424,8 +426,9 @@ func (x *GetLeaderboardResponse) GetTotalUsers() int32 {
 
 // Get user level request and response
 type GetUserLevelRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/user_xp/v1/user_xp.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // Deprecated: the server derives the caller from the access token; do not set.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -460,6 +463,7 @@ func (*GetUserLevelRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_xp_v1_user_xp_proto_rawDescGZIP(), []int{7}
 }
 
+// Deprecated: Marked as deprecated in proto/user_xp/v1/user_xp.proto.
 func (x *GetUserLevelRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -547,9 +551,9 @@ const file_proto_user_xp_v1_user_xp_proto_rawDesc = "" +
 	"\x10xp_to_next_level\x18\x04 \x01(\x05R\rxpToNextLevel\x129\n" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1a\n" +
-	"\busername\x18\x06 \x01(\tR\busername\"+\n" +
-	"\x10GetUserXPRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"F\n" +
+	"\busername\x18\x06 \x01(\tR\busername\"/\n" +
+	"\x10GetUserXPRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"F\n" +
 	"\x11GetUserXPResponse\x121\n" +
 	"\auser_xp\x18\x01 \x01(\v2\x18.proto.user_xp.v1.UserXPR\x06userXp\"g\n" +
 	"\fAddXPRequest\x12\x17\n" +
@@ -566,9 +570,9 @@ const file_proto_user_xp_v1_user_xp_proto_rawDesc = "" +
 	"\x16GetLeaderboardResponse\x12:\n" +
 	"\vleaderboard\x18\x01 \x03(\v2\x18.proto.user_xp.v1.UserXPR\vleaderboard\x12\x1f\n" +
 	"\vtotal_users\x18\x02 \x01(\x05R\n" +
-	"totalUsers\".\n" +
-	"\x13GetUserLevelRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xb0\x01\n" +
+	"totalUsers\"2\n" +
+	"\x13GetUserLevelRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\"\xb0\x01\n" +
 	"\x14GetUserLevelResponse\x12#\n" +
 	"\rcurrent_level\x18\x01 \x01(\x05R\fcurrentLevel\x12\x19\n" +
 	"\btotal_xp\x18\x02 \x01(\x03R\atotalXp\x12'\n" +

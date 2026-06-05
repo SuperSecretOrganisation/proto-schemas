@@ -41,7 +41,7 @@ message UserSettings {
 
 // Get user settings request and response
 message GetUserSettingsRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message GetUserSettingsResponse {
   UserSettings settings = 1;
@@ -49,7 +49,7 @@ message GetUserSettingsResponse {
 
 // Update user settings request and response
 message UpdateUserSettingsRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   UserSettings settings = 2;
 }
 message UpdateUserSettingsResponse {

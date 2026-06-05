@@ -42,13 +42,21 @@ final $typed_data.Uint8List badgeProgressDescriptor = $convert.base64Decode(
 const GetUserBadgeProgressRequest$json = {
   '1': 'GetUserBadgeProgressRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
   ],
 };
 
 /// Descriptor for `GetUserBadgeProgressRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserBadgeProgressRequestDescriptor = $convert.base64Decode(
-    'ChtHZXRVc2VyQmFkZ2VQcm9ncmVzc1JlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklk');
+    'ChtHZXRVc2VyQmFkZ2VQcm9ncmVzc1JlcXVlc3QSGwoHdXNlcl9pZBgBIAEoCUICGAFSBnVzZX'
+    'JJZA==');
 
 @$core.Deprecated('Use getUserBadgeProgressResponseDescriptor instead')
 const GetUserBadgeProgressResponse$json = {
@@ -67,7 +75,14 @@ final $typed_data.Uint8List getUserBadgeProgressResponseDescriptor = $convert.ba
 const UpdateProgressRequest$json = {
   '1': 'UpdateProgressRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'badge_id', '3': 2, '4': 1, '5': 5, '10': 'badgeId'},
     {'1': 'current_progress', '3': 3, '4': 1, '5': 5, '10': 'currentProgress'},
   ],
@@ -75,9 +90,9 @@ const UpdateProgressRequest$json = {
 
 /// Descriptor for `UpdateProgressRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updateProgressRequestDescriptor = $convert.base64Decode(
-    'ChVVcGRhdGVQcm9ncmVzc1JlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEhkKCGJhZG'
-    'dlX2lkGAIgASgFUgdiYWRnZUlkEikKEGN1cnJlbnRfcHJvZ3Jlc3MYAyABKAVSD2N1cnJlbnRQ'
-    'cm9ncmVzcw==');
+    'ChVVcGRhdGVQcm9ncmVzc1JlcXVlc3QSGwoHdXNlcl9pZBgBIAEoCUICGAFSBnVzZXJJZBIZCg'
+    'hiYWRnZV9pZBgCIAEoBVIHYmFkZ2VJZBIpChBjdXJyZW50X3Byb2dyZXNzGAMgASgFUg9jdXJy'
+    'ZW50UHJvZ3Jlc3M=');
 
 @$core.Deprecated('Use updateProgressResponseDescriptor instead')
 const UpdateProgressResponse$json = {
@@ -98,15 +113,22 @@ final $typed_data.Uint8List updateProgressResponseDescriptor = $convert.base64De
 const GetProgressForBadgeRequest$json = {
   '1': 'GetProgressForBadgeRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'badge_id', '3': 2, '4': 1, '5': 5, '10': 'badgeId'},
   ],
 };
 
 /// Descriptor for `GetProgressForBadgeRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getProgressForBadgeRequestDescriptor = $convert.base64Decode(
-    'ChpHZXRQcm9ncmVzc0ZvckJhZGdlUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSGQ'
-    'oIYmFkZ2VfaWQYAiABKAVSB2JhZGdlSWQ=');
+    'ChpHZXRQcm9ncmVzc0ZvckJhZGdlUmVxdWVzdBIbCgd1c2VyX2lkGAEgASgJQgIYAVIGdXNlck'
+    'lkEhkKCGJhZGdlX2lkGAIgASgFUgdiYWRnZUlk');
 
 @$core.Deprecated('Use getProgressForBadgeResponseDescriptor instead')
 const GetProgressForBadgeResponse$json = {

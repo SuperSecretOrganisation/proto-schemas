@@ -70,13 +70,20 @@ final $typed_data.Uint8List userProgramProgressDescriptor = $convert.base64Decod
 const GetActiveProgramRequest$json = {
   '1': 'GetActiveProgramRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
   ],
 };
 
 /// Descriptor for `GetActiveProgramRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getActiveProgramRequestDescriptor = $convert.base64Decode(
-    'ChdHZXRBY3RpdmVQcm9ncmFtUmVxdWVzdBIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQ=');
+    'ChdHZXRBY3RpdmVQcm9ncmFtUmVxdWVzdBIbCgd1c2VyX2lkGAEgASgJQgIYAVIGdXNlcklk');
 
 @$core.Deprecated('Use getActiveProgramResponseDescriptor instead')
 const GetActiveProgramResponse$json = {
@@ -97,7 +104,14 @@ final $typed_data.Uint8List getActiveProgramResponseDescriptor = $convert.base64
 const GetProgressHistoryRequest$json = {
   '1': 'GetProgressHistoryRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'page', '3': 2, '4': 1, '5': 5, '10': 'page'},
     {'1': 'page_size', '3': 3, '4': 1, '5': 5, '10': 'pageSize'},
     {'1': 'include_active', '3': 4, '4': 1, '5': 8, '10': 'includeActive'},
@@ -106,9 +120,9 @@ const GetProgressHistoryRequest$json = {
 
 /// Descriptor for `GetProgressHistoryRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getProgressHistoryRequestDescriptor = $convert.base64Decode(
-    'ChlHZXRQcm9ncmVzc0hpc3RvcnlSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBISCg'
-    'RwYWdlGAIgASgFUgRwYWdlEhsKCXBhZ2Vfc2l6ZRgDIAEoBVIIcGFnZVNpemUSJQoOaW5jbHVk'
-    'ZV9hY3RpdmUYBCABKAhSDWluY2x1ZGVBY3RpdmU=');
+    'ChlHZXRQcm9ncmVzc0hpc3RvcnlSZXF1ZXN0EhsKB3VzZXJfaWQYASABKAlCAhgBUgZ1c2VySW'
+    'QSEgoEcGFnZRgCIAEoBVIEcGFnZRIbCglwYWdlX3NpemUYAyABKAVSCHBhZ2VTaXplEiUKDmlu'
+    'Y2x1ZGVfYWN0aXZlGAQgASgIUg1pbmNsdWRlQWN0aXZl');
 
 @$core.Deprecated('Use getProgressHistoryResponseDescriptor instead')
 const GetProgressHistoryResponse$json = {
@@ -160,14 +174,21 @@ const AbandonProgramRequest$json = {
   '1': 'AbandonProgramRequest',
   '2': [
     {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 2,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
   ],
 };
 
 /// Descriptor for `AbandonProgramRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List abandonProgramRequestDescriptor = $convert.base64Decode(
-    'ChVBYmFuZG9uUHJvZ3JhbVJlcXVlc3QSDgoCaWQYASABKAlSAmlkEhcKB3VzZXJfaWQYAiABKA'
-    'lSBnVzZXJJZA==');
+    'ChVBYmFuZG9uUHJvZ3JhbVJlcXVlc3QSDgoCaWQYASABKAlSAmlkEhsKB3VzZXJfaWQYAiABKA'
+    'lCAhgBUgZ1c2VySWQ=');
 
 @$core.Deprecated('Use abandonProgramResponseDescriptor instead')
 const AbandonProgramResponse$json = {
@@ -185,7 +206,14 @@ final $typed_data.Uint8List abandonProgramResponseDescriptor = $convert.base64De
 const GetWorkoutHistoryRequest$json = {
   '1': 'GetWorkoutHistoryRequest',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {
+      '1': 'user_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {'3': true},
+      '10': 'userId',
+    },
     {'1': 'page', '3': 2, '4': 1, '5': 5, '10': 'page'},
     {'1': 'page_size', '3': 3, '4': 1, '5': 5, '10': 'pageSize'},
     {'1': 'from_date', '3': 4, '4': 1, '5': 9, '10': 'fromDate'},
@@ -195,9 +223,9 @@ const GetWorkoutHistoryRequest$json = {
 
 /// Descriptor for `GetWorkoutHistoryRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getWorkoutHistoryRequestDescriptor = $convert.base64Decode(
-    'ChhHZXRXb3Jrb3V0SGlzdG9yeVJlcXVlc3QSFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEhIKBH'
-    'BhZ2UYAiABKAVSBHBhZ2USGwoJcGFnZV9zaXplGAMgASgFUghwYWdlU2l6ZRIbCglmcm9tX2Rh'
-    'dGUYBCABKAlSCGZyb21EYXRlEhcKB3RvX2RhdGUYBSABKAlSBnRvRGF0ZQ==');
+    'ChhHZXRXb3Jrb3V0SGlzdG9yeVJlcXVlc3QSGwoHdXNlcl9pZBgBIAEoCUICGAFSBnVzZXJJZB'
+    'ISCgRwYWdlGAIgASgFUgRwYWdlEhsKCXBhZ2Vfc2l6ZRgDIAEoBVIIcGFnZVNpemUSGwoJZnJv'
+    'bV9kYXRlGAQgASgJUghmcm9tRGF0ZRIXCgd0b19kYXRlGAUgASgJUgZ0b0RhdGU=');
 
 @$core.Deprecated('Use getWorkoutHistoryResponseDescriptor instead')
 const GetWorkoutHistoryResponse$json = {

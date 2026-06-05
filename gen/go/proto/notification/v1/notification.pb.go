@@ -299,10 +299,11 @@ func (x *GetNotificationResponse) GetNotification() *Notification {
 }
 
 type ListNotificationsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`        // ID of the user to list notifications for
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`                         // Page number for pagination
-	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of notifications per page
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/notification/v1/notification.proto.
+	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`        // Deprecated: the server derives the caller from the access token; do not set.
+	Page          int32  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`                         // Page number for pagination
+	PageSize      int32  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of notifications per page
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -337,6 +338,7 @@ func (*ListNotificationsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_notification_v1_notification_proto_rawDescGZIP(), []int{5}
 }
 
+// Deprecated: Marked as deprecated in proto/notification/v1/notification.proto.
 func (x *ListNotificationsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
@@ -519,9 +521,9 @@ const file_proto_notification_v1_notification_proto_rawDesc = "" +
 	"\x16GetNotificationRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"b\n" +
 	"\x17GetNotificationResponse\x12G\n" +
-	"\fnotification\x18\x01 \x01(\v2#.proto.notification.v1.NotificationR\fnotification\"d\n" +
-	"\x18ListNotificationsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\fnotification\x18\x01 \x01(\v2#.proto.notification.v1.NotificationR\fnotification\"h\n" +
+	"\x18ListNotificationsRequest\x12\x1b\n" +
+	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\"\x87\x01\n" +
 	"\x19ListNotificationsResponse\x12I\n" +

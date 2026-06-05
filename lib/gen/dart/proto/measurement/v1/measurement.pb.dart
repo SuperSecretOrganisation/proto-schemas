@@ -152,6 +152,7 @@ class Measurement extends $pb.GeneratedMessage {
 
 class MeasurementBatch extends $pb.GeneratedMessage {
   factory MeasurementBatch({
+  @$core.Deprecated('This field is deprecated.')
     $core.String? userId,
     $core.String? activityId,
     $core.String? activityType,
@@ -204,12 +205,16 @@ class MeasurementBatch extends $pb.GeneratedMessage {
   static MeasurementBatch getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MeasurementBatch>(create);
   static MeasurementBatch? _defaultInstance;
 
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set userId($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
 

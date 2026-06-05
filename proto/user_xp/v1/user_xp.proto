@@ -25,7 +25,7 @@ message UserXP {
 
 // Get user XP request and response
 message GetUserXPRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message GetUserXPResponse {
   UserXP user_xp = 1;
@@ -55,7 +55,7 @@ message GetLeaderboardResponse {
 
 // Get user level request and response
 message GetUserLevelRequest {
-  string user_id = 1;
+  string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
 }
 message GetUserLevelResponse {
   int32 current_level = 1;
