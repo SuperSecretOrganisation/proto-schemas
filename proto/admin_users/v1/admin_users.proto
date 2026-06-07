@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package proto.admin_users.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_users/v1;adminuserspb";
+
+// AdminUserService manages end-users of the mobile app, including GDPR
+// operations and read-only impersonation.
+service AdminUserService {
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc ExportUserData(ExportUserDataRequest) returns (ExportUserDataResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc CreateImpersonationToken(CreateImpersonationTokenRequest) returns (CreateImpersonationTokenResponse);
+}
+
+message AdminUser {
+  string id = 1;
+  string email = 2;
+  string username = 3;
+  string display_name = 4;
+  bool email_verified = 5;
+  bool is_active = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp last_login_at = 8;
+  int32 total_xp = 9;
+  int32 current_level = 10;
+  int32 current_streak = 11;
+}
+
+message ListUsersRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string query = 3;
+}
+
+message ListUsersResponse {
+  repeated AdminUser items = 1;
+  int32 total_count = 2;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  AdminUser user = 1;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string display_name = 2;
+  bool is_active = 3;
+}
+
+message UpdateUserResponse {
+  AdminUser user = 1;
+}
+
+message ExportUserDataRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message ExportUserDataResponse {
+  string download_url = 1;
+  int64 size_bytes = 2;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message DeleteUserResponse {
+  string id = 1;
+  google.protobuf.Timestamp scheduled_hard_delete_at = 2;
+}
+
+message CreateImpersonationTokenRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message CreateImpersonationTokenResponse {
+  string token = 1;
+  google.protobuf.Timestamp expires_at = 2;
+}

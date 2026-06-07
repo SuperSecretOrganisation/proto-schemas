@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package proto.admin_support.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_support/v1;adminsupportpb";
+
+// AdminSupportService manages bug reports, user inquiries, and user reports.
+service AdminSupportService {
+  rpc ListBugReports(ListBugReportsRequest) returns (ListBugReportsResponse);
+  rpc GetBugReport(GetBugReportRequest) returns (GetBugReportResponse);
+  rpc UpdateBugReportStatus(UpdateBugReportStatusRequest) returns (UpdateBugReportStatusResponse);
+  rpc ListUserInquiries(ListUserInquiriesRequest) returns (ListUserInquiriesResponse);
+  rpc RespondToInquiry(RespondToInquiryRequest) returns (RespondToInquiryResponse);
+  rpc ListUserReports(ListUserReportsRequest) returns (ListUserReportsResponse);
+  rpc ResolveUserReport(ResolveUserReportRequest) returns (ResolveUserReportResponse);
+}
+
+enum BugSeverity {
+  BUG_SEVERITY_UNSPECIFIED = 0;
+  BUG_SEVERITY_LOW = 1;
+  BUG_SEVERITY_MEDIUM = 2;
+  BUG_SEVERITY_HIGH = 3;
+  BUG_SEVERITY_CRITICAL = 4;
+}
+
+enum BugStatus {
+  BUG_STATUS_UNSPECIFIED = 0;
+  BUG_STATUS_OPEN = 1;
+  BUG_STATUS_IN_PROGRESS = 2;
+  BUG_STATUS_RESOLVED = 3;
+  BUG_STATUS_CLOSED = 4;
+}
+
+enum InquiryStatus {
+  INQUIRY_STATUS_UNSPECIFIED = 0;
+  INQUIRY_STATUS_PENDING = 1;
+  INQUIRY_STATUS_IN_PROGRESS = 2;
+  INQUIRY_STATUS_RESOLVED = 3;
+}
+
+enum ReportStatus {
+  REPORT_STATUS_UNSPECIFIED = 0;
+  REPORT_STATUS_PENDING = 1;
+  REPORT_STATUS_REVIEWED = 2;
+  REPORT_STATUS_ACTIONED = 3;
+  REPORT_STATUS_DISMISSED = 4;
+}
+
+message BugReport {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  BugSeverity severity = 4;
+  BugStatus status = 5;
+  string reported_by = 6;
+  google.protobuf.Timestamp reported_at = 7;
+  string device_info = 8;
+}
+
+message UserInquiry {
+  string id = 1;
+  string subject = 2;
+  string message = 3;
+  string user_email = 4;
+  InquiryStatus status = 5;
+  google.protobuf.Timestamp created_at = 6;
+  string response = 7;
+}
+
+message UserReport {
+  string id = 1;
+  string reported_id = 2;
+  string reported_user_name = 3;
+  string reason = 4;
+  string details = 5;
+  ReportStatus status = 6;
+  google.protobuf.Timestamp reported_at = 7;
+}
+
+message ListBugReportsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListBugReportsResponse {
+  repeated BugReport items = 1;
+  int32 total_count = 2;
+}
+
+message GetBugReportRequest {
+  string id = 1;
+}
+
+message GetBugReportResponse {
+  BugReport report = 1;
+}
+
+message UpdateBugReportStatusRequest {
+  string id = 1;
+  BugStatus status = 2;
+}
+
+message UpdateBugReportStatusResponse {
+  BugReport report = 1;
+}
+
+message ListUserInquiriesRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListUserInquiriesResponse {
+  repeated UserInquiry items = 1;
+  int32 total_count = 2;
+}
+
+message RespondToInquiryRequest {
+  string id = 1;
+  string response = 2;
+}
+
+message RespondToInquiryResponse {
+  UserInquiry inquiry = 1;
+}
+
+message ListUserReportsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListUserReportsResponse {
+  repeated UserReport items = 1;
+  int32 total_count = 2;
+}
+
+message ResolveUserReportRequest {
+  string id = 1;
+  ReportStatus status = 2;
+}
+
+message ResolveUserReportResponse {
+  UserReport report = 1;
+}

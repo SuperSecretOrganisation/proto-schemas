@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package proto.admin_auth.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_auth/v1;adminauthpb";
+
+// AdminAuthService handles staff/operator authentication for the internal
+// operations platform.
+service AdminAuthService {
+  // Login exchanges a Google ID token for a session.
+  rpc Login(LoginRequest) returns (LoginResponse);
+  // Refresh exchanges a refresh token for a new session.
+  rpc Refresh(RefreshRequest) returns (RefreshResponse);
+  // DevLogin is a testing-only "skip auth" login; the optional email picks
+  // which seeded staff to impersonate.
+  rpc DevLogin(DevLoginRequest) returns (DevLoginResponse);
+  // GetCurrentStaff returns the caller's staff profile and permissions.
+  rpc GetCurrentStaff(GetCurrentStaffRequest) returns (GetCurrentStaffResponse);
+}
+
+// StaffUser represents a staff/operator account.
+message StaffUser {
+  string id = 1;
+  string email = 2;
+  string display_name = 3;
+  string avatar_url = 4;
+  string role = 5;
+  repeated string permissions = 6;
+  google.protobuf.Timestamp last_login_at = 7;
+}
+
+// Session represents an authenticated staff session.
+message Session {
+  string access_token = 1;
+  string refresh_token = 2;
+  google.protobuf.Timestamp issued_at = 3;
+  google.protobuf.Timestamp access_token_expires_at = 4;
+  StaffUser staff = 5;
+}
+
+message LoginRequest {
+  string google_id_token = 1;
+}
+
+message LoginResponse {
+  Session session = 1;
+}
+
+message RefreshRequest {
+  string refresh_token = 1;
+}
+
+message RefreshResponse {
+  Session session = 1;
+}
+
+message DevLoginRequest {
+  string email = 1;
+}
+
+message DevLoginResponse {
+  Session session = 1;
+}
+
+message GetCurrentStaffRequest {}
+
+message GetCurrentStaffResponse {
+  StaffUser staff = 1;
+}

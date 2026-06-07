@@ -1,0 +1,175 @@
+syntax = "proto3";
+
+package proto.admin_developer.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_developer/v1;admindeveloperpb";
+
+// AdminDeveloperService exposes developer and operations tooling for admins.
+service AdminDeveloperService {
+  rpc ListDeployments(ListDeploymentsRequest) returns (ListDeploymentsResponse);
+  rpc ListReleases(ListReleasesRequest) returns (ListReleasesResponse);
+  rpc ListLogs(ListLogsRequest) returns (ListLogsResponse);
+  rpc GetSystemHealth(GetSystemHealthRequest) returns (GetSystemHealthResponse);
+}
+
+// DeploymentEnvironment enumerates target environments for a deployment.
+enum DeploymentEnvironment {
+  DEPLOYMENT_ENVIRONMENT_UNSPECIFIED = 0;
+  DEPLOYMENT_ENVIRONMENT_DEVELOPMENT = 1;
+  DEPLOYMENT_ENVIRONMENT_STAGING = 2;
+  DEPLOYMENT_ENVIRONMENT_PRODUCTION = 3;
+}
+
+// DeploymentStatus enumerates the lifecycle states of a deployment.
+enum DeploymentStatus {
+  DEPLOYMENT_STATUS_UNSPECIFIED = 0;
+  DEPLOYMENT_STATUS_PENDING = 1;
+  DEPLOYMENT_STATUS_IN_PROGRESS = 2;
+  DEPLOYMENT_STATUS_SUCCEEDED = 3;
+  DEPLOYMENT_STATUS_FAILED = 4;
+  DEPLOYMENT_STATUS_ROLLED_BACK = 5;
+}
+
+// LogLevel enumerates severity levels for log entries.
+enum LogLevel {
+  LOG_LEVEL_UNSPECIFIED = 0;
+  LOG_LEVEL_DEBUG = 1;
+  LOG_LEVEL_INFO = 2;
+  LOG_LEVEL_WARNING = 3;
+  LOG_LEVEL_ERROR = 4;
+  LOG_LEVEL_CRITICAL = 5;
+}
+
+// SystemStatusLevel enumerates health levels for system components.
+enum SystemStatusLevel {
+  SYSTEM_STATUS_LEVEL_UNSPECIFIED = 0;
+  SYSTEM_STATUS_LEVEL_HEALTHY = 1;
+  SYSTEM_STATUS_LEVEL_DEGRADED = 2;
+  SYSTEM_STATUS_LEVEL_UNHEALTHY = 3;
+  SYSTEM_STATUS_LEVEL_CRITICAL = 4;
+}
+
+// SystemMetricType enumerates the kinds of system metrics.
+enum SystemMetricType {
+  SYSTEM_METRIC_TYPE_UNSPECIFIED = 0;
+  SYSTEM_METRIC_TYPE_CPU = 1;
+  SYSTEM_METRIC_TYPE_MEMORY = 2;
+  SYSTEM_METRIC_TYPE_DISK = 3;
+  SYSTEM_METRIC_TYPE_NETWORK = 4;
+}
+
+// SystemWarningSeverity enumerates severity levels for system warnings.
+enum SystemWarningSeverity {
+  SYSTEM_WARNING_SEVERITY_UNSPECIFIED = 0;
+  SYSTEM_WARNING_SEVERITY_INFO = 1;
+  SYSTEM_WARNING_SEVERITY_WARNING = 2;
+  SYSTEM_WARNING_SEVERITY_CRITICAL = 3;
+}
+
+// Deployment represents a single deployment of a service version.
+message Deployment {
+  string id = 1;
+  string version = 2;
+  DeploymentEnvironment environment = 3;
+  DeploymentStatus status = 4;
+  int32 canary_percentage = 5;
+  google.protobuf.Timestamp started_at = 6;
+  google.protobuf.Timestamp completed_at = 7;
+  string triggered_by = 8;
+}
+
+// Release represents a published release.
+message Release {
+  string id = 1;
+  string version = 2;
+  string title = 3;
+  string notes = 4;
+  google.protobuf.Timestamp released_at = 5;
+  string released_by = 6;
+}
+
+// LogEntry represents a single log line emitted by a service.
+message LogEntry {
+  string id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  LogLevel level = 3;
+  string service = 4;
+  string message = 5;
+}
+
+// SystemComponentStatus describes the health of a system component.
+message SystemComponentStatus {
+  string name = 1;
+  SystemStatusLevel status = 2;
+  double load = 3;
+  double uptime = 4;
+  double latency = 5;
+  double error_rate = 6;
+}
+
+// SystemMetric describes a sampled system metric.
+message SystemMetric {
+  SystemMetricType type = 1;
+  SystemStatusLevel status = 2;
+  double load = 3;
+  google.protobuf.Timestamp time = 4;
+  double average = 5;
+  double peak = 6;
+}
+
+// SystemWarning describes a warning raised by a system component.
+message SystemWarning {
+  string component = 1;
+  string message = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  SystemWarningSeverity severity = 4;
+}
+
+// ListDeploymentsRequest is the request for ListDeployments.
+message ListDeploymentsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+// ListDeploymentsResponse is the response for ListDeployments.
+message ListDeploymentsResponse {
+  repeated Deployment items = 1;
+  int32 total_count = 2;
+}
+
+// ListReleasesRequest is the request for ListReleases.
+message ListReleasesRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+// ListReleasesResponse is the response for ListReleases.
+message ListReleasesResponse {
+  repeated Release items = 1;
+  int32 total_count = 2;
+}
+
+// ListLogsRequest is the request for ListLogs.
+message ListLogsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  LogLevel min_level = 3;
+}
+
+// ListLogsResponse is the response for ListLogs.
+message ListLogsResponse {
+  repeated LogEntry items = 1;
+  int32 total_count = 2;
+}
+
+// GetSystemHealthRequest is the request for GetSystemHealth.
+message GetSystemHealthRequest {}
+
+// GetSystemHealthResponse is the response for GetSystemHealth.
+message GetSystemHealthResponse {
+  repeated SystemComponentStatus components = 1;
+  repeated SystemMetric current_metrics = 2;
+  repeated SystemWarning warnings = 3;
+}

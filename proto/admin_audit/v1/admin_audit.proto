@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package proto.admin_audit.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_audit/v1;adminauditpb";
+
+// AdminAuditService exposes the staff audit log.
+service AdminAuditService {
+  rpc ListAuditEvents(ListAuditEventsRequest) returns (ListAuditEventsResponse);
+}
+
+message AuditEvent {
+  string id = 1;
+  string staff_id = 2;
+  string staff_email = 3;
+  string action = 4;
+  string resource_type = 5;
+  string resource_id = 6;
+  string reason = 7;
+  string before_json = 8;
+  string after_json = 9;
+  string ip = 10;
+  string user_agent = 11;
+  google.protobuf.Timestamp created_at = 12;
+}
+
+message ListAuditEventsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string staff_email = 3;
+  string action = 4;
+}
+
+message ListAuditEventsResponse {
+  repeated AuditEvent items = 1;
+  int32 total_count = 2;
+}

@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package proto.admin_remote_config.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_remote_config/v1;adminremoteconfigpb";
+
+// AdminRemoteConfigService manages the remote config template using ETag-based
+// optimistic concurrency.
+service AdminRemoteConfigService {
+  rpc GetTemplate(GetTemplateRequest) returns (GetTemplateResponse);
+  rpc UpdateTemplate(UpdateTemplateRequest) returns (UpdateTemplateResponse);
+}
+
+message RemoteConfigParameter {
+  string default_value = 1;
+  string value_type = 2;
+  string description = 3;
+}
+
+message RemoteConfigTemplate {
+  string etag = 1;
+  map<string, RemoteConfigParameter> parameters = 2;
+}
+
+message GetTemplateRequest {}
+
+message GetTemplateResponse {
+  RemoteConfigTemplate template = 1;
+}
+
+message UpdateTemplateRequest {
+  string etag = 1;
+  map<string, RemoteConfigParameter> parameters = 2;
+  string reason = 3;
+}
+
+message UpdateTemplateResponse {
+  RemoteConfigTemplate template = 1;
+}

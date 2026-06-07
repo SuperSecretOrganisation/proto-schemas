@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package proto.admin_dashboard.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_dashboard/v1;admindashboardpb";
+
+// AdminDashboardService provides aggregate metrics for the operations platform.
+service AdminDashboardService {
+  // GetOverview returns top-level dashboard statistics and recent activity.
+  rpc GetOverview(GetOverviewRequest) returns (GetOverviewResponse);
+  // GetAppAnalytics returns mobile app usage analytics.
+  rpc GetAppAnalytics(GetAppAnalyticsRequest) returns (GetAppAnalyticsResponse);
+  // GetUserStatistics returns aggregate user statistics.
+  rpc GetUserStatistics(GetUserStatisticsRequest)
+      returns (GetUserStatisticsResponse);
+}
+
+// DashboardStats holds the headline numbers shown on the overview dashboard.
+message DashboardStats {
+  int32 total_users = 1;
+  int32 active_users = 2;
+  double server_uptime = 3;
+  int32 average_response_time_ms = 4;
+  int32 recent_signups = 5;
+  double error_rate = 6;
+  int32 monthly_active_users = 7;
+  int32 weekly_active_users = 8;
+  int32 active_today = 9;
+  int32 active_this_week = 10;
+  int32 new_users_this_week = 11;
+  int32 avg_session_duration_seconds = 12;
+}
+
+// ActivityType enumerates the kinds of recent activity events.
+enum ActivityType {
+  ACTIVITY_TYPE_UNSPECIFIED = 0;
+  ACTIVITY_TYPE_USER_SIGNUP = 1;
+  ACTIVITY_TYPE_DEPLOYMENT_COMPLETE = 2;
+  ACTIVITY_TYPE_CONFIG_CHANGE = 3;
+  ACTIVITY_TYPE_BUG_REPORT = 4;
+  ACTIVITY_TYPE_BADGE_AWARDED = 5;
+}
+
+// ActivityEvent represents a single entry in the recent activity feed.
+message ActivityEvent {
+  string id = 1;
+  ActivityType type = 2;
+  string message = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+// ServiceStatusType enumerates the operational state of a monitored service.
+enum ServiceStatusType {
+  SERVICE_STATUS_TYPE_UNSPECIFIED = 0;
+  SERVICE_STATUS_TYPE_UP = 1;
+  SERVICE_STATUS_TYPE_DEGRADED = 2;
+  SERVICE_STATUS_TYPE_DOWN = 3;
+}
+
+// ServiceStatus describes the health of a single monitored service.
+message ServiceStatus {
+  string name = 1;
+  ServiceStatusType status = 2;
+  double uptime = 3;
+  int32 latency_ms = 4;
+}
+
+// AppAnalytics holds mobile app usage analytics.
+message AppAnalytics {
+  int32 total_downloads = 1;
+  int32 daily_active_users = 2;
+  int32 monthly_active_users = 3;
+  double average_session_duration_seconds = 4;
+  double crash_rate = 5;
+  double retention_rate = 6;
+  map<string, int32> platform_breakdown = 7;
+}
+
+// UserStatistics holds aggregate user statistics.
+message UserStatistics {
+  int32 total_users = 1;
+  int32 active_today = 2;
+  int32 active_this_week = 3;
+  int32 new_users_this_week = 4;
+  int32 monthly_active_users = 5;
+  int32 weekly_active_users = 6;
+  double avg_session_duration_seconds = 7;
+  double growth_rate_percent = 8;
+}
+
+message GetOverviewRequest {}
+
+message GetOverviewResponse {
+  DashboardStats stats = 1;
+  repeated ActivityEvent recent_activity = 2;
+  repeated ServiceStatus services = 3;
+}
+
+message GetAppAnalyticsRequest {}
+
+message GetAppAnalyticsResponse {
+  AppAnalytics analytics = 1;
+}
+
+message GetUserStatisticsRequest {}
+
+message GetUserStatisticsResponse {
+  UserStatistics statistics = 1;
+}

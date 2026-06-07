@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package proto.admin_translation.v1;
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_translation/v1;admintranslationpb";
+
+// AdminTranslationService provides machine translation utilities.
+service AdminTranslationService {
+  rpc Translate(TranslateRequest) returns (TranslateResponse);
+  rpc ListSupportedLanguages(ListSupportedLanguagesRequest) returns (ListSupportedLanguagesResponse);
+}
+
+enum SupportedLanguageType {
+  SUPPORTED_LANGUAGE_TYPE_UNSPECIFIED = 0;
+  SUPPORTED_LANGUAGE_TYPE_SOURCE = 1;
+  SUPPORTED_LANGUAGE_TYPE_TARGET = 2;
+}
+
+message SupportedLanguage {
+  string name = 1;
+  string language = 2;
+}
+
+message TranslationResult {
+  string detected_source_language = 1;
+  string text = 2;
+}
+
+message TranslateRequest {
+  repeated string text = 1;
+  string target_lang = 2;
+  string source_lang = 3;
+}
+
+message TranslateResponse {
+  repeated TranslationResult translations = 1;
+}
+
+message ListSupportedLanguagesRequest {
+  SupportedLanguageType type = 1;
+}
+
+message ListSupportedLanguagesResponse {
+  repeated SupportedLanguage languages = 1;
+}

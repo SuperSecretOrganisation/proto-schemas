@@ -1,0 +1,156 @@
+syntax = "proto3";
+
+package proto.admin_marketing.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/admin_marketing/v1;adminmarketingpb";
+
+// AdminMarketingService exposes marketing management operations for admins.
+service AdminMarketingService {
+  rpc ListCampaigns(ListCampaignsRequest) returns (ListCampaignsResponse);
+  rpc GetCampaign(GetCampaignRequest) returns (GetCampaignResponse);
+  rpc ListMarketingContent(ListMarketingContentRequest) returns (ListMarketingContentResponse);
+  rpc GetMarketingContent(GetMarketingContentRequest) returns (GetMarketingContentResponse);
+  rpc ListPartnerships(ListPartnershipsRequest) returns (ListPartnershipsResponse);
+}
+
+// CampaignStatus enumerates the lifecycle states of a campaign.
+enum CampaignStatus {
+  CAMPAIGN_STATUS_UNSPECIFIED = 0;
+  CAMPAIGN_STATUS_DRAFT = 1;
+  CAMPAIGN_STATUS_ACTIVE = 2;
+  CAMPAIGN_STATUS_PAUSED = 3;
+  CAMPAIGN_STATUS_COMPLETED = 4;
+}
+
+// ContentType enumerates the kinds of marketing content.
+enum ContentType {
+  CONTENT_TYPE_UNSPECIFIED = 0;
+  CONTENT_TYPE_BLOG_POST = 1;
+  CONTENT_TYPE_SOCIAL_MEDIA = 2;
+  CONTENT_TYPE_EMAIL = 3;
+  CONTENT_TYPE_LANDING_PAGE = 4;
+  CONTENT_TYPE_VIDEO_SCRIPT = 5;
+}
+
+// ContentStatus enumerates the lifecycle states of marketing content.
+enum ContentStatus {
+  CONTENT_STATUS_UNSPECIFIED = 0;
+  CONTENT_STATUS_DRAFT = 1;
+  CONTENT_STATUS_IN_REVIEW = 2;
+  CONTENT_STATUS_PUBLISHED = 3;
+  CONTENT_STATUS_ARCHIVED = 4;
+}
+
+// ContractType enumerates the kinds of partnership contracts.
+enum ContractType {
+  CONTRACT_TYPE_UNSPECIFIED = 0;
+  CONTRACT_TYPE_INTEGRATION = 1;
+  CONTRACT_TYPE_SPONSORSHIP = 2;
+  CONTRACT_TYPE_RESELLER = 3;
+  CONTRACT_TYPE_AFFILIATE = 4;
+}
+
+// PartnershipStatus enumerates the lifecycle states of a partnership.
+enum PartnershipStatus {
+  PARTNERSHIP_STATUS_UNSPECIFIED = 0;
+  PARTNERSHIP_STATUS_PROSPECT = 1;
+  PARTNERSHIP_STATUS_NEGOTIATING = 2;
+  PARTNERSHIP_STATUS_ACTIVE = 3;
+  PARTNERSHIP_STATUS_ENDED = 4;
+}
+
+// Campaign represents a marketing campaign.
+message Campaign {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  CampaignStatus status = 4;
+  string start_date = 5;
+  string end_date = 6;
+  double budget = 7;
+  double spent = 8;
+  int32 impressions = 9;
+  int32 conversions = 10;
+}
+
+// MarketingContent represents a piece of marketing content.
+message MarketingContent {
+  string id = 1;
+  string title = 2;
+  ContentType type = 3;
+  ContentStatus status = 4;
+  string author = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp published_at = 7;
+  string body = 8;
+}
+
+// Partnership represents a business partnership.
+message Partnership {
+  string id = 1;
+  string partner_name = 2;
+  string contact_email = 3;
+  ContractType contract_type = 4;
+  PartnershipStatus status = 5;
+  string start_date = 6;
+  string end_date = 7;
+  double value = 8;
+}
+
+// ListCampaignsRequest is the request for ListCampaigns.
+message ListCampaignsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+// ListCampaignsResponse is the response for ListCampaigns.
+message ListCampaignsResponse {
+  repeated Campaign items = 1;
+  int32 total_count = 2;
+}
+
+// GetCampaignRequest is the request for GetCampaign.
+message GetCampaignRequest {
+  string id = 1;
+}
+
+// GetCampaignResponse is the response for GetCampaign.
+message GetCampaignResponse {
+  Campaign campaign = 1;
+}
+
+// ListMarketingContentRequest is the request for ListMarketingContent.
+message ListMarketingContentRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+// ListMarketingContentResponse is the response for ListMarketingContent.
+message ListMarketingContentResponse {
+  repeated MarketingContent items = 1;
+  int32 total_count = 2;
+}
+
+// GetMarketingContentRequest is the request for GetMarketingContent.
+message GetMarketingContentRequest {
+  string id = 1;
+}
+
+// GetMarketingContentResponse is the response for GetMarketingContent.
+message GetMarketingContentResponse {
+  MarketingContent content = 1;
+}
+
+// ListPartnershipsRequest is the request for ListPartnerships.
+message ListPartnershipsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+// ListPartnershipsResponse is the response for ListPartnerships.
+message ListPartnershipsResponse {
+  repeated Partnership items = 1;
+  int32 total_count = 2;
+}
