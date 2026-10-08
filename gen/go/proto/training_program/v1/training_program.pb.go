@@ -1214,12 +1214,17 @@ func (x *StartProgramResponse) GetSuccess() bool {
 
 // Complete workout request and response
 type CompleteWorkoutRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProgressId    string                 `protobuf:"bytes,1,opt,name=progress_id,json=progressId,proto3" json:"progress_id,omitempty"` // UserProgramProgress ID
-	WorkoutId     string                 `protobuf:"bytes,2,opt,name=workout_id,json=workoutId,proto3" json:"workout_id,omitempty"`
-	CompletedAt   *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	ProgressId  string                 `protobuf:"bytes,1,opt,name=progress_id,json=progressId,proto3" json:"progress_id,omitempty"` // UserProgramProgress ID
+	WorkoutId   string                 `protobuf:"bytes,2,opt,name=workout_id,json=workoutId,proto3" json:"workout_id,omitempty"`
+	CompletedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
+	// Workout metrics sourced from the app's WorkoutCompletion entity, which
+	// already holds these values but previously dropped them at the gRPC boundary.
+	DurationMinutes      int32   `protobuf:"varint,4,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`                 // Actual workout duration in minutes
+	WeekNumber           int32   `protobuf:"varint,5,opt,name=week_number,json=weekNumber,proto3" json:"week_number,omitempty"`                                // Advisory: server validates against its own progress record and trusts its own state on mismatch
+	CompletionPercentage float64 `protobuf:"fixed64,6,opt,name=completion_percentage,json=completionPercentage,proto3" json:"completion_percentage,omitempty"` // Percentage of the workout completed (0-100)
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *CompleteWorkoutRequest) Reset() {
@@ -1271,6 +1276,27 @@ func (x *CompleteWorkoutRequest) GetCompletedAt() *timestamppb.Timestamp {
 		return x.CompletedAt
 	}
 	return nil
+}
+
+func (x *CompleteWorkoutRequest) GetDurationMinutes() int32 {
+	if x != nil {
+		return x.DurationMinutes
+	}
+	return 0
+}
+
+func (x *CompleteWorkoutRequest) GetWeekNumber() int32 {
+	if x != nil {
+		return x.WeekNumber
+	}
+	return 0
+}
+
+func (x *CompleteWorkoutRequest) GetCompletionPercentage() float64 {
+	if x != nil {
+		return x.CompletionPercentage
+	}
+	return 0
 }
 
 type CompleteWorkoutResponse struct {
@@ -1431,13 +1457,17 @@ const file_proto_training_program_v1_training_program_proto_rawDesc = "" +
 	"\x14StartProgramResponse\x12\x1f\n" +
 	"\vprogress_id\x18\x01 \x01(\tR\n" +
 	"progressId\x12\x18\n" +
-	"\asuccess\x18\x02 \x01(\bR\asuccess\"\x97\x01\n" +
+	"\asuccess\x18\x02 \x01(\bR\asuccess\"\x98\x02\n" +
 	"\x16CompleteWorkoutRequest\x12\x1f\n" +
 	"\vprogress_id\x18\x01 \x01(\tR\n" +
 	"progressId\x12\x1d\n" +
 	"\n" +
 	"workout_id\x18\x02 \x01(\tR\tworkoutId\x12=\n" +
-	"\fcompleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vcompletedAt\"b\n" +
+	"\fcompleted_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vcompletedAt\x12)\n" +
+	"\x10duration_minutes\x18\x04 \x01(\x05R\x0fdurationMinutes\x12\x1f\n" +
+	"\vweek_number\x18\x05 \x01(\x05R\n" +
+	"weekNumber\x123\n" +
+	"\x15completion_percentage\x18\x06 \x01(\x01R\x14completionPercentage\"b\n" +
 	"\x17CompleteWorkoutResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12-\n" +
 	"\x12workouts_completed\x18\x02 \x01(\x05R\x11workoutsCompleted2\xbb\x06\n" +

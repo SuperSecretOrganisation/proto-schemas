@@ -328,6 +328,9 @@ const CompleteWorkoutRequest$json = {
     {'1': 'progress_id', '3': 1, '4': 1, '5': 9, '10': 'progressId'},
     {'1': 'workout_id', '3': 2, '4': 1, '5': 9, '10': 'workoutId'},
     {'1': 'completed_at', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'completedAt'},
+    {'1': 'duration_minutes', '3': 4, '4': 1, '5': 5, '10': 'durationMinutes'},
+    {'1': 'week_number', '3': 5, '4': 1, '5': 5, '10': 'weekNumber'},
+    {'1': 'completion_percentage', '3': 6, '4': 1, '5': 1, '10': 'completionPercentage'},
   ],
 };
 
@@ -335,7 +338,10 @@ const CompleteWorkoutRequest$json = {
 final $typed_data.Uint8List completeWorkoutRequestDescriptor = $convert.base64Decode(
     'ChZDb21wbGV0ZVdvcmtvdXRSZXF1ZXN0Eh8KC3Byb2dyZXNzX2lkGAEgASgJUgpwcm9ncmVzc0'
     'lkEh0KCndvcmtvdXRfaWQYAiABKAlSCXdvcmtvdXRJZBI9Cgxjb21wbGV0ZWRfYXQYAyABKAsy'
-    'Gi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgtjb21wbGV0ZWRBdA==');
+    'Gi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgtjb21wbGV0ZWRBdBIpChBkdXJhdGlvbl9taW'
+    '51dGVzGAQgASgFUg9kdXJhdGlvbk1pbnV0ZXMSHwoLd2Vla19udW1iZXIYBSABKAVSCndlZWtO'
+    'dW1iZXISMwoVY29tcGxldGlvbl9wZXJjZW50YWdlGAYgASgBUhRjb21wbGV0aW9uUGVyY2VudG'
+    'FnZQ==');
 
 @$core.Deprecated('Use completeWorkoutResponseDescriptor instead')
 const CompleteWorkoutResponse$json = {

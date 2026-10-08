@@ -145,6 +145,11 @@ message CompleteWorkoutRequest {
   string progress_id = 1;            // UserProgramProgress ID
   string workout_id = 2;
   google.protobuf.Timestamp completed_at = 3;
+  // Workout metrics sourced from the app's WorkoutCompletion entity, which
+  // already holds these values but previously dropped them at the gRPC boundary.
+  int32 duration_minutes = 4;        // Actual workout duration in minutes
+  int32 week_number = 5;             // Advisory: server validates against its own progress record and trusts its own state on mismatch
+  double completion_percentage = 6;  // Percentage of the workout completed (0-100)
 }
 message CompleteWorkoutResponse {
   bool success = 1;

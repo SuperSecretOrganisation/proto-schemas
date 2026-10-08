@@ -1417,11 +1417,17 @@ class CompleteWorkoutRequest extends $pb.GeneratedMessage {
     $core.String? progressId,
     $core.String? workoutId,
     $1.Timestamp? completedAt,
+    $core.int? durationMinutes,
+    $core.int? weekNumber,
+    $core.double? completionPercentage,
   }) {
     final result = create();
     if (progressId != null) result.progressId = progressId;
     if (workoutId != null) result.workoutId = workoutId;
     if (completedAt != null) result.completedAt = completedAt;
+    if (durationMinutes != null) result.durationMinutes = durationMinutes;
+    if (weekNumber != null) result.weekNumber = weekNumber;
+    if (completionPercentage != null) result.completionPercentage = completionPercentage;
     return result;
   }
 
@@ -1434,6 +1440,9 @@ class CompleteWorkoutRequest extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'progressId')
     ..aOS(2, _omitFieldNames ? '' : 'workoutId')
     ..aOM<$1.Timestamp>(3, _omitFieldNames ? '' : 'completedAt', subBuilder: $1.Timestamp.create)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'durationMinutes', $pb.PbFieldType.O3)
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'weekNumber', $pb.PbFieldType.O3)
+    ..a<$core.double>(6, _omitFieldNames ? '' : 'completionPercentage', $pb.PbFieldType.OD)
     ..hasRequiredFields = false
   ;
 
@@ -1482,6 +1491,35 @@ class CompleteWorkoutRequest extends $pb.GeneratedMessage {
   void clearCompletedAt() => $_clearField(3);
   @$pb.TagNumber(3)
   $1.Timestamp ensureCompletedAt() => $_ensure(2);
+
+  /// Workout metrics sourced from the app's WorkoutCompletion entity, which
+  /// already holds these values but previously dropped them at the gRPC boundary.
+  @$pb.TagNumber(4)
+  $core.int get durationMinutes => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set durationMinutes($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasDurationMinutes() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearDurationMinutes() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get weekNumber => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set weekNumber($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasWeekNumber() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearWeekNumber() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.double get completionPercentage => $_getN(5);
+  @$pb.TagNumber(6)
+  set completionPercentage($core.double value) => $_setDouble(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasCompletionPercentage() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCompletionPercentage() => $_clearField(6);
 }
 
 class CompleteWorkoutResponse extends $pb.GeneratedMessage {
