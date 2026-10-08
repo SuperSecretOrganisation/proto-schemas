@@ -57,6 +57,7 @@ const MeasurementBatch$json = {
     {'1': 'weight', '3': 6, '4': 3, '5': 13, '10': 'weight'},
     {'1': 'timestamp', '3': 7, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
   ],
+  '7': {'3': true},
 };
 
 /// Descriptor for `MeasurementBatch`. Decode as a `google.protobuf.DescriptorProto`.
@@ -65,7 +66,7 @@ final $typed_data.Uint8List measurementBatchDescriptor = $convert.base64Decode(
     'ZpdHlfaWQYAiABKAlSCmFjdGl2aXR5SWQSIwoNYWN0aXZpdHlfdHlwZRgDIAEoCVIMYWN0aXZp'
     'dHlUeXBlEiMKDWhlZWxfcHJlc3N1cmUYBCADKA1SDGhlZWxQcmVzc3VyZRIhCgx0b2VfcHJlc3'
     'N1cmUYBSADKA1SC3RvZVByZXNzdXJlEhYKBndlaWdodBgGIAMoDVIGd2VpZ2h0EjgKCXRpbWVz'
-    'dGFtcBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXRpbWVzdGFtcA==');
+    'dGFtcBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXRpbWVzdGFtcDoCGAE=');
 
 @$core.Deprecated('Use measurementFilterDescriptor instead')
 const MeasurementFilter$json = {
@@ -92,6 +93,82 @@ final $typed_data.Uint8List measurementFilterDescriptor = $convert.base64Decode(
     'YXZlcmFnZRIaCghpbnRlcnZhbBgGIAEoCVIIaW50ZXJ2YWwSGwoJcGFnZV9zaXplGAcgASgNUg'
     'hwYWdlU2l6ZRISCgRwYWdlGAggASgNUgRwYWdlEhwKCWFzY2VuZGluZxgJIAEoCFIJYXNjZW5k'
     'aW5n');
+
+@$core.Deprecated('Use aggregateWindowDescriptor instead')
+const AggregateWindow$json = {
+  '1': 'AggregateWindow',
+  '2': [
+    {'1': 'window_start', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'windowStart'},
+    {'1': 'window_ms', '3': 2, '4': 1, '5': 13, '10': 'windowMs'},
+    {'1': 'heel_avg', '3': 3, '4': 1, '5': 13, '10': 'heelAvg'},
+    {'1': 'heel_min', '3': 4, '4': 1, '5': 13, '10': 'heelMin'},
+    {'1': 'heel_max', '3': 5, '4': 1, '5': 13, '10': 'heelMax'},
+    {'1': 'toe_avg', '3': 6, '4': 1, '5': 13, '10': 'toeAvg'},
+    {'1': 'toe_min', '3': 7, '4': 1, '5': 13, '10': 'toeMin'},
+    {'1': 'toe_max', '3': 8, '4': 1, '5': 13, '10': 'toeMax'},
+    {'1': 'sample_count', '3': 9, '4': 1, '5': 13, '10': 'sampleCount'},
+  ],
+};
+
+/// Descriptor for `AggregateWindow`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List aggregateWindowDescriptor = $convert.base64Decode(
+    'Cg9BZ2dyZWdhdGVXaW5kb3cSPQoMd2luZG93X3N0YXJ0GAEgASgLMhouZ29vZ2xlLnByb3RvYn'
+    'VmLlRpbWVzdGFtcFILd2luZG93U3RhcnQSGwoJd2luZG93X21zGAIgASgNUgh3aW5kb3dNcxIZ'
+    'CghoZWVsX2F2ZxgDIAEoDVIHaGVlbEF2ZxIZCghoZWVsX21pbhgEIAEoDVIHaGVlbE1pbhIZCg'
+    'hoZWVsX21heBgFIAEoDVIHaGVlbE1heBIXCgd0b2VfYXZnGAYgASgNUgZ0b2VBdmcSFwoHdG9l'
+    'X21pbhgHIAEoDVIGdG9lTWluEhcKB3RvZV9tYXgYCCABKA1SBnRvZU1heBIhCgxzYW1wbGVfY2'
+    '91bnQYCSABKA1SC3NhbXBsZUNvdW50');
+
+@$core.Deprecated('Use rawSegmentDescriptor instead')
+const RawSegment$json = {
+  '1': 'RawSegment',
+  '2': [
+    {'1': 'start_time', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'startTime'},
+    {'1': 'sample_rate_hz', '3': 2, '4': 1, '5': 13, '10': 'sampleRateHz'},
+    {'1': 'samples_gz', '3': 3, '4': 1, '5': 12, '10': 'samplesGz'},
+  ],
+};
+
+/// Descriptor for `RawSegment`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List rawSegmentDescriptor = $convert.base64Decode(
+    'CgpSYXdTZWdtZW50EjkKCnN0YXJ0X3RpbWUYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZX'
+    'N0YW1wUglzdGFydFRpbWUSJAoOc2FtcGxlX3JhdGVfaHoYAiABKA1SDHNhbXBsZVJhdGVIehId'
+    'CgpzYW1wbGVzX2d6GAMgASgMUglzYW1wbGVzR3o=');
+
+@$core.Deprecated('Use uploadMeasurementSessionRequestDescriptor instead')
+const UploadMeasurementSessionRequest$json = {
+  '1': 'UploadMeasurementSessionRequest',
+  '2': [
+    {'1': 'idempotency_key', '3': 1, '4': 1, '5': 9, '10': 'idempotencyKey'},
+    {'1': 'activity_id', '3': 2, '4': 1, '5': 9, '10': 'activityId'},
+    {'1': 'activity_type', '3': 3, '4': 1, '5': 9, '10': 'activityType'},
+    {'1': 'windows', '3': 4, '4': 3, '5': 11, '6': '.proto.measurement.v1.AggregateWindow', '10': 'windows'},
+    {'1': 'raw_segments', '3': 5, '4': 3, '5': 11, '6': '.proto.measurement.v1.RawSegment', '10': 'rawSegments'},
+  ],
+};
+
+/// Descriptor for `UploadMeasurementSessionRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadMeasurementSessionRequestDescriptor = $convert.base64Decode(
+    'Ch9VcGxvYWRNZWFzdXJlbWVudFNlc3Npb25SZXF1ZXN0EicKD2lkZW1wb3RlbmN5X2tleRgBIA'
+    'EoCVIOaWRlbXBvdGVuY3lLZXkSHwoLYWN0aXZpdHlfaWQYAiABKAlSCmFjdGl2aXR5SWQSIwoN'
+    'YWN0aXZpdHlfdHlwZRgDIAEoCVIMYWN0aXZpdHlUeXBlEj8KB3dpbmRvd3MYBCADKAsyJS5wcm'
+    '90by5tZWFzdXJlbWVudC52MS5BZ2dyZWdhdGVXaW5kb3dSB3dpbmRvd3MSQwoMcmF3X3NlZ21l'
+    'bnRzGAUgAygLMiAucHJvdG8ubWVhc3VyZW1lbnQudjEuUmF3U2VnbWVudFILcmF3U2VnbWVudH'
+    'M=');
+
+@$core.Deprecated('Use uploadMeasurementSessionResponseDescriptor instead')
+const UploadMeasurementSessionResponse$json = {
+  '1': 'UploadMeasurementSessionResponse',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'windows_accepted', '3': 2, '4': 1, '5': 13, '10': 'windowsAccepted'},
+  ],
+};
+
+/// Descriptor for `UploadMeasurementSessionResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadMeasurementSessionResponseDescriptor = $convert.base64Decode(
+    'CiBVcGxvYWRNZWFzdXJlbWVudFNlc3Npb25SZXNwb25zZRIYCgdzdWNjZXNzGAEgASgIUgdzdW'
+    'NjZXNzEikKEHdpbmRvd3NfYWNjZXB0ZWQYAiABKA1SD3dpbmRvd3NBY2NlcHRlZA==');
 
 @$core.Deprecated('Use getMeasurementRequestDescriptor instead')
 const GetMeasurementRequest$json = {

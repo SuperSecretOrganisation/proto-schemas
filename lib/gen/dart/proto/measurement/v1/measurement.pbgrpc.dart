@@ -44,8 +44,14 @@ class MeasurementServiceClient extends $grpc.Client {
     return $createUnaryCall(_$listAllMeasurements, request, options: options);
   }
 
+  /// Deprecated: use UploadMeasurementSession. Kept functional for now.
+  @$core.Deprecated('This method is deprecated')
   $grpc.ResponseFuture<$0.CreateMeasurementResponse> createMeasurement($0.CreateMeasurementRequest request, {$grpc.CallOptions? options,}) {
     return $createUnaryCall(_$createMeasurement, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.UploadMeasurementSessionResponse> uploadMeasurementSession($0.UploadMeasurementSessionRequest request, {$grpc.CallOptions? options,}) {
+    return $createUnaryCall(_$uploadMeasurementSession, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.UpdateMeasurementResponse> updateMeasurement($0.UpdateMeasurementRequest request, {$grpc.CallOptions? options,}) {
@@ -74,6 +80,10 @@ class MeasurementServiceClient extends $grpc.Client {
       '/proto.measurement.v1.MeasurementService/CreateMeasurement',
       ($0.CreateMeasurementRequest value) => value.writeToBuffer(),
       $0.CreateMeasurementResponse.fromBuffer);
+  static final _$uploadMeasurementSession = $grpc.ClientMethod<$0.UploadMeasurementSessionRequest, $0.UploadMeasurementSessionResponse>(
+      '/proto.measurement.v1.MeasurementService/UploadMeasurementSession',
+      ($0.UploadMeasurementSessionRequest value) => value.writeToBuffer(),
+      $0.UploadMeasurementSessionResponse.fromBuffer);
   static final _$updateMeasurement = $grpc.ClientMethod<$0.UpdateMeasurementRequest, $0.UpdateMeasurementResponse>(
       '/proto.measurement.v1.MeasurementService/UpdateMeasurement',
       ($0.UpdateMeasurementRequest value) => value.writeToBuffer(),
@@ -117,6 +127,13 @@ abstract class MeasurementServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.CreateMeasurementRequest.fromBuffer(value),
         ($0.CreateMeasurementResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.UploadMeasurementSessionRequest, $0.UploadMeasurementSessionResponse>(
+        'UploadMeasurementSession',
+        uploadMeasurementSession_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.UploadMeasurementSessionRequest.fromBuffer(value),
+        ($0.UploadMeasurementSessionResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.UpdateMeasurementRequest, $0.UpdateMeasurementResponse>(
         'UpdateMeasurement',
         updateMeasurement_Pre,
@@ -156,6 +173,12 @@ abstract class MeasurementServiceBase extends $grpc.Service {
   }
 
   $async.Future<$0.CreateMeasurementResponse> createMeasurement($grpc.ServiceCall call, $0.CreateMeasurementRequest request);
+
+  $async.Future<$0.UploadMeasurementSessionResponse> uploadMeasurementSession_Pre($grpc.ServiceCall $call, $async.Future<$0.UploadMeasurementSessionRequest> $request) async {
+    return uploadMeasurementSession($call, await $request);
+  }
+
+  $async.Future<$0.UploadMeasurementSessionResponse> uploadMeasurementSession($grpc.ServiceCall call, $0.UploadMeasurementSessionRequest request);
 
   $async.Future<$0.UpdateMeasurementResponse> updateMeasurement_Pre($grpc.ServiceCall $call, $async.Future<$0.UpdateMeasurementRequest> $request) async {
     return updateMeasurement($call, await $request);

@@ -150,6 +150,11 @@ class Measurement extends $pb.GeneratedMessage {
   $1.Timestamp ensureTimeStamp() => $_ensure(7);
 }
 
+/// Deprecated: single timestamp for N samples loses per-sample timing and the
+/// per-sample weight array is a modeling error. Use UploadMeasurementSession
+/// with AggregateWindow instead. Kept for backward compatibility; removal is a
+/// later major-version cleanup.
+@$core.Deprecated('This message is deprecated')
 class MeasurementBatch extends $pb.GeneratedMessage {
   factory MeasurementBatch({
   @$core.Deprecated('This field is deprecated.')
@@ -401,6 +406,370 @@ class MeasurementFilter extends $pb.GeneratedMessage {
   $core.bool hasAscending() => $_has(8);
   @$pb.TagNumber(9)
   void clearAscending() => $_clearField(9);
+}
+
+/// A single aggregation window: avg/min/max per sensor over window_ms, plus the
+/// real number of samples folded in. window_start uses sample timestamps, not
+/// wall-clock ticks, so it survives BLE drops and out-of-order delivery.
+class AggregateWindow extends $pb.GeneratedMessage {
+  factory AggregateWindow({
+    $1.Timestamp? windowStart,
+    $core.int? windowMs,
+    $core.int? heelAvg,
+    $core.int? heelMin,
+    $core.int? heelMax,
+    $core.int? toeAvg,
+    $core.int? toeMin,
+    $core.int? toeMax,
+    $core.int? sampleCount,
+  }) {
+    final result = create();
+    if (windowStart != null) result.windowStart = windowStart;
+    if (windowMs != null) result.windowMs = windowMs;
+    if (heelAvg != null) result.heelAvg = heelAvg;
+    if (heelMin != null) result.heelMin = heelMin;
+    if (heelMax != null) result.heelMax = heelMax;
+    if (toeAvg != null) result.toeAvg = toeAvg;
+    if (toeMin != null) result.toeMin = toeMin;
+    if (toeMax != null) result.toeMax = toeMax;
+    if (sampleCount != null) result.sampleCount = sampleCount;
+    return result;
+  }
+
+  AggregateWindow._();
+
+  factory AggregateWindow.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory AggregateWindow.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AggregateWindow', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.measurement.v1'), createEmptyInstance: create)
+    ..aOM<$1.Timestamp>(1, _omitFieldNames ? '' : 'windowStart', subBuilder: $1.Timestamp.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'windowMs', $pb.PbFieldType.OU3)
+    ..a<$core.int>(3, _omitFieldNames ? '' : 'heelAvg', $pb.PbFieldType.OU3)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'heelMin', $pb.PbFieldType.OU3)
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'heelMax', $pb.PbFieldType.OU3)
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'toeAvg', $pb.PbFieldType.OU3)
+    ..a<$core.int>(7, _omitFieldNames ? '' : 'toeMin', $pb.PbFieldType.OU3)
+    ..a<$core.int>(8, _omitFieldNames ? '' : 'toeMax', $pb.PbFieldType.OU3)
+    ..a<$core.int>(9, _omitFieldNames ? '' : 'sampleCount', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  AggregateWindow clone() => AggregateWindow()..mergeFromMessage(this);
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  AggregateWindow copyWith(void Function(AggregateWindow) updates) => super.copyWith((message) => updates(message as AggregateWindow)) as AggregateWindow;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static AggregateWindow create() => AggregateWindow._();
+  @$core.override
+  AggregateWindow createEmptyInstance() => create();
+  static $pb.PbList<AggregateWindow> createRepeated() => $pb.PbList<AggregateWindow>();
+  @$core.pragma('dart2js:noInline')
+  static AggregateWindow getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AggregateWindow>(create);
+  static AggregateWindow? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $1.Timestamp get windowStart => $_getN(0);
+  @$pb.TagNumber(1)
+  set windowStart($1.Timestamp value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasWindowStart() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWindowStart() => $_clearField(1);
+  @$pb.TagNumber(1)
+  $1.Timestamp ensureWindowStart() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.int get windowMs => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set windowMs($core.int value) => $_setUnsignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasWindowMs() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearWindowMs() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.int get heelAvg => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set heelAvg($core.int value) => $_setUnsignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasHeelAvg() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearHeelAvg() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.int get heelMin => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set heelMin($core.int value) => $_setUnsignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasHeelMin() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearHeelMin() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get heelMax => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set heelMax($core.int value) => $_setUnsignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasHeelMax() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearHeelMax() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get toeAvg => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set toeAvg($core.int value) => $_setUnsignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasToeAvg() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearToeAvg() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get toeMin => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set toeMin($core.int value) => $_setUnsignedInt32(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasToeMin() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearToeMin() => $_clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.int get toeMax => $_getIZ(7);
+  @$pb.TagNumber(8)
+  set toeMax($core.int value) => $_setUnsignedInt32(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasToeMax() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearToeMax() => $_clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.int get sampleCount => $_getIZ(8);
+  @$pb.TagNumber(9)
+  set sampleCount($core.int value) => $_setUnsignedInt32(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasSampleCount() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearSampleCount() => $_clearField(9);
+}
+
+/// An optional raw sample series for a session segment, sent only for
+/// cohort-flagged users. samples_gz is gzip(packed little-endian uint16 heel,toe
+/// pairs); timing is reconstructed from start_time + sample_rate_hz.
+class RawSegment extends $pb.GeneratedMessage {
+  factory RawSegment({
+    $1.Timestamp? startTime,
+    $core.int? sampleRateHz,
+    $core.List<$core.int>? samplesGz,
+  }) {
+    final result = create();
+    if (startTime != null) result.startTime = startTime;
+    if (sampleRateHz != null) result.sampleRateHz = sampleRateHz;
+    if (samplesGz != null) result.samplesGz = samplesGz;
+    return result;
+  }
+
+  RawSegment._();
+
+  factory RawSegment.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory RawSegment.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RawSegment', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.measurement.v1'), createEmptyInstance: create)
+    ..aOM<$1.Timestamp>(1, _omitFieldNames ? '' : 'startTime', subBuilder: $1.Timestamp.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'sampleRateHz', $pb.PbFieldType.OU3)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'samplesGz', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  RawSegment clone() => RawSegment()..mergeFromMessage(this);
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  RawSegment copyWith(void Function(RawSegment) updates) => super.copyWith((message) => updates(message as RawSegment)) as RawSegment;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RawSegment create() => RawSegment._();
+  @$core.override
+  RawSegment createEmptyInstance() => create();
+  static $pb.PbList<RawSegment> createRepeated() => $pb.PbList<RawSegment>();
+  @$core.pragma('dart2js:noInline')
+  static RawSegment getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RawSegment>(create);
+  static RawSegment? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $1.Timestamp get startTime => $_getN(0);
+  @$pb.TagNumber(1)
+  set startTime($1.Timestamp value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasStartTime() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearStartTime() => $_clearField(1);
+  @$pb.TagNumber(1)
+  $1.Timestamp ensureStartTime() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.int get sampleRateHz => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set sampleRateHz($core.int value) => $_setUnsignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasSampleRateHz() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearSampleRateHz() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get samplesGz => $_getN(2);
+  @$pb.TagNumber(3)
+  set samplesGz($core.List<$core.int> value) => $_setBytes(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasSamplesGz() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSamplesGz() => $_clearField(3);
+}
+
+/// Session upload: aggregate windows are always present; raw segments are empty
+/// unless the user is in a raw-capture cohort.
+class UploadMeasurementSessionRequest extends $pb.GeneratedMessage {
+  factory UploadMeasurementSessionRequest({
+    $core.String? idempotencyKey,
+    $core.String? activityId,
+    $core.String? activityType,
+    $core.Iterable<AggregateWindow>? windows,
+    $core.Iterable<RawSegment>? rawSegments,
+  }) {
+    final result = create();
+    if (idempotencyKey != null) result.idempotencyKey = idempotencyKey;
+    if (activityId != null) result.activityId = activityId;
+    if (activityType != null) result.activityType = activityType;
+    if (windows != null) result.windows.addAll(windows);
+    if (rawSegments != null) result.rawSegments.addAll(rawSegments);
+    return result;
+  }
+
+  UploadMeasurementSessionRequest._();
+
+  factory UploadMeasurementSessionRequest.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory UploadMeasurementSessionRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UploadMeasurementSessionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.measurement.v1'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'idempotencyKey')
+    ..aOS(2, _omitFieldNames ? '' : 'activityId')
+    ..aOS(3, _omitFieldNames ? '' : 'activityType')
+    ..pc<AggregateWindow>(4, _omitFieldNames ? '' : 'windows', $pb.PbFieldType.PM, subBuilder: AggregateWindow.create)
+    ..pc<RawSegment>(5, _omitFieldNames ? '' : 'rawSegments', $pb.PbFieldType.PM, subBuilder: RawSegment.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  UploadMeasurementSessionRequest clone() => UploadMeasurementSessionRequest()..mergeFromMessage(this);
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  UploadMeasurementSessionRequest copyWith(void Function(UploadMeasurementSessionRequest) updates) => super.copyWith((message) => updates(message as UploadMeasurementSessionRequest)) as UploadMeasurementSessionRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UploadMeasurementSessionRequest create() => UploadMeasurementSessionRequest._();
+  @$core.override
+  UploadMeasurementSessionRequest createEmptyInstance() => create();
+  static $pb.PbList<UploadMeasurementSessionRequest> createRepeated() => $pb.PbList<UploadMeasurementSessionRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UploadMeasurementSessionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadMeasurementSessionRequest>(create);
+  static UploadMeasurementSessionRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get idempotencyKey => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set idempotencyKey($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasIdempotencyKey() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearIdempotencyKey() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get activityId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set activityId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasActivityId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearActivityId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get activityType => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set activityType($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasActivityType() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearActivityType() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $pb.PbList<AggregateWindow> get windows => $_getList(3);
+
+  @$pb.TagNumber(5)
+  $pb.PbList<RawSegment> get rawSegments => $_getList(4);
+}
+
+class UploadMeasurementSessionResponse extends $pb.GeneratedMessage {
+  factory UploadMeasurementSessionResponse({
+    $core.bool? success,
+    $core.int? windowsAccepted,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (windowsAccepted != null) result.windowsAccepted = windowsAccepted;
+    return result;
+  }
+
+  UploadMeasurementSessionResponse._();
+
+  factory UploadMeasurementSessionResponse.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory UploadMeasurementSessionResponse.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UploadMeasurementSessionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'proto.measurement.v1'), createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'windowsAccepted', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  UploadMeasurementSessionResponse clone() => UploadMeasurementSessionResponse()..mergeFromMessage(this);
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  UploadMeasurementSessionResponse copyWith(void Function(UploadMeasurementSessionResponse) updates) => super.copyWith((message) => updates(message as UploadMeasurementSessionResponse)) as UploadMeasurementSessionResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UploadMeasurementSessionResponse create() => UploadMeasurementSessionResponse._();
+  @$core.override
+  UploadMeasurementSessionResponse createEmptyInstance() => create();
+  static $pb.PbList<UploadMeasurementSessionResponse> createRepeated() => $pb.PbList<UploadMeasurementSessionResponse>();
+  @$core.pragma('dart2js:noInline')
+  static UploadMeasurementSessionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadMeasurementSessionResponse>(create);
+  static UploadMeasurementSessionResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get windowsAccepted => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set windowsAccepted($core.int value) => $_setUnsignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasWindowsAccepted() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearWindowsAccepted() => $_clearField(2);
 }
 
 /// Get a single measurement by ID

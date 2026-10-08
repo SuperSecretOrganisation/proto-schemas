@@ -122,6 +122,12 @@ func (x *Measurement) GetTimeStamp() *timestamppb.Timestamp {
 	return nil
 }
 
+// Deprecated: single timestamp for N samples loses per-sample timing and the
+// per-sample weight array is a modeling error. Use UploadMeasurementSession
+// with AggregateWindow instead. Kept for backward compatibility; removal is a
+// later major-version cleanup.
+//
+// Deprecated: Marked as deprecated in proto/measurement/v1/measurement.proto.
 type MeasurementBatch struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Deprecated: Marked as deprecated in proto/measurement/v1/measurement.proto.
@@ -324,6 +330,310 @@ func (x *MeasurementFilter) GetAscending() bool {
 	return false
 }
 
+// A single aggregation window: avg/min/max per sensor over window_ms, plus the
+// real number of samples folded in. window_start uses sample timestamps, not
+// wall-clock ticks, so it survives BLE drops and out-of-order delivery.
+type AggregateWindow struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	WindowStart   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=window_start,json=windowStart,proto3" json:"window_start,omitempty"`
+	WindowMs      uint32                 `protobuf:"varint,2,opt,name=window_ms,json=windowMs,proto3" json:"window_ms,omitempty"` // Client states the window it computed (10000 default).
+	HeelAvg       uint32                 `protobuf:"varint,3,opt,name=heel_avg,json=heelAvg,proto3" json:"heel_avg,omitempty"`
+	HeelMin       uint32                 `protobuf:"varint,4,opt,name=heel_min,json=heelMin,proto3" json:"heel_min,omitempty"`
+	HeelMax       uint32                 `protobuf:"varint,5,opt,name=heel_max,json=heelMax,proto3" json:"heel_max,omitempty"`
+	ToeAvg        uint32                 `protobuf:"varint,6,opt,name=toe_avg,json=toeAvg,proto3" json:"toe_avg,omitempty"`
+	ToeMin        uint32                 `protobuf:"varint,7,opt,name=toe_min,json=toeMin,proto3" json:"toe_min,omitempty"`
+	ToeMax        uint32                 `protobuf:"varint,8,opt,name=toe_max,json=toeMax,proto3" json:"toe_max,omitempty"`
+	SampleCount   uint32                 `protobuf:"varint,9,opt,name=sample_count,json=sampleCount,proto3" json:"sample_count,omitempty"` // Real samples folded in; < rate*window on BLE drops.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AggregateWindow) Reset() {
+	*x = AggregateWindow{}
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AggregateWindow) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AggregateWindow) ProtoMessage() {}
+
+func (x *AggregateWindow) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AggregateWindow.ProtoReflect.Descriptor instead.
+func (*AggregateWindow) Descriptor() ([]byte, []int) {
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AggregateWindow) GetWindowStart() *timestamppb.Timestamp {
+	if x != nil {
+		return x.WindowStart
+	}
+	return nil
+}
+
+func (x *AggregateWindow) GetWindowMs() uint32 {
+	if x != nil {
+		return x.WindowMs
+	}
+	return 0
+}
+
+func (x *AggregateWindow) GetHeelAvg() uint32 {
+	if x != nil {
+		return x.HeelAvg
+	}
+	return 0
+}
+
+func (x *AggregateWindow) GetHeelMin() uint32 {
+	if x != nil {
+		return x.HeelMin
+	}
+	return 0
+}
+
+func (x *AggregateWindow) GetHeelMax() uint32 {
+	if x != nil {
+		return x.HeelMax
+	}
+	return 0
+}
+
+func (x *AggregateWindow) GetToeAvg() uint32 {
+	if x != nil {
+		return x.ToeAvg
+	}
+	return 0
+}
+
+func (x *AggregateWindow) GetToeMin() uint32 {
+	if x != nil {
+		return x.ToeMin
+	}
+	return 0
+}
+
+func (x *AggregateWindow) GetToeMax() uint32 {
+	if x != nil {
+		return x.ToeMax
+	}
+	return 0
+}
+
+func (x *AggregateWindow) GetSampleCount() uint32 {
+	if x != nil {
+		return x.SampleCount
+	}
+	return 0
+}
+
+// An optional raw sample series for a session segment, sent only for
+// cohort-flagged users. samples_gz is gzip(packed little-endian uint16 heel,toe
+// pairs); timing is reconstructed from start_time + sample_rate_hz.
+type RawSegment struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StartTime     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	SampleRateHz  uint32                 `protobuf:"varint,2,opt,name=sample_rate_hz,json=sampleRateHz,proto3" json:"sample_rate_hz,omitempty"` // 50 today; firmware-versioned tomorrow.
+	SamplesGz     []byte                 `protobuf:"bytes,3,opt,name=samples_gz,json=samplesGz,proto3" json:"samples_gz,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RawSegment) Reset() {
+	*x = RawSegment{}
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RawSegment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RawSegment) ProtoMessage() {}
+
+func (x *RawSegment) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RawSegment.ProtoReflect.Descriptor instead.
+func (*RawSegment) Descriptor() ([]byte, []int) {
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RawSegment) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *RawSegment) GetSampleRateHz() uint32 {
+	if x != nil {
+		return x.SampleRateHz
+	}
+	return 0
+}
+
+func (x *RawSegment) GetSamplesGz() []byte {
+	if x != nil {
+		return x.SamplesGz
+	}
+	return nil
+}
+
+// Session upload: aggregate windows are always present; raw segments are empty
+// unless the user is in a raw-capture cohort.
+type UploadMeasurementSessionRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	IdempotencyKey string                 `protobuf:"bytes,1,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"` // Existing server-side enforcement covers replays.
+	ActivityId     string                 `protobuf:"bytes,2,opt,name=activity_id,json=activityId,proto3" json:"activity_id,omitempty"`
+	ActivityType   string                 `protobuf:"bytes,3,opt,name=activity_type,json=activityType,proto3" json:"activity_type,omitempty"`
+	Windows        []*AggregateWindow     `protobuf:"bytes,4,rep,name=windows,proto3" json:"windows,omitempty"`
+	RawSegments    []*RawSegment          `protobuf:"bytes,5,rep,name=raw_segments,json=rawSegments,proto3" json:"raw_segments,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *UploadMeasurementSessionRequest) Reset() {
+	*x = UploadMeasurementSessionRequest{}
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UploadMeasurementSessionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadMeasurementSessionRequest) ProtoMessage() {}
+
+func (x *UploadMeasurementSessionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadMeasurementSessionRequest.ProtoReflect.Descriptor instead.
+func (*UploadMeasurementSessionRequest) Descriptor() ([]byte, []int) {
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UploadMeasurementSessionRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+func (x *UploadMeasurementSessionRequest) GetActivityId() string {
+	if x != nil {
+		return x.ActivityId
+	}
+	return ""
+}
+
+func (x *UploadMeasurementSessionRequest) GetActivityType() string {
+	if x != nil {
+		return x.ActivityType
+	}
+	return ""
+}
+
+func (x *UploadMeasurementSessionRequest) GetWindows() []*AggregateWindow {
+	if x != nil {
+		return x.Windows
+	}
+	return nil
+}
+
+func (x *UploadMeasurementSessionRequest) GetRawSegments() []*RawSegment {
+	if x != nil {
+		return x.RawSegments
+	}
+	return nil
+}
+
+type UploadMeasurementSessionResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Success         bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	WindowsAccepted uint32                 `protobuf:"varint,2,opt,name=windows_accepted,json=windowsAccepted,proto3" json:"windows_accepted,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *UploadMeasurementSessionResponse) Reset() {
+	*x = UploadMeasurementSessionResponse{}
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UploadMeasurementSessionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadMeasurementSessionResponse) ProtoMessage() {}
+
+func (x *UploadMeasurementSessionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadMeasurementSessionResponse.ProtoReflect.Descriptor instead.
+func (*UploadMeasurementSessionResponse) Descriptor() ([]byte, []int) {
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UploadMeasurementSessionResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *UploadMeasurementSessionResponse) GetWindowsAccepted() uint32 {
+	if x != nil {
+		return x.WindowsAccepted
+	}
+	return 0
+}
+
 // Get a single measurement by ID
 type GetMeasurementRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -334,7 +644,7 @@ type GetMeasurementRequest struct {
 
 func (x *GetMeasurementRequest) Reset() {
 	*x = GetMeasurementRequest{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[3]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -346,7 +656,7 @@ func (x *GetMeasurementRequest) String() string {
 func (*GetMeasurementRequest) ProtoMessage() {}
 
 func (x *GetMeasurementRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[3]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -359,7 +669,7 @@ func (x *GetMeasurementRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMeasurementRequest.ProtoReflect.Descriptor instead.
 func (*GetMeasurementRequest) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{3}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetMeasurementRequest) GetId() int32 {
@@ -378,7 +688,7 @@ type GetMeasurementResponse struct {
 
 func (x *GetMeasurementResponse) Reset() {
 	*x = GetMeasurementResponse{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[4]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -390,7 +700,7 @@ func (x *GetMeasurementResponse) String() string {
 func (*GetMeasurementResponse) ProtoMessage() {}
 
 func (x *GetMeasurementResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[4]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -403,7 +713,7 @@ func (x *GetMeasurementResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMeasurementResponse.ProtoReflect.Descriptor instead.
 func (*GetMeasurementResponse) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{4}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetMeasurementResponse) GetMeasurement() *Measurement {
@@ -424,7 +734,7 @@ type ListMeasurementsForUserRequest struct {
 
 func (x *ListMeasurementsForUserRequest) Reset() {
 	*x = ListMeasurementsForUserRequest{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[5]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -436,7 +746,7 @@ func (x *ListMeasurementsForUserRequest) String() string {
 func (*ListMeasurementsForUserRequest) ProtoMessage() {}
 
 func (x *ListMeasurementsForUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[5]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -449,7 +759,7 @@ func (x *ListMeasurementsForUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMeasurementsForUserRequest.ProtoReflect.Descriptor instead.
 func (*ListMeasurementsForUserRequest) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{5}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListMeasurementsForUserRequest) GetUserId() string {
@@ -475,7 +785,7 @@ type ListMeasurementsForUserResponse struct {
 
 func (x *ListMeasurementsForUserResponse) Reset() {
 	*x = ListMeasurementsForUserResponse{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[6]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -487,7 +797,7 @@ func (x *ListMeasurementsForUserResponse) String() string {
 func (*ListMeasurementsForUserResponse) ProtoMessage() {}
 
 func (x *ListMeasurementsForUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[6]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -500,7 +810,7 @@ func (x *ListMeasurementsForUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMeasurementsForUserResponse.ProtoReflect.Descriptor instead.
 func (*ListMeasurementsForUserResponse) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{6}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListMeasurementsForUserResponse) GetMeasurements() []*Measurement {
@@ -520,7 +830,7 @@ type ListAllMeasurementsRequest struct {
 
 func (x *ListAllMeasurementsRequest) Reset() {
 	*x = ListAllMeasurementsRequest{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[7]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -532,7 +842,7 @@ func (x *ListAllMeasurementsRequest) String() string {
 func (*ListAllMeasurementsRequest) ProtoMessage() {}
 
 func (x *ListAllMeasurementsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[7]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -545,7 +855,7 @@ func (x *ListAllMeasurementsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAllMeasurementsRequest.ProtoReflect.Descriptor instead.
 func (*ListAllMeasurementsRequest) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{7}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListAllMeasurementsRequest) GetFilter() *MeasurementFilter {
@@ -564,7 +874,7 @@ type ListAllMeasurementsResponse struct {
 
 func (x *ListAllMeasurementsResponse) Reset() {
 	*x = ListAllMeasurementsResponse{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[8]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -576,7 +886,7 @@ func (x *ListAllMeasurementsResponse) String() string {
 func (*ListAllMeasurementsResponse) ProtoMessage() {}
 
 func (x *ListAllMeasurementsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[8]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -589,7 +899,7 @@ func (x *ListAllMeasurementsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAllMeasurementsResponse.ProtoReflect.Descriptor instead.
 func (*ListAllMeasurementsResponse) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{8}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListAllMeasurementsResponse) GetMeasurements() []*Measurement {
@@ -610,7 +920,7 @@ type CreateMeasurementRequest struct {
 
 func (x *CreateMeasurementRequest) Reset() {
 	*x = CreateMeasurementRequest{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[9]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -622,7 +932,7 @@ func (x *CreateMeasurementRequest) String() string {
 func (*CreateMeasurementRequest) ProtoMessage() {}
 
 func (x *CreateMeasurementRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[9]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -635,7 +945,7 @@ func (x *CreateMeasurementRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMeasurementRequest.ProtoReflect.Descriptor instead.
 func (*CreateMeasurementRequest) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{9}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CreateMeasurementRequest) GetIdempotencyKey() string {
@@ -661,7 +971,7 @@ type CreateMeasurementResponse struct {
 
 func (x *CreateMeasurementResponse) Reset() {
 	*x = CreateMeasurementResponse{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[10]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -673,7 +983,7 @@ func (x *CreateMeasurementResponse) String() string {
 func (*CreateMeasurementResponse) ProtoMessage() {}
 
 func (x *CreateMeasurementResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[10]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -686,7 +996,7 @@ func (x *CreateMeasurementResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMeasurementResponse.ProtoReflect.Descriptor instead.
 func (*CreateMeasurementResponse) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{10}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CreateMeasurementResponse) GetSuccess() bool {
@@ -706,7 +1016,7 @@ type UpdateMeasurementRequest struct {
 
 func (x *UpdateMeasurementRequest) Reset() {
 	*x = UpdateMeasurementRequest{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[11]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -718,7 +1028,7 @@ func (x *UpdateMeasurementRequest) String() string {
 func (*UpdateMeasurementRequest) ProtoMessage() {}
 
 func (x *UpdateMeasurementRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[11]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -731,7 +1041,7 @@ func (x *UpdateMeasurementRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMeasurementRequest.ProtoReflect.Descriptor instead.
 func (*UpdateMeasurementRequest) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{11}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UpdateMeasurementRequest) GetMeasurement() *Measurement {
@@ -750,7 +1060,7 @@ type UpdateMeasurementResponse struct {
 
 func (x *UpdateMeasurementResponse) Reset() {
 	*x = UpdateMeasurementResponse{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[12]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -762,7 +1072,7 @@ func (x *UpdateMeasurementResponse) String() string {
 func (*UpdateMeasurementResponse) ProtoMessage() {}
 
 func (x *UpdateMeasurementResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[12]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -775,7 +1085,7 @@ func (x *UpdateMeasurementResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMeasurementResponse.ProtoReflect.Descriptor instead.
 func (*UpdateMeasurementResponse) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{12}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *UpdateMeasurementResponse) GetMeasurement() *Measurement {
@@ -795,7 +1105,7 @@ type DeleteMeasurementRequest struct {
 
 func (x *DeleteMeasurementRequest) Reset() {
 	*x = DeleteMeasurementRequest{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[13]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -807,7 +1117,7 @@ func (x *DeleteMeasurementRequest) String() string {
 func (*DeleteMeasurementRequest) ProtoMessage() {}
 
 func (x *DeleteMeasurementRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[13]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -820,7 +1130,7 @@ func (x *DeleteMeasurementRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteMeasurementRequest.ProtoReflect.Descriptor instead.
 func (*DeleteMeasurementRequest) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{13}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteMeasurementRequest) GetId() int32 {
@@ -839,7 +1149,7 @@ type DeleteMeasurementResponse struct {
 
 func (x *DeleteMeasurementResponse) Reset() {
 	*x = DeleteMeasurementResponse{}
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[14]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -851,7 +1161,7 @@ func (x *DeleteMeasurementResponse) String() string {
 func (*DeleteMeasurementResponse) ProtoMessage() {}
 
 func (x *DeleteMeasurementResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[14]
+	mi := &file_proto_measurement_v1_measurement_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -864,7 +1174,7 @@ func (x *DeleteMeasurementResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteMeasurementResponse.ProtoReflect.Descriptor instead.
 func (*DeleteMeasurementResponse) Descriptor() ([]byte, []int) {
-	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{14}
+	return file_proto_measurement_v1_measurement_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *DeleteMeasurementResponse) GetSuccess() bool {
@@ -889,7 +1199,7 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"activityId\x12\x16\n" +
 	"\x06weight\x18\a \x01(\rR\x06weight\x129\n" +
 	"\n" +
-	"time_stamp\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStamp\"\x8f\x02\n" +
+	"time_stamp\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStamp\"\x93\x02\n" +
 	"\x10MeasurementBatch\x12\x1b\n" +
 	"\auser_id\x18\x01 \x01(\tB\x02\x18\x01R\x06userId\x12\x1f\n" +
 	"\vactivity_id\x18\x02 \x01(\tR\n" +
@@ -898,7 +1208,7 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"\rheel_pressure\x18\x04 \x03(\rR\fheelPressure\x12!\n" +
 	"\ftoe_pressure\x18\x05 \x03(\rR\vtoePressure\x12\x16\n" +
 	"\x06weight\x18\x06 \x03(\rR\x06weight\x128\n" +
-	"\ttimestamp\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\"\xd0\x02\n" +
+	"\ttimestamp\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp:\x02\x18\x01\"\xd0\x02\n" +
 	"\x11MeasurementFilter\x12#\n" +
 	"\ractivity_type\x18\x01 \x01(\tR\factivityType\x12\x1f\n" +
 	"\vactivity_id\x18\x02 \x01(\tR\n" +
@@ -910,7 +1220,34 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"\binterval\x18\x06 \x01(\tR\binterval\x12\x1b\n" +
 	"\tpage_size\x18\a \x01(\rR\bpageSize\x12\x12\n" +
 	"\x04page\x18\b \x01(\rR\x04page\x12\x1c\n" +
-	"\tascending\x18\t \x01(\bR\tascending\"'\n" +
+	"\tascending\x18\t \x01(\bR\tascending\"\xac\x02\n" +
+	"\x0fAggregateWindow\x12=\n" +
+	"\fwindow_start\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\vwindowStart\x12\x1b\n" +
+	"\twindow_ms\x18\x02 \x01(\rR\bwindowMs\x12\x19\n" +
+	"\bheel_avg\x18\x03 \x01(\rR\aheelAvg\x12\x19\n" +
+	"\bheel_min\x18\x04 \x01(\rR\aheelMin\x12\x19\n" +
+	"\bheel_max\x18\x05 \x01(\rR\aheelMax\x12\x17\n" +
+	"\atoe_avg\x18\x06 \x01(\rR\x06toeAvg\x12\x17\n" +
+	"\atoe_min\x18\a \x01(\rR\x06toeMin\x12\x17\n" +
+	"\atoe_max\x18\b \x01(\rR\x06toeMax\x12!\n" +
+	"\fsample_count\x18\t \x01(\rR\vsampleCount\"\x8c\x01\n" +
+	"\n" +
+	"RawSegment\x129\n" +
+	"\n" +
+	"start_time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x12$\n" +
+	"\x0esample_rate_hz\x18\x02 \x01(\rR\fsampleRateHz\x12\x1d\n" +
+	"\n" +
+	"samples_gz\x18\x03 \x01(\fR\tsamplesGz\"\x96\x02\n" +
+	"\x1fUploadMeasurementSessionRequest\x12'\n" +
+	"\x0fidempotency_key\x18\x01 \x01(\tR\x0eidempotencyKey\x12\x1f\n" +
+	"\vactivity_id\x18\x02 \x01(\tR\n" +
+	"activityId\x12#\n" +
+	"\ractivity_type\x18\x03 \x01(\tR\factivityType\x12?\n" +
+	"\awindows\x18\x04 \x03(\v2%.proto.measurement.v1.AggregateWindowR\awindows\x12C\n" +
+	"\fraw_segments\x18\x05 \x03(\v2 .proto.measurement.v1.RawSegmentR\vrawSegments\"g\n" +
+	" UploadMeasurementSessionResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12)\n" +
+	"\x10windows_accepted\x18\x02 \x01(\rR\x0fwindowsAccepted\"'\n" +
 	"\x15GetMeasurementRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"]\n" +
 	"\x16GetMeasurementResponse\x12C\n" +
@@ -936,12 +1273,13 @@ const file_proto_measurement_v1_measurement_proto_rawDesc = "" +
 	"\x18DeleteMeasurementRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\"5\n" +
 	"\x19DeleteMeasurementResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xe8\x05\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xf9\x06\n" +
 	"\x12MeasurementService\x12k\n" +
 	"\x0eGetMeasurement\x12+.proto.measurement.v1.GetMeasurementRequest\x1a,.proto.measurement.v1.GetMeasurementResponse\x12\x86\x01\n" +
 	"\x17ListMeasurementsForUser\x124.proto.measurement.v1.ListMeasurementsForUserRequest\x1a5.proto.measurement.v1.ListMeasurementsForUserResponse\x12z\n" +
-	"\x13ListAllMeasurements\x120.proto.measurement.v1.ListAllMeasurementsRequest\x1a1.proto.measurement.v1.ListAllMeasurementsResponse\x12t\n" +
-	"\x11CreateMeasurement\x12..proto.measurement.v1.CreateMeasurementRequest\x1a/.proto.measurement.v1.CreateMeasurementResponse\x12t\n" +
+	"\x13ListAllMeasurements\x120.proto.measurement.v1.ListAllMeasurementsRequest\x1a1.proto.measurement.v1.ListAllMeasurementsResponse\x12y\n" +
+	"\x11CreateMeasurement\x12..proto.measurement.v1.CreateMeasurementRequest\x1a/.proto.measurement.v1.CreateMeasurementResponse\"\x03\x88\x02\x01\x12\x89\x01\n" +
+	"\x18UploadMeasurementSession\x125.proto.measurement.v1.UploadMeasurementSessionRequest\x1a6.proto.measurement.v1.UploadMeasurementSessionResponse\x12t\n" +
 	"\x11UpdateMeasurement\x12..proto.measurement.v1.UpdateMeasurementRequest\x1a/.proto.measurement.v1.UpdateMeasurementResponse\x12t\n" +
 	"\x11DeleteMeasurement\x12..proto.measurement.v1.DeleteMeasurementRequest\x1a/.proto.measurement.v1.DeleteMeasurementResponseB_Z]github.com/supersecretorganisation/proto-schemas/v3/gen/go/proto/measurement/v1;measurementpbb\x06proto3"
 
@@ -957,55 +1295,65 @@ func file_proto_measurement_v1_measurement_proto_rawDescGZIP() []byte {
 	return file_proto_measurement_v1_measurement_proto_rawDescData
 }
 
-var file_proto_measurement_v1_measurement_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_proto_measurement_v1_measurement_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_proto_measurement_v1_measurement_proto_goTypes = []any{
-	(*Measurement)(nil),                     // 0: proto.measurement.v1.Measurement
-	(*MeasurementBatch)(nil),                // 1: proto.measurement.v1.MeasurementBatch
-	(*MeasurementFilter)(nil),               // 2: proto.measurement.v1.MeasurementFilter
-	(*GetMeasurementRequest)(nil),           // 3: proto.measurement.v1.GetMeasurementRequest
-	(*GetMeasurementResponse)(nil),          // 4: proto.measurement.v1.GetMeasurementResponse
-	(*ListMeasurementsForUserRequest)(nil),  // 5: proto.measurement.v1.ListMeasurementsForUserRequest
-	(*ListMeasurementsForUserResponse)(nil), // 6: proto.measurement.v1.ListMeasurementsForUserResponse
-	(*ListAllMeasurementsRequest)(nil),      // 7: proto.measurement.v1.ListAllMeasurementsRequest
-	(*ListAllMeasurementsResponse)(nil),     // 8: proto.measurement.v1.ListAllMeasurementsResponse
-	(*CreateMeasurementRequest)(nil),        // 9: proto.measurement.v1.CreateMeasurementRequest
-	(*CreateMeasurementResponse)(nil),       // 10: proto.measurement.v1.CreateMeasurementResponse
-	(*UpdateMeasurementRequest)(nil),        // 11: proto.measurement.v1.UpdateMeasurementRequest
-	(*UpdateMeasurementResponse)(nil),       // 12: proto.measurement.v1.UpdateMeasurementResponse
-	(*DeleteMeasurementRequest)(nil),        // 13: proto.measurement.v1.DeleteMeasurementRequest
-	(*DeleteMeasurementResponse)(nil),       // 14: proto.measurement.v1.DeleteMeasurementResponse
-	(*timestamppb.Timestamp)(nil),           // 15: google.protobuf.Timestamp
+	(*Measurement)(nil),                      // 0: proto.measurement.v1.Measurement
+	(*MeasurementBatch)(nil),                 // 1: proto.measurement.v1.MeasurementBatch
+	(*MeasurementFilter)(nil),                // 2: proto.measurement.v1.MeasurementFilter
+	(*AggregateWindow)(nil),                  // 3: proto.measurement.v1.AggregateWindow
+	(*RawSegment)(nil),                       // 4: proto.measurement.v1.RawSegment
+	(*UploadMeasurementSessionRequest)(nil),  // 5: proto.measurement.v1.UploadMeasurementSessionRequest
+	(*UploadMeasurementSessionResponse)(nil), // 6: proto.measurement.v1.UploadMeasurementSessionResponse
+	(*GetMeasurementRequest)(nil),            // 7: proto.measurement.v1.GetMeasurementRequest
+	(*GetMeasurementResponse)(nil),           // 8: proto.measurement.v1.GetMeasurementResponse
+	(*ListMeasurementsForUserRequest)(nil),   // 9: proto.measurement.v1.ListMeasurementsForUserRequest
+	(*ListMeasurementsForUserResponse)(nil),  // 10: proto.measurement.v1.ListMeasurementsForUserResponse
+	(*ListAllMeasurementsRequest)(nil),       // 11: proto.measurement.v1.ListAllMeasurementsRequest
+	(*ListAllMeasurementsResponse)(nil),      // 12: proto.measurement.v1.ListAllMeasurementsResponse
+	(*CreateMeasurementRequest)(nil),         // 13: proto.measurement.v1.CreateMeasurementRequest
+	(*CreateMeasurementResponse)(nil),        // 14: proto.measurement.v1.CreateMeasurementResponse
+	(*UpdateMeasurementRequest)(nil),         // 15: proto.measurement.v1.UpdateMeasurementRequest
+	(*UpdateMeasurementResponse)(nil),        // 16: proto.measurement.v1.UpdateMeasurementResponse
+	(*DeleteMeasurementRequest)(nil),         // 17: proto.measurement.v1.DeleteMeasurementRequest
+	(*DeleteMeasurementResponse)(nil),        // 18: proto.measurement.v1.DeleteMeasurementResponse
+	(*timestamppb.Timestamp)(nil),            // 19: google.protobuf.Timestamp
 }
 var file_proto_measurement_v1_measurement_proto_depIdxs = []int32{
-	15, // 0: proto.measurement.v1.Measurement.time_stamp:type_name -> google.protobuf.Timestamp
-	15, // 1: proto.measurement.v1.MeasurementBatch.timestamp:type_name -> google.protobuf.Timestamp
-	15, // 2: proto.measurement.v1.MeasurementFilter.start_date:type_name -> google.protobuf.Timestamp
-	15, // 3: proto.measurement.v1.MeasurementFilter.end_date:type_name -> google.protobuf.Timestamp
-	0,  // 4: proto.measurement.v1.GetMeasurementResponse.measurement:type_name -> proto.measurement.v1.Measurement
-	2,  // 5: proto.measurement.v1.ListMeasurementsForUserRequest.filter:type_name -> proto.measurement.v1.MeasurementFilter
-	0,  // 6: proto.measurement.v1.ListMeasurementsForUserResponse.measurements:type_name -> proto.measurement.v1.Measurement
-	2,  // 7: proto.measurement.v1.ListAllMeasurementsRequest.filter:type_name -> proto.measurement.v1.MeasurementFilter
-	0,  // 8: proto.measurement.v1.ListAllMeasurementsResponse.measurements:type_name -> proto.measurement.v1.Measurement
-	1,  // 9: proto.measurement.v1.CreateMeasurementRequest.measurement_batch:type_name -> proto.measurement.v1.MeasurementBatch
-	0,  // 10: proto.measurement.v1.UpdateMeasurementRequest.measurement:type_name -> proto.measurement.v1.Measurement
-	0,  // 11: proto.measurement.v1.UpdateMeasurementResponse.measurement:type_name -> proto.measurement.v1.Measurement
-	3,  // 12: proto.measurement.v1.MeasurementService.GetMeasurement:input_type -> proto.measurement.v1.GetMeasurementRequest
-	5,  // 13: proto.measurement.v1.MeasurementService.ListMeasurementsForUser:input_type -> proto.measurement.v1.ListMeasurementsForUserRequest
-	7,  // 14: proto.measurement.v1.MeasurementService.ListAllMeasurements:input_type -> proto.measurement.v1.ListAllMeasurementsRequest
-	9,  // 15: proto.measurement.v1.MeasurementService.CreateMeasurement:input_type -> proto.measurement.v1.CreateMeasurementRequest
-	11, // 16: proto.measurement.v1.MeasurementService.UpdateMeasurement:input_type -> proto.measurement.v1.UpdateMeasurementRequest
-	13, // 17: proto.measurement.v1.MeasurementService.DeleteMeasurement:input_type -> proto.measurement.v1.DeleteMeasurementRequest
-	4,  // 18: proto.measurement.v1.MeasurementService.GetMeasurement:output_type -> proto.measurement.v1.GetMeasurementResponse
-	6,  // 19: proto.measurement.v1.MeasurementService.ListMeasurementsForUser:output_type -> proto.measurement.v1.ListMeasurementsForUserResponse
-	8,  // 20: proto.measurement.v1.MeasurementService.ListAllMeasurements:output_type -> proto.measurement.v1.ListAllMeasurementsResponse
-	10, // 21: proto.measurement.v1.MeasurementService.CreateMeasurement:output_type -> proto.measurement.v1.CreateMeasurementResponse
-	12, // 22: proto.measurement.v1.MeasurementService.UpdateMeasurement:output_type -> proto.measurement.v1.UpdateMeasurementResponse
-	14, // 23: proto.measurement.v1.MeasurementService.DeleteMeasurement:output_type -> proto.measurement.v1.DeleteMeasurementResponse
-	18, // [18:24] is the sub-list for method output_type
-	12, // [12:18] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	19, // 0: proto.measurement.v1.Measurement.time_stamp:type_name -> google.protobuf.Timestamp
+	19, // 1: proto.measurement.v1.MeasurementBatch.timestamp:type_name -> google.protobuf.Timestamp
+	19, // 2: proto.measurement.v1.MeasurementFilter.start_date:type_name -> google.protobuf.Timestamp
+	19, // 3: proto.measurement.v1.MeasurementFilter.end_date:type_name -> google.protobuf.Timestamp
+	19, // 4: proto.measurement.v1.AggregateWindow.window_start:type_name -> google.protobuf.Timestamp
+	19, // 5: proto.measurement.v1.RawSegment.start_time:type_name -> google.protobuf.Timestamp
+	3,  // 6: proto.measurement.v1.UploadMeasurementSessionRequest.windows:type_name -> proto.measurement.v1.AggregateWindow
+	4,  // 7: proto.measurement.v1.UploadMeasurementSessionRequest.raw_segments:type_name -> proto.measurement.v1.RawSegment
+	0,  // 8: proto.measurement.v1.GetMeasurementResponse.measurement:type_name -> proto.measurement.v1.Measurement
+	2,  // 9: proto.measurement.v1.ListMeasurementsForUserRequest.filter:type_name -> proto.measurement.v1.MeasurementFilter
+	0,  // 10: proto.measurement.v1.ListMeasurementsForUserResponse.measurements:type_name -> proto.measurement.v1.Measurement
+	2,  // 11: proto.measurement.v1.ListAllMeasurementsRequest.filter:type_name -> proto.measurement.v1.MeasurementFilter
+	0,  // 12: proto.measurement.v1.ListAllMeasurementsResponse.measurements:type_name -> proto.measurement.v1.Measurement
+	1,  // 13: proto.measurement.v1.CreateMeasurementRequest.measurement_batch:type_name -> proto.measurement.v1.MeasurementBatch
+	0,  // 14: proto.measurement.v1.UpdateMeasurementRequest.measurement:type_name -> proto.measurement.v1.Measurement
+	0,  // 15: proto.measurement.v1.UpdateMeasurementResponse.measurement:type_name -> proto.measurement.v1.Measurement
+	7,  // 16: proto.measurement.v1.MeasurementService.GetMeasurement:input_type -> proto.measurement.v1.GetMeasurementRequest
+	9,  // 17: proto.measurement.v1.MeasurementService.ListMeasurementsForUser:input_type -> proto.measurement.v1.ListMeasurementsForUserRequest
+	11, // 18: proto.measurement.v1.MeasurementService.ListAllMeasurements:input_type -> proto.measurement.v1.ListAllMeasurementsRequest
+	13, // 19: proto.measurement.v1.MeasurementService.CreateMeasurement:input_type -> proto.measurement.v1.CreateMeasurementRequest
+	5,  // 20: proto.measurement.v1.MeasurementService.UploadMeasurementSession:input_type -> proto.measurement.v1.UploadMeasurementSessionRequest
+	15, // 21: proto.measurement.v1.MeasurementService.UpdateMeasurement:input_type -> proto.measurement.v1.UpdateMeasurementRequest
+	17, // 22: proto.measurement.v1.MeasurementService.DeleteMeasurement:input_type -> proto.measurement.v1.DeleteMeasurementRequest
+	8,  // 23: proto.measurement.v1.MeasurementService.GetMeasurement:output_type -> proto.measurement.v1.GetMeasurementResponse
+	10, // 24: proto.measurement.v1.MeasurementService.ListMeasurementsForUser:output_type -> proto.measurement.v1.ListMeasurementsForUserResponse
+	12, // 25: proto.measurement.v1.MeasurementService.ListAllMeasurements:output_type -> proto.measurement.v1.ListAllMeasurementsResponse
+	14, // 26: proto.measurement.v1.MeasurementService.CreateMeasurement:output_type -> proto.measurement.v1.CreateMeasurementResponse
+	6,  // 27: proto.measurement.v1.MeasurementService.UploadMeasurementSession:output_type -> proto.measurement.v1.UploadMeasurementSessionResponse
+	16, // 28: proto.measurement.v1.MeasurementService.UpdateMeasurement:output_type -> proto.measurement.v1.UpdateMeasurementResponse
+	18, // 29: proto.measurement.v1.MeasurementService.DeleteMeasurement:output_type -> proto.measurement.v1.DeleteMeasurementResponse
+	23, // [23:30] is the sub-list for method output_type
+	16, // [16:23] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_proto_measurement_v1_measurement_proto_init() }
@@ -1019,7 +1367,7 @@ func file_proto_measurement_v1_measurement_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_measurement_v1_measurement_proto_rawDesc), len(file_proto_measurement_v1_measurement_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

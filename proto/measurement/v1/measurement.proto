@@ -17,7 +17,13 @@ message Measurement {
   google.protobuf.Timestamp time_stamp = 8;
 }
 
+// Deprecated: single timestamp for N samples loses per-sample timing and the
+// per-sample weight array is a modeling error. Use UploadMeasurementSession
+// with AggregateWindow instead. Kept for backward compatibility; removal is a
+// later major-version cleanup.
 message MeasurementBatch {
+  option deprecated = true;
+
   string user_id = 1 [deprecated = true]; // Deprecated: the server derives the caller from the access token; do not set.
   string activity_id = 2;
   string activity_type = 3;
@@ -39,14 +45,58 @@ message MeasurementFilter {
   bool ascending = 9;
 }
 
+// Session-based upload payloads (aggregate-first transport).
+
+// A single aggregation window: avg/min/max per sensor over window_ms, plus the
+// real number of samples folded in. window_start uses sample timestamps, not
+// wall-clock ticks, so it survives BLE drops and out-of-order delivery.
+message AggregateWindow {
+  google.protobuf.Timestamp window_start = 1;
+  uint32 window_ms = 2; // Client states the window it computed (10000 default).
+  uint32 heel_avg = 3;
+  uint32 heel_min = 4;
+  uint32 heel_max = 5;
+  uint32 toe_avg = 6;
+  uint32 toe_min = 7;
+  uint32 toe_max = 8;
+  uint32 sample_count = 9; // Real samples folded in; < rate*window on BLE drops.
+}
+
+// An optional raw sample series for a session segment, sent only for
+// cohort-flagged users. samples_gz is gzip(packed little-endian uint16 heel,toe
+// pairs); timing is reconstructed from start_time + sample_rate_hz.
+message RawSegment {
+  google.protobuf.Timestamp start_time = 1;
+  uint32 sample_rate_hz = 2; // 50 today; firmware-versioned tomorrow.
+  bytes samples_gz = 3;
+}
+
+// Session upload: aggregate windows are always present; raw segments are empty
+// unless the user is in a raw-capture cohort.
+message UploadMeasurementSessionRequest {
+  string idempotency_key = 1; // Existing server-side enforcement covers replays.
+  string activity_id = 2;
+  string activity_type = 3;
+  repeated AggregateWindow windows = 4;
+  repeated RawSegment raw_segments = 5;
+}
+message UploadMeasurementSessionResponse {
+  bool success = 1;
+  uint32 windows_accepted = 2;
+}
+
 service MeasurementService {
   rpc GetMeasurement (GetMeasurementRequest) returns (GetMeasurementResponse);
   rpc ListMeasurementsForUser (ListMeasurementsForUserRequest) returns (ListMeasurementsForUserResponse);
   rpc ListAllMeasurements (ListAllMeasurementsRequest) returns (ListAllMeasurementsResponse);
-  rpc CreateMeasurement (CreateMeasurementRequest) returns (CreateMeasurementResponse);
+  // Deprecated: use UploadMeasurementSession. Kept functional for now.
+  rpc CreateMeasurement (CreateMeasurementRequest) returns (CreateMeasurementResponse) {
+    option deprecated = true;
+  }
+  rpc UploadMeasurementSession (UploadMeasurementSessionRequest) returns (UploadMeasurementSessionResponse);
   rpc UpdateMeasurement (UpdateMeasurementRequest) returns (UpdateMeasurementResponse);
   rpc DeleteMeasurement (DeleteMeasurementRequest) returns (DeleteMeasurementResponse);
-}	
+}
 
 // Measurement retrieval request and response
 

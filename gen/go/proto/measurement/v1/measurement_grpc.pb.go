@@ -19,12 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MeasurementService_GetMeasurement_FullMethodName          = "/proto.measurement.v1.MeasurementService/GetMeasurement"
-	MeasurementService_ListMeasurementsForUser_FullMethodName = "/proto.measurement.v1.MeasurementService/ListMeasurementsForUser"
-	MeasurementService_ListAllMeasurements_FullMethodName     = "/proto.measurement.v1.MeasurementService/ListAllMeasurements"
-	MeasurementService_CreateMeasurement_FullMethodName       = "/proto.measurement.v1.MeasurementService/CreateMeasurement"
-	MeasurementService_UpdateMeasurement_FullMethodName       = "/proto.measurement.v1.MeasurementService/UpdateMeasurement"
-	MeasurementService_DeleteMeasurement_FullMethodName       = "/proto.measurement.v1.MeasurementService/DeleteMeasurement"
+	MeasurementService_GetMeasurement_FullMethodName           = "/proto.measurement.v1.MeasurementService/GetMeasurement"
+	MeasurementService_ListMeasurementsForUser_FullMethodName  = "/proto.measurement.v1.MeasurementService/ListMeasurementsForUser"
+	MeasurementService_ListAllMeasurements_FullMethodName      = "/proto.measurement.v1.MeasurementService/ListAllMeasurements"
+	MeasurementService_CreateMeasurement_FullMethodName        = "/proto.measurement.v1.MeasurementService/CreateMeasurement"
+	MeasurementService_UploadMeasurementSession_FullMethodName = "/proto.measurement.v1.MeasurementService/UploadMeasurementSession"
+	MeasurementService_UpdateMeasurement_FullMethodName        = "/proto.measurement.v1.MeasurementService/UpdateMeasurement"
+	MeasurementService_DeleteMeasurement_FullMethodName        = "/proto.measurement.v1.MeasurementService/DeleteMeasurement"
 )
 
 // MeasurementServiceClient is the client API for MeasurementService service.
@@ -34,7 +35,10 @@ type MeasurementServiceClient interface {
 	GetMeasurement(ctx context.Context, in *GetMeasurementRequest, opts ...grpc.CallOption) (*GetMeasurementResponse, error)
 	ListMeasurementsForUser(ctx context.Context, in *ListMeasurementsForUserRequest, opts ...grpc.CallOption) (*ListMeasurementsForUserResponse, error)
 	ListAllMeasurements(ctx context.Context, in *ListAllMeasurementsRequest, opts ...grpc.CallOption) (*ListAllMeasurementsResponse, error)
+	// Deprecated: Do not use.
+	// Deprecated: use UploadMeasurementSession. Kept functional for now.
 	CreateMeasurement(ctx context.Context, in *CreateMeasurementRequest, opts ...grpc.CallOption) (*CreateMeasurementResponse, error)
+	UploadMeasurementSession(ctx context.Context, in *UploadMeasurementSessionRequest, opts ...grpc.CallOption) (*UploadMeasurementSessionResponse, error)
 	UpdateMeasurement(ctx context.Context, in *UpdateMeasurementRequest, opts ...grpc.CallOption) (*UpdateMeasurementResponse, error)
 	DeleteMeasurement(ctx context.Context, in *DeleteMeasurementRequest, opts ...grpc.CallOption) (*DeleteMeasurementResponse, error)
 }
@@ -77,10 +81,21 @@ func (c *measurementServiceClient) ListAllMeasurements(ctx context.Context, in *
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *measurementServiceClient) CreateMeasurement(ctx context.Context, in *CreateMeasurementRequest, opts ...grpc.CallOption) (*CreateMeasurementResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateMeasurementResponse)
 	err := c.cc.Invoke(ctx, MeasurementService_CreateMeasurement_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *measurementServiceClient) UploadMeasurementSession(ctx context.Context, in *UploadMeasurementSessionRequest, opts ...grpc.CallOption) (*UploadMeasurementSessionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UploadMeasurementSessionResponse)
+	err := c.cc.Invoke(ctx, MeasurementService_UploadMeasurementSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +129,10 @@ type MeasurementServiceServer interface {
 	GetMeasurement(context.Context, *GetMeasurementRequest) (*GetMeasurementResponse, error)
 	ListMeasurementsForUser(context.Context, *ListMeasurementsForUserRequest) (*ListMeasurementsForUserResponse, error)
 	ListAllMeasurements(context.Context, *ListAllMeasurementsRequest) (*ListAllMeasurementsResponse, error)
+	// Deprecated: Do not use.
+	// Deprecated: use UploadMeasurementSession. Kept functional for now.
 	CreateMeasurement(context.Context, *CreateMeasurementRequest) (*CreateMeasurementResponse, error)
+	UploadMeasurementSession(context.Context, *UploadMeasurementSessionRequest) (*UploadMeasurementSessionResponse, error)
 	UpdateMeasurement(context.Context, *UpdateMeasurementRequest) (*UpdateMeasurementResponse, error)
 	DeleteMeasurement(context.Context, *DeleteMeasurementRequest) (*DeleteMeasurementResponse, error)
 	mustEmbedUnimplementedMeasurementServiceServer()
@@ -138,6 +156,9 @@ func (UnimplementedMeasurementServiceServer) ListAllMeasurements(context.Context
 }
 func (UnimplementedMeasurementServiceServer) CreateMeasurement(context.Context, *CreateMeasurementRequest) (*CreateMeasurementResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMeasurement not implemented")
+}
+func (UnimplementedMeasurementServiceServer) UploadMeasurementSession(context.Context, *UploadMeasurementSessionRequest) (*UploadMeasurementSessionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadMeasurementSession not implemented")
 }
 func (UnimplementedMeasurementServiceServer) UpdateMeasurement(context.Context, *UpdateMeasurementRequest) (*UpdateMeasurementResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMeasurement not implemented")
@@ -238,6 +259,24 @@ func _MeasurementService_CreateMeasurement_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MeasurementService_UploadMeasurementSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadMeasurementSessionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeasurementServiceServer).UploadMeasurementSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MeasurementService_UploadMeasurementSession_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeasurementServiceServer).UploadMeasurementSession(ctx, req.(*UploadMeasurementSessionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MeasurementService_UpdateMeasurement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateMeasurementRequest)
 	if err := dec(in); err != nil {
@@ -296,6 +335,10 @@ var MeasurementService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateMeasurement",
 			Handler:    _MeasurementService_CreateMeasurement_Handler,
+		},
+		{
+			MethodName: "UploadMeasurementSession",
+			Handler:    _MeasurementService_UploadMeasurementSession_Handler,
 		},
 		{
 			MethodName: "UpdateMeasurement",
